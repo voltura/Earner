@@ -73,7 +73,7 @@ namespace Earner
         private void UpdateEarningsUI(double weightedEarnings)
         {
             _lblEarned.Text = $"{weightedEarnings:0,0.00}{CurrencySymbols}";
-            _lblEarned.ForeColor = weightedEarnings < 0 ? Color.Red : Color.Green;
+           // _lblEarned.ForeColor = weightedEarnings < 0 ? Color.Red : Color.Green;
             _lblWorkTime.Text = $"{ElapsedTime.TotalHours:00}:{ElapsedTime.TotalMinutes:00}:{ElapsedTime.TotalSeconds:00}";
             _lblWorkTime.ForeColor = ElapsedTime.TotalHours <= MaxBillableDailyHours ? Color.White : Color.Red;
         }

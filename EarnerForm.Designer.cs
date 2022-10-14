@@ -53,13 +53,13 @@
             // 
             // _btnOptions
             // 
-            this._btnOptions.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this._btnOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnOptions.BackgroundImage = global::Earner.Properties.Resources.settings;
             this._btnOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnOptions.FlatAppearance.BorderSize = 0;
             this._btnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnOptions.Font = new System.Drawing.Font("Segoe UI Light", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._btnOptions.ForeColor = System.Drawing.Color.White;
+            this._btnOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnOptions.Location = new System.Drawing.Point(548, 226);
             this._btnOptions.Name = "_btnOptions";
             this._btnOptions.Size = new System.Drawing.Size(119, 79);
@@ -69,13 +69,12 @@
             // 
             // _btnStart
             // 
-            this._btnStart.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this._btnStart.BackgroundImage = global::Earner.Properties.Resources.pause;
             this._btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnStart.FlatAppearance.BorderSize = 0;
             this._btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnStart.Font = new System.Drawing.Font("Segoe UI Light", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._btnStart.ForeColor = System.Drawing.Color.White;
+            this._btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._btnStart.Location = new System.Drawing.Point(678, 226);
             this._btnStart.Name = "_btnStart";
@@ -151,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(800, 302);
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._topPanel);
