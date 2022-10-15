@@ -31,11 +31,11 @@ namespace Earner
 
         private void InitializeCostsAndEarnings()
         {
-            FixedDailyCost = 40.00d * 2.00d;    // road tolls
+          /*  FixedDailyCost = 40.00d * 2.00d;    // road tolls
             FixedDailyCost += 17.5d;            // parking
             FixedDailyCost += 30.00d * 4.00d;   // diesel + car value reduction
             FixedDailyCost += 1500.00d / 200d;  // insurance
-            FixedDailyCost += 106.00d;          // lunch
+            FixedDailyCost += 106.00d;          // lunch */
             Tick(this, new EventArgs());
             _stopwatch.Start();
             _earnerTimer.Start();
@@ -72,9 +72,8 @@ namespace Earner
 
         private void UpdateEarningsUI(double weightedEarnings)
         {
-            _lblEarned.Text = $"{weightedEarnings:0,0.00}{CurrencySymbols}";
-           // _lblEarned.ForeColor = weightedEarnings < 0 ? Color.Red : Color.Green;
-            _lblWorkTime.Text = $"{ElapsedTime.TotalHours:00}:{ElapsedTime.TotalMinutes:00}:{ElapsedTime.TotalSeconds:00}";
+            _lblEarned.Text = $"{weightedEarnings:00000}{CurrencySymbols}";
+            _lblWorkTime.Text = $"{ElapsedTime:c}".Substring(0, 8);
             _lblWorkTime.ForeColor = ElapsedTime.TotalHours <= MaxBillableDailyHours ? Color.White : Color.Red;
         }
 
