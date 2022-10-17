@@ -21,6 +21,9 @@
     <Description>Show earned money in realtime per day</Description>
     <Copyright>Copyright 2022 Voltura AB</Copyright>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	<AssemblyVersion>1.0.0.1</AssemblyVersion>
+	<NeutralLanguage>en</NeutralLanguage>
+	<FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -44,6 +47,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EarnerUserControls\EarnerUserControls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -52,6 +62,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="SettingsForm.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

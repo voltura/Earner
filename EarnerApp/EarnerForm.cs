@@ -1,4 +1,5 @@
 using Earner.Properties;
+using System.Configuration;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -7,11 +8,11 @@ namespace Earner
     public partial class EarnerForm : Form
     {
         private double Earned { get; set; } = 0;
-        private double HourRate { get; set; } = 920;
+        private double HourlyRate { get; set; } = 920;
         private double FixedDailyCost { get; set; } = 0;
         private double MaxBillableDailyHours { get; set; } = 8;
         private TimeSpan ElapsedTime { get; set; }
-        private string CurrencySymbols { get; set; } = "kr";
+        private string CurrencySymbol { get; set; } = "kr";
 
         private readonly Stopwatch _stopwatch = new();
         const int WM_NCLBUTTONDOWN = 0xA1;
@@ -26,16 +27,27 @@ namespace Earner
         public EarnerForm()
         {
             InitializeComponent();
-            InitializeCostsAndEarnings();
+            LoadAppSettings();
+            StartEarning();
         }
 
-        private void InitializeCostsAndEarnings()
+        private void LoadAppSettings()
         {
-          /*  FixedDailyCost = 40.00d * 2.00d;    // road tolls
-            FixedDailyCost += 17.5d;            // parking
-            FixedDailyCost += 30.00d * 4.00d;   // diesel + car value reduction
-            FixedDailyCost += 1500.00d / 200d;  // insurance
-            FixedDailyCost += 106.00d;          // lunch */
+            try
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                HourlyRate = ConvertToDouble(config.AppSettings.Settings["HourlyRate"].Value);
+                FixedDailyCost = ConvertToDouble(config.AppSettings.Settings["FixedDailyCost"].Value);
+                MaxBillableDailyHours = ConvertToDouble(config.AppSettings.Settings["MaxBillableDailyHours"].Value);
+                CurrencySymbol = config.AppSettings.Settings["CurrencySymbol"].Value.Trim();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void StartEarning()
+        {
             Tick(this, new EventArgs());
             _stopwatch.Start();
             _earnerTimer.Start();
@@ -61,7 +73,11 @@ namespace Earner
 
         private void OptionsClick(object sender, EventArgs e)
         {
-            // TODO; Allow edit of fixed daily costs and hourly rate
+            using SettingsForm sf = new();
+            if (sf.ShowDialog(this) == DialogResult.OK) {
+                LoadAppSettings();
+                Tick(this, new EventArgs());
+            }
         }
 
         private void Tick(object sender, EventArgs e)
@@ -72,8 +88,8 @@ namespace Earner
 
         private void UpdateEarningsUI(double weightedEarnings)
         {
-            _lblEarned.Text = $"{weightedEarnings:00000}{CurrencySymbols}";
-            _lblWorkTime.Text = $"{ElapsedTime:c}".Substring(0, 8);
+            _lblEarned.Text = $"{weightedEarnings:00000}{CurrencySymbol}";
+            _lblWorkTime.Text = $"{ElapsedTime:c}"[..8];
             _lblWorkTime.ForeColor = ElapsedTime.TotalHours <= MaxBillableDailyHours ? Color.White : Color.Red;
         }
 
@@ -81,14 +97,14 @@ namespace Earner
         {
             ElapsedTime = _stopwatch.Elapsed;
             if (ElapsedTime.TotalHours <= MaxBillableDailyHours)
-                Earned += HourRate / 3600;
+                Earned += HourlyRate / 3600;
             double weightedEarnings = Earned - FixedDailyCost;
             return weightedEarnings;
         }
 
         private void HideClick(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)
@@ -99,10 +115,24 @@ namespace Earner
                 _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-
-        private void CloseClick(object sender, EventArgs e)
+        public static double ConvertToDouble(string Value)
         {
-            this.Close();
+            if (Value == null)
+            {
+                return 0;
+            }
+            else
+            {
+                _ = double.TryParse(Value, out double OutVal);
+
+                if (double.IsNaN(OutVal) || double.IsInfinity(OutVal))
+                {
+                    return 0;
+                }
+                return OutVal;
+            }
         }
+
+        private void CloseClick(object sender, EventArgs e) => Close();
     }
 }
