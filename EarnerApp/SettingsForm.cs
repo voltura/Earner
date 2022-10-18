@@ -10,10 +10,10 @@ namespace Earner
         const int WM_NCLBUTTONDOWN = 0xA1;
         const int HT_CAPTION = 0x2;
 
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         static extern bool ReleaseCapture();
 
         public SettingsForm()

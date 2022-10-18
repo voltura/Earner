@@ -8,8 +8,8 @@ namespace Earner
     public partial class EarnerForm : Form
     {
         private double Earned { get; set; } = 0;
-        private double HourlyRate { get; set; } = 920;
-        private double FixedDailyCost { get; set; } = 0;
+        private double HourlyRate { get; set; } = 1000;
+        private double FixedDailyCost { get; set; } = 200;
         private double MaxBillableDailyHours { get; set; } = 8;
         private TimeSpan ElapsedTime { get; set; }
         private string CurrencySymbol { get; set; } = "kr";
@@ -18,10 +18,10 @@ namespace Earner
         const int WM_NCLBUTTONDOWN = 0xA1;
         const int HT_CAPTION = 0x2;
 
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         static extern bool ReleaseCapture();
 
         public EarnerForm()
