@@ -1,5 +1,10 @@
 # Earner
-### Display earnings in realtime
+Windows app that shows a small window on top on others on the desktop that displays earnings in real time.
+Are you not motivated at your current assignment or just having a bad day? 
+
+Take a look at the money earned and your day will become a little better :)
+
+### Display earnings in real time
 
 <img width="194" alt="image" src="https://user-images.githubusercontent.com/2292809/196509812-21efe38e-ad6e-4318-b5d9-6bdab78bcbc5.png">
 
