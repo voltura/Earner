@@ -6,8 +6,10 @@ Take a look at the money earned and your day will become a little better :)
 
 ### Display earnings in real time
 
-<img width="194" alt="image" src="https://user-images.githubusercontent.com/2292809/196509812-21efe38e-ad6e-4318-b5d9-6bdab78bcbc5.png">
+<img width="522" alt="image" src="https://user-images.githubusercontent.com/2292809/196758533-a96c06dd-0413-4ade-866e-66435617b789.png">
+
 
 ### Settings
 
-<img width="194" alt="image" src="https://user-images.githubusercontent.com/2292809/196509886-ef5f17de-d706-45d1-a1c7-181808357a33.png">
+<img width="451" alt="image" src="https://user-images.githubusercontent.com/2292809/196758639-8598ca6b-d81e-4ff2-a5d3-7e1f3c377ada.png">
+
