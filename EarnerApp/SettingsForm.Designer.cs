@@ -81,11 +81,11 @@ namespace Earner
             // 
             this._lblHourlyRate.AutoSize = true;
             this._lblHourlyRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblHourlyRate.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblHourlyRate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblHourlyRate.ForeColor = System.Drawing.Color.White;
             this._lblHourlyRate.Location = new System.Drawing.Point(9, 49);
             this._lblHourlyRate.Name = "_lblHourlyRate";
-            this._lblHourlyRate.Size = new System.Drawing.Size(92, 21);
+            this._lblHourlyRate.Size = new System.Drawing.Size(95, 21);
             this._lblHourlyRate.TabIndex = 70;
             this._lblHourlyRate.Text = "Hourly Rate:";
             // 
@@ -93,11 +93,11 @@ namespace Earner
             // 
             this._lblFixedDailyCost.AutoSize = true;
             this._lblFixedDailyCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblFixedDailyCost.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblFixedDailyCost.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblFixedDailyCost.ForeColor = System.Drawing.Color.White;
             this._lblFixedDailyCost.Location = new System.Drawing.Point(9, 82);
             this._lblFixedDailyCost.Name = "_lblFixedDailyCost";
-            this._lblFixedDailyCost.Size = new System.Drawing.Size(118, 21);
+            this._lblFixedDailyCost.Size = new System.Drawing.Size(123, 21);
             this._lblFixedDailyCost.TabIndex = 80;
             this._lblFixedDailyCost.Text = "Fixed Daily Cost:";
             // 
@@ -105,11 +105,11 @@ namespace Earner
             // 
             this._lblMaxBillableDailyHours.AutoSize = true;
             this._lblMaxBillableDailyHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblMaxBillableDailyHours.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblMaxBillableDailyHours.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblMaxBillableDailyHours.ForeColor = System.Drawing.Color.White;
             this._lblMaxBillableDailyHours.Location = new System.Drawing.Point(9, 115);
             this._lblMaxBillableDailyHours.Name = "_lblMaxBillableDailyHours";
-            this._lblMaxBillableDailyHours.Size = new System.Drawing.Size(172, 21);
+            this._lblMaxBillableDailyHours.Size = new System.Drawing.Size(181, 21);
             this._lblMaxBillableDailyHours.TabIndex = 90;
             this._lblMaxBillableDailyHours.Text = "Max Billable Daily Hours:";
             // 
@@ -117,11 +117,11 @@ namespace Earner
             // 
             this._lblCurrencySymbol.AutoSize = true;
             this._lblCurrencySymbol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblCurrencySymbol.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblCurrencySymbol.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblCurrencySymbol.ForeColor = System.Drawing.Color.White;
             this._lblCurrencySymbol.Location = new System.Drawing.Point(9, 148);
             this._lblCurrencySymbol.Name = "_lblCurrencySymbol";
-            this._lblCurrencySymbol.Size = new System.Drawing.Size(127, 21);
+            this._lblCurrencySymbol.Size = new System.Drawing.Size(133, 21);
             this._lblCurrencySymbol.TabIndex = 100;
             this._lblCurrencySymbol.Text = "Currency Symbol:";
             // 
@@ -153,7 +153,7 @@ namespace Earner
             // 
             this._txtHourlyRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this._txtHourlyRate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._txtHourlyRate.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._txtHourlyRate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._txtHourlyRate.ForeColor = System.Drawing.Color.White;
             this._txtHourlyRate.Location = new System.Drawing.Point(196, 51);
             this._txtHourlyRate.MaxLength = 5;
@@ -167,7 +167,7 @@ namespace Earner
             // 
             this._txtFixedDailyCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this._txtFixedDailyCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._txtFixedDailyCost.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._txtFixedDailyCost.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._txtFixedDailyCost.ForeColor = System.Drawing.Color.White;
             this._txtFixedDailyCost.Location = new System.Drawing.Point(196, 82);
             this._txtFixedDailyCost.MaxLength = 5;
@@ -181,7 +181,7 @@ namespace Earner
             // 
             this._txtMaxBillableDailyHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this._txtMaxBillableDailyHours.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._txtMaxBillableDailyHours.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._txtMaxBillableDailyHours.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._txtMaxBillableDailyHours.ForeColor = System.Drawing.Color.White;
             this._txtMaxBillableDailyHours.Location = new System.Drawing.Point(196, 115);
             this._txtMaxBillableDailyHours.MaxLength = 5;
@@ -195,7 +195,7 @@ namespace Earner
             // 
             this._txtCurrencySymbol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this._txtCurrencySymbol.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._txtCurrencySymbol.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._txtCurrencySymbol.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._txtCurrencySymbol.ForeColor = System.Drawing.Color.White;
             this._txtCurrencySymbol.Location = new System.Drawing.Point(196, 147);
             this._txtCurrencySymbol.MaxLength = 3;
