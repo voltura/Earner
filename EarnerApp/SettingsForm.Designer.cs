@@ -31,7 +31,6 @@ namespace Earner
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this._btnHide = new System.Windows.Forms.Button();
             this._topPanel = new System.Windows.Forms.Panel();
             this._btnClose = new System.Windows.Forms.Button();
             this._lblHourlyRate = new System.Windows.Forms.Label();
@@ -45,29 +44,6 @@ namespace Earner
             this._txtCurrencySymbol = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // _btnHide
-            // 
-            this._btnHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnHide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnHide.BackgroundImage = global::Earner.Properties.Resources.minimize;
-            this._btnHide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this._btnHide.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnHide.FlatAppearance.BorderSize = 0;
-            this._btnHide.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnHide.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnHide.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnHide.Font = new System.Drawing.Font("Segoe UI Light", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._btnHide.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnHide.Location = new System.Drawing.Point(242, 0);
-            this._btnHide.Margin = new System.Windows.Forms.Padding(0);
-            this._btnHide.Name = "_btnHide";
-            this._btnHide.Size = new System.Drawing.Size(29, 29);
-            this._btnHide.TabIndex = 400;
-            this._btnHide.TabStop = false;
-            this._btnHide.UseVisualStyleBackColor = false;
-            this._btnHide.Click += new System.EventHandler(this.HideClick);
-            // 
             // _topPanel
             // 
             this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -75,20 +51,20 @@ namespace Earner
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(213, 29);
+            this._topPanel.Size = new System.Drawing.Size(242, 29);
             this._topPanel.TabIndex = 500;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
             // _btnClose
             // 
             this._btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnClose.BackgroundImage = global::Earner.Properties.Resources.close;
+            this._btnClose.BackgroundImage = global::Earner.Properties.Resources.close_48x48;
             this._btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnClose.FlatAppearance.BorderSize = 0;
             this._btnClose.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnClose.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -158,15 +134,16 @@ namespace Earner
             this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnSave.FlatAppearance.BorderSize = 0;
-            this._btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnSave.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(242, 185);
+            this._btnSave.Location = new System.Drawing.Point(226, 172);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
-            this._btnSave.Size = new System.Drawing.Size(29, 29);
+            this._btnSave.Size = new System.Drawing.Size(45, 42);
             this._btnSave.TabIndex = 1;
             this._btnSave.Tag = "";
             this._btnSave.UseVisualStyleBackColor = false;
@@ -234,7 +211,6 @@ namespace Earner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 214);
-            this.Controls.Add(this._btnHide);
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._txtCurrencySymbol);
             this.Controls.Add(this._txtMaxBillableDailyHours);
@@ -263,8 +239,6 @@ namespace Earner
         }
 
         #endregion
-
-        private Button _btnHide;
         private Panel _topPanel;
         private Button _btnClose;
         private Label _lblHourlyRate;

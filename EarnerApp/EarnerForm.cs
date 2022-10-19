@@ -60,14 +60,14 @@ namespace Earner
                 _stopwatch.Start();
                 _earnerTimer.Start();
                 _btnStart.Tag = "Stop";
-                _btnStart.BackgroundImage = Resources.pause;
+                _btnStart.BackgroundImage = Resources.pause_48x48;
             }
             else
             {
                 _stopwatch.Stop();
                 _earnerTimer.Stop();
                 _btnStart.Tag = "Start";
-                _btnStart.BackgroundImage = Resources.play;
+                _btnStart.BackgroundImage = Resources.play_48x48;
             }
         }
 

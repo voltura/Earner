@@ -1,6 +1,4 @@
-using Earner.Properties;
 using System.Configuration;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Earner
@@ -35,11 +33,6 @@ namespace Earner
             catch (Exception)
             {
             }
-        }
-
-        private void HideClick(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
         }
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)

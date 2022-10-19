@@ -21,9 +21,9 @@
     <Description>Show earned money in realtime per day</Description>
     <Copyright>Copyright 2022 Voltura AB</Copyright>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-	<AssemblyVersion>1.0.0.2</AssemblyVersion>
+	<AssemblyVersion>1.0.0.3</AssemblyVersion>
 	<NeutralLanguage>en</NeutralLanguage>
-	<FileVersion>1.0.0.2</FileVersion>
+	<FileVersion>1.0.0.3</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
