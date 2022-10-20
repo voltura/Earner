@@ -38,6 +38,7 @@
             this._btnHide = new System.Windows.Forms.Button();
             this._topPanel = new System.Windows.Forms.Panel();
             this._btnClose = new System.Windows.Forms.Button();
+            this._btnRestart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _lblEarned
@@ -57,7 +58,7 @@
             // 
             this._btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnOptions.BackgroundImage = global::Earner.Properties.Resources.settings_48x48;
+            this._btnOptions.BackgroundImage = global::Earner.Properties.Resources.cog_48x48;
             this._btnOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnOptions.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnOptions.FlatAppearance.BorderSize = 0;
@@ -66,7 +67,7 @@
             this._btnOptions.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnOptions.Location = new System.Drawing.Point(200, 125);
+            this._btnOptions.Location = new System.Drawing.Point(162, 121);
             this._btnOptions.Margin = new System.Windows.Forms.Padding(0);
             this._btnOptions.Name = "_btnOptions";
             this._btnOptions.Size = new System.Drawing.Size(29, 29);
@@ -90,7 +91,7 @@
             this._btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnStart.Location = new System.Drawing.Point(242, 125);
+            this._btnStart.Location = new System.Drawing.Point(242, 121);
             this._btnStart.Margin = new System.Windows.Forms.Padding(0);
             this._btnStart.Name = "_btnStart";
             this._btnStart.Size = new System.Drawing.Size(29, 29);
@@ -112,13 +113,13 @@
             this._lblWorkTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblWorkTime.Font = new System.Drawing.Font("Segoe UI Light", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblWorkTime.ForeColor = System.Drawing.Color.White;
-            this._lblWorkTime.Location = new System.Drawing.Point(14, 113);
+            this._lblWorkTime.Location = new System.Drawing.Point(14, 115);
             this._lblWorkTime.Margin = new System.Windows.Forms.Padding(0);
             this._lblWorkTime.Name = "_lblWorkTime";
             this._lblWorkTime.Size = new System.Drawing.Size(122, 41);
             this._lblWorkTime.TabIndex = 3;
             this._lblWorkTime.Text = "00:00:00";
-            this._lblWorkTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._lblWorkTime.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // _btnHide
             // 
@@ -151,7 +152,7 @@
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(213, 29);
+            this._topPanel.Size = new System.Drawing.Size(213, 46);
             this._topPanel.TabIndex = 5;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
@@ -177,16 +178,40 @@
             this._btnClose.UseVisualStyleBackColor = false;
             this._btnClose.Click += new System.EventHandler(this.CloseClick);
             // 
+            // _btnRestart
+            // 
+            this._btnRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnRestart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnRestart.BackgroundImage = global::Earner.Properties.Resources.refresh_48x48;
+            this._btnRestart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnRestart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnRestart.FlatAppearance.BorderSize = 0;
+            this._btnRestart.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnRestart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnRestart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnRestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnRestart.Location = new System.Drawing.Point(202, 121);
+            this._btnRestart.Margin = new System.Windows.Forms.Padding(0);
+            this._btnRestart.Name = "_btnRestart";
+            this._btnRestart.Size = new System.Drawing.Size(29, 29);
+            this._btnRestart.TabIndex = 6;
+            this._btnRestart.TabStop = false;
+            this._btnRestart.Tag = "Options";
+            this._btnRestart.UseVisualStyleBackColor = false;
+            this._btnRestart.Click += new System.EventHandler(this.RestartClick);
+            // 
             // EarnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
+            this.Controls.Add(this._topPanel);
+            this.Controls.Add(this._btnRestart);
             this.Controls.Add(this._btnHide);
             this.Controls.Add(this._btnOptions);
             this.Controls.Add(this._btnClose);
-            this.Controls.Add(this._topPanel);
             this.Controls.Add(this._lblWorkTime);
             this.Controls.Add(this._btnStart);
             this.Controls.Add(this._lblEarned);
@@ -217,5 +242,6 @@
         private Button _btnHide;
         private Panel _topPanel;
         private Button _btnClose;
+        private Button _btnRestart;
     }
 }

@@ -134,5 +134,14 @@ namespace Earner
         }
 
         private void CloseClick(object sender, EventArgs e) => Close();
+
+        private void RestartClick(object sender, EventArgs e)
+        {
+            Earned = 0;
+            _stopwatch.Reset();
+            _btnStart.Tag = "Stop";
+            _btnStart.BackgroundImage = Resources.pause_48x48;
+            StartEarning();
+        }
     }
 }
