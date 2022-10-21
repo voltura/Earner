@@ -13,7 +13,6 @@ namespace Earner
         private double MaxBillableDailyHours { get; set; } = 8;
         private TimeSpan ElapsedTime { get; set; }
         private string CurrencySymbol { get; set; } = "kr";
-
         private readonly Stopwatch _stopwatch = new();
         const int WM_NCLBUTTONDOWN = 0xA1;
         const int HT_CAPTION = 0x2;
