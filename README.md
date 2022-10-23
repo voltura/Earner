@@ -8,10 +8,20 @@ Also logs time on defined tasks and shows a log of the work performed on differe
 
 ### Display earnings in real time
 
-<img width="522" alt="image" src="https://user-images.githubusercontent.com/2292809/196758533-a96c06dd-0413-4ade-866e-66435617b789.png">
+<img width="338" alt="image" src="https://user-images.githubusercontent.com/2292809/197410870-0ff9d496-5c46-42cf-90d8-7a68ee2feb65.png">
+
+
+### Log work on tasks
+
+<img width="440" alt="image" src="https://user-images.githubusercontent.com/2292809/197410948-92afe141-7f8e-4e68-a51b-f94f2057a40e.png">
+
+
+### Get report of work
+
+<img width="845" alt="image" src="https://user-images.githubusercontent.com/2292809/197411159-8521ed8d-7494-4978-8de0-fb4405995219.png">
 
 
 ### Settings
 
-<img width="451" alt="image" src="https://user-images.githubusercontent.com/2292809/196758639-8598ca6b-d81e-4ff2-a5d3-7e1f3c377ada.png">
+<img width="389" alt="image" src="https://user-images.githubusercontent.com/2292809/197411021-dd270bb1-74ae-45c0-93d0-53bb82e67a4e.png">
 
