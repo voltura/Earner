@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Earner": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

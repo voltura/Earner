@@ -43,7 +43,7 @@ namespace Earner
             this._txtMaxBillableDailyHours = new EarnerUserControls.NumericTextBox();
             this._txtCurrencySymbol = new System.Windows.Forms.TextBox();
             this._lblTasks = new System.Windows.Forms.Label();
-            this._txtTasks = new System.Windows.Forms.TextBox();
+            this._btnEditTasks = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _topPanel
@@ -142,7 +142,7 @@ namespace Earner
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(281, 198);
+            this._btnSave.Location = new System.Drawing.Point(277, 198);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(45, 42);
@@ -219,19 +219,28 @@ namespace Earner
             this._lblTasks.TabIndex = 601;
             this._lblTasks.Text = "Tasks:";
             // 
-            // _txtTasks
+            // _btnEditTasks
             // 
-            this._txtTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this._txtTasks.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._txtTasks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._txtTasks.ForeColor = System.Drawing.Color.White;
-            this._txtTasks.Location = new System.Drawing.Point(54, 166);
-            this._txtTasks.MaxLength = 255;
-            this._txtTasks.Name = "_txtTasks";
-            this._txtTasks.Size = new System.Drawing.Size(260, 22);
-            this._txtTasks.TabIndex = 14;
-            this._txtTasks.Text = "Task 1, Task 2, Task 3";
-            this._txtTasks.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._btnEditTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnEditTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnEditTasks.BackgroundImage = global::Earner.Properties.Resources.cog_48x48;
+            this._btnEditTasks.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnEditTasks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnEditTasks.FlatAppearance.BorderSize = 0;
+            this._btnEditTasks.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnEditTasks.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnEditTasks.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnEditTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnEditTasks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnEditTasks.Location = new System.Drawing.Point(285, 164);
+            this._btnEditTasks.Margin = new System.Windows.Forms.Padding(0);
+            this._btnEditTasks.Name = "_btnEditTasks";
+            this._btnEditTasks.Size = new System.Drawing.Size(29, 29);
+            this._btnEditTasks.TabIndex = 602;
+            this._btnEditTasks.TabStop = false;
+            this._btnEditTasks.Tag = "";
+            this._btnEditTasks.UseVisualStyleBackColor = false;
+            this._btnEditTasks.Click += new System.EventHandler(this.EditTasksClick);
             // 
             // SettingsForm
             // 
@@ -239,7 +248,7 @@ namespace Earner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(326, 240);
-            this.Controls.Add(this._txtTasks);
+            this.Controls.Add(this._btnEditTasks);
             this.Controls.Add(this._lblTasks);
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._txtCurrencySymbol);
@@ -281,6 +290,6 @@ namespace Earner
         private TextBox _txtCurrencySymbol;
         private NumericTextBox _txtHourlyRate;
         private Label _lblTasks;
-        private TextBox _txtTasks;
+        private Button _btnEditTasks;
     }
 }

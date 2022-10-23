@@ -29,7 +29,6 @@ namespace Earner
                 _txtFixedDailyCost.Text = config.AppSettings.Settings["FixedDailyCost"].Value;
                 _txtMaxBillableDailyHours.Text = config.AppSettings.Settings["MaxBillableDailyHours"].Value;
                 _txtCurrencySymbol.Text = config.AppSettings.Settings["CurrencySymbol"].Value;
-                _txtTasks.Text = config.AppSettings.Settings["Tasks"].Value;
             }
             catch (Exception)
             {
@@ -57,10 +56,15 @@ namespace Earner
             config.AppSettings.Settings["FixedDailyCost"].Value = _txtFixedDailyCost.Text;
             config.AppSettings.Settings["MaxBillableDailyHours"].Value = _txtMaxBillableDailyHours.Text;
             config.AppSettings.Settings["CurrencySymbol"].Value = _txtCurrencySymbol.Text;
-            config.AppSettings.Settings["Tasks"].Value = _txtTasks.Text.Trim().Replace("  ", " ").Replace(", ", ",").Replace(" ,", ",");
             config.Save(ConfigurationSaveMode.Modified);
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void EditTasksClick(object sender, EventArgs e)
+        {
+            using TasksForm tasksForm = new();
+            tasksForm.ShowDialog();
         }
     }
 }

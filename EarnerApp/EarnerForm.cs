@@ -12,6 +12,10 @@ namespace Earner
         private double FixedDailyCost { get; set; } = 200;
         private double MaxBillableDailyHours { get; set; } = 8;
         private TimeSpan ElapsedTime { get; set; }
+        private string ActiveTask { get; set; } = string.Empty;
+        private List<string> EarnerTasks { get; set; } = new();
+        private readonly EarnerRecords _EarnerRecords = new();
+
         private string CurrencySymbol { get; set; } = "kr";
         private readonly Stopwatch _stopwatch = new();
         const int WM_NCLBUTTONDOWN = 0xA1;
@@ -27,6 +31,7 @@ namespace Earner
         {
             InitializeComponent();
             LoadAppSettings();
+            SetupEarnerRecord();
             StartEarning();
         }
 
@@ -39,10 +44,17 @@ namespace Earner
                 FixedDailyCost = ConvertToDouble(config.AppSettings.Settings["FixedDailyCost"].Value);
                 MaxBillableDailyHours = ConvertToDouble(config.AppSettings.Settings["MaxBillableDailyHours"].Value);
                 CurrencySymbol = config.AppSettings.Settings["CurrencySymbol"].Value.Trim();
+                EarnerTasks = config.AppSettings.Settings["Tasks"].Value.Trim().Split(",").ToList();
+                ActiveTask = EarnerTasks.FirstOrDefault("Default Task");
             }
             catch (Exception)
             {
             }
+        }
+
+        private void SetupEarnerRecord()
+        {
+            _EarnerRecords.UpdateRecord(ActiveTask, HourlyRate);
         }
 
         private void StartEarning()
@@ -95,8 +107,12 @@ namespace Earner
         private double UpdateEarnings()
         {
             ElapsedTime = _stopwatch.Elapsed;
-            if (ElapsedTime.TotalHours <= MaxBillableDailyHours)
-                Earned += HourlyRate / 3600;
+            double totalEarnings = ElapsedTime.TotalSeconds * (HourlyRate / 3600.00d);
+            if (ElapsedTime.TotalSeconds <= MaxBillableDailyHours * 3600)
+            {
+                Earned = totalEarnings;
+                _EarnerRecords.UpdateRecord(ActiveTask, HourlyRate, totalEarnings);
+            }
             double weightedEarnings = Earned - FixedDailyCost;
             return weightedEarnings;
         }
@@ -136,6 +152,8 @@ namespace Earner
 
         private void RestartClick(object sender, EventArgs e)
         {
+            _EarnerRecords.LogRecords();
+            _EarnerRecords.RemoveTodaysEarningRecords();
             Earned = 0;
             _stopwatch.Reset();
             _btnStart.Tag = "Stop";

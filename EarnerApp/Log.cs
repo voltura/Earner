@@ -5,7 +5,8 @@ using System.Diagnostics;
 using System.Globalization;
 
 #endregion
-namespace WeekNumber
+
+namespace Earner
 {
     internal static class Log
     {
@@ -68,6 +69,29 @@ namespace WeekNumber
             Truncate();
             Trace.Flush();
             Trace.Close();
+        }
+
+        /// <summary>
+        ///     Clear log
+        /// </summary>
+        internal static void Clear()
+        {
+            try
+            {
+                Trace.Flush();
+                Trace.Close();
+                Trace.Listeners.Clear();
+                FileInfo fi = new(logFileFullPath);
+                if (fi.Exists)
+                {
+                    fi.Delete();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            Init();
         }
 
         /// <summary>

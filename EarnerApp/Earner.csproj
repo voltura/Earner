@@ -6,11 +6,6 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <Platforms>AnyCPU;x64</Platforms>
     <StartupObject>Earner.Program</StartupObject>
     <ApplicationIcon>dollar.ico</ApplicationIcon>
     <SignAssembly>True</SignAssembly>
@@ -18,28 +13,35 @@
     <Title>Earner</Title>
     <Authors>Joakim Skoglund</Authors>
     <Company>Voltura AB</Company>
-    <Description>Show earned money in realtime per day</Description>
+    <Description>Show earned money in real time per day</Description>
     <Copyright>Copyright 2022 Voltura AB</Copyright>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<AssemblyVersion>1.0.0.4</AssemblyVersion>
 	<NeutralLanguage>en</NeutralLanguage>
 	<FileVersion>1.0.0.4</FileVersion>
+	<IncludeSymbols>False</IncludeSymbols>
+	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	<Platforms>AnyCPU;x64</Platforms>
+	<PublishReadyToRun>true</PublishReadyToRun>
+	<!-- <PublishSingleFile>true</PublishSingleFile>-->
+	<SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>embedded</DebugType>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>embedded</DebugType>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DebugType>embedded</DebugType>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DebugType>embedded</DebugType>
+	  <DebugType>full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,6 +53,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="TasksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +67,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="TasksForm.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="SettingsForm.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
