@@ -7,14 +7,6 @@ namespace Earner
     public partial class TasksForm : Form
     {
         private List<string> EarnerTasks { get; set; } = new();
-        const int WM_NCLBUTTONDOWN = 0xA1;
-        const int HT_CAPTION = 0x2;
-
-        [DllImport("user32.dll")]
-        static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        
-        [DllImport("user32.dll")]
-        static extern bool ReleaseCapture();
 
         public TasksForm()
         {
@@ -30,6 +22,7 @@ namespace Earner
                 EarnerTasks = config.AppSettings.Settings["Tasks"].Value.Trim().Split(",").ToList();
                 _cmbTasks.Items.Clear();
                 _cmbTasks.Items.AddRange(EarnerTasks.ToArray());
+                if (_cmbTasks.Items.Count >= 0) _cmbTasks.SelectedItem = _cmbTasks.Items[0];
             }
             catch (Exception)
             {
@@ -40,8 +33,8 @@ namespace Earner
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                _ = NativeMethods.SendMessage(Handle, NativeMethods.WM_NCLBUTTONDOWN, NativeMethods.HT_CAPTION, 0);
             }
         }
 

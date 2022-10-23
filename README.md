@@ -4,6 +4,8 @@ Are you not motivated at your current assignment or just having a bad day?
 
 Take a look at the money earned and your day will become a little better :)
 
+Also logs time on defined tasks and shows a log of the work performed on different tasks.
+
 ### Display earnings in real time
 
 <img width="522" alt="image" src="https://user-images.githubusercontent.com/2292809/196758533-a96c06dd-0413-4ade-866e-66435617b789.png">

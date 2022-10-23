@@ -7,7 +7,7 @@
         public DateTime Date { get; set; } = DateTime.Now;
         public TimeSpan Time { get; set; } = TimeSpan.Zero;
 
-        public override string ToString() => $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}' Seconds: '{Time.TotalSeconds}'";
+        public override string ToString() => $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}' Time: '{Time:c}'";
 
         public override int GetHashCode()
         {

@@ -44,6 +44,7 @@ namespace Earner
             this._txtCurrencySymbol = new System.Windows.Forms.TextBox();
             this._lblTasks = new System.Windows.Forms.Label();
             this._btnEditTasks = new System.Windows.Forms.Button();
+            this._chkSaveTaskLog = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // _topPanel
@@ -131,7 +132,7 @@ namespace Earner
             // 
             this._btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.BackgroundImage = global::Earner.Properties.Resources.save;
+            this._btnSave.BackgroundImage = global::Earner.Properties.Resources.check_48x48;
             this._btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -142,10 +143,10 @@ namespace Earner
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(277, 198);
+            this._btnSave.Location = new System.Drawing.Point(285, 208);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
-            this._btnSave.Size = new System.Drawing.Size(45, 42);
+            this._btnSave.Size = new System.Drawing.Size(29, 29);
             this._btnSave.TabIndex = 1;
             this._btnSave.Tag = "";
             this._btnSave.UseVisualStyleBackColor = false;
@@ -242,12 +243,28 @@ namespace Earner
             this._btnEditTasks.UseVisualStyleBackColor = false;
             this._btnEditTasks.Click += new System.EventHandler(this.EditTasksClick);
             // 
+            // _chkSaveTaskLog
+            // 
+            this._chkSaveTaskLog.AutoSize = true;
+            this._chkSaveTaskLog.Checked = true;
+            this._chkSaveTaskLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._chkSaveTaskLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._chkSaveTaskLog.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._chkSaveTaskLog.ForeColor = System.Drawing.Color.White;
+            this._chkSaveTaskLog.Location = new System.Drawing.Point(6, 198);
+            this._chkSaveTaskLog.Name = "_chkSaveTaskLog";
+            this._chkSaveTaskLog.Size = new System.Drawing.Size(117, 25);
+            this._chkSaveTaskLog.TabIndex = 603;
+            this._chkSaveTaskLog.Text = "Save task log";
+            this._chkSaveTaskLog.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(326, 240);
+            this.Controls.Add(this._chkSaveTaskLog);
             this.Controls.Add(this._btnEditTasks);
             this.Controls.Add(this._lblTasks);
             this.Controls.Add(this._btnClose);
@@ -272,6 +289,7 @@ namespace Earner
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Earner Settings";
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.Color.Cyan;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,5 +309,6 @@ namespace Earner
         private NumericTextBox _txtHourlyRate;
         private Label _lblTasks;
         private Button _btnEditTasks;
+        private CheckBox _chkSaveTaskLog;
     }
 }

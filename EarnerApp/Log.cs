@@ -1,10 +1,6 @@
-﻿#region Using statements
-
-using System.Configuration;
+﻿using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
-
-#endregion
 
 namespace Earner
 {
@@ -25,10 +21,7 @@ namespace Earner
         /// <summary>
         ///     Constructor - Init log
         /// </summary>
-        static Log()
-        {
-            Init();
-        }
+        static Log() => Init();
 
         #endregion
 

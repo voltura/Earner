@@ -226,7 +226,8 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Earner";
             this.TopMost = true;
-            this.TransparencyKey = System.Drawing.Color.LawnGreen;
+            this.TransparencyKey = System.Drawing.Color.Cyan;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

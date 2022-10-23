@@ -30,6 +30,7 @@ namespace Earner
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TasksForm));
             this._topPanel = new System.Windows.Forms.Panel();
             this._btnClose = new System.Windows.Forms.Button();
@@ -38,6 +39,8 @@ namespace Earner
             this._btnAddTask = new System.Windows.Forms.Button();
             this._cmbTasks = new System.Windows.Forms.ComboBox();
             this._btnRemoveTask = new System.Windows.Forms.Button();
+            this._lblTaskNote = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // _topPanel
@@ -90,7 +93,7 @@ namespace Earner
             // 
             this._btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.BackgroundImage = global::Earner.Properties.Resources.save;
+            this._btnSave.BackgroundImage = global::Earner.Properties.Resources.play_48x48;
             this._btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -101,12 +104,13 @@ namespace Earner
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(429, 321);
+            this._btnSave.Location = new System.Drawing.Point(436, 324);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
-            this._btnSave.Size = new System.Drawing.Size(45, 42);
+            this._btnSave.Size = new System.Drawing.Size(29, 29);
             this._btnSave.TabIndex = 1;
             this._btnSave.Tag = "";
+            this.toolTip.SetToolTip(this._btnSave, "Use selected task");
             this._btnSave.UseVisualStyleBackColor = false;
             this._btnSave.Click += new System.EventHandler(this.SaveClick);
             // 
@@ -130,6 +134,7 @@ namespace Earner
             this._btnAddTask.Size = new System.Drawing.Size(29, 29);
             this._btnAddTask.TabIndex = 602;
             this._btnAddTask.Tag = "";
+            this.toolTip.SetToolTip(this._btnAddTask, "Add entered task");
             this._btnAddTask.UseVisualStyleBackColor = false;
             this._btnAddTask.Click += new System.EventHandler(this.AddTaskClick);
             // 
@@ -147,6 +152,7 @@ namespace Earner
             "Task C"});
             this._cmbTasks.Location = new System.Drawing.Point(54, 44);
             this._cmbTasks.MaxDropDownItems = 40;
+            this._cmbTasks.MaxLength = 255;
             this._cmbTasks.Name = "_cmbTasks";
             this._cmbTasks.Size = new System.Drawing.Size(341, 276);
             this._cmbTasks.TabIndex = 603;
@@ -171,8 +177,21 @@ namespace Earner
             this._btnRemoveTask.Size = new System.Drawing.Size(29, 29);
             this._btnRemoveTask.TabIndex = 605;
             this._btnRemoveTask.Tag = "";
+            this.toolTip.SetToolTip(this._btnRemoveTask, "Delete selected task");
             this._btnRemoveTask.UseVisualStyleBackColor = false;
             this._btnRemoveTask.Click += new System.EventHandler(this.RemoveTaskClick);
+            // 
+            // _lblTaskNote
+            // 
+            this._lblTaskNote.AutoSize = true;
+            this._lblTaskNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblTaskNote.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblTaskNote.ForeColor = System.Drawing.Color.White;
+            this._lblTaskNote.Location = new System.Drawing.Point(0, 332);
+            this._lblTaskNote.Name = "_lblTaskNote";
+            this._lblTaskNote.Size = new System.Drawing.Size(233, 21);
+            this._lblTaskNote.TabIndex = 606;
+            this._lblTaskNote.Text = "Note: Selected task = task in use";
             // 
             // TasksForm
             // 
@@ -180,6 +199,7 @@ namespace Earner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(474, 363);
+            this.Controls.Add(this._lblTaskNote);
             this.Controls.Add(this._btnRemoveTask);
             this.Controls.Add(this._cmbTasks);
             this.Controls.Add(this._btnAddTask);
@@ -198,6 +218,7 @@ namespace Earner
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Earner Task Settings";
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.Color.Cyan;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,5 +232,7 @@ namespace Earner
         private Button _btnAddTask;
         private ComboBox _cmbTasks;
         private Button _btnRemoveTask;
+        private Label _lblTaskNote;
+        private ToolTip toolTip;
     }
 }

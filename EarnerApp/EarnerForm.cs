@@ -7,25 +7,17 @@ namespace Earner
 {
     public partial class EarnerForm : Form
     {
-        private double Earned { get; set; } = 0;
-        private double HourlyRate { get; set; } = 1000;
-        private double FixedDailyCost { get; set; } = 200;
-        private double MaxBillableDailyHours { get; set; } = 8;
-        private TimeSpan ElapsedTime { get; set; }
-        private string ActiveTask { get; set; } = string.Empty;
-        private List<string> EarnerTasks { get; set; } = new();
+        private double _Earned;
+        private double _HourlyRate = 1000;
+        private double _FixedDailyCost = 200;
+        private double _MaxBillableDailyHours = 8;
+        private TimeSpan _ElapsedTime;
+        private string _ActiveTask = string.Empty;
+        private List<string> _EarnerTasks = new();
         private readonly EarnerRecords _EarnerRecords = new();
-
-        private string CurrencySymbol { get; set; } = "kr";
+        private bool _SaveTaskLog = false;
+        private string _CurrencySymbol = "kr";
         private readonly Stopwatch _stopwatch = new();
-        const int WM_NCLBUTTONDOWN = 0xA1;
-        const int HT_CAPTION = 0x2;
-
-        [DllImport("user32.dll")]
-        static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        
-        [DllImport("user32.dll")]
-        static extern bool ReleaseCapture();
 
         public EarnerForm()
         {
@@ -40,12 +32,13 @@ namespace Earner
             try
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                HourlyRate = ConvertToDouble(config.AppSettings.Settings["HourlyRate"].Value);
-                FixedDailyCost = ConvertToDouble(config.AppSettings.Settings["FixedDailyCost"].Value);
-                MaxBillableDailyHours = ConvertToDouble(config.AppSettings.Settings["MaxBillableDailyHours"].Value);
-                CurrencySymbol = config.AppSettings.Settings["CurrencySymbol"].Value.Trim();
-                EarnerTasks = config.AppSettings.Settings["Tasks"].Value.Trim().Split(",").ToList();
-                ActiveTask = EarnerTasks.FirstOrDefault("Default Task");
+                _HourlyRate = ConvertToDouble(config.AppSettings.Settings["HourlyRate"].Value);
+                _FixedDailyCost = ConvertToDouble(config.AppSettings.Settings["FixedDailyCost"].Value);
+                _MaxBillableDailyHours = ConvertToDouble(config.AppSettings.Settings["MaxBillableDailyHours"].Value);
+                _CurrencySymbol = config.AppSettings.Settings["CurrencySymbol"].Value.Trim();
+                _EarnerTasks = config.AppSettings.Settings["Tasks"].Value.Trim().Split(",").ToList();
+                _ActiveTask = _EarnerTasks.FirstOrDefault("Default Task");
+                _SaveTaskLog = Convert.ToBoolean(config.AppSettings.Settings["SaveTaskLog"].Value);
             }
             catch (Exception)
             {
@@ -54,7 +47,7 @@ namespace Earner
 
         private void SetupEarnerRecord()
         {
-            _EarnerRecords.UpdateRecord(ActiveTask, HourlyRate);
+            _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate);
         }
 
         private void StartEarning()
@@ -68,10 +61,17 @@ namespace Earner
         {
             if (_btnStart.Tag.ToString() == "Start")
             {
+                using TasksForm tasksForm = new();
+                if (DialogResult.OK != tasksForm.ShowDialog(this))
+                {
+                    return;
+                }
+                LoadAppSettings();
                 _stopwatch.Start();
                 _earnerTimer.Start();
                 _btnStart.Tag = "Stop";
                 _btnStart.BackgroundImage = Resources.pause_48x48;
+                Tick(this, new EventArgs());
             }
             else
             {
@@ -99,21 +99,21 @@ namespace Earner
 
         private void UpdateEarningsUI(double weightedEarnings)
         {
-            _lblEarned.Text = $"{weightedEarnings:00000}{CurrencySymbol}";
-            _lblWorkTime.Text = $"{ElapsedTime:c}"[..8];
-            _lblWorkTime.ForeColor = ElapsedTime.TotalHours <= MaxBillableDailyHours ? Color.White : Color.Red;
+            _lblEarned.Text = $"{weightedEarnings:00000}{_CurrencySymbol}";
+            _lblWorkTime.Text = $"{_ElapsedTime:c}"[..8];
+            _lblWorkTime.ForeColor = _ElapsedTime.TotalHours <= _MaxBillableDailyHours ? Color.White : Color.Red;
         }
 
         private double UpdateEarnings()
         {
-            ElapsedTime = _stopwatch.Elapsed;
-            double totalEarnings = ElapsedTime.TotalSeconds * (HourlyRate / 3600.00d);
-            if (ElapsedTime.TotalSeconds <= MaxBillableDailyHours * 3600)
+            _ElapsedTime = _stopwatch.Elapsed;
+            double totalEarnings = _ElapsedTime.TotalSeconds * (_HourlyRate / 3600.00d);
+            if (_ElapsedTime.TotalSeconds <= _MaxBillableDailyHours * 3600)
             {
-                Earned = totalEarnings;
-                _EarnerRecords.UpdateRecord(ActiveTask, HourlyRate, totalEarnings);
+                _Earned = totalEarnings;
+                _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate, totalEarnings);
             }
-            double weightedEarnings = Earned - FixedDailyCost;
+            double weightedEarnings = _Earned - _FixedDailyCost;
             return weightedEarnings;
         }
 
@@ -126,8 +126,8 @@ namespace Earner
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                _ = NativeMethods.SendMessage(Handle, NativeMethods.WM_NCLBUTTONDOWN, NativeMethods.HT_CAPTION, 0);
             }
         }
         public static double ConvertToDouble(string Value)
@@ -152,13 +152,18 @@ namespace Earner
 
         private void RestartClick(object sender, EventArgs e)
         {
-            _EarnerRecords.LogRecords();
+            if (_SaveTaskLog) _EarnerRecords.LogRecords();
             _EarnerRecords.RemoveTodaysEarningRecords();
-            Earned = 0;
+            _Earned = 0;
             _stopwatch.Reset();
             _btnStart.Tag = "Stop";
             _btnStart.BackgroundImage = Resources.pause_48x48;
             StartEarning();
+        }
+
+        private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_SaveTaskLog) _EarnerRecords.LogRecords();
         }
     }
 }
