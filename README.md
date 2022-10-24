@@ -18,7 +18,7 @@ Also logs time on defined tasks and shows a log of the work performed on differe
 
 ### Get report of work
 
-<img width="845" alt="image" src="https://user-images.githubusercontent.com/2292809/197411159-8521ed8d-7494-4978-8de0-fb4405995219.png">
+![image](https://user-images.githubusercontent.com/2292809/197633455-5da561d6-f51e-49d5-85cf-6b1daef76e60.png)
 
 
 ### Settings
