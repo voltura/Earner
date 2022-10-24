@@ -49,6 +49,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MiniExcel" Version="1.28.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EarnerUserControls\EarnerUserControls.csproj" />
   </ItemGroup>
 

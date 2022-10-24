@@ -21,6 +21,8 @@ namespace Earner
 
         public EarnerForm()
         {
+            Log.Init();
+            Log.LogCaller();
             InitializeComponent();
             LoadAppSettings();
             SetupEarnerRecord();
@@ -40,14 +42,15 @@ namespace Earner
                 _ActiveTask = _EarnerTasks.FirstOrDefault("Default Task");
                 _SaveTaskLog = Convert.ToBoolean(config.AppSettings.Settings["SaveTaskLog"].Value);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Error = ex;
             }
         }
 
         private void SetupEarnerRecord()
         {
-            _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate);
+            _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate, 0.00d, _CurrencySymbol);
         }
 
         private void StartEarning()
@@ -59,6 +62,7 @@ namespace Earner
 
         private void StartStopClick(object sender, EventArgs e)
         {
+            Log.LogCaller();
             if (_btnStart.Tag.ToString() == "Start")
             {
                 using TasksForm tasksForm = new();
@@ -84,6 +88,7 @@ namespace Earner
 
         private void OptionsClick(object sender, EventArgs e)
         {
+            Log.LogCaller();
             using SettingsForm sf = new();
             if (sf.ShowDialog(this) == DialogResult.OK) {
                 LoadAppSettings();
@@ -111,7 +116,10 @@ namespace Earner
             if (_ElapsedTime.TotalSeconds <= _MaxBillableDailyHours * 3600)
             {
                 _Earned = totalEarnings;
-                _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate, totalEarnings);
+                _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate, totalEarnings, _CurrencySymbol);
+            } else
+            {
+                Log.Info = "Working overtime";
             }
             double weightedEarnings = _Earned - _FixedDailyCost;
             return weightedEarnings;

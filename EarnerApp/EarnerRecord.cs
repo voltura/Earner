@@ -6,8 +6,8 @@
         public double Earned { get; set; } = 0.0d;
         public DateTime Date { get; set; } = DateTime.Now;
         public TimeSpan Time { get; set; } = TimeSpan.Zero;
-
-        public override string ToString() => $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}' Time: '{Time:c}'";
+        public string CurrencySymbol { get; init; } = string.Empty;
+        public override string ToString() => $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}{CurrencySymbol}' Time: '" + $"{Time:c}"[..8] + "'";
 
         public override int GetHashCode()
         {

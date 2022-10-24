@@ -7,7 +7,7 @@ namespace Earner
     internal static class Log
     {
         #region Static variables
-
+        private static string lastInfo = string.Empty;
         private static readonly string logFile = Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".log";
         private static readonly string appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             Application.CompanyName, Application.ProductName);
@@ -182,7 +182,11 @@ namespace Earner
                 try
                 {
                     string formattedValue = value.Replace('\r', ' ').Replace('\n', ' ').Trim();
-                    Trace.TraceInformation($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff", CultureInfo.InvariantCulture)} {formattedValue}");
+                    if (lastInfo != formattedValue)
+                    {
+                        Trace.TraceInformation($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff", CultureInfo.InvariantCulture)} {formattedValue}");
+                        lastInfo = formattedValue;
+                    }
                 }
                 catch (Exception ex)
                 {
