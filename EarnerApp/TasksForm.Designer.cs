@@ -141,11 +141,13 @@ namespace Earner
             // _cmbTasks
             // 
             this._cmbTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this._cmbTasks.DropDownHeight = 10;
             this._cmbTasks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
-            this._cmbTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._cmbTasks.DropDownWidth = 10;
             this._cmbTasks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._cmbTasks.ForeColor = System.Drawing.Color.White;
             this._cmbTasks.FormattingEnabled = true;
+            this._cmbTasks.IntegralHeight = false;
             this._cmbTasks.Items.AddRange(new object[] {
             "Task A",
             "Task B",
@@ -154,7 +156,7 @@ namespace Earner
             this._cmbTasks.MaxDropDownItems = 40;
             this._cmbTasks.MaxLength = 255;
             this._cmbTasks.Name = "_cmbTasks";
-            this._cmbTasks.Size = new System.Drawing.Size(341, 276);
+            this._cmbTasks.Size = new System.Drawing.Size(341, 267);
             this._cmbTasks.TabIndex = 603;
             // 
             // _btnRemoveTask
@@ -187,11 +189,11 @@ namespace Earner
             this._lblTaskNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblTaskNote.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblTaskNote.ForeColor = System.Drawing.Color.White;
-            this._lblTaskNote.Location = new System.Drawing.Point(0, 332);
+            this._lblTaskNote.Location = new System.Drawing.Point(54, 314);
             this._lblTaskNote.Name = "_lblTaskNote";
-            this._lblTaskNote.Size = new System.Drawing.Size(233, 21);
+            this._lblTaskNote.Size = new System.Drawing.Size(192, 21);
             this._lblTaskNote.TabIndex = 606;
-            this._lblTaskNote.Text = "Note: Selected task = task in use";
+            this._lblTaskNote.Text = "Selected task = task in use";
             // 
             // TasksForm
             // 
