@@ -1,4 +1,6 @@
 ﻿using MiniExcelLibs;
+using MiniExcelLibs.Attributes;
+using MiniExcelLibs.OpenXml;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -51,6 +53,17 @@ namespace Earner
                 {
                     Directory.CreateDirectory(appDataFolder);
                 }
+
+                var config = new OpenXmlConfiguration
+                {
+                    DynamicColumns = new DynamicExcelColumn[] {
+                        new DynamicExcelColumn("Task") { Index = 0, Width = 20 },
+                        new DynamicExcelColumn("Day") { Index = 1, Width = 10 },
+                        new DynamicExcelColumn("Earned") { Index = 2, Width = 10 },
+                        new DynamicExcelColumn("Currency") { Index = 3, Width = 10 },
+                        new DynamicExcelColumn("Time") { Index = 4, Width = 10 },
+                    }
+                };
                 var values = _earnerRecords.Select(i => new
                 {
                     i.Task,
@@ -59,7 +72,7 @@ namespace Earner
                     Currency = i.CurrencySymbol,
                     Time = $"{i.Time:c}"[..8]
                 });
-                MiniExcel.SaveAs(excelFileFullPath, values);
+                MiniExcel.SaveAs(excelFileFullPath, values, configuration: config);
                 if (File.Exists(excelFileFullPath))
                 {
                     using Process process = new() { StartInfo = new ProcessStartInfo(excelFileFullPath) { UseShellExecute = true } };
