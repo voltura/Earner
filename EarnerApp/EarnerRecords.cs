@@ -58,7 +58,7 @@ namespace Earner
                     Earned = Math.Round(i.Earned, 2, MidpointRounding.AwayFromZero),
                     Currency = i.CurrencySymbol,
                     Time = $"{i.Time:c}"[..8]
-                }); ;
+                });
                 MiniExcel.SaveAs(excelFileFullPath, values);
                 if (File.Exists(excelFileFullPath))
                 {
