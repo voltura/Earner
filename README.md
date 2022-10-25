@@ -13,7 +13,7 @@ Also logs time on defined tasks and shows a log of the work performed on differe
 
 ### Log work on tasks
 
-<img width="440" alt="image" src="https://user-images.githubusercontent.com/2292809/197410948-92afe141-7f8e-4e68-a51b-f94f2057a40e.png">
+![image](https://user-images.githubusercontent.com/2292809/197847813-901becae-0594-4816-a795-f0748abf6fe7.png)
 
 
 ### Get report of work
