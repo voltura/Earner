@@ -41,7 +41,7 @@ namespace Earner
 
         public void LogRecords()
         {
-            string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{DateTime.Now:yyyy-MM-dd_hhmmss}.xlsx";
+            string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{DateTime.Now:yyyy-MM-dd}.xlsx";
             string appDataFolder = Path.Combine(Environment.GetFolderPath(  
                 Environment.SpecialFolder.LocalApplicationData),
                 Application.CompanyName, Application.ProductName);
@@ -72,7 +72,7 @@ namespace Earner
                     Currency = i.CurrencySymbol,
                     Time = $"{i.Time:c}"[..8]
                 });
-                MiniExcel.SaveAs(excelFileFullPath, values, configuration: config);
+                MiniExcel.SaveAs(excelFileFullPath, values, excelType: ExcelType.XLSX, configuration: config, overwriteFile: true);
                 if (File.Exists(excelFileFullPath))
                 {
                     using Process process = new() { StartInfo = new ProcessStartInfo(excelFileFullPath) { UseShellExecute = true } };
