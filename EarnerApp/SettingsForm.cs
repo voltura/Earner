@@ -1,5 +1,4 @@
 using System.Configuration;
-using System.Runtime.InteropServices;
 
 namespace Earner
 {
@@ -31,18 +30,33 @@ namespace Earner
         {
             if (e.Button == MouseButtons.Left)
             {
-                NativeMethods.ReleaseCapture();
+                _ = NativeMethods.ReleaseCapture();
                 _ = NativeMethods.SendMessage(Handle, NativeMethods.WM_NCLBUTTONDOWN, NativeMethods.HT_CAPTION, 0);
             }
         }
 
-        private void CloseClick(object sender, EventArgs e) => Close();
+        private void CloseClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void SaveClick(object sender, EventArgs e)
         {
-            if (_txtFixedDailyCost.Text.Length == 0 || EarnerForm.ConvertToDouble(_txtFixedDailyCost.Text) == 0) _txtFixedDailyCost.Text = "0";
-            if (_txtHourlyRate.Text.Length == 0 || EarnerForm.ConvertToDouble(_txtHourlyRate.Text) == 0) _txtHourlyRate.Text = "1000";
-            if (EarnerForm.ConvertToDouble(_txtMaxBillableDailyHours.Text) == 0 || _txtMaxBillableDailyHours.Text.Length == 0 || _txtMaxBillableDailyHours.Text == "0") _txtMaxBillableDailyHours.Text = "8";
+            if (_txtFixedDailyCost.Text.Length == 0 || EarnerForm.ConvertToDouble(_txtFixedDailyCost.Text) == 0)
+            {
+                _txtFixedDailyCost.Text = "0";
+            }
+
+            if (_txtHourlyRate.Text.Length == 0 || EarnerForm.ConvertToDouble(_txtHourlyRate.Text) == 0)
+            {
+                _txtHourlyRate.Text = "1000";
+            }
+
+            if (EarnerForm.ConvertToDouble(_txtMaxBillableDailyHours.Text) == 0 || _txtMaxBillableDailyHours.Text.Length == 0 || _txtMaxBillableDailyHours.Text == "0")
+            {
+                _txtMaxBillableDailyHours.Text = "8";
+            }
+
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings["HourlyRate"].Value = _txtHourlyRate.Text;
             config.AppSettings.Settings["FixedDailyCost"].Value = _txtFixedDailyCost.Text;
@@ -58,7 +72,7 @@ namespace Earner
         private void EditTasksClick(object sender, EventArgs e)
         {
             using TasksForm tasksForm = new();
-            tasksForm.ShowDialog();
+            _ = tasksForm.ShowDialog();
         }
     }
 }

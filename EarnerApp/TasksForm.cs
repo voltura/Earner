@@ -1,5 +1,4 @@
 using System.Configuration;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Earner
@@ -22,7 +21,10 @@ namespace Earner
                 EarnerTasks = config.AppSettings.Settings["Tasks"].Value.Trim().Split(",").ToList();
                 _cmbTasks.Items.Clear();
                 _cmbTasks.Items.AddRange(EarnerTasks.ToArray());
-                if (_cmbTasks.Items.Count >= 0) _cmbTasks.SelectedItem = _cmbTasks.Items[0];
+                if (_cmbTasks.Items.Count >= 0)
+                {
+                    _cmbTasks.SelectedItem = _cmbTasks.Items[0];
+                }
             }
             catch (Exception)
             {
@@ -33,12 +35,15 @@ namespace Earner
         {
             if (e.Button == MouseButtons.Left)
             {
-                NativeMethods.ReleaseCapture();
+                _ = NativeMethods.ReleaseCapture();
                 _ = NativeMethods.SendMessage(Handle, NativeMethods.WM_NCLBUTTONDOWN, NativeMethods.HT_CAPTION, 0);
             }
         }
 
-        private void CloseClick(object sender, EventArgs e) => Close();
+        private void CloseClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void SaveClick(object sender, EventArgs e)
         {
@@ -52,7 +57,8 @@ namespace Earner
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             StringBuilder tasks = new();
             EarnerTasks.Clear();
-            if (_cmbTasks.SelectedItem is null) {
+            if (_cmbTasks.SelectedItem is null)
+            {
                 EarnerTasks = _cmbTasks.Items.Cast<string>().ToList();
             }
             else
@@ -67,17 +73,17 @@ namespace Earner
 
         private void AddTaskClick(object sender, EventArgs e)
         {
-            var potentialNewTask = _cmbTasks.Text.Trim();
-            if (!EarnerTasks.Contains(potentialNewTask)) 
+            string potentialNewTask = _cmbTasks.Text.Trim();
+            if (!EarnerTasks.Contains(potentialNewTask))
             {
-                _cmbTasks.Items.Add(potentialNewTask);
+                _ = _cmbTasks.Items.Add(potentialNewTask);
                 SaveTasksFromForm();
             }
         }
 
         private void RemoveTaskClick(object sender, EventArgs e)
         {
-            var potentialRemoveTask = _cmbTasks.Text.Trim();
+            string potentialRemoveTask = _cmbTasks.Text.Trim();
             if (EarnerTasks.Contains(potentialRemoveTask))
             {
                 _cmbTasks.Items.Remove(potentialRemoveTask);

@@ -1,7 +1,6 @@
 using Earner.Properties;
 using System.Configuration;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace Earner
 {
@@ -90,7 +89,8 @@ namespace Earner
         {
             Log.LogCaller();
             using SettingsForm sf = new();
-            if (sf.ShowDialog(this) == DialogResult.OK) {
+            if (sf.ShowDialog(this) == DialogResult.OK)
+            {
                 LoadAppSettings();
                 Tick(this, new EventArgs());
             }
@@ -117,7 +117,8 @@ namespace Earner
             {
                 _Earned = totalEarnings;
                 _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate, totalEarnings, _CurrencySymbol);
-            } else
+            }
+            else
             {
                 Log.Info = "Working overtime";
             }
@@ -134,7 +135,7 @@ namespace Earner
         {
             if (e.Button == MouseButtons.Left)
             {
-                NativeMethods.ReleaseCapture();
+                _ = NativeMethods.ReleaseCapture();
                 _ = NativeMethods.SendMessage(Handle, NativeMethods.WM_NCLBUTTONDOWN, NativeMethods.HT_CAPTION, 0);
             }
         }
@@ -148,19 +149,22 @@ namespace Earner
             {
                 _ = double.TryParse(Value, out double OutVal);
 
-                if (double.IsNaN(OutVal) || double.IsInfinity(OutVal))
-                {
-                    return 0;
-                }
-                return OutVal;
+                return double.IsNaN(OutVal) || double.IsInfinity(OutVal) ? 0 : OutVal;
             }
         }
 
-        private void CloseClick(object sender, EventArgs e) => Close();
+        private void CloseClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void RestartClick(object sender, EventArgs e)
         {
-            if (_SaveTaskLog) _EarnerRecords.LogRecords();
+            if (_SaveTaskLog)
+            {
+                _EarnerRecords.LogRecords();
+            }
+
             _EarnerRecords.RemoveTodaysEarningRecords();
             _Earned = 0;
             _stopwatch.Reset();
@@ -171,7 +175,10 @@ namespace Earner
 
         private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_SaveTaskLog) _EarnerRecords.LogRecords();
+            if (_SaveTaskLog)
+            {
+                _EarnerRecords.LogRecords();
+            }
         }
     }
 }

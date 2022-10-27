@@ -7,7 +7,10 @@
         public DateTime Date { get; set; } = DateTime.Now;
         public TimeSpan Time { get; set; } = TimeSpan.Zero;
         public string CurrencySymbol { get; init; } = string.Empty;
-        public override string ToString() => $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}{CurrencySymbol}' Time: '" + $"{Time:c}"[..8] + "'";
+        public override string ToString()
+        {
+            return $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}{CurrencySymbol}' Time: '" + $"{Time:c}"[..8] + "'";
+        }
 
         public override int GetHashCode()
         {
@@ -18,9 +21,7 @@
 
         bool IEquatable<EarnerRecord>.Equals(EarnerRecord? other)
         {
-            if (other is null) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return other.Task == Task && other.Date.Date == Date.Date;
+            return other is not null && (ReferenceEquals(this, other) || (other.Task == Task && other.Date.Date == Date.Date));
         }
     }
 }
