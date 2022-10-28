@@ -8,20 +8,19 @@ Also logs time on defined tasks and creates an Excel file with log of the work p
 
 ### Display earnings in real time
 
-<img width="338" alt="image" src="https://user-images.githubusercontent.com/2292809/197410870-0ff9d496-5c46-42cf-90d8-7a68ee2feb65.png">
+<img src="https://user-images.githubusercontent.com/2292809/198750501-b64296e9-f701-4ac0-b2a2-af9f3975c03e.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198750501-b64296e9-f701-4ac0-b2a2-af9f3975c03e.png" width="300" />
 
 
 ### Log work on tasks
 
-![image](https://user-images.githubusercontent.com/2292809/197847813-901becae-0594-4816-a795-f0748abf6fe7.png)
+<img src="https://user-images.githubusercontent.com/2292809/198750469-2dc0f935-17c8-466c-939e-06f6eb7e0400.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198750469-2dc0f935-17c8-466c-939e-06f6eb7e0400.png" width="320" />
 
 
 ### Get report of work
 
-![image](https://user-images.githubusercontent.com/2292809/197633455-5da561d6-f51e-49d5-85cf-6b1daef76e60.png)
+<img src="https://user-images.githubusercontent.com/2292809/198750630-9721c94a-1dc4-440f-bc15-9727bb524400.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198750630-9721c94a-1dc4-440f-bc15-9727bb524400.png" width="520" />
 
 
 ### Settings
 
-<img width="389" alt="image" src="https://user-images.githubusercontent.com/2292809/197411021-dd270bb1-74ae-45c0-93d0-53bb82e67a4e.png">
-
+<img src="https://user-images.githubusercontent.com/2292809/198750578-dcff7033-a327-4184-a234-e17732cea187.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198750578-dcff7033-a327-4184-a234-e17732cea187.png" width="320" />
