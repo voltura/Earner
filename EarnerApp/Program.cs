@@ -2,14 +2,15 @@ namespace Earner
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        #region Entry point for the application
+
         [STAThread]
         private static void Main()
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new EarnerForm());
         }
+
+        #endregion Entry point for the application
     }
 }

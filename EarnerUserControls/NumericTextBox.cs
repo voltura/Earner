@@ -2,13 +2,23 @@
 {
     public class NumericTextBox : TextBox
     {
+        #region Private variables
+
+        private bool _NonNumberEntered = false;
+
+        #endregion Private variables
+
+        #region Constructor
+
         public NumericTextBox() : base()
         {
             KeyDown += new KeyEventHandler(KeyDownHandler);
             KeyPress += new KeyPressEventHandler(KeyPressHandler);
         }
 
-        private bool _NonNumberEntered = false;
+        #endregion Constructor
+
+        #region Private event handlers
 
         private void KeyDownHandler(object? sender, KeyEventArgs? e)
         {
@@ -53,5 +63,7 @@
                 }
             }
         }
+
+        #endregion Private event handlers
     }
 }

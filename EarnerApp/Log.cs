@@ -1,6 +1,10 @@
-﻿using System.Configuration;
+﻿#region Using statements
+
+using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
+
+#endregion Using statements
 
 namespace Earner
 {

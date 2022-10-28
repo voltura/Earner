@@ -1,30 +1,31 @@
-using System.Configuration;
-
 namespace Earner
 {
     public partial class SettingsForm : Form
     {
+        #region Constructor
+
         public SettingsForm()
         {
             InitializeComponent();
             LoadAppSettings();
         }
 
+        #endregion Constructor
+
+        #region Private methods
+
         private void LoadAppSettings()
         {
-            try
-            {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                _txtHourlyRate.Text = config.AppSettings.Settings["HourlyRate"].Value;
-                _txtFixedDailyCost.Text = config.AppSettings.Settings["FixedDailyCost"].Value;
-                _txtMaxBillableDailyHours.Text = config.AppSettings.Settings["MaxBillableDailyHours"].Value;
-                _txtCurrencySymbol.Text = config.AppSettings.Settings["CurrencySymbol"].Value;
-                _chkSaveTaskLog.Checked = Convert.ToBoolean(config.AppSettings.Settings["SaveTaskLog"].Value);
-            }
-            catch (Exception)
-            {
-            }
+            _txtHourlyRate.Text = EarnerConfig.GetAppSettings<string>("HourlyRate");
+            _txtFixedDailyCost.Text = EarnerConfig.GetAppSettings<string>("FixedDailyCost");
+            _txtMaxBillableDailyHours.Text = EarnerConfig.GetAppSettings<string>("MaxBillableDailyHours");
+            _txtCurrencySymbol.Text = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
+            _chkSaveTaskLog.Checked = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
         }
+
+        #endregion Private methods
+
+        #region Private events
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)
         {
@@ -42,29 +43,27 @@ namespace Earner
 
         private void SaveClick(object sender, EventArgs e)
         {
-            if (_txtFixedDailyCost.Text.Length == 0 || EarnerForm.ConvertToDouble(_txtFixedDailyCost.Text) == 0)
+            if (_txtFixedDailyCost.Text.Length == 0 || EarnerCommon.ConvertToDouble(_txtFixedDailyCost.Text) == 0)
             {
                 _txtFixedDailyCost.Text = "0";
             }
 
-            if (_txtHourlyRate.Text.Length == 0 || EarnerForm.ConvertToDouble(_txtHourlyRate.Text) == 0)
+            if (_txtHourlyRate.Text.Length == 0 || EarnerCommon.ConvertToDouble(_txtHourlyRate.Text) == 0)
             {
                 _txtHourlyRate.Text = "1000";
             }
 
-            if (EarnerForm.ConvertToDouble(_txtMaxBillableDailyHours.Text) == 0 || _txtMaxBillableDailyHours.Text.Length == 0 || _txtMaxBillableDailyHours.Text == "0")
+            if (EarnerCommon.ConvertToDouble(_txtMaxBillableDailyHours.Text) == 0 || _txtMaxBillableDailyHours.Text.Length == 0 || _txtMaxBillableDailyHours.Text == "0")
             {
                 _txtMaxBillableDailyHours.Text = "8";
             }
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["HourlyRate"].Value = _txtHourlyRate.Text;
-            config.AppSettings.Settings["FixedDailyCost"].Value = _txtFixedDailyCost.Text;
-            config.AppSettings.Settings["MaxBillableDailyHours"].Value = _txtMaxBillableDailyHours.Text;
-            config.AppSettings.Settings["CurrencySymbol"].Value = _txtCurrencySymbol.Text;
-            config.AppSettings.Settings["CurrencySymbol"].Value = _txtCurrencySymbol.Text;
-            config.AppSettings.Settings["SaveTaskLog"].Value = _chkSaveTaskLog.Checked ? "true" : "false";
-            config.Save(ConfigurationSaveMode.Modified);
+            _ = EarnerConfig.SaveAppSettingsString("HourlyRate", _txtHourlyRate.Text);
+            _ = EarnerConfig.SaveAppSettingsString("FixedDailyCost", _txtFixedDailyCost.Text);
+            _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", _txtMaxBillableDailyHours.Text);
+            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", _txtCurrencySymbol.Text);
+            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", _txtCurrencySymbol.Text);
+            _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", _chkSaveTaskLog.Checked.ToString());
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -74,5 +73,7 @@ namespace Earner
             using TasksForm tasksForm = new();
             _ = tasksForm.ShowDialog();
         }
+
+        #endregion Private events
     }
 }

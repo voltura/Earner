@@ -1,19 +1,29 @@
-﻿using MiniExcelLibs;
+﻿#region Using statements
+
+using MiniExcelLibs;
 using MiniExcelLibs.Attributes;
 using MiniExcelLibs.OpenXml;
 using System.Diagnostics;
+
+#endregion Using statements
 
 namespace Earner
 {
     internal class EarnerRecords
     {
-        internal List<EarnerRecord> _earnerRecords = new();
+        #region Private variables
+
+        private List<EarnerRecord> _earnerRecords = new();
+
+        #endregion Private variables
+
+        #region Public methods
 
         public void UpdateRecord(string task, double hourlyRate, double earnings = 0.0d, string currencySymbol = "")
         {
             // create temp earner record
-            double timeInSecondsFromEarnings = earnings / hourlyRate * 3600;
-            TimeSpan ts = TimeSpan.FromSeconds(timeInSecondsFromEarnings);
+            double timeInSecondsFromEarnings = earnings == 0.0d ? earnings : earnings / hourlyRate * 3600;
+            TimeSpan ts = TimeSpan.FromSeconds(timeInSecondsFromEarnings > 0.0d ? timeInSecondsFromEarnings : 0.01d);
             EarnerRecord tempEarnerRecord = new() { Task = task, Earned = earnings, Time = ts, CurrencySymbol = currencySymbol };
             // create new record
             if (_earnerRecords.Count == 0 || !_earnerRecords.Contains(tempEarnerRecord))
@@ -26,8 +36,8 @@ namespace Earner
             EarnerRecord existingRecord = _earnerRecords.Find((r) => r.Task == task && r.Date.Date == DateTime.Now.Date)!;
             double earnedInOtherTasks = _earnerRecords.Where((r) => r.Date.Date == DateTime.Now.Date && r.Task != task) is null ? 0.0d : _earnerRecords.Where((r) => r.Date.Date == DateTime.Now.Date && r.Task != task).Sum((r) => r.Earned);
             existingRecord.Earned = earnings - earnedInOtherTasks;
-            timeInSecondsFromEarnings = existingRecord.Earned / hourlyRate * 3600;
-            ts = TimeSpan.FromSeconds(timeInSecondsFromEarnings);
+            timeInSecondsFromEarnings = existingRecord.Earned <= 0 ? 0.00d : existingRecord.Earned / hourlyRate * 3600;
+            ts = TimeSpan.FromSeconds(Math.Abs(timeInSecondsFromEarnings));
             existingRecord.Time = ts;
         }
         public void RemoveTodaysEarningRecords()
@@ -85,5 +95,7 @@ namespace Earner
                 Log.Error = ex;
             }
         }
+
+        #endregion Public methods
     }
 }
