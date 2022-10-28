@@ -30,6 +30,7 @@ namespace Earner
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this._topPanel = new System.Windows.Forms.Panel();
             this._btnClose = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@ namespace Earner
             this._lblTasks = new System.Windows.Forms.Label();
             this._btnEditTasks = new System.Windows.Forms.Button();
             this._chkSaveTaskLog = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // _topPanel
@@ -77,6 +79,7 @@ namespace Earner
             this._btnClose.Size = new System.Drawing.Size(29, 29);
             this._btnClose.TabIndex = 600;
             this._btnClose.TabStop = false;
+            this.toolTip.SetToolTip(this._btnClose, "Close settings");
             this._btnClose.UseVisualStyleBackColor = false;
             this._btnClose.Click += new System.EventHandler(this.CloseClick);
             // 
@@ -115,6 +118,7 @@ namespace Earner
             this._lblMaxBillableDailyHours.Size = new System.Drawing.Size(181, 21);
             this._lblMaxBillableDailyHours.TabIndex = 90;
             this._lblMaxBillableDailyHours.Text = "Max Billable Daily Hours:";
+            this.toolTip.SetToolTip(this._lblMaxBillableDailyHours, "Earnings will stop after specified hours been exceeded");
             // 
             // _lblCurrencySymbol
             // 
@@ -124,9 +128,9 @@ namespace Earner
             this._lblCurrencySymbol.ForeColor = System.Drawing.Color.White;
             this._lblCurrencySymbol.Location = new System.Drawing.Point(-1, 133);
             this._lblCurrencySymbol.Name = "_lblCurrencySymbol";
-            this._lblCurrencySymbol.Size = new System.Drawing.Size(133, 21);
+            this._lblCurrencySymbol.Size = new System.Drawing.Size(76, 21);
             this._lblCurrencySymbol.TabIndex = 100;
-            this._lblCurrencySymbol.Text = "Currency Symbol:";
+            this._lblCurrencySymbol.Text = "Currency:";
             // 
             // _btnSave
             // 
@@ -143,12 +147,13 @@ namespace Earner
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(285, 208);
+            this._btnSave.Location = new System.Drawing.Point(288, 227);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(29, 29);
             this._btnSave.TabIndex = 1;
             this._btnSave.Tag = "";
+            this.toolTip.SetToolTip(this._btnSave, "Save settings");
             this._btnSave.UseVisualStyleBackColor = false;
             this._btnSave.Click += new System.EventHandler(this.SaveClick);
             // 
@@ -233,13 +238,14 @@ namespace Earner
             this._btnEditTasks.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnEditTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnEditTasks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnEditTasks.Location = new System.Drawing.Point(285, 164);
+            this._btnEditTasks.Location = new System.Drawing.Point(288, 164);
             this._btnEditTasks.Margin = new System.Windows.Forms.Padding(0);
             this._btnEditTasks.Name = "_btnEditTasks";
             this._btnEditTasks.Size = new System.Drawing.Size(29, 29);
             this._btnEditTasks.TabIndex = 602;
             this._btnEditTasks.TabStop = false;
             this._btnEditTasks.Tag = "";
+            this.toolTip.SetToolTip(this._btnEditTasks, "Edit tasks");
             this._btnEditTasks.UseVisualStyleBackColor = false;
             this._btnEditTasks.Click += new System.EventHandler(this.EditTasksClick);
             // 
@@ -256,14 +262,23 @@ namespace Earner
             this._chkSaveTaskLog.Size = new System.Drawing.Size(117, 25);
             this._chkSaveTaskLog.TabIndex = 603;
             this._chkSaveTaskLog.Text = "Save task log";
+            this.toolTip.SetToolTip(this._chkSaveTaskLog, "Show Excel file on Close/Reset");
             this._chkSaveTaskLog.UseVisualStyleBackColor = true;
+            // 
+            // toolTip
+            // 
+            this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.toolTip.ForeColor = System.Drawing.Color.White;
+            this.toolTip.IsBalloon = true;
+            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip.ToolTipTitle = "Info";
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(326, 240);
+            this.ClientSize = new System.Drawing.Size(326, 265);
             this.Controls.Add(this._chkSaveTaskLog);
             this.Controls.Add(this._btnEditTasks);
             this.Controls.Add(this._lblTasks);
@@ -310,5 +325,6 @@ namespace Earner
         private Label _lblTasks;
         private Button _btnEditTasks;
         private CheckBox _chkSaveTaskLog;
+        private ToolTip toolTip;
     }
 }
