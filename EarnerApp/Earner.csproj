@@ -26,7 +26,7 @@
 	<PublishReadyToRun>true</PublishReadyToRun>
 	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
-    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+   <!-- <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode> -->
     <PackageIcon>dollar.ico</PackageIcon>
   </PropertyGroup>
 
