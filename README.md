@@ -4,7 +4,7 @@ Are you not motivated at your current assignment or just having a bad day?
 
 Take a look at the money earned and your day will become a little better :)
 
-Also logs time on defined tasks and shows a log of the work performed on different tasks.
+Also logs time on defined tasks and creates an Excel file with log of the work performed on different tasks when closed or reset pressed.
 
 ### Display earnings in real time
 
