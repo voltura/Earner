@@ -84,7 +84,7 @@ namespace Earner
             this._lblExistingTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblExistingTasks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblExistingTasks.ForeColor = System.Drawing.Color.White;
-            this._lblExistingTasks.Location = new System.Drawing.Point(-1, 47);
+            this._lblExistingTasks.Location = new System.Drawing.Point(29, 44);
             this._lblExistingTasks.Name = "_lblExistingTasks";
             this._lblExistingTasks.Size = new System.Drawing.Size(49, 21);
             this._lblExistingTasks.TabIndex = 90;
@@ -153,12 +153,13 @@ namespace Earner
             "Task A",
             "Task B",
             "Task C"});
-            this._cmbTasks.Location = new System.Drawing.Point(54, 44);
+            this._cmbTasks.Location = new System.Drawing.Point(79, 44);
             this._cmbTasks.MaxDropDownItems = 40;
             this._cmbTasks.MaxLength = 255;
             this._cmbTasks.Name = "_cmbTasks";
-            this._cmbTasks.Size = new System.Drawing.Size(341, 267);
+            this._cmbTasks.Size = new System.Drawing.Size(316, 267);
             this._cmbTasks.TabIndex = 603;
+            this.toolTip.SetToolTip(this._cmbTasks, "Select, Add or Remove tasks");
             // 
             // _btnRemoveTask
             // 
@@ -190,7 +191,7 @@ namespace Earner
             this._lblTaskNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblTaskNote.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblTaskNote.ForeColor = System.Drawing.Color.White;
-            this._lblTaskNote.Location = new System.Drawing.Point(54, 314);
+            this._lblTaskNote.Location = new System.Drawing.Point(78, 314);
             this._lblTaskNote.Name = "_lblTaskNote";
             this._lblTaskNote.Size = new System.Drawing.Size(192, 21);
             this._lblTaskNote.TabIndex = 606;
@@ -210,9 +211,9 @@ namespace Earner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(474, 379);
+            this.Controls.Add(this._cmbTasks);
             this.Controls.Add(this._lblTaskNote);
             this.Controls.Add(this._btnRemoveTask);
-            this.Controls.Add(this._cmbTasks);
             this.Controls.Add(this._btnAddTask);
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._btnSave);
