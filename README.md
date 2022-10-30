@@ -1,10 +1,11 @@
 # Earner
-Windows app that shows a small window on top on others on the desktop that displays earnings in real time.
-Are you not motivated at your current assignment or just having a bad day? 
+Windows app that displays earnings in real time and logs time worked on different tasks.
+Creates an Excel file with log of the earnings and work performed on different tasks when close or reset is pressed.
 
-Take a look at the money earned and your day will become a little better :)
+[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.1.7z)
 
-Also logs time on defined tasks and creates an Excel file with log of the work performed on different tasks when closed or reset pressed.
+[![Github All Releases](https://img.shields.io/github/downloads/voltura/Earner/total.svg)]()
+[![License](https://img.shields.io/badge/licence-MIT-green)]()
 
 ### Display earnings in real time
 
