@@ -45,17 +45,12 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-
-    # Add msbuild
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Build .NET 6 app
+      uses: actions/setup-dotnet@v3
       with:
-        vs-version: '[16.11,)'
-
-    # make release
-    - name: Release build
-      run: msbuild Earner.sln /p:Platform=x64 /property:Configuration=Release -m
-      shell: cmd
+        dotnet-version: '6.0.x'
+        dotnet-quality: 'preview'
+        run: dotnet build Earner.sln /p:Platform=x64 /property:Configuration=Release -m
       
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
