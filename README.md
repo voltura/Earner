@@ -13,7 +13,7 @@ Also logs time on defined tasks and creates an Excel file with log of the work p
 
 ### Log work on tasks
 
-<img src="https://user-images.githubusercontent.com/2292809/198750469-2dc0f935-17c8-466c-939e-06f6eb7e0400.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198750469-2dc0f935-17c8-466c-939e-06f6eb7e0400.png" width="320" />
+<img src="https://user-images.githubusercontent.com/2292809/198899297-966468b7-7aff-454b-8f92-959b227ce3c2.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198899297-966468b7-7aff-454b-8f92-959b227ce3c2.png" width="320" />
 
 
 ### Get report of work
