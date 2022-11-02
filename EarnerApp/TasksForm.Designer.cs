@@ -74,7 +74,6 @@ namespace Earner
             this._btnClose.Size = new System.Drawing.Size(29, 29);
             this._btnClose.TabIndex = 600;
             this._btnClose.TabStop = false;
-            this.toolTip.SetToolTip(this._btnClose, "Close settings");
             this._btnClose.UseVisualStyleBackColor = false;
             this._btnClose.Click += new System.EventHandler(this.CloseClick);
             // 
@@ -111,7 +110,6 @@ namespace Earner
             this._btnSave.Size = new System.Drawing.Size(29, 29);
             this._btnSave.TabIndex = 1;
             this._btnSave.Tag = "";
-            this.toolTip.SetToolTip(this._btnSave, "Use selected task");
             this._btnSave.UseVisualStyleBackColor = false;
             this._btnSave.Click += new System.EventHandler(this.SaveClick);
             // 
@@ -135,7 +133,6 @@ namespace Earner
             this._btnAddTask.Size = new System.Drawing.Size(29, 29);
             this._btnAddTask.TabIndex = 602;
             this._btnAddTask.Tag = "";
-            this.toolTip.SetToolTip(this._btnAddTask, "Add entered task");
             this._btnAddTask.UseVisualStyleBackColor = false;
             this._btnAddTask.Click += new System.EventHandler(this.AddTaskClick);
             // 
@@ -159,7 +156,6 @@ namespace Earner
             this._cmbTasks.Name = "_cmbTasks";
             this._cmbTasks.Size = new System.Drawing.Size(316, 267);
             this._cmbTasks.TabIndex = 603;
-            this.toolTip.SetToolTip(this._cmbTasks, "Select, Add or Remove tasks");
             // 
             // _btnRemoveTask
             // 
@@ -181,7 +177,6 @@ namespace Earner
             this._btnRemoveTask.Size = new System.Drawing.Size(29, 29);
             this._btnRemoveTask.TabIndex = 605;
             this._btnRemoveTask.Tag = "";
-            this.toolTip.SetToolTip(this._btnRemoveTask, "Delete selected task");
             this._btnRemoveTask.UseVisualStyleBackColor = false;
             this._btnRemoveTask.Click += new System.EventHandler(this.RemoveTaskClick);
             // 

@@ -16,17 +16,17 @@
     <Description>Show earned money in real time per day</Description>
     <Copyright>Copyright 2022 Voltura AB</Copyright>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-	<AssemblyVersion>1.0.1.1</AssemblyVersion>
+	<AssemblyVersion>1.0.1.2</AssemblyVersion>
 	<NeutralLanguage>en</NeutralLanguage>
-	<FileVersion>1.0.1.1</FileVersion>
-	<IncludeSymbols>False</IncludeSymbols>
+	<FileVersion>1.0.1.2</FileVersion>
+	<IncludeSymbols>True</IncludeSymbols>
 	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	<Platforms>AnyCPU;x64</Platforms>
 	<PublishReadyToRun>true</PublishReadyToRun>
 	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
-   <!-- <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode> -->
+    <!-- <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode> -->
     <PackageIcon>dollar.ico</PackageIcon>
   </PropertyGroup>
 

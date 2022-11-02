@@ -19,11 +19,11 @@ namespace Earner
 
         #region Public methods
 
-        public void UpdateRecord(string task, double hourlyRate, double earnings = 0.0d, string currencySymbol = "")
+        public void UpdateRecord(string task, double hourlyRate, double earnings = 0.00d, string currencySymbol = "")
         {
             // create temp earner record
             double timeInSecondsFromEarnings = earnings == 0.0d ? earnings : earnings / hourlyRate * 3600;
-            TimeSpan ts = TimeSpan.FromSeconds(timeInSecondsFromEarnings > 0.0d ? timeInSecondsFromEarnings : 0.01d);
+            TimeSpan ts = TimeSpan.FromSeconds(timeInSecondsFromEarnings > 0.0d ? timeInSecondsFromEarnings : 0.00d);
             EarnerRecord tempEarnerRecord = new() { Task = task, Earned = earnings, Time = ts, CurrencySymbol = currencySymbol };
             // create new record
             if (_earnerRecords.Count == 0 || !_earnerRecords.Contains(tempEarnerRecord))
@@ -34,7 +34,7 @@ namespace Earner
             }
             // update existing record
             EarnerRecord existingRecord = _earnerRecords.Find((r) => r.Task == task && r.Date.Date == DateTime.Now.Date)!;
-            double earnedInOtherTasks = _earnerRecords.Where((r) => r.Date.Date == DateTime.Now.Date && r.Task != task) is null ? 0.0d : _earnerRecords.Where((r) => r.Date.Date == DateTime.Now.Date && r.Task != task).Sum((r) => r.Earned);
+            double earnedInOtherTasks = _earnerRecords.Where((r) => r.Date.Date == DateTime.Now.Date && r.Task != task) is null ? 0.00d : _earnerRecords.Where((r) => r.Date.Date == DateTime.Now.Date && r.Task != task).Sum((r) => r.Earned);
             existingRecord.Earned = earnings - earnedInOtherTasks;
             timeInSecondsFromEarnings = existingRecord.Earned <= 0 ? 0.00d : existingRecord.Earned / hourlyRate * 3600;
             ts = TimeSpan.FromSeconds(Math.Abs(timeInSecondsFromEarnings));
@@ -69,19 +69,23 @@ namespace Earner
                 {
                     DynamicColumns = new DynamicExcelColumn[] {
                         new DynamicExcelColumn("Task") { Index = 0, Width = 20 },
-                        new DynamicExcelColumn("Day") { Index = 1, Width = 10 },
-                        new DynamicExcelColumn("Earned") { Index = 2, Width = 10 },
-                        new DynamicExcelColumn("Currency") { Index = 3, Width = 10 },
-                        new DynamicExcelColumn("Time") { Index = 4, Width = 10 },
+                        new DynamicExcelColumn("Date") { Format = "yyyy-MM-dd", Index = 1, Width = 10 },
+                        new DynamicExcelColumn("Day") { Index = 2, Width = 10 },
+                        new DynamicExcelColumn("Earned") { Index = 3, Width = 10 },
+                        new DynamicExcelColumn("Currency") { Index = 4, Width = 10 },
+                        new DynamicExcelColumn("Time") { Index = 5, Width = 10 },
+                        new DynamicExcelColumn("Hours") { Index = 6, Width = 10 },
                     }
                 };
                 var values = _earnerRecords.Select(i => new
                 {
                     i.Task,
-                    Day = $"{i.Date:yyyy-MM-dd}",
+                    i.Date,
+                    Day = i.Date.ToString("dddd"),
                     Earned = Math.Round(i.Earned, 2, MidpointRounding.AwayFromZero),
                     Currency = i.CurrencySymbol,
-                    Time = $"{i.Time:c}"[..8]
+                    Time = $"{i.Time:c}"[..8],
+                    Hours = Math.Round(i.Time.TotalSeconds / 3600, 1, MidpointRounding.AwayFromZero)
                 });
                 MiniExcel.SaveAs(excelFileFullPath, values, excelType: ExcelType.XLSX, configuration: config, overwriteFile: true);
                 if (File.Exists(excelFileFullPath))
@@ -93,6 +97,10 @@ namespace Earner
             catch (Exception ex)
             {
                 Log.Error = ex;
+                if (EarnerSettings.Instance.ShowApplicationLogOnErrors)
+                {
+                    Log.Show();
+                }
             }
         }
 

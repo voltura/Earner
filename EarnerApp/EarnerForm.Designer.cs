@@ -54,7 +54,6 @@
             this._lblEarned.Size = new System.Drawing.Size(243, 84);
             this._lblEarned.TabIndex = 0;
             this._lblEarned.Text = "00000kr";
-            this.toolTip.SetToolTip(this._lblEarned, "Earnings");
             // 
             // _btnOptions
             // 
@@ -76,7 +75,6 @@
             this._btnOptions.TabIndex = 1;
             this._btnOptions.TabStop = false;
             this._btnOptions.Tag = "Options";
-            this.toolTip.SetToolTip(this._btnOptions, "Show settings");
             this._btnOptions.UseVisualStyleBackColor = false;
             this._btnOptions.Click += new System.EventHandler(this.OptionsClick);
             // 
@@ -101,7 +99,6 @@
             this._btnStart.TabIndex = 2;
             this._btnStart.TabStop = false;
             this._btnStart.Tag = "Stop";
-            this.toolTip.SetToolTip(this._btnStart, "Start/Stop task");
             this._btnStart.UseVisualStyleBackColor = false;
             this._btnStart.Click += new System.EventHandler(this.StartStopClick);
             // 
@@ -124,7 +121,6 @@
             this._lblWorkTime.TabIndex = 3;
             this._lblWorkTime.Text = "00:00:00";
             this._lblWorkTime.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.toolTip.SetToolTip(this._lblWorkTime, "Time elapsed");
             // 
             // _btnHide
             // 
@@ -147,7 +143,6 @@
             this._btnHide.TabIndex = 0;
             this._btnHide.TabStop = false;
             this._btnHide.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.toolTip.SetToolTip(this._btnHide, "Minimize app");
             this._btnHide.UseVisualStyleBackColor = false;
             this._btnHide.Click += new System.EventHandler(this.HideClick);
             // 
@@ -181,7 +176,6 @@
             this._btnClose.Size = new System.Drawing.Size(29, 29);
             this._btnClose.TabIndex = 0;
             this._btnClose.TabStop = false;
-            this.toolTip.SetToolTip(this._btnClose, "Close app");
             this._btnClose.UseVisualStyleBackColor = false;
             this._btnClose.Click += new System.EventHandler(this.CloseClick);
             // 
@@ -205,7 +199,6 @@
             this._btnRestart.TabIndex = 6;
             this._btnRestart.TabStop = false;
             this._btnRestart.Tag = "Options";
-            this.toolTip.SetToolTip(this._btnRestart, "Reset earnings");
             this._btnRestart.UseVisualStyleBackColor = false;
             this._btnRestart.Click += new System.EventHandler(this.RestartClick);
             // 

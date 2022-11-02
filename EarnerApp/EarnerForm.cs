@@ -5,16 +5,11 @@ namespace Earner
         #region Private variables
 
         private double _Earned;
-        private double _HourlyRate = 1000;
-        private double _FixedDailyCost = 0;
-        private double _MaxBillableDailyHours = 8;
         private TimeSpan _ElapsedTime;
         private string _ActiveTask = string.Empty;
-        private List<string> _EarnerTasks = new();
         private readonly EarnerRecords _EarnerRecords = new();
-        private bool _SaveTaskLog = false;
-        private string _CurrencySymbol = "kr";
         private readonly System.Diagnostics.Stopwatch _stopwatch = new();
+        private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
         #endregion Private variables
 
@@ -35,13 +30,34 @@ namespace Earner
 
         private void LoadAppSettings()
         {
-            _HourlyRate = EarnerConfig.GetAppSettings<double>("HourlyRate");
-            _FixedDailyCost = EarnerConfig.GetAppSettings<double>("FixedDailyCost");
-            _MaxBillableDailyHours = EarnerConfig.GetAppSettings<double>("MaxBillableDailyHours");
-            _CurrencySymbol = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
-            _EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
-            _ActiveTask = _EarnerTasks.FirstOrDefault("Default Task");
-            _SaveTaskLog = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
+            _Settings.Load();
+            SetTooltips();
+            _ActiveTask = _Settings.EarnerTasks.FirstOrDefault("Default Task");
+        }
+
+        private void SetTooltips()
+        {
+            if (_Settings.ShowTooltips)
+            {
+                toolTip.SetToolTip(_lblEarned, "Earnings");
+                toolTip.SetToolTip(_btnOptions, "Show settings");
+                toolTip.SetToolTip(_btnStart, "Start/Stop task");
+                toolTip.SetToolTip(_lblWorkTime, "Time elapsed");
+                toolTip.SetToolTip(_btnHide, "Minimize app");
+                toolTip.SetToolTip(_btnClose, "Close app");
+                toolTip.SetToolTip(_btnRestart, "Reset earnings");
+            }
+            else
+            {
+                toolTip.Hide(this);
+                toolTip.SetToolTip(_lblEarned, null);
+                toolTip.SetToolTip(_btnOptions, null);
+                toolTip.SetToolTip(_btnStart, null);
+                toolTip.SetToolTip(_lblWorkTime, null);
+                toolTip.SetToolTip(_btnHide, null);
+                toolTip.SetToolTip(_btnClose, null);
+                toolTip.SetToolTip(_btnRestart, null);
+            }
         }
 
         private bool StartEarning()
@@ -72,25 +88,25 @@ namespace Earner
         private double UpdateEarnings()
         {
             _ElapsedTime = _stopwatch.Elapsed;
-            double totalEarnings = _ElapsedTime.TotalSeconds * (_HourlyRate / 3600.00d);
-            if (_ElapsedTime.TotalSeconds <= _MaxBillableDailyHours * 3600)
+            double totalEarnings = _ElapsedTime.TotalSeconds * (_Settings.HourlyRate / 3600.00d);
+            if (_ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
             {
                 _Earned = totalEarnings;
-                _EarnerRecords.UpdateRecord(_ActiveTask, _HourlyRate, totalEarnings, _CurrencySymbol);
+                _EarnerRecords.UpdateRecord(_ActiveTask, _Settings.HourlyRate, totalEarnings, _Settings.CurrencySymbol);
             }
             else
             {
                 Log.Info = "Working overtime";
             }
-            double weightedEarnings = _Earned - _FixedDailyCost;
+            double weightedEarnings = _Earned - _Settings.FixedDailyCost;
             return weightedEarnings;
         }
 
         private void UpdateEarningsUI(double weightedEarnings)
         {
-            _lblEarned.Text = $"{weightedEarnings:00000}{_CurrencySymbol}";
+            _lblEarned.Text = $"{weightedEarnings:00000}{_Settings.CurrencySymbol}";
             _lblWorkTime.Text = $"{_ElapsedTime:c}"[..8];
-            _lblWorkTime.ForeColor = _ElapsedTime.TotalHours <= _MaxBillableDailyHours ? Color.White : Color.Red;
+            _lblWorkTime.ForeColor = _ElapsedTime.TotalHours <= _Settings.MaxBillableDailyHours ? Color.White : Color.Red;
         }
 
         #endregion Private methods
@@ -141,7 +157,7 @@ namespace Earner
 
         private void RestartClick(object sender, EventArgs e)
         {
-            if (_SaveTaskLog)
+            if (_Settings.SaveTaskLog)
             {
                 _EarnerRecords.LogRecords();
             }
@@ -154,7 +170,7 @@ namespace Earner
 
         private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_SaveTaskLog)
+            if (_Settings.SaveTaskLog)
             {
                 _EarnerRecords.LogRecords();
             }

@@ -2,6 +2,12 @@ namespace Earner
 {
     public partial class SettingsForm : Form
     {
+        #region Private variables
+
+        private readonly EarnerSettings _Settings = EarnerSettings.Instance;
+
+        #endregion Private variables
+
         #region Constructor
 
         public SettingsForm()
@@ -16,11 +22,39 @@ namespace Earner
 
         private void LoadAppSettings()
         {
-            _txtHourlyRate.Text = EarnerConfig.GetAppSettings<string>("HourlyRate");
-            _txtFixedDailyCost.Text = EarnerConfig.GetAppSettings<string>("FixedDailyCost");
-            _txtMaxBillableDailyHours.Text = EarnerConfig.GetAppSettings<string>("MaxBillableDailyHours");
-            _txtCurrencySymbol.Text = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
-            _chkSaveTaskLog.Checked = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
+            _Settings.Load();
+            _txtHourlyRate.Text = _Settings.HourlyRate.ToString();
+            _txtFixedDailyCost.Text = _Settings.FixedDailyCost.ToString();
+            _txtMaxBillableDailyHours.Text = _Settings.MaxBillableDailyHours.ToString();
+            _txtCurrencySymbol.Text = _Settings.CurrencySymbol.ToString();
+            _chkSaveTaskLog.Checked = _Settings.SaveTaskLog;
+            _chkShowApplicationLogOnErrors.Checked = _Settings.ShowApplicationLogOnErrors;
+            _chkShowTooltips.Checked = _Settings.ShowTooltips;
+            SetTooltips();
+        }
+
+        private void SetTooltips()
+        {
+            if (_Settings.ShowTooltips)
+            {
+                toolTip.SetToolTip(_btnClose, "Close settings");
+                toolTip.SetToolTip(_lblMaxBillableDailyHours, "Earnings will stop after specified hours been exceeded");
+                toolTip.SetToolTip(_btnSave, "Save settings");
+                toolTip.SetToolTip(_btnEditTasks, "Edit tasks");
+                toolTip.SetToolTip(_chkSaveTaskLog, "Show Excel file on Close/Reset");
+                toolTip.SetToolTip(_chkShowTooltips, "Show tooltips");
+                toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show tooltips");
+            }
+            else
+            {
+                toolTip.SetToolTip(_btnClose, null);
+                toolTip.SetToolTip(_lblMaxBillableDailyHours, null);
+                toolTip.SetToolTip(_btnSave, null);
+                toolTip.SetToolTip(_btnEditTasks, null);
+                toolTip.SetToolTip(_chkSaveTaskLog, null);
+                toolTip.SetToolTip(_chkShowTooltips, null);
+                toolTip.SetToolTip(_chkShowApplicationLogOnErrors, null);
+            }
         }
 
         #endregion Private methods
@@ -58,12 +92,14 @@ namespace Earner
                 _txtMaxBillableDailyHours.Text = "8";
             }
 
-            _ = EarnerConfig.SaveAppSettingsString("HourlyRate", _txtHourlyRate.Text);
-            _ = EarnerConfig.SaveAppSettingsString("FixedDailyCost", _txtFixedDailyCost.Text);
-            _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", _txtMaxBillableDailyHours.Text);
-            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", _txtCurrencySymbol.Text);
-            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", _txtCurrencySymbol.Text);
-            _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", _chkSaveTaskLog.Checked.ToString());
+            _Settings.HourlyRate = Convert.ToDouble(_txtHourlyRate.Text);
+            _Settings.FixedDailyCost = Convert.ToDouble(_txtFixedDailyCost.Text);
+            _Settings.MaxBillableDailyHours = Convert.ToDouble(_txtMaxBillableDailyHours.Text);
+            _Settings.CurrencySymbol = _txtCurrencySymbol.Text;
+            _Settings.SaveTaskLog = _chkSaveTaskLog.Checked;
+            _Settings.ShowTooltips = _chkShowTooltips.Checked;
+            _Settings.ShowApplicationLogOnErrors = _chkShowApplicationLogOnErrors.Checked;
+            _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
         }

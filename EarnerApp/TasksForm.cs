@@ -6,6 +6,8 @@ namespace Earner
 
         private List<string> _EarnerTasks;
 
+        private EarnerSettings _Settings = EarnerSettings.Instance;
+
         #endregion Private variables
 
         #region Constructor
@@ -13,7 +15,9 @@ namespace Earner
         public TasksForm()
         {
             InitializeComponent();
-            _EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
+            _Settings.Load();
+            _EarnerTasks = _Settings.EarnerTasks;
+            SetTooltips();
             LoadTasksToUI();
         }
 
@@ -26,6 +30,26 @@ namespace Earner
             _cmbTasks.Items.Clear();
             _cmbTasks.Items.AddRange(_EarnerTasks.ToArray());
             AddDefaultTaskIfMissing();
+        }
+
+        private void SetTooltips()
+        {
+            if (_Settings.ShowTooltips)
+            {
+                toolTip.SetToolTip(_btnClose, "Close settings");
+                toolTip.SetToolTip(_btnSave, "Use selected task");
+                toolTip.SetToolTip(_btnAddTask, "Add entered task");
+                toolTip.SetToolTip(_cmbTasks, "Select, Add or Remove tasks");
+                toolTip.SetToolTip(_btnRemoveTask, "Delete selected task");
+            }
+            else
+            {
+                toolTip.SetToolTip(_btnClose, null);
+                toolTip.SetToolTip(_btnSave, null);
+                toolTip.SetToolTip(_btnAddTask, null);
+                toolTip.SetToolTip(_cmbTasks, null);
+                toolTip.SetToolTip(_btnRemoveTask, null);
+            }
         }
 
         private void AddDefaultTaskIfMissing()
@@ -50,7 +74,8 @@ namespace Earner
                 _EarnerTasks.Add(_cmbTasks.SelectedItem.ToString() + "");
                 _EarnerTasks.AddRange(_cmbTasks.Items.Cast<string>().ToList().Where((task) => task != _cmbTasks.SelectedItem.ToString()).ToList());
             }
-            _ = EarnerConfig.SaveAppSettingsList("Tasks", _EarnerTasks);
+            _Settings.EarnerTasks = _EarnerTasks;
+            _Settings.Save();
         }
 
         #endregion Private methods
