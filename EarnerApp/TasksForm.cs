@@ -6,7 +6,7 @@ namespace Earner
 
         private List<string> _EarnerTasks;
 
-        private EarnerSettings _Settings = EarnerSettings.Instance;
+        private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
         #endregion Private variables
 

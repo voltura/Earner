@@ -40,6 +40,7 @@
             this._btnClose = new System.Windows.Forms.Button();
             this._btnRestart = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._btnShowRecords = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _lblEarned
@@ -48,7 +49,7 @@
             this._lblEarned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblEarned.Font = new System.Drawing.Font("Segoe UI Light", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblEarned.ForeColor = System.Drawing.Color.White;
-            this._lblEarned.Location = new System.Drawing.Point(2, 30);
+            this._lblEarned.Location = new System.Drawing.Point(14, 30);
             this._lblEarned.Margin = new System.Windows.Forms.Padding(0);
             this._lblEarned.Name = "_lblEarned";
             this._lblEarned.Size = new System.Drawing.Size(243, 84);
@@ -68,7 +69,7 @@
             this._btnOptions.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnOptions.Location = new System.Drawing.Point(162, 121);
+            this._btnOptions.Location = new System.Drawing.Point(164, 121);
             this._btnOptions.Margin = new System.Windows.Forms.Padding(0);
             this._btnOptions.Name = "_btnOptions";
             this._btnOptions.Size = new System.Drawing.Size(29, 29);
@@ -114,7 +115,7 @@
             this._lblWorkTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblWorkTime.Font = new System.Drawing.Font("Segoe UI Light", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblWorkTime.ForeColor = System.Drawing.Color.White;
-            this._lblWorkTime.Location = new System.Drawing.Point(14, 115);
+            this._lblWorkTime.Location = new System.Drawing.Point(2, 115);
             this._lblWorkTime.Margin = new System.Windows.Forms.Padding(0);
             this._lblWorkTime.Name = "_lblWorkTime";
             this._lblWorkTime.Size = new System.Drawing.Size(122, 41);
@@ -192,7 +193,7 @@
             this._btnRestart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnRestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnRestart.Location = new System.Drawing.Point(202, 121);
+            this._btnRestart.Location = new System.Drawing.Point(203, 121);
             this._btnRestart.Margin = new System.Windows.Forms.Padding(0);
             this._btnRestart.Name = "_btnRestart";
             this._btnRestart.Size = new System.Drawing.Size(29, 29);
@@ -210,12 +211,36 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Info";
             // 
+            // _btnShowRecords
+            // 
+            this._btnShowRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnShowRecords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowRecords.BackgroundImage = global::Earner.Properties.Resources.xlsx_48x48;
+            this._btnShowRecords.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnShowRecords.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowRecords.FlatAppearance.BorderSize = 0;
+            this._btnShowRecords.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowRecords.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnShowRecords.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnShowRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnShowRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowRecords.Location = new System.Drawing.Point(125, 121);
+            this._btnShowRecords.Margin = new System.Windows.Forms.Padding(0);
+            this._btnShowRecords.Name = "_btnShowRecords";
+            this._btnShowRecords.Size = new System.Drawing.Size(29, 29);
+            this._btnShowRecords.TabIndex = 7;
+            this._btnShowRecords.TabStop = false;
+            this._btnShowRecords.Tag = "Options";
+            this._btnShowRecords.UseVisualStyleBackColor = false;
+            this._btnShowRecords.Click += new System.EventHandler(this.ShowRecordsClick);
+            // 
             // EarnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
+            this.Controls.Add(this._btnShowRecords);
             this.Controls.Add(this._topPanel);
             this.Controls.Add(this._btnRestart);
             this.Controls.Add(this._btnHide);
@@ -254,5 +279,6 @@
         private Button _btnClose;
         private Button _btnRestart;
         private ToolTip toolTip;
+        private Button _btnShowRecords;
     }
 }

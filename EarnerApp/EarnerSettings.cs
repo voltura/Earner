@@ -9,14 +9,6 @@ namespace Earner
     {
         #region Private variables
 
-        private double _HourlyRate = 1000;
-        private double _FixedDailyCost = 0;
-        private double _MaxBillableDailyHours = 8;
-        private string _CurrencySymbol = "kr";
-        private List<string> _EarnerTasks = new();
-        private bool _SaveTaskLog = false;
-        private bool _ShowApplicationLogOnErrors = false;
-        private bool _ShowTooltips = false;
 
         #endregion Private variables
 
@@ -45,21 +37,22 @@ namespace Earner
 
         #region Public properties
 
-        public double HourlyRate { get => _HourlyRate; set => _HourlyRate = value; }
+        public double HourlyRate { get; set; } = 1000;
 
-        public double FixedDailyCost { get => _FixedDailyCost; set => _FixedDailyCost = value; }
+        public double FixedDailyCost { get; set; } = 0;
 
-        public double MaxBillableDailyHours { get => _MaxBillableDailyHours; set => _MaxBillableDailyHours = value; }
+        public double MaxBillableDailyHours { get; set; } = 8;
 
-        public string CurrencySymbol { get => _CurrencySymbol; set => _CurrencySymbol = value; }
+        public string CurrencySymbol { get; set; } = "kr";
 
-        public List<string> EarnerTasks { get => _EarnerTasks; set => _EarnerTasks = value; }
+        public List<string> EarnerTasks { get; set; } = new();
 
-        public bool SaveTaskLog { get => _SaveTaskLog; set => _SaveTaskLog = value; }
+        public bool SaveTaskLog { get; set; } = false;
 
-        public bool ShowApplicationLogOnErrors { get => _ShowApplicationLogOnErrors; set => _ShowApplicationLogOnErrors = value; }
+        public bool ShowApplicationLogOnErrors { get; set; } = false;
 
-        public bool ShowTooltips { get => _ShowTooltips; set => _ShowTooltips = value; }
+        public bool ShowTooltips { get; set; } = false;
+        public bool AutoShowTaskLog { get; set; } = false;
 
         #endregion Public properties
 
@@ -67,26 +60,28 @@ namespace Earner
 
         public void Load()
         {
-            _HourlyRate = EarnerConfig.GetAppSettings<double>("HourlyRate");
-            _FixedDailyCost = EarnerConfig.GetAppSettings<double>("FixedDailyCost");
-            _MaxBillableDailyHours = EarnerConfig.GetAppSettings<double>("MaxBillableDailyHours");
-            _CurrencySymbol = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
-            _EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
-            _SaveTaskLog = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
-            _ShowApplicationLogOnErrors = EarnerConfig.GetAppSettings<bool>("ShowAppLogOnError");
-            _ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
+            HourlyRate = EarnerConfig.GetAppSettings<double>("HourlyRate");
+            FixedDailyCost = EarnerConfig.GetAppSettings<double>("FixedDailyCost");
+            MaxBillableDailyHours = EarnerConfig.GetAppSettings<double>("MaxBillableDailyHours");
+            CurrencySymbol = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
+            EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
+            SaveTaskLog = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
+            ShowApplicationLogOnErrors = EarnerConfig.GetAppSettings<bool>("ShowAppLogOnError");
+            ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
+            AutoShowTaskLog = EarnerConfig.GetAppSettings<bool>("AutoShowTaskLog");
         }
 
         public void Save()
         {
-            _ = EarnerConfig.SaveAppSettingsString("HourlyRate", _HourlyRate.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("FixedDailyCost", _FixedDailyCost.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", _MaxBillableDailyHours.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", _CurrencySymbol.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", _SaveTaskLog.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", _ShowTooltips.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", _ShowApplicationLogOnErrors.ToString());
-            _ = EarnerConfig.SaveAppSettingsList("Tasks", _EarnerTasks);
+            _ = EarnerConfig.SaveAppSettingsString("HourlyRate", HourlyRate.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("FixedDailyCost", FixedDailyCost.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", MaxBillableDailyHours.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", CurrencySymbol.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", SaveTaskLog.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", ShowTooltips.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("AutoShowTaskLog", AutoShowTaskLog.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", ShowApplicationLogOnErrors.ToString());
+            _ = EarnerConfig.SaveAppSettingsList("Tasks", EarnerTasks);
         }
 
         #endregion Public methods

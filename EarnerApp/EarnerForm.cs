@@ -157,15 +157,16 @@ namespace Earner
 
         private void RestartClick(object sender, EventArgs e)
         {
-            if (_Settings.SaveTaskLog)
-            {
-                _EarnerRecords.LogRecords();
-            }
-
+            _EarnerRecords.LogRecords();
             _EarnerRecords.RemoveTodaysEarningRecords();
             _Earned = 0;
             _stopwatch.Reset();
             _ = StartEarning();
+        }
+
+        private void ShowRecordsClick(object sender, EventArgs e)
+        {
+            EarnerRecords.ShowExcel();
         }
 
         private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)

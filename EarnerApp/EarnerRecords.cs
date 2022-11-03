@@ -14,8 +14,30 @@ namespace Earner
         #region Private variables
 
         private List<EarnerRecord> _earnerRecords = new();
+        private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
         #endregion Private variables
+
+        #region Public properties
+
+        public static string CurrentExcelFileName
+        {
+            get
+            {
+                string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{DateTime.Now:yyyy-MM-dd}.xlsx";
+                string appDataFolder = Path.Combine(Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData),
+                    Application.CompanyName, Application.ProductName);
+                string excelFileFullPath = Path.Combine(appDataFolder, excelFileName);
+                if (!Directory.Exists(appDataFolder))
+                {
+                    _ = Directory.CreateDirectory(appDataFolder);
+                }
+                return excelFileFullPath;
+            }
+        }
+
+        #endregion Public properties
 
         #region Public methods
 
@@ -48,23 +70,50 @@ namespace Earner
 
         public void LogRecords()
         {
-            string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{DateTime.Now:yyyy-MM-dd}.xlsx";
-            string appDataFolder = Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.LocalApplicationData),
-                Application.CompanyName, Application.ProductName);
-            string excelFileFullPath = Path.Combine(appDataFolder, excelFileName);
+            _Settings.Load();
+            if (!_Settings.SaveTaskLog || _earnerRecords.Count == 0)
+            {
+                return;
+            }
+
+            SaveToExcel();
+            if (_Settings.AutoShowTaskLog)
+            {
+                ShowExcel();
+            }
+        }
+
+        public static void ShowExcel()
+        {
             try
             {
-                if (_earnerRecords.Count == 0)
+                if (!File.Exists(CurrentExcelFileName))
                 {
                     return;
                 }
-
-                if (!Directory.Exists(appDataFolder))
+                using Process process = new()
                 {
-                    _ = Directory.CreateDirectory(appDataFolder);
-                }
+                    StartInfo = new ProcessStartInfo(CurrentExcelFileName)
+                    {
+                        UseShellExecute = true
+                    }
+                };
+                _ = process.Start();
+            }
+            catch (Exception ex)
+            {
+                Log.Error = ex;
+            }
+        }
 
+        #endregion Public methods
+
+        #region Private methods
+
+        private void SaveToExcel()
+        {
+            try
+            {
                 OpenXmlConfiguration config = new()
                 {
                     DynamicColumns = new DynamicExcelColumn[] {
@@ -87,23 +136,14 @@ namespace Earner
                     Time = $"{i.Time:c}"[..8],
                     Hours = Math.Round(i.Time.TotalSeconds / 3600, 1, MidpointRounding.AwayFromZero)
                 });
-                MiniExcel.SaveAs(excelFileFullPath, values, excelType: ExcelType.XLSX, configuration: config, overwriteFile: true);
-                if (File.Exists(excelFileFullPath))
-                {
-                    using Process process = new() { StartInfo = new ProcessStartInfo(excelFileFullPath) { UseShellExecute = true } };
-                    _ = process.Start();
-                }
+                MiniExcel.SaveAs(CurrentExcelFileName, values, excelType: ExcelType.XLSX, configuration: config, overwriteFile: true);
             }
             catch (Exception ex)
             {
                 Log.Error = ex;
-                if (EarnerSettings.Instance.ShowApplicationLogOnErrors)
-                {
-                    Log.Show();
-                }
             }
         }
 
-        #endregion Public methods
+        #endregion Private methods
     }
 }

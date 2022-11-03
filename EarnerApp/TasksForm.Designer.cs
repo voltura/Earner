@@ -50,7 +50,7 @@ namespace Earner
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(445, 41);
+            this._topPanel.Size = new System.Drawing.Size(445, 29);
             this._topPanel.TabIndex = 500;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
@@ -188,9 +188,9 @@ namespace Earner
             this._lblTaskNote.ForeColor = System.Drawing.Color.White;
             this._lblTaskNote.Location = new System.Drawing.Point(78, 314);
             this._lblTaskNote.Name = "_lblTaskNote";
-            this._lblTaskNote.Size = new System.Drawing.Size(192, 21);
+            this._lblTaskNote.Size = new System.Drawing.Size(120, 21);
             this._lblTaskNote.TabIndex = 606;
-            this._lblTaskNote.Text = "Selected task = task in use";
+            this._lblTaskNote.Text = "Selected is used";
             // 
             // toolTip
             // 

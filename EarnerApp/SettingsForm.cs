@@ -30,6 +30,7 @@ namespace Earner
             _chkSaveTaskLog.Checked = _Settings.SaveTaskLog;
             _chkShowApplicationLogOnErrors.Checked = _Settings.ShowApplicationLogOnErrors;
             _chkShowTooltips.Checked = _Settings.ShowTooltips;
+            _chkAutoShowTaskLog.Checked = _Settings.AutoShowTaskLog;
             SetTooltips();
         }
 
@@ -99,6 +100,7 @@ namespace Earner
             _Settings.SaveTaskLog = _chkSaveTaskLog.Checked;
             _Settings.ShowTooltips = _chkShowTooltips.Checked;
             _Settings.ShowApplicationLogOnErrors = _chkShowApplicationLogOnErrors.Checked;
+            _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();

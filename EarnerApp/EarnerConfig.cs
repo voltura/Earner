@@ -22,26 +22,15 @@ namespace Earner
             T? settingsValue = default;
             try
             {
-                if (typeof(T).IsAssignableFrom(typeof(double)))
-                {
-                    settingsValue = (T)Convert.ChangeType(GetAppSettingsDouble(settingsKey), typeof(T));
-                }
-                else if (typeof(T).IsAssignableFrom(typeof(string)))
-                {
-                    settingsValue = (T)Convert.ChangeType(GetAppSettingsString(settingsKey), typeof(T));
-                }
-                else if (typeof(T).IsAssignableFrom(typeof(bool)))
-                {
-                    settingsValue = (T)Convert.ChangeType(GetAppSettingsBool(settingsKey), typeof(T));
-                }
-                else if (typeof(T).IsAssignableFrom(typeof(List<string>)))
-                {
-                    settingsValue = (T)Convert.ChangeType(GetAppSettingsStringList(settingsKey), typeof(T));
-                }
-                else
-                {
-                    settingsValue = (T)Convert.ChangeType(GetAppSettingsString(settingsKey), typeof(T));
-                }
+                settingsValue = typeof(T).IsAssignableFrom(typeof(double))
+                    ? (T)Convert.ChangeType(GetAppSettingsDouble(settingsKey), typeof(T))
+                    : typeof(T).IsAssignableFrom(typeof(string))
+                        ? (T)Convert.ChangeType(GetAppSettingsString(settingsKey), typeof(T))
+                        : typeof(T).IsAssignableFrom(typeof(bool))
+                                            ? (T)Convert.ChangeType(GetAppSettingsBool(settingsKey), typeof(T))
+                                            : typeof(T).IsAssignableFrom(typeof(List<string>))
+                                                                ? (T)Convert.ChangeType(GetAppSettingsStringList(settingsKey), typeof(T))
+                                                                : (T)Convert.ChangeType(GetAppSettingsString(settingsKey), typeof(T));
             }
             catch (Exception ex)
             {

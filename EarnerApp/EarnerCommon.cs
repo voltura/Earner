@@ -10,11 +10,8 @@
             {
                 return 0;
             }
-            else
-            {
-                _ = double.TryParse(value, out double outVal);
-                return double.IsNaN(outVal) || double.IsInfinity(outVal) ? 0 : outVal;
-            }
+            _ = double.TryParse(value, out double outVal);
+            return double.IsNaN(outVal) || double.IsInfinity(outVal) ? 0 : outVal;
         }
 
         #endregion Public functions

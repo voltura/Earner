@@ -23,44 +23,26 @@
         private void KeyDownHandler(object? sender, KeyEventArgs? e)
         {
             _NonNumberEntered = false;
-            if (e is not null)
+            if (e is null || e.KeyCode == Keys.Back)
             {
-                if (e.KeyCode == Keys.Back)
-                {
-                    return;
-                }
-
-                if (e.KeyCode is < Keys.D0 or > Keys.D9)
-                {
-                    if (e.KeyCode is < Keys.NumPad0 or > Keys.NumPad9)
-                    {
-                        if (e.KeyCode != Keys.Back)
-                        {
-                            _NonNumberEntered = true;
-                        }
-                    }
-                }
-                if (Control.ModifierKeys == Keys.Shift)
-                {
-                    _NonNumberEntered = true;
-                }
+                return;
+            }
+            if (ModifierKeys == Keys.Shift || (e.KeyCode is < Keys.D0 or > Keys.D9 && e.KeyCode is < Keys.NumPad0 or > Keys.NumPad9 && e.KeyCode != Keys.Back))
+            {
+                _NonNumberEntered = true;
             }
         }
 
         private void KeyPressHandler(object? sender, KeyPressEventArgs? e)
         {
-
-            if (e is not null)
+            if (e is null || ((byte)e.KeyChar) == (byte)Keys.Back)
             {
-                if (((byte)e.KeyChar) == (byte)Keys.Back)
-                {
-                    return;
-                }
+                return;
+            }
 
-                if (_NonNumberEntered == true || (!double.TryParse(Text + e.KeyChar.ToString(), out double _)))
-                {
-                    e.Handled = true;
-                }
+            if (_NonNumberEntered || (!double.TryParse(Text + e.KeyChar.ToString(), out double _)))
+            {
+                e.Handled = true;
             }
         }
 
