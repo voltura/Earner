@@ -166,7 +166,11 @@ namespace Earner
 
         private void ShowRecordsClick(object sender, EventArgs e)
         {
-            EarnerRecords.ShowExcel();
+            _EarnerRecords.LogRecords();
+            if (!_Settings.AutoShowTaskLog)
+            {
+                EarnerRecords.ShowExcel();
+            }
         }
 
         private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)
