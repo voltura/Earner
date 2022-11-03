@@ -50,7 +50,7 @@ namespace Earner
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(445, 29);
+            this._topPanel.Size = new System.Drawing.Size(347, 29);
             this._topPanel.TabIndex = 500;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
@@ -83,7 +83,7 @@ namespace Earner
             this._lblExistingTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblExistingTasks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblExistingTasks.ForeColor = System.Drawing.Color.White;
-            this._lblExistingTasks.Location = new System.Drawing.Point(29, 44);
+            this._lblExistingTasks.Location = new System.Drawing.Point(29, 39);
             this._lblExistingTasks.Name = "_lblExistingTasks";
             this._lblExistingTasks.Size = new System.Drawing.Size(49, 21);
             this._lblExistingTasks.TabIndex = 90;
@@ -104,7 +104,7 @@ namespace Earner
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(436, 340);
+            this._btnSave.Location = new System.Drawing.Point(338, 340);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(29, 29);
@@ -127,10 +127,10 @@ namespace Earner
             this._btnAddTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnAddTask.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnAddTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAddTask.Location = new System.Drawing.Point(436, 44);
+            this._btnAddTask.Location = new System.Drawing.Point(299, 66);
             this._btnAddTask.Margin = new System.Windows.Forms.Padding(0);
             this._btnAddTask.Name = "_btnAddTask";
-            this._btnAddTask.Size = new System.Drawing.Size(29, 29);
+            this._btnAddTask.Size = new System.Drawing.Size(18, 18);
             this._btnAddTask.TabIndex = 602;
             this._btnAddTask.Tag = "";
             this._btnAddTask.UseVisualStyleBackColor = false;
@@ -150,9 +150,9 @@ namespace Earner
             "Task A",
             "Task B",
             "Task C"});
-            this._cmbTasks.Location = new System.Drawing.Point(79, 44);
+            this._cmbTasks.Location = new System.Drawing.Point(29, 63);
             this._cmbTasks.MaxDropDownItems = 40;
-            this._cmbTasks.MaxLength = 255;
+            this._cmbTasks.MaxLength = 22;
             this._cmbTasks.Name = "_cmbTasks";
             this._cmbTasks.Size = new System.Drawing.Size(316, 267);
             this._cmbTasks.TabIndex = 603;
@@ -171,10 +171,10 @@ namespace Earner
             this._btnRemoveTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnRemoveTask.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnRemoveTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnRemoveTask.Location = new System.Drawing.Point(398, 44);
+            this._btnRemoveTask.Location = new System.Drawing.Point(319, 66);
             this._btnRemoveTask.Margin = new System.Windows.Forms.Padding(0);
             this._btnRemoveTask.Name = "_btnRemoveTask";
-            this._btnRemoveTask.Size = new System.Drawing.Size(29, 29);
+            this._btnRemoveTask.Size = new System.Drawing.Size(18, 18);
             this._btnRemoveTask.TabIndex = 605;
             this._btnRemoveTask.Tag = "";
             this._btnRemoveTask.UseVisualStyleBackColor = false;
@@ -186,7 +186,7 @@ namespace Earner
             this._lblTaskNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblTaskNote.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblTaskNote.ForeColor = System.Drawing.Color.White;
-            this._lblTaskNote.Location = new System.Drawing.Point(78, 314);
+            this._lblTaskNote.Location = new System.Drawing.Point(28, 333);
             this._lblTaskNote.Name = "_lblTaskNote";
             this._lblTaskNote.Size = new System.Drawing.Size(120, 21);
             this._lblTaskNote.TabIndex = 606;
@@ -205,8 +205,7 @@ namespace Earner
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(474, 379);
-            this.Controls.Add(this._cmbTasks);
+            this.ClientSize = new System.Drawing.Size(376, 379);
             this.Controls.Add(this._lblTaskNote);
             this.Controls.Add(this._btnRemoveTask);
             this.Controls.Add(this._btnAddTask);
@@ -214,6 +213,7 @@ namespace Earner
             this.Controls.Add(this._btnSave);
             this.Controls.Add(this._lblExistingTasks);
             this.Controls.Add(this._topPanel);
+            this.Controls.Add(this._cmbTasks);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
