@@ -2,7 +2,7 @@
 Windows app that displays earnings in real time and logs time worked on different tasks.
 Creates an Excel file with log of the earnings and work performed on different tasks when close or reset is pressed.
 
-[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.3.7z)
+[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.4.7z)
 
 [![Github All Releases](https://img.shields.io/github/downloads/voltura/Earner/total.svg)]()
 [![License](https://img.shields.io/badge/licence-MIT-green)]()
@@ -14,12 +14,12 @@ Creates an Excel file with log of the earnings and work performed on different t
 
 ### Log work on tasks
 
-<img src="https://user-images.githubusercontent.com/2292809/199647390-f5b9932a-3943-433b-9001-cc9fac918ffd.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199647390-f5b9932a-3943-433b-9001-cc9fac918ffd.png" width="320" />
+<img src="https://user-images.githubusercontent.com/2292809/199650138-c8b66916-bbd5-44a7-ab3a-178c2e620ff5.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199650138-c8b66916-bbd5-44a7-ab3a-178c2e620ff5.png" width="320" />
 
 
 ### Get report of work
 
-<img src="https://user-images.githubusercontent.com/2292809/199408870-b843a516-56f8-4be1-a885-3c731c17da19.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199408870-b843a516-56f8-4be1-a885-3c731c17da19.png" width="520" />
+<img src="https://user-images.githubusercontent.com/2292809/199650342-e98d75df-b770-4950-954f-709aadf05f4f.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199650342-e98d75df-b770-4950-954f-709aadf05f4f.png" width="520" />
 
 
 ### Settings
