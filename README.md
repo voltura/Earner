@@ -2,19 +2,19 @@
 Windows app that displays earnings in real time and logs time worked on different tasks.
 Creates an Excel file with log of the earnings and work performed on different tasks when close or reset is pressed.
 
-[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.2.7z)
+[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.3.7z)
 
 [![Github All Releases](https://img.shields.io/github/downloads/voltura/Earner/total.svg)]()
 [![License](https://img.shields.io/badge/licence-MIT-green)]()
 
 ### Display earnings in real time
 
-<img src="https://user-images.githubusercontent.com/2292809/199408647-941d7c95-d5c5-4a46-9ca9-b5db4c500a76.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199408647-941d7c95-d5c5-4a46-9ca9-b5db4c500a76.png" width="300" />
+<img src="https://user-images.githubusercontent.com/2292809/199647037-81a7b820-84ef-4a42-be11-86041b38d02e.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199647037-81a7b820-84ef-4a42-be11-86041b38d02e.png" width="300" />
 
 
 ### Log work on tasks
 
-<img src="https://user-images.githubusercontent.com/2292809/198899297-966468b7-7aff-454b-8f92-959b227ce3c2.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/198899297-966468b7-7aff-454b-8f92-959b227ce3c2.png" width="320" />
+<img src="https://user-images.githubusercontent.com/2292809/199647390-f5b9932a-3943-433b-9001-cc9fac918ffd.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199647390-f5b9932a-3943-433b-9001-cc9fac918ffd.png" width="320" />
 
 
 ### Get report of work
@@ -24,4 +24,4 @@ Creates an Excel file with log of the earnings and work performed on different t
 
 ### Settings
 
-<img src="https://user-images.githubusercontent.com/2292809/199408766-be92ea6c-aad4-47e3-a359-1205e6ad0b00.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199408766-be92ea6c-aad4-47e3-a359-1205e6ad0b00.png" width="320" />
+<img src="https://user-images.githubusercontent.com/2292809/199648159-e6459b3a-a062-4b75-889b-b4df6d5d6199.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199648159-e6459b3a-a062-4b75-889b-b4df6d5d6199.png" width="320" />
