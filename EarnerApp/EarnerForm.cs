@@ -46,6 +46,7 @@ namespace Earner
                 toolTip.SetToolTip(_btnHide, "Minimize app");
                 toolTip.SetToolTip(_btnClose, "Close app");
                 toolTip.SetToolTip(_btnRestart, "Reset earnings");
+                toolTip.SetToolTip(_btnShowRecords, "Show earnings");
             }
             else
             {
@@ -57,6 +58,7 @@ namespace Earner
                 toolTip.SetToolTip(_btnHide, null);
                 toolTip.SetToolTip(_btnClose, null);
                 toolTip.SetToolTip(_btnRestart, null);
+                toolTip.SetToolTip(_btnShowRecords, null);
             }
         }
 

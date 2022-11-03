@@ -45,6 +45,7 @@ namespace Earner
                 toolTip.SetToolTip(_chkSaveTaskLog, "Show Excel file on Close/Reset");
                 toolTip.SetToolTip(_chkShowTooltips, "Show tooltips");
                 toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show tooltips");
+                toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or restart pressed");
             }
             else
             {
@@ -55,6 +56,7 @@ namespace Earner
                 toolTip.SetToolTip(_chkSaveTaskLog, null);
                 toolTip.SetToolTip(_chkShowTooltips, null);
                 toolTip.SetToolTip(_chkShowApplicationLogOnErrors, null);
+                toolTip.SetToolTip(_chkAutoShowTaskLog, null);
             }
         }
 
