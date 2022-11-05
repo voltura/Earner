@@ -1,4 +1,4 @@
-﻿namespace Earner
+﻿namespace Earner.Settings
 {
     internal sealed class EarnerSettings
     {

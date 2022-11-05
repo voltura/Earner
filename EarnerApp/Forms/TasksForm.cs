@@ -1,4 +1,6 @@
-namespace Earner
+using Earner.Settings;
+
+namespace Earner.Forms
 {
     public partial class TasksForm : Form
     {
@@ -132,6 +134,15 @@ namespace Earner
                 {
                     _cmbTasks.SelectedItem = _cmbTasks.Items[0];
                 }
+            }
+        }
+
+        private void KeyPressEnterAddTask(object sender, KeyPressEventArgs e)
+        {
+            if (e is not null && ((byte)e.KeyChar) == (byte)Keys.Enter)
+            {
+                AddTaskClick(sender, e);
+                return;
             }
         }
 

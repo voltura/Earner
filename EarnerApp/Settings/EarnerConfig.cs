@@ -5,7 +5,7 @@ using System.Text;
 
 #endregion Using statements
 
-namespace Earner
+namespace Earner.Settings
 {
     internal static class EarnerConfig
     {

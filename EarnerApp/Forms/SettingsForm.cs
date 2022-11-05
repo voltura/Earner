@@ -1,4 +1,6 @@
-namespace Earner
+using Earner.Settings;
+
+namespace Earner.Forms
 {
     public partial class SettingsForm : Form
     {
@@ -112,6 +114,14 @@ namespace Earner
         {
             using TasksForm tasksForm = new();
             _ = tasksForm.ShowDialog();
+        }
+
+        private void KeyPressEnterSave(object sender, KeyPressEventArgs e)
+        {
+            if (e is not null && ((byte)e.KeyChar) == (byte)Keys.Enter)
+            {
+                SaveClick(sender, e);
+            }
         }
 
         #endregion Private events

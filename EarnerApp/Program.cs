@@ -8,7 +8,7 @@ namespace Earner
         private static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new EarnerForm());
+            Application.Run(new Forms.EarnerForm());
         }
 
         #endregion Entry point for the application

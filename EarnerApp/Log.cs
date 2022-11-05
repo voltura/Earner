@@ -215,7 +215,7 @@ namespace Earner
                 {
                     string formattedValue = value.ToString().Replace('\r', ' ').Replace('\n', ' ').Trim();
                     Trace.TraceError($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff", CultureInfo.InvariantCulture)} {formattedValue}");
-                    if (EarnerSettings.Instance.ShowApplicationLogOnErrors)
+                    if (Settings.EarnerSettings.Instance.ShowApplicationLogOnErrors)
                     {
                         Show();
                     }

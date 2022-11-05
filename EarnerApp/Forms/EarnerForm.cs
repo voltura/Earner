@@ -1,4 +1,7 @@
-namespace Earner
+using Earner.Records;
+using Earner.Settings;
+
+namespace Earner.Forms
 {
     public partial class EarnerForm : Form
     {
@@ -181,6 +184,11 @@ namespace Earner
             {
                 _EarnerRecords.LogRecords();
             }
+        }
+
+        private void EarnedTextChanged(object sender, EventArgs e)
+        {
+            EarnerCommon.ScaleFont(_lblEarned);
         }
 
         #endregion Private events

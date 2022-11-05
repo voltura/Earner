@@ -1,6 +1,6 @@
 ﻿using EarnerUserControls;
 
-namespace Earner
+namespace Earner.Forms
 {
     partial class TasksForm
     {
@@ -47,10 +47,10 @@ namespace Earner
             // 
             this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._topPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._topPanel.Location = new System.Drawing.Point(29, 0);
+            this._topPanel.Location = new System.Drawing.Point(41, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(347, 29);
+            this._topPanel.Size = new System.Drawing.Size(496, 48);
             this._topPanel.TabIndex = 500;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
@@ -71,7 +71,7 @@ namespace Earner
             this._btnClose.Location = new System.Drawing.Point(0, 0);
             this._btnClose.Margin = new System.Windows.Forms.Padding(0);
             this._btnClose.Name = "_btnClose";
-            this._btnClose.Size = new System.Drawing.Size(29, 29);
+            this._btnClose.Size = new System.Drawing.Size(41, 48);
             this._btnClose.TabIndex = 600;
             this._btnClose.TabStop = false;
             this._btnClose.UseVisualStyleBackColor = false;
@@ -83,9 +83,10 @@ namespace Earner
             this._lblExistingTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblExistingTasks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblExistingTasks.ForeColor = System.Drawing.Color.White;
-            this._lblExistingTasks.Location = new System.Drawing.Point(29, 39);
+            this._lblExistingTasks.Location = new System.Drawing.Point(41, 65);
+            this._lblExistingTasks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._lblExistingTasks.Name = "_lblExistingTasks";
-            this._lblExistingTasks.Size = new System.Drawing.Size(49, 21);
+            this._lblExistingTasks.Size = new System.Drawing.Size(73, 32);
             this._lblExistingTasks.TabIndex = 90;
             this._lblExistingTasks.Text = "Tasks:";
             // 
@@ -104,10 +105,10 @@ namespace Earner
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(338, 340);
+            this._btnSave.Location = new System.Drawing.Point(483, 567);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
-            this._btnSave.Size = new System.Drawing.Size(29, 29);
+            this._btnSave.Size = new System.Drawing.Size(41, 48);
             this._btnSave.TabIndex = 1;
             this._btnSave.Tag = "";
             this._btnSave.UseVisualStyleBackColor = false;
@@ -127,10 +128,10 @@ namespace Earner
             this._btnAddTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnAddTask.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnAddTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAddTask.Location = new System.Drawing.Point(299, 66);
+            this._btnAddTask.Location = new System.Drawing.Point(427, 110);
             this._btnAddTask.Margin = new System.Windows.Forms.Padding(0);
             this._btnAddTask.Name = "_btnAddTask";
-            this._btnAddTask.Size = new System.Drawing.Size(18, 18);
+            this._btnAddTask.Size = new System.Drawing.Size(26, 30);
             this._btnAddTask.TabIndex = 602;
             this._btnAddTask.Tag = "";
             this._btnAddTask.UseVisualStyleBackColor = false;
@@ -150,12 +151,14 @@ namespace Earner
             "Task A",
             "Task B",
             "Task C"});
-            this._cmbTasks.Location = new System.Drawing.Point(29, 63);
+            this._cmbTasks.Location = new System.Drawing.Point(41, 105);
+            this._cmbTasks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._cmbTasks.MaxDropDownItems = 40;
             this._cmbTasks.MaxLength = 22;
             this._cmbTasks.Name = "_cmbTasks";
-            this._cmbTasks.Size = new System.Drawing.Size(316, 267);
+            this._cmbTasks.Size = new System.Drawing.Size(450, 442);
             this._cmbTasks.TabIndex = 603;
+            this._cmbTasks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressEnterAddTask);
             // 
             // _btnRemoveTask
             // 
@@ -171,10 +174,10 @@ namespace Earner
             this._btnRemoveTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnRemoveTask.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnRemoveTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnRemoveTask.Location = new System.Drawing.Point(319, 66);
+            this._btnRemoveTask.Location = new System.Drawing.Point(456, 110);
             this._btnRemoveTask.Margin = new System.Windows.Forms.Padding(0);
             this._btnRemoveTask.Name = "_btnRemoveTask";
-            this._btnRemoveTask.Size = new System.Drawing.Size(18, 18);
+            this._btnRemoveTask.Size = new System.Drawing.Size(26, 30);
             this._btnRemoveTask.TabIndex = 605;
             this._btnRemoveTask.Tag = "";
             this._btnRemoveTask.UseVisualStyleBackColor = false;
@@ -186,9 +189,10 @@ namespace Earner
             this._lblTaskNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblTaskNote.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblTaskNote.ForeColor = System.Drawing.Color.White;
-            this._lblTaskNote.Location = new System.Drawing.Point(28, 333);
+            this._lblTaskNote.Location = new System.Drawing.Point(40, 555);
+            this._lblTaskNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._lblTaskNote.Name = "_lblTaskNote";
-            this._lblTaskNote.Size = new System.Drawing.Size(120, 21);
+            this._lblTaskNote.Size = new System.Drawing.Size(186, 32);
             this._lblTaskNote.TabIndex = 606;
             this._lblTaskNote.Text = "Selected is used";
             // 
@@ -202,10 +206,10 @@ namespace Earner
             // 
             // TasksForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(376, 379);
+            this.ClientSize = new System.Drawing.Size(537, 632);
             this.Controls.Add(this._lblTaskNote);
             this.Controls.Add(this._btnRemoveTask);
             this.Controls.Add(this._btnAddTask);
@@ -217,7 +221,7 @@ namespace Earner
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(1);
+            this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.MaximizeBox = false;
             this.MdiChildrenMinimizedAnchorBottom = false;
             this.Name = "TasksForm";

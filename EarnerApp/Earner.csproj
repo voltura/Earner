@@ -14,11 +14,11 @@
     <Authors>Joakim Skoglund</Authors>
     <Company>Voltura AB</Company>
     <Description>Show earned money in real time per day</Description>
-    <Copyright>Copyright 2022 Voltura AB</Copyright>
+    <Copyright>Copyright © 2022 Voltura AB</Copyright>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-	<AssemblyVersion>1.0.1.4</AssemblyVersion>
+	<AssemblyVersion>1.0.1.5</AssemblyVersion>
 	<NeutralLanguage>en</NeutralLanguage>
-	<FileVersion>1.0.1.4</FileVersion>
+	<FileVersion>1.0.1.5</FileVersion>
 	<IncludeSymbols>True</IncludeSymbols>
 	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -26,7 +26,6 @@
 	<PublishReadyToRun>true</PublishReadyToRun>
 	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
-    <!-- <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode> -->
     <PackageIcon>dollar.ico</PackageIcon>
   </PropertyGroup>
 
@@ -59,10 +58,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="TasksForm.cs">
+    <Compile Update="Forms\TasksForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SettingsForm.cs">
+    <Compile Update="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -73,10 +72,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="TasksForm.resx">
+    <EmbeddedResource Update="Forms\TasksForm.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="SettingsForm.resx">
+    <EmbeddedResource Update="Forms\SettingsForm.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">

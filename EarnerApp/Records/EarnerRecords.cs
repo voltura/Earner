@@ -1,5 +1,6 @@
 ﻿#region Using statements
 
+using Earner.Settings;
 using MiniExcelLibs;
 using MiniExcelLibs.Attributes;
 using MiniExcelLibs.OpenXml;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 
 #endregion Using statements
 
-namespace Earner
+namespace Earner.Records
 {
     internal class EarnerRecords
     {
@@ -65,7 +66,7 @@ namespace Earner
         public void RemoveTodaysEarningRecords()
         {
             Log.LogCaller();
-            _earnerRecords = _earnerRecords.Where((r) => r.Date.Date != DateTime.Now.Date) is null ? new List<EarnerRecord>() : _earnerRecords.Where((r) => r.Date.Date != DateTime.Now.Date).ToList<EarnerRecord>();
+            _earnerRecords = _earnerRecords.Where((r) => r.Date.Date != DateTime.Now.Date) is null ? new List<EarnerRecord>() : _earnerRecords.Where((r) => r.Date.Date != DateTime.Now.Date).ToList();
         }
 
         public void LogRecords()

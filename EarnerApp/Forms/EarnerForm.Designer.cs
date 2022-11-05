@@ -1,4 +1,4 @@
-﻿namespace Earner
+﻿namespace Earner.Forms
 {
     partial class EarnerForm
     {
@@ -45,16 +45,17 @@
             // 
             // _lblEarned
             // 
-            this._lblEarned.AutoSize = true;
             this._lblEarned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblEarned.Font = new System.Drawing.Font("Segoe UI Light", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblEarned.ForeColor = System.Drawing.Color.White;
-            this._lblEarned.Location = new System.Drawing.Point(14, 30);
+            this._lblEarned.Location = new System.Drawing.Point(0, 30);
             this._lblEarned.Margin = new System.Windows.Forms.Padding(0);
             this._lblEarned.Name = "_lblEarned";
-            this._lblEarned.Size = new System.Drawing.Size(243, 84);
+            this._lblEarned.Size = new System.Drawing.Size(271, 84);
             this._lblEarned.TabIndex = 0;
             this._lblEarned.Text = "00000kr";
+            this._lblEarned.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this._lblEarned.TextChanged += new System.EventHandler(this.EarnedTextChanged);
             // 
             // _btnOptions
             // 
