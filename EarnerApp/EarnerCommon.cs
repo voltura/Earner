@@ -14,7 +14,7 @@
             return double.IsNaN(outVal) || double.IsInfinity(outVal) ? 0 : outVal;
         }
 
-        public static void ScaleFont(Label lab)
+        public static void ScaleFont(Label lab, int maxFontSize = 0)
         {
             while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width > lab.Width - 10)
             {
@@ -23,6 +23,10 @@
             while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width < lab.Width - 10)
             {
                 lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size + 0.01f, lab.Font.Style);
+            }
+            if (maxFontSize > 0 && lab.Font.Size > maxFontSize)
+            {
+                lab.Font = new Font(lab.Font.FontFamily, maxFontSize, lab.Font.Style);
             }
         }
 

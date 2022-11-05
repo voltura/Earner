@@ -16,9 +16,9 @@
     <Description>Show earned money in real time per day</Description>
     <Copyright>Copyright © 2022 Voltura AB</Copyright>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-	<AssemblyVersion>1.0.1.5</AssemblyVersion>
+	<AssemblyVersion>1.0.1.6</AssemblyVersion>
 	<NeutralLanguage>en</NeutralLanguage>
-	<FileVersion>1.0.1.5</FileVersion>
+	<FileVersion>1.0.1.6</FileVersion>
 	<IncludeSymbols>True</IncludeSymbols>
 	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>

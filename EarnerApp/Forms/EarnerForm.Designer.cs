@@ -41,21 +41,25 @@
             this._btnRestart = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._btnShowRecords = new System.Windows.Forms.Button();
+            this._lblActiveTask = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // _lblEarned
             // 
+            this._lblEarned.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._lblEarned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblEarned.Font = new System.Drawing.Font("Segoe UI Light", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblEarned.ForeColor = System.Drawing.Color.White;
-            this._lblEarned.Location = new System.Drawing.Point(0, 30);
+            this._lblEarned.Location = new System.Drawing.Point(0, 16);
             this._lblEarned.Margin = new System.Windows.Forms.Padding(0);
             this._lblEarned.Name = "_lblEarned";
             this._lblEarned.Size = new System.Drawing.Size(271, 84);
             this._lblEarned.TabIndex = 0;
             this._lblEarned.Text = "00000kr";
-            this._lblEarned.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this._lblEarned.TextChanged += new System.EventHandler(this.EarnedTextChanged);
+            this._lblEarned.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this._lblEarned.TextChanged += new System.EventHandler(this.ScaleTextChanged);
             // 
             // _btnOptions
             // 
@@ -155,7 +159,7 @@
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(213, 46);
+            this._topPanel.Size = new System.Drawing.Size(213, 30);
             this._topPanel.TabIndex = 5;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
@@ -235,6 +239,23 @@
             this._btnShowRecords.UseVisualStyleBackColor = false;
             this._btnShowRecords.Click += new System.EventHandler(this.ShowRecordsClick);
             // 
+            // _lblActiveTask
+            // 
+            this._lblActiveTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._lblActiveTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblActiveTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblActiveTask.ForeColor = System.Drawing.Color.White;
+            this._lblActiveTask.Location = new System.Drawing.Point(0, 100);
+            this._lblActiveTask.Margin = new System.Windows.Forms.Padding(0);
+            this._lblActiveTask.Name = "_lblActiveTask";
+            this._lblActiveTask.Size = new System.Drawing.Size(271, 21);
+            this._lblActiveTask.TabIndex = 8;
+            this._lblActiveTask.Tag = "ActiveTask";
+            this._lblActiveTask.Text = "Task A";
+            this._lblActiveTask.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this._lblActiveTask.TextChanged += new System.EventHandler(this.ScaleTextChanged);
+            // 
             // EarnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -242,14 +263,15 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
             this.Controls.Add(this._btnShowRecords);
-            this.Controls.Add(this._topPanel);
             this.Controls.Add(this._btnRestart);
-            this.Controls.Add(this._btnHide);
             this.Controls.Add(this._btnOptions);
-            this.Controls.Add(this._btnClose);
-            this.Controls.Add(this._lblWorkTime);
             this.Controls.Add(this._btnStart);
+            this.Controls.Add(this._lblActiveTask);
+            this.Controls.Add(this._topPanel);
+            this.Controls.Add(this._btnHide);
+            this.Controls.Add(this._btnClose);
             this.Controls.Add(this._lblEarned);
+            this.Controls.Add(this._lblWorkTime);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -281,5 +303,6 @@
         private Button _btnRestart;
         private ToolTip toolTip;
         private Button _btnShowRecords;
+        private Label _lblActiveTask;
     }
 }

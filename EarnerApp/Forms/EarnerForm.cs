@@ -36,6 +36,7 @@ namespace Earner.Forms
             _Settings.Load();
             SetTooltips();
             _ActiveTask = _Settings.EarnerTasks.FirstOrDefault("Default Task");
+            _lblActiveTask.Text = $"Working with {_ActiveTask}";
         }
 
         private void SetTooltips()
@@ -186,9 +187,10 @@ namespace Earner.Forms
             }
         }
 
-        private void EarnedTextChanged(object sender, EventArgs e)
+        private void ScaleTextChanged(object sender, EventArgs e)
         {
-            EarnerCommon.ScaleFont(_lblEarned);
+            Label label = (Label)sender;
+            EarnerCommon.ScaleFont(label, label.Tag is null ? 0 : 10);
         }
 
         #endregion Private events
