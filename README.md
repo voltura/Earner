@@ -1,6 +1,6 @@
 # Earner
-Windows app that displays earnings in real time and logs time worked on different tasks.
-Creates an Excel file with log of the earnings and work performed on different tasks when close or reset is pressed.
+Windows app that displays earnings in real time and logs time worked on specified tasks.
+Generates an Excel file with a log of the earnings and work performed.
 
 [![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.4.7z)
 
