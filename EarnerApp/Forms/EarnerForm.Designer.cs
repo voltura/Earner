@@ -262,14 +262,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
+            this.Controls.Add(this._btnClose);
+            this.Controls.Add(this._topPanel);
+            this.Controls.Add(this._btnHide);
             this.Controls.Add(this._btnShowRecords);
             this.Controls.Add(this._btnRestart);
             this.Controls.Add(this._btnOptions);
             this.Controls.Add(this._btnStart);
             this.Controls.Add(this._lblActiveTask);
-            this.Controls.Add(this._topPanel);
-            this.Controls.Add(this._btnHide);
-            this.Controls.Add(this._btnClose);
             this.Controls.Add(this._lblEarned);
             this.Controls.Add(this._lblWorkTime);
             this.DoubleBuffered = true;
@@ -285,6 +285,7 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerForm_FormClosing);
+            this.Resize += new System.EventHandler(this.EarnerFormResize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

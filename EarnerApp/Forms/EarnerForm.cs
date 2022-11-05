@@ -13,6 +13,7 @@ namespace Earner.Forms
         private readonly EarnerRecords _EarnerRecords = new();
         private readonly System.Diagnostics.Stopwatch _stopwatch = new();
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
+        private bool _DoNotChangeFontSize = false;
 
         #endregion Private variables
 
@@ -144,6 +145,7 @@ namespace Earner.Forms
 
         private void HideClick(object sender, EventArgs e)
         {
+            _DoNotChangeFontSize = true;
             WindowState = FormWindowState.Minimized;
         }
 
@@ -189,8 +191,17 @@ namespace Earner.Forms
 
         private void ScaleTextChanged(object sender, EventArgs e)
         {
+            if (_DoNotChangeFontSize)
+            {
+                return;
+            }
             Label label = (Label)sender;
             EarnerCommon.ScaleFont(label, label.Tag is null ? 0 : 10);
+        }
+
+        private void EarnerFormResize(object sender, EventArgs e)
+        {
+            _DoNotChangeFontSize = WindowState == FormWindowState.Minimized;
         }
 
         #endregion Private events
