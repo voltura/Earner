@@ -13,9 +13,16 @@ Generates an Excel file with a log of the earnings and work performed.
 
 
 ### Log work on tasks
-
-<img src="https://user-images.githubusercontent.com/2292809/199650138-c8b66916-bbd5-44a7-ab3a-178c2e620ff5.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199650138-c8b66916-bbd5-44a7-ab3a-178c2e620ff5.png" width="320" />
-
+<table>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/2292809/199650138-c8b66916-bbd5-44a7-ab3a-178c2e620ff5.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199650138-c8b66916-bbd5-44a7-ab3a-178c2e620ff5.png" width="320" />
+    </td>
+    <td>
+      <img width="320" alt="Earner tasks" src="https://user-images.githubusercontent.com/2292809/200140500-977bcfb1-a8be-439a-9714-de4908d4378c.png">
+    </td>
+  </tr>
+</table>
 
 ### Get report of work
 
@@ -23,5 +30,13 @@ Generates an Excel file with a log of the earnings and work performed.
 
 
 ### Settings
-
-<img src="https://user-images.githubusercontent.com/2292809/199648159-e6459b3a-a062-4b75-889b-b4df6d5d6199.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199648159-e6459b3a-a062-4b75-889b-b4df6d5d6199.png" width="320" />
+<table>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/2292809/199648159-e6459b3a-a062-4b75-889b-b4df6d5d6199.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199648159-e6459b3a-a062-4b75-889b-b4df6d5d6199.png" width="276" />
+    </td>
+    <td>
+      <img width="276" alt="Earner settings" src="https://user-images.githubusercontent.com/2292809/200140626-121b731e-c00e-46fb-8921-bb5ff60e0468.png">
+    </td>
+  </tr>
+</table>
