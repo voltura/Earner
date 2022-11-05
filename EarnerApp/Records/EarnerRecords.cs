@@ -127,6 +127,7 @@ namespace Earner.Records
                         new DynamicExcelColumn("Hours") { Index = 6, Width = 10 },
                     }
                 };
+                
                 var values = _earnerRecords.Select(i => new
                 {
                     i.Task,
@@ -136,6 +137,16 @@ namespace Earner.Records
                     Currency = i.CurrencySymbol,
                     Time = $"{i.Time:c}"[..8],
                     Hours = Math.Round(i.Time.TotalSeconds / 3600, 1, MidpointRounding.AwayFromZero)
+                });
+                values = values.Append(new
+                {
+                    Task = "Total",
+                    Date = DateTime.Now,
+                    Day = DateTime.Now.Date.ToString("dddd"),
+                    Earned = Math.Round(_earnerRecords.Sum(i => i.Earned), 2, MidpointRounding.AwayFromZero),
+                    Currency = _Settings.CurrencySymbol,
+                    Time = $"{TimeSpan.FromSeconds(_earnerRecords.Sum(i => i.Time.TotalSeconds)):c}"[..8],
+                    Hours = Math.Round(_earnerRecords.Sum(i => i.Time.TotalSeconds) / 3600, 1, MidpointRounding.AwayFromZero)
                 });
                 MiniExcel.SaveAs(CurrentExcelFileName, values, excelType: ExcelType.XLSX, configuration: config, overwriteFile: true);
             }
