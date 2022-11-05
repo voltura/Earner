@@ -27,6 +27,7 @@
             {
                 return;
             }
+
             if (ModifierKeys == Keys.Shift || (e.KeyCode is < Keys.D0 or > Keys.D9 && e.KeyCode is < Keys.NumPad0 or > Keys.NumPad9 && e.KeyCode != Keys.Back))
             {
                 _NonNumberEntered = true;

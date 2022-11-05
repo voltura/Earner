@@ -1,9 +1,4 @@
-﻿#region Using statments
-
-
-#endregion Using statments
-
-namespace Earner
+﻿namespace Earner
 {
     internal sealed class EarnerSettings
     {
@@ -52,6 +47,7 @@ namespace Earner
         public bool ShowApplicationLogOnErrors { get; set; } = false;
 
         public bool ShowTooltips { get; set; } = false;
+
         public bool AutoShowTaskLog { get; set; } = false;
 
         #endregion Public properties
