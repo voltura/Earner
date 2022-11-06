@@ -2,7 +2,7 @@
 Windows app that displays earnings in real time and logs time worked on specified tasks.
 Generates an Excel file with a log of the earnings and work performed.
 
-[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.7.7z)
+[![Latest release 7z package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.1.8.7z)
 
 [![Github All Releases](https://img.shields.io/github/downloads/voltura/Earner/total.svg)]()
 [![License](https://img.shields.io/badge/licence-MIT-green)]()
@@ -19,9 +19,9 @@ Generates an Excel file with a log of the earnings and work performed.
 
 ### Get report of work
 
-<img src="https://user-images.githubusercontent.com/2292809/199650342-e98d75df-b770-4950-954f-709aadf05f4f.png" data-canonical-src="https://user-images.githubusercontent.com/2292809/199650342-e98d75df-b770-4950-954f-709aadf05f4f.png" width="520" />
+<img width="528" alt="Earner task log" src="https://user-images.githubusercontent.com/2292809/200163845-0fa195f5-008b-4ef1-a645-7f7de0b3ad81.png">
 
 
 ### Settings
 
-<img width="276" alt="Earner settings" src="https://user-images.githubusercontent.com/2292809/200140626-121b731e-c00e-46fb-8921-bb5ff60e0468.png">
+<img width="273" alt="Earner settings" src="https://user-images.githubusercontent.com/2292809/200163789-8df80b7f-dc05-46e1-816a-aa54b2341dd3.png">
