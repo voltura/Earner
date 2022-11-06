@@ -34,6 +34,7 @@ namespace Earner.Forms
             _chkShowTooltips.Checked = _Settings.ShowTooltips;
             _chkAutoShowTaskLog.Checked = _Settings.AutoShowTaskLog;
             _chkAutoStartWithWindows.Checked = _Settings.AutoStartWithWindows;
+            _chkConfirmBeforeClose.Checked = _Settings.ConfirmBeforeClose;
             SetTooltips();
         }
 
@@ -41,27 +42,29 @@ namespace Earner.Forms
         {
             if (_Settings.ShowTooltips)
             {
-                toolTip.SetToolTip(_btnClose, "Close settings");
-                toolTip.SetToolTip(_lblMaxBillableDailyHours, "Earnings will stop after specified hours been exceeded");
-                toolTip.SetToolTip(_btnSave, "Save settings");
-                toolTip.SetToolTip(_btnEditTasks, "Edit tasks");
-                toolTip.SetToolTip(_chkSaveTaskLog, "Show Excel file on Close/Reset");
-                toolTip.SetToolTip(_chkShowTooltips, "Show tooltips");
-                toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show tooltips");
-                toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or restart pressed");
-                toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start app when Windows starts");
+                _toolTip.SetToolTip(_btnClose, "Close settings");
+                _toolTip.SetToolTip(_lblMaxBillableDailyHours, "Earnings will stop after specified hours been exceeded");
+                _toolTip.SetToolTip(_btnSave, "Save settings");
+                _toolTip.SetToolTip(_btnEditTasks, "Edit tasks");
+                _toolTip.SetToolTip(_chkSaveTaskLog, "Show Excel file on Close/Reset");
+                _toolTip.SetToolTip(_chkShowTooltips, "Show tooltips");
+                _toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show tooltips");
+                _toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or reset is pressed");
+                _toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start Earner with Windows");
+                _toolTip.SetToolTip(_chkConfirmBeforeClose, "Show confirmation dialog when Close is pressed");
             }
             else
             {
-                toolTip.SetToolTip(_btnClose, null);
-                toolTip.SetToolTip(_lblMaxBillableDailyHours, null);
-                toolTip.SetToolTip(_btnSave, null);
-                toolTip.SetToolTip(_btnEditTasks, null);
-                toolTip.SetToolTip(_chkSaveTaskLog, null);
-                toolTip.SetToolTip(_chkShowTooltips, null);
-                toolTip.SetToolTip(_chkShowApplicationLogOnErrors, null);
-                toolTip.SetToolTip(_chkAutoShowTaskLog, null);
-                toolTip.SetToolTip(_chkAutoStartWithWindows, null);
+                _toolTip.SetToolTip(_btnClose, null);
+                _toolTip.SetToolTip(_lblMaxBillableDailyHours, null);
+                _toolTip.SetToolTip(_btnSave, null);
+                _toolTip.SetToolTip(_btnEditTasks, null);
+                _toolTip.SetToolTip(_chkSaveTaskLog, null);
+                _toolTip.SetToolTip(_chkShowTooltips, null);
+                _toolTip.SetToolTip(_chkShowApplicationLogOnErrors, null);
+                _toolTip.SetToolTip(_chkAutoShowTaskLog, null);
+                _toolTip.SetToolTip(_chkAutoStartWithWindows, null);
+                _toolTip.SetToolTip(_chkConfirmBeforeClose, null);
             }
         }
 
@@ -109,6 +112,7 @@ namespace Earner.Forms
             _Settings.ShowApplicationLogOnErrors = _chkShowApplicationLogOnErrors.Checked;
             _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
             _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
+            _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
