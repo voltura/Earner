@@ -9,6 +9,7 @@ namespace Earner.Forms
 
         private double _Earned;
         private TimeSpan _ElapsedTime;
+        private DateTime _ActiveDay;
         private string _ActiveTask = string.Empty;
         private readonly EarnerRecords _EarnerRecords = new();
         private readonly System.Diagnostics.Stopwatch _stopwatch = new();
@@ -50,7 +51,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_lblWorkTime, "Time elapsed");
                 _toolTip.SetToolTip(_btnHide, "Minimize app");
                 _toolTip.SetToolTip(_btnClose, "Close app");
-                _toolTip.SetToolTip(_btnRestart, "Reset earnings");
+                _toolTip.SetToolTip(_btnRestart, "Reset todays earnings");
                 _toolTip.SetToolTip(_btnShowRecords, "Show earnings");
             }
             else
@@ -75,6 +76,7 @@ namespace Earner.Forms
                 return false;
             }
             LoadAppSettings();
+            _ActiveDay = DateTime.Today;
             _stopwatch.Start();
             _earnerTimer.Start();
             _btnStart.Tag = "Stop";
@@ -141,6 +143,22 @@ namespace Earner.Forms
         {
             double weightedEarnings = UpdateEarnings();
             UpdateEarningsUI(weightedEarnings);
+
+            if (_ActiveDay != DateTime.Today)
+            {
+                _earnerTimer.Stop();
+                _EarnerRecords.LogRecords();
+                using ConfirmForm confirmForm = new();
+                confirmForm.LblQuestion.Text = "New day, new earnings!\nStart earnings for today?";
+                if (DialogResult.Yes != confirmForm.ShowDialog(this))
+                {
+                    StopEarning();
+                    return;
+                }
+                _Earned = 0;
+                _stopwatch.Reset();
+                _ = StartEarning();
+            }
         }
 
         private void HideClick(object sender, EventArgs e)
@@ -160,6 +178,16 @@ namespace Earner.Forms
 
         private void CloseClick(object sender, EventArgs e)
         {
+            if (_Settings.ConfirmBeforeClose)
+            {
+                using ConfirmForm confirmForm = new();
+                confirmForm.LblQuestion.Text = "Close application?";
+                if (DialogResult.Yes != confirmForm.ShowDialog(this))
+                {
+                    return;
+                }
+            }
+
             Close();
         }
 
@@ -190,10 +218,7 @@ namespace Earner.Forms
 
         private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_Settings.SaveTaskLog)
-            {
-                _EarnerRecords.LogRecords();
-            }
+            _EarnerRecords.LogRecords();
         }
 
         private void ScaleTextChanged(object sender, EventArgs e)
