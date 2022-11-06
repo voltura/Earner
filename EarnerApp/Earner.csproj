@@ -13,7 +13,7 @@
 		<Title>Earner</Title>
 		<Authors>Joakim Skoglund</Authors>
 		<Company>Voltura AB</Company>
-		<Description>Show earned money in real time per day</Description>
+		<Description>Show and log earnings in real time</Description>
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<NeutralLanguage>en</NeutralLanguage>
