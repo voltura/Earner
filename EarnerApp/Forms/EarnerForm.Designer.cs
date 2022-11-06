@@ -52,10 +52,10 @@
             this._lblEarned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblEarned.Font = new System.Drawing.Font("Segoe UI Light", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblEarned.ForeColor = System.Drawing.Color.White;
-            this._lblEarned.Location = new System.Drawing.Point(0, 16);
+            this._lblEarned.Location = new System.Drawing.Point(0, 15);
             this._lblEarned.Margin = new System.Windows.Forms.Padding(0);
             this._lblEarned.Name = "_lblEarned";
-            this._lblEarned.Size = new System.Drawing.Size(271, 84);
+            this._lblEarned.Size = new System.Drawing.Size(271, 82);
             this._lblEarned.TabIndex = 0;
             this._lblEarned.Text = "00000kr";
             this._lblEarned.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -208,7 +208,7 @@
             this._btnRestart.UseVisualStyleBackColor = false;
             this._btnRestart.Click += new System.EventHandler(this.RestartClick);
             // 
-            // toolTip
+            // _toolTip
             // 
             this._toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._toolTip.ForeColor = System.Drawing.Color.White;
@@ -243,7 +243,7 @@
             // 
             this._lblActiveTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._lblActiveTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblActiveTask.BackColor = System.Drawing.Color.Transparent;
             this._lblActiveTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblActiveTask.ForeColor = System.Drawing.Color.White;
             this._lblActiveTask.Location = new System.Drawing.Point(0, 100);
