@@ -47,6 +47,8 @@
 
         public bool AutoStartWithWindows { get; set; } = false;
 
+        public bool ConfirmBeforeClose { get; set; } = true;
+
         #endregion Public properties
 
         #region Public methods
@@ -63,6 +65,7 @@
             ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
             AutoShowTaskLog = EarnerConfig.GetAppSettings<bool>("AutoShowTaskLog");
             AutoStartWithWindows = EarnerConfig.GetAppSettings<bool>("AutoStartWithWindows");
+            ConfirmBeforeClose = EarnerConfig.GetAppSettings<bool>("ConfirmBeforeClose");
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
@@ -77,6 +80,7 @@
             _ = EarnerConfig.SaveAppSettingsString("AutoShowTaskLog", AutoShowTaskLog.ToString());
             _ = EarnerConfig.SaveAppSettingsString("AutoStartWithWindows", AutoStartWithWindows.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", ShowApplicationLogOnErrors.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("ConfirmBeforeClose", ConfirmBeforeClose.ToString());
             _ = EarnerConfig.SaveAppSettingsList("Tasks", EarnerTasks);
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
