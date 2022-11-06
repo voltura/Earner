@@ -40,7 +40,7 @@ namespace Earner.Forms
             this._cmbTasks = new System.Windows.Forms.ComboBox();
             this._btnRemoveTask = new System.Windows.Forms.Button();
             this._lblTaskNote = new System.Windows.Forms.Label();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // _topPanel
@@ -198,11 +198,11 @@ namespace Earner.Forms
             // 
             // toolTip
             // 
-            this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.toolTip.ForeColor = System.Drawing.Color.White;
-            this.toolTip.IsBalloon = true;
-            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip.ToolTipTitle = "Info";
+            this._toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._toolTip.ForeColor = System.Drawing.Color.White;
+            this._toolTip.IsBalloon = true;
+            this._toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this._toolTip.ToolTipTitle = "Info";
             // 
             // TasksForm
             // 
@@ -244,6 +244,6 @@ namespace Earner.Forms
         private ComboBox _cmbTasks;
         private Button _btnRemoveTask;
         private Label _lblTaskNote;
-        private ToolTip toolTip;
+        private ToolTip _toolTip;
     }
 }

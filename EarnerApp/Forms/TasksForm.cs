@@ -38,19 +38,19 @@ namespace Earner.Forms
         {
             if (_Settings.ShowTooltips)
             {
-                toolTip.SetToolTip(_btnClose, "Close settings");
-                toolTip.SetToolTip(_btnSave, "Use selected task");
-                toolTip.SetToolTip(_btnAddTask, "Add entered task");
-                toolTip.SetToolTip(_cmbTasks, "Select, Add or Remove tasks");
-                toolTip.SetToolTip(_btnRemoveTask, "Delete selected task");
+                _toolTip.SetToolTip(_btnClose, "Close settings");
+                _toolTip.SetToolTip(_btnSave, "Use selected task");
+                _toolTip.SetToolTip(_btnAddTask, "Add entered task");
+                _toolTip.SetToolTip(_cmbTasks, "Select, Add or Remove tasks");
+                _toolTip.SetToolTip(_btnRemoveTask, "Delete selected task");
             }
             else
             {
-                toolTip.SetToolTip(_btnClose, null);
-                toolTip.SetToolTip(_btnSave, null);
-                toolTip.SetToolTip(_btnAddTask, null);
-                toolTip.SetToolTip(_cmbTasks, null);
-                toolTip.SetToolTip(_btnRemoveTask, null);
+                _toolTip.SetToolTip(_btnClose, null);
+                _toolTip.SetToolTip(_btnSave, null);
+                _toolTip.SetToolTip(_btnAddTask, null);
+                _toolTip.SetToolTip(_cmbTasks, null);
+                _toolTip.SetToolTip(_btnRemoveTask, null);
             }
         }
 
