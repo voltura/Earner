@@ -39,7 +39,7 @@
             this._topPanel = new System.Windows.Forms.Panel();
             this._btnClose = new System.Windows.Forms.Button();
             this._btnRestart = new System.Windows.Forms.Button();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._btnShowRecords = new System.Windows.Forms.Button();
             this._lblActiveTask = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -210,11 +210,11 @@
             // 
             // toolTip
             // 
-            this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.toolTip.ForeColor = System.Drawing.Color.White;
-            this.toolTip.IsBalloon = true;
-            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip.ToolTipTitle = "Info";
+            this._toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._toolTip.ForeColor = System.Drawing.Color.White;
+            this._toolTip.IsBalloon = true;
+            this._toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this._toolTip.ToolTipTitle = "Info";
             // 
             // _btnShowRecords
             // 
@@ -302,7 +302,7 @@
         private Panel _topPanel;
         private Button _btnClose;
         private Button _btnRestart;
-        private ToolTip toolTip;
+        private ToolTip _toolTip;
         private Button _btnShowRecords;
         private Label _lblActiveTask;
     }

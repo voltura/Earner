@@ -44,26 +44,26 @@ namespace Earner.Forms
         {
             if (_Settings.ShowTooltips)
             {
-                toolTip.SetToolTip(_lblEarned, "Earnings");
-                toolTip.SetToolTip(_btnOptions, "Show settings");
-                toolTip.SetToolTip(_btnStart, "Start/Stop task");
-                toolTip.SetToolTip(_lblWorkTime, "Time elapsed");
-                toolTip.SetToolTip(_btnHide, "Minimize app");
-                toolTip.SetToolTip(_btnClose, "Close app");
-                toolTip.SetToolTip(_btnRestart, "Reset earnings");
-                toolTip.SetToolTip(_btnShowRecords, "Show earnings");
+                _toolTip.SetToolTip(_lblEarned, "Earnings");
+                _toolTip.SetToolTip(_btnOptions, "Show settings");
+                _toolTip.SetToolTip(_btnStart, "Start/Stop task");
+                _toolTip.SetToolTip(_lblWorkTime, "Time elapsed");
+                _toolTip.SetToolTip(_btnHide, "Minimize app");
+                _toolTip.SetToolTip(_btnClose, "Close app");
+                _toolTip.SetToolTip(_btnRestart, "Reset earnings");
+                _toolTip.SetToolTip(_btnShowRecords, "Show earnings");
             }
             else
             {
-                toolTip.Hide(this);
-                toolTip.SetToolTip(_lblEarned, null);
-                toolTip.SetToolTip(_btnOptions, null);
-                toolTip.SetToolTip(_btnStart, null);
-                toolTip.SetToolTip(_lblWorkTime, null);
-                toolTip.SetToolTip(_btnHide, null);
-                toolTip.SetToolTip(_btnClose, null);
-                toolTip.SetToolTip(_btnRestart, null);
-                toolTip.SetToolTip(_btnShowRecords, null);
+                _toolTip.Hide(this);
+                _toolTip.SetToolTip(_lblEarned, null);
+                _toolTip.SetToolTip(_btnOptions, null);
+                _toolTip.SetToolTip(_btnStart, null);
+                _toolTip.SetToolTip(_lblWorkTime, null);
+                _toolTip.SetToolTip(_btnHide, null);
+                _toolTip.SetToolTip(_btnClose, null);
+                _toolTip.SetToolTip(_btnRestart, null);
+                _toolTip.SetToolTip(_btnShowRecords, null);
             }
         }
 
@@ -165,6 +165,13 @@ namespace Earner.Forms
 
         private void RestartClick(object sender, EventArgs e)
         {
+            using ConfirmForm confirmForm = new();
+            confirmForm.LblQuestion.Text = "Restart todays earnings?\nIt will erase todays work log.";
+            if (DialogResult.Yes != confirmForm.ShowDialog(this))
+            {
+                return;
+            }
+
             _EarnerRecords.LogRecords();
             _EarnerRecords.RemoveTodaysEarningRecords();
             _Earned = 0;
