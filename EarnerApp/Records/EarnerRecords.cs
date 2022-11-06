@@ -121,10 +121,10 @@ namespace Earner.Records
                         new DynamicExcelColumn("Task") { Index = 0, Width = 22 },
                         new DynamicExcelColumn("Date") { Format = "yyyy-MM-dd", Index = 1, Width = 12 },
                         new DynamicExcelColumn("Day") { Index = 2, Width = 12 },
-                        new DynamicExcelColumn("Earned") { Index = 3, Width = 10 },
-                        new DynamicExcelColumn("Currency") { Index = 4, Width = 10 },
-                        new DynamicExcelColumn("Time") { Index = 5, Width = 10 },
-                        new DynamicExcelColumn("Hours") { Index = 6, Width = 10 },
+                        new DynamicExcelColumn("Earned") { Index = 3, Width = 12 },
+                        new DynamicExcelColumn("Currency") { Index = 4, Width = 12 },
+                        new DynamicExcelColumn("Time") { Index = 5, Width = 12 },
+                        new DynamicExcelColumn("Hours") { Index = 6, Width = 12 },
                     }
                 };
 
