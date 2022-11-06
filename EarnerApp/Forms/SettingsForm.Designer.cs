@@ -55,6 +55,8 @@ namespace Earner.Forms
             this._grpBoxTaskSettings = new System.Windows.Forms.GroupBox();
             this._chkAutoShowTaskLog = new System.Windows.Forms.CheckBox();
             this._grpBoxGeneralSettings = new System.Windows.Forms.GroupBox();
+            this._lblSettingsHeader = new System.Windows.Forms.Label();
+            this._topPanel.SuspendLayout();
             this._grpBoxDeveloperSettings.SuspendLayout();
             this._grpBoxInterfaceSettings.SuspendLayout();
             this._grpBoxTaskSettings.SuspendLayout();
@@ -64,6 +66,7 @@ namespace Earner.Forms
             // _topPanel
             // 
             this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._topPanel.Controls.Add(this._lblSettingsHeader);
             this._topPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -217,7 +220,7 @@ namespace Earner.Forms
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(301, 444);
+            this._btnSave.Location = new System.Drawing.Point(309, 442);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(29, 29);
@@ -264,7 +267,7 @@ namespace Earner.Forms
             this._chkSaveTaskLog.Text = "Save task log";
             this._chkSaveTaskLog.UseVisualStyleBackColor = true;
             // 
-            // toolTip
+            // _toolTip
             // 
             this._toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._toolTip.ForeColor = System.Drawing.Color.White;
@@ -404,12 +407,24 @@ namespace Earner.Forms
             this._grpBoxGeneralSettings.TabStop = false;
             this._grpBoxGeneralSettings.Text = "General settings";
             // 
+            // _lblSettingsHeader
+            // 
+            this._lblSettingsHeader.AutoSize = true;
+            this._lblSettingsHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblSettingsHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblSettingsHeader.ForeColor = System.Drawing.Color.White;
+            this._lblSettingsHeader.Location = new System.Drawing.Point(3, 4);
+            this._lblSettingsHeader.Name = "_lblSettingsHeader";
+            this._lblSettingsHeader.Size = new System.Drawing.Size(66, 21);
+            this._lblSettingsHeader.TabIndex = 611;
+            this._lblSettingsHeader.Text = "Settings";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(339, 482);
+            this.ClientSize = new System.Drawing.Size(339, 474);
             this.Controls.Add(this._grpBoxTaskSettings);
             this.Controls.Add(this._grpBoxInterfaceSettings);
             this.Controls.Add(this._grpBoxDeveloperSettings);
@@ -429,6 +444,8 @@ namespace Earner.Forms
             this.Text = "Earner Settings";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
+            this._topPanel.ResumeLayout(false);
+            this._topPanel.PerformLayout();
             this._grpBoxDeveloperSettings.ResumeLayout(false);
             this._grpBoxDeveloperSettings.PerformLayout();
             this._grpBoxInterfaceSettings.ResumeLayout(false);
@@ -466,5 +483,6 @@ namespace Earner.Forms
         private CheckBox _chkAutoShowTaskLog;
         private CheckBox _chkAutoStartWithWindows;
         private CheckBox _chkConfirmBeforeClose;
+        private Label _lblSettingsHeader;
     }
 }
