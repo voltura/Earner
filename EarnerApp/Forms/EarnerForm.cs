@@ -39,6 +39,7 @@ namespace Earner.Forms
             SetTooltips();
             _ActiveTask = _Settings.EarnerTasks.FirstOrDefault("Default Task");
             _lblActiveTask.Text = $"Working with {_ActiveTask}";
+            _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";
         }
 
         private void SetTooltips()

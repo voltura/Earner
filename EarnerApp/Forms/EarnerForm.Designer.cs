@@ -42,6 +42,8 @@
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._btnShowRecords = new System.Windows.Forms.Button();
             this._lblActiveTask = new System.Windows.Forms.Label();
+            this._lblEarnerHeader = new System.Windows.Forms.Label();
+            this._topPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _lblEarned
@@ -155,6 +157,7 @@
             // _topPanel
             // 
             this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._topPanel.Controls.Add(this._lblEarnerHeader);
             this._topPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -256,6 +259,18 @@
             this._lblActiveTask.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this._lblActiveTask.TextChanged += new System.EventHandler(this.ScaleTextChanged);
             // 
+            // _lblEarnerHeader
+            // 
+            this._lblEarnerHeader.AutoSize = true;
+            this._lblEarnerHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblEarnerHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblEarnerHeader.ForeColor = System.Drawing.Color.White;
+            this._lblEarnerHeader.Location = new System.Drawing.Point(0, 4);
+            this._lblEarnerHeader.Name = "_lblEarnerHeader";
+            this._lblEarnerHeader.Size = new System.Drawing.Size(55, 21);
+            this._lblEarnerHeader.TabIndex = 612;
+            this._lblEarnerHeader.Text = "Earner";
+            // 
             // EarnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -286,6 +301,8 @@
             this.TransparencyKey = System.Drawing.Color.Cyan;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerForm_FormClosing);
             this.Resize += new System.EventHandler(this.EarnerFormResize);
+            this._topPanel.ResumeLayout(false);
+            this._topPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +322,6 @@
         private ToolTip _toolTip;
         private Button _btnShowRecords;
         private Label _lblActiveTask;
+        private Label _lblEarnerHeader;
     }
 }
