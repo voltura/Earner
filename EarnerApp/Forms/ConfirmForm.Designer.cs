@@ -35,6 +35,8 @@
             this._topPanel = new System.Windows.Forms.Panel();
             this._btnNo = new System.Windows.Forms.Button();
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._lblConfirmHeader = new System.Windows.Forms.Label();
+            this._topPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblQuestion
@@ -82,6 +84,7 @@
             // _topPanel
             // 
             this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._topPanel.Controls.Add(this._lblConfirmHeader);
             this._topPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._topPanel.Location = new System.Drawing.Point(0, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -122,6 +125,19 @@
             this._toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this._toolTip.ToolTipTitle = "Info";
             // 
+            // _lblConfirmHeader
+            // 
+            this._lblConfirmHeader.AutoSize = true;
+            this._lblConfirmHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblConfirmHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblConfirmHeader.ForeColor = System.Drawing.Color.White;
+            this._lblConfirmHeader.Location = new System.Drawing.Point(4, 4);
+            this._lblConfirmHeader.Name = "_lblConfirmHeader";
+            this._lblConfirmHeader.Size = new System.Drawing.Size(112, 21);
+            this._lblConfirmHeader.TabIndex = 91;
+            this._lblConfirmHeader.Text = "Please confirm";
+            this._lblConfirmHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
+            // 
             // ConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -147,6 +163,8 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
             this.Resize += new System.EventHandler(this.EarnerFormResize);
+            this._topPanel.ResumeLayout(false);
+            this._topPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -158,5 +176,6 @@
         private Button _btnNo;
         private ToolTip _toolTip;
         public Label LblQuestion;
+        private Label _lblConfirmHeader;
     }
 }

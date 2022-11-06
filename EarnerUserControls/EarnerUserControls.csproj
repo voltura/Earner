@@ -1,27 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <PlatformTarget>x64</PlatformTarget>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\EarnerApp\earner.key</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PlatformTarget>x64</PlatformTarget>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\EarnerApp\earner.key</AssemblyOriginatorKeyFile>
+		<AssemblyVersion>1.0.2.0</AssemblyVersion>
+		<FileVersion>1.0.2.0</FileVersion>
+		<AssemblyInformationalVersion>1.0.2.0</AssemblyInformationalVersion>
+		<ApplicationIcon>dollar.ico</ApplicationIcon>
+		<Version>1.0.2.0</Version>
+		<Copyright>Copyright © 2022 Voltura AB</Copyright>
+		<PackageIcon>dollar.ico</PackageIcon>
+		<NeutralLanguage>en</NeutralLanguage>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>none</DebugType>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>none</DebugType>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Update="NumericTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+	  <Content Include="dollar.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\EarnerApp\dollar.ico">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="NumericTextBox.cs">
+			<SubType>Component</SubType>
+		</Compile>
+	</ItemGroup>
 
 </Project>

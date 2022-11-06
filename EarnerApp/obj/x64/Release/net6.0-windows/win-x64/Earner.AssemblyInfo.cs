@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Voltura AB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2022 Voltura AB")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("Show and log earnings in real time")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Displays and log earnings in real time")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.2.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.2.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Earner")]

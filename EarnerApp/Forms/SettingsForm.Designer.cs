@@ -33,6 +33,7 @@ namespace Earner.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this._topPanel = new System.Windows.Forms.Panel();
+            this._lblSettingsHeader = new System.Windows.Forms.Label();
             this._btnClose = new System.Windows.Forms.Button();
             this._lblHourlyRate = new System.Windows.Forms.Label();
             this._lblFixedDailyCost = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@ namespace Earner.Forms
             this._grpBoxTaskSettings = new System.Windows.Forms.GroupBox();
             this._chkAutoShowTaskLog = new System.Windows.Forms.CheckBox();
             this._grpBoxGeneralSettings = new System.Windows.Forms.GroupBox();
-            this._lblSettingsHeader = new System.Windows.Forms.Label();
             this._topPanel.SuspendLayout();
             this._grpBoxDeveloperSettings.SuspendLayout();
             this._grpBoxInterfaceSettings.SuspendLayout();
@@ -74,6 +74,19 @@ namespace Earner.Forms
             this._topPanel.Size = new System.Drawing.Size(309, 29);
             this._topPanel.TabIndex = 500;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
+            // 
+            // _lblSettingsHeader
+            // 
+            this._lblSettingsHeader.AutoSize = true;
+            this._lblSettingsHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblSettingsHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblSettingsHeader.ForeColor = System.Drawing.Color.White;
+            this._lblSettingsHeader.Location = new System.Drawing.Point(3, 4);
+            this._lblSettingsHeader.Name = "_lblSettingsHeader";
+            this._lblSettingsHeader.Size = new System.Drawing.Size(66, 21);
+            this._lblSettingsHeader.TabIndex = 611;
+            this._lblSettingsHeader.Text = "Settings";
+            this._lblSettingsHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
             // _btnClose
             // 
@@ -406,18 +419,6 @@ namespace Earner.Forms
             this._grpBoxGeneralSettings.TabIndex = 609;
             this._grpBoxGeneralSettings.TabStop = false;
             this._grpBoxGeneralSettings.Text = "General settings";
-            // 
-            // _lblSettingsHeader
-            // 
-            this._lblSettingsHeader.AutoSize = true;
-            this._lblSettingsHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblSettingsHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._lblSettingsHeader.ForeColor = System.Drawing.Color.White;
-            this._lblSettingsHeader.Location = new System.Drawing.Point(3, 4);
-            this._lblSettingsHeader.Name = "_lblSettingsHeader";
-            this._lblSettingsHeader.Size = new System.Drawing.Size(66, 21);
-            this._lblSettingsHeader.TabIndex = 611;
-            this._lblSettingsHeader.Text = "Settings";
             // 
             // SettingsForm
             // 

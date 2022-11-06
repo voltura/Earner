@@ -67,6 +67,7 @@ namespace Earner.Forms
             this._lblExistingTasks.Size = new System.Drawing.Size(46, 21);
             this._lblExistingTasks.TabIndex = 90;
             this._lblExistingTasks.Text = "Tasks";
+            this._lblExistingTasks.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
             // _btnClose
             // 

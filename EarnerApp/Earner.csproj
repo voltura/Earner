@@ -13,7 +13,7 @@
 		<Title>Earner</Title>
 		<Authors>Joakim Skoglund</Authors>
 		<Company>Voltura AB</Company>
-		<Description>Show and log earnings in real time</Description>
+		<Description>Displays and log earnings in real time</Description>
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -28,6 +28,8 @@
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>true</SelfContained>
 		<PackageIcon>dollar.ico</PackageIcon>
+		<Version>1.0.2.0</Version>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
