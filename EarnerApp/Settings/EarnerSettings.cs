@@ -2,11 +2,6 @@
 {
     internal sealed class EarnerSettings
     {
-        #region Private variables
-
-
-        #endregion Private variables
-
         #region Private constructor
 
         private EarnerSettings()
@@ -50,6 +45,8 @@
 
         public bool AutoShowTaskLog { get; set; } = false;
 
+        public bool AutoStartWithWindows { get; set; } = false;
+
         #endregion Public properties
 
         #region Public methods
@@ -65,6 +62,8 @@
             ShowApplicationLogOnErrors = EarnerConfig.GetAppSettings<bool>("ShowAppLogOnError");
             ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
             AutoShowTaskLog = EarnerConfig.GetAppSettings<bool>("AutoShowTaskLog");
+            AutoStartWithWindows = EarnerConfig.GetAppSettings<bool>("AutoStartWithWindows");
+            EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
         public void Save()
@@ -76,8 +75,10 @@
             _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", SaveTaskLog.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", ShowTooltips.ToString());
             _ = EarnerConfig.SaveAppSettingsString("AutoShowTaskLog", AutoShowTaskLog.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("AutoStartWithWindows", AutoStartWithWindows.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", ShowApplicationLogOnErrors.ToString());
             _ = EarnerConfig.SaveAppSettingsList("Tasks", EarnerTasks);
+            EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
         #endregion Public methods

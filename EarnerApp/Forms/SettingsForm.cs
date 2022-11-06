@@ -33,6 +33,7 @@ namespace Earner.Forms
             _chkShowApplicationLogOnErrors.Checked = _Settings.ShowApplicationLogOnErrors;
             _chkShowTooltips.Checked = _Settings.ShowTooltips;
             _chkAutoShowTaskLog.Checked = _Settings.AutoShowTaskLog;
+            _chkAutoStartWithWindows.Checked = _Settings.AutoStartWithWindows;
             SetTooltips();
         }
 
@@ -48,6 +49,7 @@ namespace Earner.Forms
                 toolTip.SetToolTip(_chkShowTooltips, "Show tooltips");
                 toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show tooltips");
                 toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or restart pressed");
+                toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start app when Windows starts");
             }
             else
             {
@@ -59,6 +61,7 @@ namespace Earner.Forms
                 toolTip.SetToolTip(_chkShowTooltips, null);
                 toolTip.SetToolTip(_chkShowApplicationLogOnErrors, null);
                 toolTip.SetToolTip(_chkAutoShowTaskLog, null);
+                toolTip.SetToolTip(_chkAutoStartWithWindows, null);
             }
         }
 
@@ -105,6 +108,7 @@ namespace Earner.Forms
             _Settings.ShowTooltips = _chkShowTooltips.Checked;
             _Settings.ShowApplicationLogOnErrors = _chkShowApplicationLogOnErrors.Checked;
             _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
+            _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();

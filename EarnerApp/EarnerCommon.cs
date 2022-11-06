@@ -1,7 +1,58 @@
-﻿namespace Earner
+﻿#region Using statements
+
+using Microsoft.Win32;
+
+#endregion Using statements
+
+namespace Earner
 {
     internal static class EarnerCommon
     {
+        #region Public properties
+
+        public static bool StartWithWindows
+        {
+            get
+            {
+                bool startWithWindows = false;
+                try
+                {
+                    startWithWindows = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\", Application.ProductName, null) != null;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error = ex;
+                }
+                return startWithWindows;
+            }
+            set
+            {
+                try
+                {
+                    using RegistryKey registryKey = Registry.CurrentUser;
+                    using RegistryKey? regRun = registryKey?.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run\", true);
+                    if (value)
+                    {
+                        regRun?.SetValue(Application.ProductName, $@"""{Application.ExecutablePath}""");
+                    }
+                    else
+                    {
+                        if (regRun?.GetValue(Application.ProductName) != null)
+                        {
+                            regRun?.DeleteValue(Application.ProductName);
+                        }
+                    }
+                    registryKey?.Flush();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error = ex;
+                }
+            }
+        }
+
+        #endregion Public properties
+
         #region Public functions
 
         public static double ConvertToDouble(string value)
