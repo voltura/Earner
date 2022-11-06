@@ -80,7 +80,7 @@ namespace Earner.Forms
                 return;
             }
             Label label = (Label)sender;
-            EarnerCommon.ScaleFont(label, 24);
+            EarnerCommon.ScaleFont(label, 14);
         }
 
         private void EarnerFormResize(object sender, EventArgs e)
