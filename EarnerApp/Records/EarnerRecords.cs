@@ -128,7 +128,7 @@ namespace Earner.Records
                     }
                 };
 
-                var values = _earnerRecords.Select(i => new
+                var values = _earnerRecords.Where(i => i.Earned > 0).Select(i => new
                 {
                     i.Task,
                     i.Date,
