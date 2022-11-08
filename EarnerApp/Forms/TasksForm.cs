@@ -10,6 +10,8 @@ namespace Earner.Forms
 
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
+        private DateTime _LastClick = DateTime.Now;
+
         #endregion Private variables
 
         #region Constructor
@@ -21,11 +23,17 @@ namespace Earner.Forms
             _EarnerTasks = _Settings.EarnerTasks;
             SetTooltips();
             LoadTasksToUI();
+            WireupTasksDoubleClickHandler();
         }
 
         #endregion Constructor
 
         #region Private methods
+
+        private void WireupTasksDoubleClickHandler()
+        {
+            _cmbTasks.MouseDown += new MouseEventHandler(TasksMouseDown);
+        }
 
         private void LoadTasksToUI()
         {
@@ -83,6 +91,23 @@ namespace Earner.Forms
         #endregion Private methods
 
         #region Private events
+
+        private void TasksMouseDown(object? sender, MouseEventArgs? e)
+        {
+            if (e is not null && e.Button == MouseButtons.Left)
+            {
+                TimeSpan Current = DateTime.Now - _LastClick;
+                TimeSpan DblClickSpan =
+                TimeSpan.FromMilliseconds(SystemInformation.DoubleClickTime);
+
+                if (Current.TotalMilliseconds <= DblClickSpan.TotalMilliseconds)
+                {
+                    SaveClick(this, e);
+                }
+
+                _LastClick = DateTime.Now;
+            }
+        }
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)
         {
@@ -152,6 +177,11 @@ namespace Earner.Forms
                 AddTaskClick(sender, e);
                 return;
             }
+        }
+
+        private void TasksDoubleClick(object sender, MouseEventArgs e)
+        {
+            SaveClick(sender, e);
         }
 
         #endregion Private events
