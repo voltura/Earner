@@ -88,6 +88,21 @@ namespace Earner.Forms
             _DoNotChangeFontSize = WindowState == FormWindowState.Minimized;
         }
 
+        private void ConfirmFormKeyDown(object sender, KeyEventArgs e)
+        {
+            Log.LogCaller();
+            if (e.KeyCode == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+                Close();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                DialogResult = DialogResult.Yes;
+                Close();
+            }
+        }
+
         #endregion Private events
     }
 }

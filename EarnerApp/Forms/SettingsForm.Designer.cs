@@ -436,6 +436,7 @@ namespace Earner.Forms
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(1);
             this.MaximizeBox = false;
             this.MdiChildrenMinimizedAnchorBottom = false;
@@ -445,6 +446,7 @@ namespace Earner.Forms
             this.Text = "Earner Settings";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsFormKeyDown);
             this._topPanel.ResumeLayout(false);
             this._topPanel.PerformLayout();
             this._grpBoxDeveloperSettings.ResumeLayout(false);

@@ -237,6 +237,19 @@ namespace Earner.Forms
             _DoNotChangeFontSize = WindowState == FormWindowState.Minimized;
         }
 
+        private void EarnerFormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                using ConfirmForm confirmForm = new();
+                confirmForm.LblQuestion.Text = "Close application?";
+                if (_Settings.ConfirmBeforeClose || DialogResult.Yes == confirmForm.ShowDialog())
+                {
+                    CloseClick(sender, e);
+                }
+            }
+        }
+
         #endregion Private events
     }
 }

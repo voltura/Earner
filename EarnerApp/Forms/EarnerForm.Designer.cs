@@ -171,7 +171,7 @@
             this._lblEarnerHeader.AutoSize = true;
             this._lblEarnerHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblEarnerHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._lblEarnerHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this._lblEarnerHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._lblEarnerHeader.Location = new System.Drawing.Point(0, 4);
             this._lblEarnerHeader.Name = "_lblEarnerHeader";
             this._lblEarnerHeader.Size = new System.Drawing.Size(55, 21);
@@ -292,6 +292,7 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(1);
             this.MaximizeBox = false;
             this.MdiChildrenMinimizedAnchorBottom = false;
@@ -301,6 +302,7 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerForm_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EarnerFormKeyDown);
             this.Resize += new System.EventHandler(this.EarnerFormResize);
             this._topPanel.ResumeLayout(false);
             this._topPanel.PerformLayout();

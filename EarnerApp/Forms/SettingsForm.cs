@@ -132,6 +132,14 @@ namespace Earner.Forms
             }
         }
 
+        private void SettingsFormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
         #endregion Private events
     }
 }

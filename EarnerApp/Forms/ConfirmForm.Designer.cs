@@ -33,9 +33,9 @@
             this.LblQuestion = new System.Windows.Forms.Label();
             this._btnYes = new System.Windows.Forms.Button();
             this._topPanel = new System.Windows.Forms.Panel();
+            this._lblConfirmHeader = new System.Windows.Forms.Label();
             this._btnNo = new System.Windows.Forms.Button();
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this._lblConfirmHeader = new System.Windows.Forms.Label();
             this._topPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,8 +75,7 @@
             this._btnYes.Margin = new System.Windows.Forms.Padding(0);
             this._btnYes.Name = "_btnYes";
             this._btnYes.Size = new System.Drawing.Size(29, 29);
-            this._btnYes.TabIndex = 2;
-            this._btnYes.TabStop = false;
+            this._btnYes.TabIndex = 1;
             this._btnYes.Tag = "";
             this._btnYes.UseVisualStyleBackColor = false;
             this._btnYes.Click += new System.EventHandler(this.YesClick);
@@ -92,6 +91,19 @@
             this._topPanel.Size = new System.Drawing.Size(271, 30);
             this._topPanel.TabIndex = 5;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
+            // 
+            // _lblConfirmHeader
+            // 
+            this._lblConfirmHeader.AutoSize = true;
+            this._lblConfirmHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblConfirmHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblConfirmHeader.ForeColor = System.Drawing.Color.White;
+            this._lblConfirmHeader.Location = new System.Drawing.Point(4, 4);
+            this._lblConfirmHeader.Name = "_lblConfirmHeader";
+            this._lblConfirmHeader.Size = new System.Drawing.Size(112, 21);
+            this._lblConfirmHeader.TabIndex = 91;
+            this._lblConfirmHeader.Text = "Please confirm";
+            this._lblConfirmHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
             // _btnNo
             // 
@@ -111,8 +123,7 @@
             this._btnNo.Margin = new System.Windows.Forms.Padding(0);
             this._btnNo.Name = "_btnNo";
             this._btnNo.Size = new System.Drawing.Size(29, 29);
-            this._btnNo.TabIndex = 6;
-            this._btnNo.TabStop = false;
+            this._btnNo.TabIndex = 0;
             this._btnNo.Tag = "";
             this._btnNo.UseVisualStyleBackColor = false;
             this._btnNo.Click += new System.EventHandler(this.NoClick);
@@ -124,19 +135,6 @@
             this._toolTip.IsBalloon = true;
             this._toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this._toolTip.ToolTipTitle = "Info";
-            // 
-            // _lblConfirmHeader
-            // 
-            this._lblConfirmHeader.AutoSize = true;
-            this._lblConfirmHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblConfirmHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._lblConfirmHeader.ForeColor = System.Drawing.Color.White;
-            this._lblConfirmHeader.Location = new System.Drawing.Point(4, 4);
-            this._lblConfirmHeader.Name = "_lblConfirmHeader";
-            this._lblConfirmHeader.Size = new System.Drawing.Size(112, 21);
-            this._lblConfirmHeader.TabIndex = 91;
-            this._lblConfirmHeader.Text = "Please confirm";
-            this._lblConfirmHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
             // ConfirmForm
             // 
@@ -152,6 +150,7 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(1);
             this.MaximizeBox = false;
             this.MdiChildrenMinimizedAnchorBottom = false;
@@ -162,6 +161,7 @@
             this.Text = "Earner - Confirm Message";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConfirmFormKeyDown);
             this.Resize += new System.EventHandler(this.EarnerFormResize);
             this._topPanel.ResumeLayout(false);
             this._topPanel.PerformLayout();

@@ -98,6 +98,14 @@ namespace Earner.Forms
             Close();
         }
 
+        private void TasksFormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                SaveClick(sender, e);
+            }
+        }
+
         private void SaveClick(object sender, EventArgs e)
         {
             SaveTasksFromForm();
