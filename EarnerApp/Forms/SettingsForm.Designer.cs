@@ -233,11 +233,11 @@ namespace Earner.Forms
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(309, 442);
+            this._btnSave.Location = new System.Drawing.Point(307, 441);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(29, 29);
-            this._btnSave.TabIndex = 1;
+            this._btnSave.TabIndex = 21;
             this._btnSave.Tag = "";
             this._btnSave.UseVisualStyleBackColor = false;
             this._btnSave.Click += new System.EventHandler(this.SaveClick);
@@ -259,8 +259,7 @@ namespace Earner.Forms
             this._btnEditTasks.Margin = new System.Windows.Forms.Padding(0);
             this._btnEditTasks.Name = "_btnEditTasks";
             this._btnEditTasks.Size = new System.Drawing.Size(29, 29);
-            this._btnEditTasks.TabIndex = 602;
-            this._btnEditTasks.TabStop = false;
+            this._btnEditTasks.TabIndex = 16;
             this._btnEditTasks.Tag = "";
             this._btnEditTasks.UseVisualStyleBackColor = false;
             this._btnEditTasks.Click += new System.EventHandler(this.EditTasksClick);
@@ -276,7 +275,7 @@ namespace Earner.Forms
             this._chkSaveTaskLog.Location = new System.Drawing.Point(10, 21);
             this._chkSaveTaskLog.Name = "_chkSaveTaskLog";
             this._chkSaveTaskLog.Size = new System.Drawing.Size(117, 25);
-            this._chkSaveTaskLog.TabIndex = 603;
+            this._chkSaveTaskLog.TabIndex = 14;
             this._chkSaveTaskLog.Text = "Save task log";
             this._chkSaveTaskLog.UseVisualStyleBackColor = true;
             // 
@@ -299,7 +298,7 @@ namespace Earner.Forms
             this._chkShowTooltips.Location = new System.Drawing.Point(10, 21);
             this._chkShowTooltips.Name = "_chkShowTooltips";
             this._chkShowTooltips.Size = new System.Drawing.Size(121, 25);
-            this._chkShowTooltips.TabIndex = 604;
+            this._chkShowTooltips.TabIndex = 17;
             this._chkShowTooltips.Text = "Show tooltips";
             this._chkShowTooltips.UseVisualStyleBackColor = true;
             // 
@@ -314,7 +313,7 @@ namespace Earner.Forms
             this._chkShowApplicationLogOnErrors.Location = new System.Drawing.Point(10, 21);
             this._chkShowApplicationLogOnErrors.Name = "_chkShowApplicationLogOnErrors";
             this._chkShowApplicationLogOnErrors.Size = new System.Drawing.Size(239, 25);
-            this._chkShowApplicationLogOnErrors.TabIndex = 605;
+            this._chkShowApplicationLogOnErrors.TabIndex = 20;
             this._chkShowApplicationLogOnErrors.Text = "Show application log on errors";
             this._chkShowApplicationLogOnErrors.UseVisualStyleBackColor = true;
             // 
@@ -324,10 +323,10 @@ namespace Earner.Forms
             this._grpBoxDeveloperSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._grpBoxDeveloperSettings.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._grpBoxDeveloperSettings.ForeColor = System.Drawing.Color.White;
-            this._grpBoxDeveloperSettings.Location = new System.Drawing.Point(30, 385);
+            this._grpBoxDeveloperSettings.Location = new System.Drawing.Point(29, 385);
             this._grpBoxDeveloperSettings.Name = "_grpBoxDeveloperSettings";
             this._grpBoxDeveloperSettings.Size = new System.Drawing.Size(277, 57);
-            this._grpBoxDeveloperSettings.TabIndex = 606;
+            this._grpBoxDeveloperSettings.TabIndex = 3;
             this._grpBoxDeveloperSettings.TabStop = false;
             this._grpBoxDeveloperSettings.Text = "Developer settings";
             // 
@@ -339,10 +338,10 @@ namespace Earner.Forms
             this._grpBoxInterfaceSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._grpBoxInterfaceSettings.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._grpBoxInterfaceSettings.ForeColor = System.Drawing.Color.White;
-            this._grpBoxInterfaceSettings.Location = new System.Drawing.Point(30, 262);
+            this._grpBoxInterfaceSettings.Location = new System.Drawing.Point(29, 262);
             this._grpBoxInterfaceSettings.Name = "_grpBoxInterfaceSettings";
             this._grpBoxInterfaceSettings.Size = new System.Drawing.Size(277, 117);
-            this._grpBoxInterfaceSettings.TabIndex = 607;
+            this._grpBoxInterfaceSettings.TabIndex = 2;
             this._grpBoxInterfaceSettings.TabStop = false;
             this._grpBoxInterfaceSettings.Text = "Application settings";
             // 
@@ -355,7 +354,7 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose.Location = new System.Drawing.Point(10, 82);
             this._chkConfirmBeforeClose.Name = "_chkConfirmBeforeClose";
             this._chkConfirmBeforeClose.Size = new System.Drawing.Size(220, 25);
-            this._chkConfirmBeforeClose.TabIndex = 606;
+            this._chkConfirmBeforeClose.TabIndex = 19;
             this._chkConfirmBeforeClose.Text = "Confirm before Earner close";
             this._chkConfirmBeforeClose.UseVisualStyleBackColor = true;
             // 
@@ -368,7 +367,7 @@ namespace Earner.Forms
             this._chkAutoStartWithWindows.Location = new System.Drawing.Point(10, 52);
             this._chkAutoStartWithWindows.Name = "_chkAutoStartWithWindows";
             this._chkAutoStartWithWindows.Size = new System.Drawing.Size(161, 25);
-            this._chkAutoStartWithWindows.TabIndex = 605;
+            this._chkAutoStartWithWindows.TabIndex = 18;
             this._chkAutoStartWithWindows.Text = "Start with Windows";
             this._chkAutoStartWithWindows.UseVisualStyleBackColor = true;
             // 
@@ -380,10 +379,10 @@ namespace Earner.Forms
             this._grpBoxTaskSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._grpBoxTaskSettings.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._grpBoxTaskSettings.ForeColor = System.Drawing.Color.White;
-            this._grpBoxTaskSettings.Location = new System.Drawing.Point(30, 169);
+            this._grpBoxTaskSettings.Location = new System.Drawing.Point(29, 169);
             this._grpBoxTaskSettings.Name = "_grpBoxTaskSettings";
             this._grpBoxTaskSettings.Size = new System.Drawing.Size(277, 87);
-            this._grpBoxTaskSettings.TabIndex = 608;
+            this._grpBoxTaskSettings.TabIndex = 1;
             this._grpBoxTaskSettings.TabStop = false;
             this._grpBoxTaskSettings.Text = "Task settings";
             // 
@@ -396,7 +395,7 @@ namespace Earner.Forms
             this._chkAutoShowTaskLog.Location = new System.Drawing.Point(10, 52);
             this._chkAutoShowTaskLog.Name = "_chkAutoShowTaskLog";
             this._chkAutoShowTaskLog.Size = new System.Drawing.Size(230, 25);
-            this._chkAutoShowTaskLog.TabIndex = 604;
+            this._chkAutoShowTaskLog.TabIndex = 15;
             this._chkAutoShowTaskLog.Text = "Show task log on end && reset";
             this._chkAutoShowTaskLog.UseVisualStyleBackColor = true;
             // 
@@ -413,10 +412,10 @@ namespace Earner.Forms
             this._grpBoxGeneralSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._grpBoxGeneralSettings.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._grpBoxGeneralSettings.ForeColor = System.Drawing.Color.White;
-            this._grpBoxGeneralSettings.Location = new System.Drawing.Point(30, 32);
+            this._grpBoxGeneralSettings.Location = new System.Drawing.Point(29, 32);
             this._grpBoxGeneralSettings.Name = "_grpBoxGeneralSettings";
             this._grpBoxGeneralSettings.Size = new System.Drawing.Size(277, 131);
-            this._grpBoxGeneralSettings.TabIndex = 609;
+            this._grpBoxGeneralSettings.TabIndex = 0;
             this._grpBoxGeneralSettings.TabStop = false;
             this._grpBoxGeneralSettings.Text = "General settings";
             // 
@@ -425,7 +424,7 @@ namespace Earner.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(339, 474);
+            this.ClientSize = new System.Drawing.Size(336, 470);
             this.Controls.Add(this._grpBoxTaskSettings);
             this.Controls.Add(this._grpBoxInterfaceSettings);
             this.Controls.Add(this._grpBoxDeveloperSettings);

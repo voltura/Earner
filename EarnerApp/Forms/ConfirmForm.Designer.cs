@@ -50,7 +50,7 @@
             this.LblQuestion.Location = new System.Drawing.Point(0, 29);
             this.LblQuestion.Margin = new System.Windows.Forms.Padding(0);
             this.LblQuestion.Name = "LblQuestion";
-            this.LblQuestion.Size = new System.Drawing.Size(271, 92);
+            this.LblQuestion.Size = new System.Drawing.Size(271, 95);
             this.LblQuestion.TabIndex = 0;
             this.LblQuestion.Text = "Are you sure?";
             this.LblQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -71,7 +71,7 @@
             this._btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnYes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._btnYes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnYes.Location = new System.Drawing.Point(242, 121);
+            this._btnYes.Location = new System.Drawing.Point(242, 124);
             this._btnYes.Margin = new System.Windows.Forms.Padding(0);
             this._btnYes.Name = "_btnYes";
             this._btnYes.Size = new System.Drawing.Size(29, 29);
@@ -119,7 +119,7 @@
             this._btnNo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnNo.Location = new System.Drawing.Point(203, 121);
+            this._btnNo.Location = new System.Drawing.Point(211, 124);
             this._btnNo.Margin = new System.Windows.Forms.Padding(0);
             this._btnNo.Name = "_btnNo";
             this._btnNo.Size = new System.Drawing.Size(29, 29);
@@ -142,9 +142,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
-            this.Controls.Add(this._topPanel);
             this.Controls.Add(this._btnNo);
             this.Controls.Add(this._btnYes);
+            this.Controls.Add(this._topPanel);
             this.Controls.Add(this.LblQuestion);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
