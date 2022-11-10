@@ -43,6 +43,7 @@
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._btnShowRecords = new System.Windows.Forms.Button();
             this._lblActiveTask = new System.Windows.Forms.Label();
+            this._pbWorkProgress = new System.Windows.Forms.ProgressBar();
             this._topPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +121,7 @@
             this._lblWorkTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblWorkTime.Font = new System.Drawing.Font("Segoe UI Light", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblWorkTime.ForeColor = System.Drawing.Color.White;
-            this._lblWorkTime.Location = new System.Drawing.Point(2, 116);
+            this._lblWorkTime.Location = new System.Drawing.Point(2, 114);
             this._lblWorkTime.Margin = new System.Windows.Forms.Padding(0);
             this._lblWorkTime.Name = "_lblWorkTime";
             this._lblWorkTime.Size = new System.Drawing.Size(122, 41);
@@ -268,12 +269,24 @@
             this._lblActiveTask.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this._lblActiveTask.TextChanged += new System.EventHandler(this.ScaleTextChanged);
             // 
+            // _pbWorkProgress
+            // 
+            this._pbWorkProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._pbWorkProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._pbWorkProgress.Location = new System.Drawing.Point(10, 148);
+            this._pbWorkProgress.Name = "_pbWorkProgress";
+            this._pbWorkProgress.Size = new System.Drawing.Size(106, 4);
+            this._pbWorkProgress.Step = 1;
+            this._pbWorkProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this._pbWorkProgress.TabIndex = 9;
+            // 
             // EarnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
+            this.Controls.Add(this._pbWorkProgress);
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._topPanel);
             this.Controls.Add(this._btnHide);
@@ -322,5 +335,6 @@
         private Button _btnShowRecords;
         private Label _lblActiveTask;
         private Label _lblEarnerHeader;
+        private ProgressBar _pbWorkProgress;
     }
 }

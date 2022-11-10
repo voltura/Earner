@@ -8,10 +8,10 @@
 		<PlatformTarget>x64</PlatformTarget>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\EarnerApp\earner.key</AssemblyOriginatorKeyFile>
-		<AssemblyVersion>1.0.2.0</AssemblyVersion>
-		<FileVersion>1.0.2.0</FileVersion>
-		<AssemblyInformationalVersion>1.0.2.0</AssemblyInformationalVersion>
-		<Version>1.0.2.0</Version>
+		<AssemblyVersion>1.0.2.1</AssemblyVersion>
+		<FileVersion>1.0.2.1</FileVersion>
+		<AssemblyInformationalVersion>1.0.2.1</AssemblyInformationalVersion>
+		<Version>1.0.2.1</Version>
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>

@@ -1,5 +1,6 @@
 using Earner.Records;
 using Earner.Settings;
+using System.Runtime;
 
 namespace Earner.Forms
 {
@@ -40,6 +41,7 @@ namespace Earner.Forms
             _ActiveTask = _Settings.EarnerTasks.FirstOrDefault("Default Task");
             _lblActiveTask.Text = $"Working with {_ActiveTask}";
             _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";
+            _pbWorkProgress.Visible = _Settings.ShowProgressbar;
         }
 
         private void SetTooltips()
@@ -71,12 +73,15 @@ namespace Earner.Forms
 
         private bool StartEarning()
         {
+            EarnerCommon.MakeProgressbarGreen(_pbWorkProgress.Handle);
             using TasksForm tasksForm = new();
             if (DialogResult.OK != tasksForm.ShowDialog(this))
             {
                 return false;
             }
             LoadAppSettings();
+            _pbWorkProgress.Value = 0;
+            _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _ActiveDay = DateTime.Today;
             _stopwatch.Start();
             _earnerTimer.Start();
@@ -88,6 +93,9 @@ namespace Earner.Forms
 
         private bool StopEarning()
         {
+            EarnerCommon.MakeProgressbarPaused(_pbWorkProgress.Handle);
+            _pbWorkProgress.Value = 0;
+            _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _stopwatch.Stop();
             _earnerTimer.Stop();
             _btnStart.Tag = "Start";
@@ -101,11 +109,16 @@ namespace Earner.Forms
             double totalEarnings = _ElapsedTime.TotalSeconds * (_Settings.HourlyRate / 3600.00d);
             if (_ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
             {
+                _pbWorkProgress.Value = Convert.ToInt32(Math.Round((_ElapsedTime.TotalSeconds / (_Settings.MaxBillableDailyHours * 3600)) * 100, 0));
+                _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 _Earned = totalEarnings;
                 _EarnerRecords.UpdateRecord(_ActiveTask, _Settings.HourlyRate, totalEarnings, _Settings.CurrencySymbol);
             }
             else
             {
+                _pbWorkProgress.Value = 100;
+                EarnerCommon.MakeProgressbarError(_pbWorkProgress.Handle);
+                _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 Log.Info = "Working overtime";
             }
             double weightedEarnings = _Earned - _Settings.FixedDailyCost;

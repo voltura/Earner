@@ -81,6 +81,31 @@ namespace Earner
             }
         }
 
+        public static void MakeProgressbarGreen(IntPtr pbHandle)
+        {
+            _ = NativeMethods.SendMessage(pbHandle,
+               0x400 + 16, //WM_USER + PBM_SETSTATE
+               0x0001,
+               0);
+        }
+
+
+        public static void MakeProgressbarPaused(IntPtr pbHandle)
+        {
+            _ = NativeMethods.SendMessage(pbHandle,
+               0x400 + 16, //WM_USER + PBM_SETSTATE
+               0x0003, //PBST_PAUSED
+               0);
+        }
+
+        public static void MakeProgressbarError(IntPtr pbHandle)
+        {
+            _ = NativeMethods.SendMessage(pbHandle,
+               0x400 + 16, //WM_USER + PBM_SETSTATE
+               0x0002, //PBST_ERROR
+               0);
+        }
+
         #endregion Public functions
     }
 }

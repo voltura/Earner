@@ -51,6 +51,8 @@ namespace Earner.Forms
             this._chkShowApplicationLogOnErrors = new System.Windows.Forms.CheckBox();
             this._grpBoxDeveloperSettings = new System.Windows.Forms.GroupBox();
             this._grpBoxInterfaceSettings = new System.Windows.Forms.GroupBox();
+            this._lblShow = new System.Windows.Forms.Label();
+            this._chkShowProgressbar = new System.Windows.Forms.CheckBox();
             this._chkConfirmBeforeClose = new System.Windows.Forms.CheckBox();
             this._chkAutoStartWithWindows = new System.Windows.Forms.CheckBox();
             this._grpBoxTaskSettings = new System.Windows.Forms.GroupBox();
@@ -295,11 +297,12 @@ namespace Earner.Forms
             this._chkShowTooltips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowTooltips.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowTooltips.ForeColor = System.Drawing.Color.White;
-            this._chkShowTooltips.Location = new System.Drawing.Point(10, 21);
+            this._chkShowTooltips.Location = new System.Drawing.Point(57, 23);
             this._chkShowTooltips.Name = "_chkShowTooltips";
-            this._chkShowTooltips.Size = new System.Drawing.Size(121, 25);
+            this._chkShowTooltips.Size = new System.Drawing.Size(78, 25);
             this._chkShowTooltips.TabIndex = 17;
-            this._chkShowTooltips.Text = "Show tooltips";
+            this._chkShowTooltips.Text = "tooltips";
+            this._chkShowTooltips.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this._chkShowTooltips.UseVisualStyleBackColor = true;
             // 
             // _chkShowApplicationLogOnErrors
@@ -332,6 +335,8 @@ namespace Earner.Forms
             // 
             // _grpBoxInterfaceSettings
             // 
+            this._grpBoxInterfaceSettings.Controls.Add(this._lblShow);
+            this._grpBoxInterfaceSettings.Controls.Add(this._chkShowProgressbar);
             this._grpBoxInterfaceSettings.Controls.Add(this._chkConfirmBeforeClose);
             this._grpBoxInterfaceSettings.Controls.Add(this._chkAutoStartWithWindows);
             this._grpBoxInterfaceSettings.Controls.Add(this._chkShowTooltips);
@@ -344,6 +349,32 @@ namespace Earner.Forms
             this._grpBoxInterfaceSettings.TabIndex = 2;
             this._grpBoxInterfaceSettings.TabStop = false;
             this._grpBoxInterfaceSettings.Text = "Application settings";
+            // 
+            // _lblShow
+            // 
+            this._lblShow.AutoSize = true;
+            this._lblShow.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblShow.Location = new System.Drawing.Point(6, 23);
+            this._lblShow.Name = "_lblShow";
+            this._lblShow.Size = new System.Drawing.Size(49, 21);
+            this._lblShow.TabIndex = 21;
+            this._lblShow.Text = "Show";
+            // 
+            // _chkShowProgressbar
+            // 
+            this._chkShowProgressbar.AutoSize = true;
+            this._chkShowProgressbar.Checked = true;
+            this._chkShowProgressbar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._chkShowProgressbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._chkShowProgressbar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._chkShowProgressbar.ForeColor = System.Drawing.Color.White;
+            this._chkShowProgressbar.Location = new System.Drawing.Point(141, 23);
+            this._chkShowProgressbar.Name = "_chkShowProgressbar";
+            this._chkShowProgressbar.Size = new System.Drawing.Size(114, 25);
+            this._chkShowProgressbar.TabIndex = 20;
+            this._chkShowProgressbar.Text = "progress bar";
+            this._chkShowProgressbar.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this._chkShowProgressbar.UseVisualStyleBackColor = true;
             // 
             // _chkConfirmBeforeClose
             // 
@@ -486,5 +517,7 @@ namespace Earner.Forms
         private CheckBox _chkAutoStartWithWindows;
         private CheckBox _chkConfirmBeforeClose;
         private Label _lblSettingsHeader;
+        private Label _lblShow;
+        private CheckBox _chkShowProgressbar;
     }
 }

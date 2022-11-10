@@ -36,7 +36,9 @@
             this._lblConfirmHeader = new System.Windows.Forms.Label();
             this._btnNo = new System.Windows.Forms.Button();
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.picBoxConfirmHeader = new System.Windows.Forms.PictureBox();
             this._topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxConfirmHeader)).BeginInit();
             this.SuspendLayout();
             // 
             // LblQuestion
@@ -85,10 +87,10 @@
             this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._topPanel.Controls.Add(this._lblConfirmHeader);
             this._topPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._topPanel.Location = new System.Drawing.Point(0, 0);
+            this._topPanel.Location = new System.Drawing.Point(29, 0);
             this._topPanel.Margin = new System.Windows.Forms.Padding(0);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(271, 30);
+            this._topPanel.Size = new System.Drawing.Size(242, 30);
             this._topPanel.TabIndex = 5;
             this._topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
             // 
@@ -136,12 +138,24 @@
             this._toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this._toolTip.ToolTipTitle = "Info";
             // 
+            // picBoxConfirmHeader
+            // 
+            this.picBoxConfirmHeader.BackgroundImage = global::Earner.Properties.Resources.check_48x48;
+            this.picBoxConfirmHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picBoxConfirmHeader.Location = new System.Drawing.Point(0, 0);
+            this.picBoxConfirmHeader.Name = "picBoxConfirmHeader";
+            this.picBoxConfirmHeader.Size = new System.Drawing.Size(29, 29);
+            this.picBoxConfirmHeader.TabIndex = 7;
+            this.picBoxConfirmHeader.TabStop = false;
+            this.picBoxConfirmHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelMouseDown);
+            // 
             // ConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
+            this.Controls.Add(this.picBoxConfirmHeader);
             this.Controls.Add(this._btnNo);
             this.Controls.Add(this._btnYes);
             this.Controls.Add(this._topPanel);
@@ -165,6 +179,7 @@
             this.Resize += new System.EventHandler(this.EarnerFormResize);
             this._topPanel.ResumeLayout(false);
             this._topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxConfirmHeader)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,5 +192,6 @@
         private ToolTip _toolTip;
         public Label LblQuestion;
         private Label _lblConfirmHeader;
+        private PictureBox picBoxConfirmHeader;
     }
 }

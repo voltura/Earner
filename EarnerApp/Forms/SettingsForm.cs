@@ -35,6 +35,7 @@ namespace Earner.Forms
             _chkAutoShowTaskLog.Checked = _Settings.AutoShowTaskLog;
             _chkAutoStartWithWindows.Checked = _Settings.AutoStartWithWindows;
             _chkConfirmBeforeClose.Checked = _Settings.ConfirmBeforeClose;
+            _chkShowProgressbar.Checked = _Settings.ShowProgressbar;
             SetTooltips();
         }
 
@@ -52,6 +53,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or reset is pressed");
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start Earner with Windows");
                 _toolTip.SetToolTip(_chkConfirmBeforeClose, "Show confirmation dialog when Close is pressed");
+                _toolTip.SetToolTip(_chkShowProgressbar, "Show work progress bar");
             }
             else
             {
@@ -65,6 +67,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkAutoShowTaskLog, null);
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, null);
                 _toolTip.SetToolTip(_chkConfirmBeforeClose, null);
+                _toolTip.SetToolTip(_chkShowProgressbar, null);
             }
         }
 
@@ -113,6 +116,7 @@ namespace Earner.Forms
             _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
             _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
             _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
+            _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
