@@ -51,6 +51,8 @@
 
         public bool ShowProgressbar { get; set; } = true;
 
+        public bool ShowSettingsOnStartup { get; set; } = true;
+
         #endregion Public properties
 
         #region Public methods
@@ -69,6 +71,7 @@
             AutoStartWithWindows = EarnerConfig.GetAppSettings<bool>("AutoStartWithWindows");
             ConfirmBeforeClose = EarnerConfig.GetAppSettings<bool>("ConfirmBeforeClose");
             ShowProgressbar = EarnerConfig.GetAppSettings<bool>("ShowProgressbar");
+            ShowSettingsOnStartup = EarnerConfig.GetAppSettings<bool>("ShowSettingsOnStartup");
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
@@ -85,6 +88,7 @@
             _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", ShowApplicationLogOnErrors.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ConfirmBeforeClose", ConfirmBeforeClose.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowProgressbar", ShowProgressbar.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("ShowSettingsOnStartup", ShowSettingsOnStartup.ToString());
             _ = EarnerConfig.SaveAppSettingsList("Tasks", EarnerTasks);
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }

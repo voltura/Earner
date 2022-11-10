@@ -74,6 +74,13 @@ namespace Earner.Forms
         private bool StartEarning()
         {
             EarnerCommon.MakeProgressbarGreen(_pbWorkProgress.Handle);
+            if (_Settings.ShowSettingsOnStartup)
+            {
+                using SettingsForm sf = new();
+                _ = sf.ShowDialog(this);
+                _Settings.ShowSettingsOnStartup = false;
+                _Settings.Save();
+            }
             using TasksForm tasksForm = new();
             if (DialogResult.OK != tasksForm.ShowDialog(this))
             {
