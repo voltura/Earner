@@ -9,7 +9,7 @@ Generates an Excel file with a log of the earnings and work performed.
 
 ### Display earnings in real time
 
-<img width="260" alt="Earner" src="https://user-images.githubusercontent.com/2292809/201424462-22a2e162-f961-429c-8837-5c5e53b1e72b.png">
+<img width="260" alt="Earner" src="https://user-images.githubusercontent.com/2292809/201438976-9b796f65-f974-437a-abab-2f67c5fdfaa7.png">
 
 
 ### Log work on user defined tasks
