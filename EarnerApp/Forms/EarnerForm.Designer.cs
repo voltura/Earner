@@ -121,7 +121,7 @@
             this._lblWorkTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblWorkTime.Font = new System.Drawing.Font("Segoe UI Light", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblWorkTime.ForeColor = System.Drawing.Color.White;
-            this._lblWorkTime.Location = new System.Drawing.Point(2, 114);
+            this._lblWorkTime.Location = new System.Drawing.Point(2, 116);
             this._lblWorkTime.Margin = new System.Windows.Forms.Padding(0);
             this._lblWorkTime.Name = "_lblWorkTime";
             this._lblWorkTime.Size = new System.Drawing.Size(122, 41);
