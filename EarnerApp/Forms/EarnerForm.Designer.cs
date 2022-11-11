@@ -85,6 +85,7 @@
             this._btnOptions.Tag = "Options";
             this._btnOptions.UseVisualStyleBackColor = false;
             this._btnOptions.Click += new System.EventHandler(this.OptionsClick);
+            this._btnOptions.Enter += new System.EventHandler(this.OptionsFocusEnter);
             // 
             // _btnStart
             // 
@@ -108,6 +109,7 @@
             this._btnStart.Tag = "Stop";
             this._btnStart.UseVisualStyleBackColor = false;
             this._btnStart.Click += new System.EventHandler(this.StartStopClick);
+            this._btnStart.Enter += new System.EventHandler(this.StartFocusEnter);
             // 
             // _earnerTimer
             // 
@@ -221,6 +223,7 @@
             this._btnRestart.Tag = "Options";
             this._btnRestart.UseVisualStyleBackColor = false;
             this._btnRestart.Click += new System.EventHandler(this.RestartClick);
+            this._btnRestart.Enter += new System.EventHandler(this.RestartFocusEnter);
             // 
             // _toolTip
             // 
@@ -251,6 +254,7 @@
             this._btnShowRecords.Tag = "Options";
             this._btnShowRecords.UseVisualStyleBackColor = false;
             this._btnShowRecords.Click += new System.EventHandler(this.ShowRecordsClick);
+            this._btnShowRecords.Enter += new System.EventHandler(this.ShowRecordsFocusEnter);
             // 
             // _lblActiveTask
             // 

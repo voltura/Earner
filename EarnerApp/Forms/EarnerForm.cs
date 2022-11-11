@@ -1,6 +1,9 @@
+#region Using statements
+
 using Earner.Records;
 using Earner.Settings;
-using System.Runtime;
+
+#endregion Using statements
 
 namespace Earner.Forms
 {
@@ -16,6 +19,7 @@ namespace Earner.Forms
         private readonly System.Diagnostics.Stopwatch _stopwatch = new();
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
         private bool _DoNotChangeFontSize = false;
+        private int _unfocusCount = 0;
 
         #endregion Private variables
 
@@ -137,6 +141,27 @@ namespace Earner.Forms
             _lblEarned.Text = $"{weightedEarnings:00000}{_Settings.CurrencySymbol}";
             _lblWorkTime.Text = $"{_ElapsedTime:c}"[..8];
             _lblWorkTime.ForeColor = _ElapsedTime.TotalHours <= _Settings.MaxBillableDailyHours ? Color.White : Color.Red;
+            UnfocusForm();
+        }
+
+        private void UnfocusForm()
+        {
+            if (ActiveControl is null)
+            {
+                _unfocusCount = 0;
+                return;
+            }
+            _unfocusCount++;
+            if (_unfocusCount > 10)
+            {
+                ActiveControl = null;
+                _unfocusCount = 0;
+            }
+        }
+
+        private void ResetUnfocusFormCounter()
+        {
+            _unfocusCount = 0;
         }
 
         #endregion Private methods
@@ -268,6 +293,26 @@ namespace Earner.Forms
                     CloseClick(sender, e);
                 }
             }
+        }
+
+        private void ShowRecordsFocusEnter(object sender, EventArgs e)
+        {
+            ResetUnfocusFormCounter();
+        }
+
+        private void OptionsFocusEnter(object sender, EventArgs e)
+        {
+            ResetUnfocusFormCounter();
+        }
+
+        private void RestartFocusEnter(object sender, EventArgs e)
+        {
+            ResetUnfocusFormCounter();
+        }
+
+        private void StartFocusEnter(object sender, EventArgs e)
+        {
+            ResetUnfocusFormCounter();
         }
 
         #endregion Private events
