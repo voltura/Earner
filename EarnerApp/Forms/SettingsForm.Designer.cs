@@ -277,9 +277,9 @@ namespace Earner.Forms
             this._chkSaveTaskLog.ForeColor = System.Drawing.Color.White;
             this._chkSaveTaskLog.Location = new System.Drawing.Point(10, 21);
             this._chkSaveTaskLog.Name = "_chkSaveTaskLog";
-            this._chkSaveTaskLog.Size = new System.Drawing.Size(117, 25);
+            this._chkSaveTaskLog.Size = new System.Drawing.Size(85, 25);
             this._chkSaveTaskLog.TabIndex = 14;
-            this._chkSaveTaskLog.Text = "Save task log";
+            this._chkSaveTaskLog.Text = "Save log";
             this._chkSaveTaskLog.UseVisualStyleBackColor = true;
             // 
             // _toolTip
@@ -316,9 +316,9 @@ namespace Earner.Forms
             this._chkShowApplicationLogOnErrors.ForeColor = System.Drawing.Color.White;
             this._chkShowApplicationLogOnErrors.Location = new System.Drawing.Point(10, 21);
             this._chkShowApplicationLogOnErrors.Name = "_chkShowApplicationLogOnErrors";
-            this._chkShowApplicationLogOnErrors.Size = new System.Drawing.Size(239, 25);
+            this._chkShowApplicationLogOnErrors.Size = new System.Drawing.Size(123, 25);
             this._chkShowApplicationLogOnErrors.TabIndex = 20;
-            this._chkShowApplicationLogOnErrors.Text = "Show application log on errors";
+            this._chkShowApplicationLogOnErrors.Text = "Display errors";
             this._chkShowApplicationLogOnErrors.UseVisualStyleBackColor = true;
             // 
             // _grpBoxDeveloperSettings
@@ -386,9 +386,9 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose.ForeColor = System.Drawing.Color.White;
             this._chkConfirmBeforeClose.Location = new System.Drawing.Point(10, 82);
             this._chkConfirmBeforeClose.Name = "_chkConfirmBeforeClose";
-            this._chkConfirmBeforeClose.Size = new System.Drawing.Size(171, 25);
+            this._chkConfirmBeforeClose.Size = new System.Drawing.Size(122, 25);
             this._chkConfirmBeforeClose.TabIndex = 19;
-            this._chkConfirmBeforeClose.Text = "Confirm before close";
+            this._chkConfirmBeforeClose.Text = "Confirm close";
             this._chkConfirmBeforeClose.UseVisualStyleBackColor = true;
             // 
             // _chkAutoStartWithWindows
@@ -426,7 +426,7 @@ namespace Earner.Forms
             this._lnkTaskLogLocation.AutoSize = true;
             this._lnkTaskLogLocation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lnkTaskLogLocation.LinkColor = System.Drawing.Color.White;
-            this._lnkTaskLogLocation.Location = new System.Drawing.Point(126, 23);
+            this._lnkTaskLogLocation.Location = new System.Drawing.Point(92, 23);
             this._lnkTaskLogLocation.Name = "_lnkTaskLogLocation";
             this._lnkTaskLogLocation.Size = new System.Drawing.Size(41, 21);
             this._lnkTaskLogLocation.TabIndex = 17;
@@ -444,9 +444,9 @@ namespace Earner.Forms
             this._chkAutoShowTaskLog.ForeColor = System.Drawing.Color.White;
             this._chkAutoShowTaskLog.Location = new System.Drawing.Point(10, 52);
             this._chkAutoShowTaskLog.Name = "_chkAutoShowTaskLog";
-            this._chkAutoShowTaskLog.Size = new System.Drawing.Size(230, 25);
+            this._chkAutoShowTaskLog.Size = new System.Drawing.Size(207, 25);
             this._chkAutoShowTaskLog.TabIndex = 15;
-            this._chkAutoShowTaskLog.Text = "Show task log on end && reset";
+            this._chkAutoShowTaskLog.Text = "Show log on close && reset";
             this._chkAutoShowTaskLog.UseVisualStyleBackColor = true;
             // 
             // _grpBoxGeneralSettings
