@@ -24,4 +24,4 @@ Generates an Excel file with a log of the earnings and work performed.
 
 ### Settings
 
-<img width="279" alt="Earner settings" src="https://user-images.githubusercontent.com/2292809/201218404-88f9e889-1fc8-4ea9-abef-bc4f2121fdc2.png">
+<img width="274" alt="Earner settings" src="https://user-images.githubusercontent.com/2292809/201487914-61e404ba-3508-4659-b7fa-0e3f317fc16b.png">
