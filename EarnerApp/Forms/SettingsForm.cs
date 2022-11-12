@@ -117,6 +117,7 @@ namespace Earner.Forms
             _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
             _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
             _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
+            // _Settings.TaskLogSaveLocation = 
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
@@ -141,6 +142,19 @@ namespace Earner.Forms
             if (e.KeyCode == Keys.Escape)
             {
                 Close();
+            }
+        }
+
+        private void TaskLogLocationLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using FolderBrowserDialog fbd = new();
+            fbd.InitialDirectory = _Settings.TaskLogSaveLocation;
+
+            if (fbd.ShowDialog() == DialogResult.OK && _Settings.TaskLogSaveLocation != fbd.SelectedPath && Directory.Exists(fbd.SelectedPath))
+            {
+                _Settings.TaskLogSaveLocation = fbd.SelectedPath;
+                _Settings.Save();
+                Log.Info = "Saved task log path '{fbd.SelectedPath}'";
             }
         }
 

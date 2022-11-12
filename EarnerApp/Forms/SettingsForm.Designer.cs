@@ -56,6 +56,7 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose = new System.Windows.Forms.CheckBox();
             this._chkAutoStartWithWindows = new System.Windows.Forms.CheckBox();
             this._grpBoxTaskSettings = new System.Windows.Forms.GroupBox();
+            this._lnkTaskLogLocation = new System.Windows.Forms.LinkLabel();
             this._chkAutoShowTaskLog = new System.Windows.Forms.CheckBox();
             this._grpBoxGeneralSettings = new System.Windows.Forms.GroupBox();
             this._topPanel.SuspendLayout();
@@ -302,7 +303,7 @@ namespace Earner.Forms
             this._chkShowTooltips.Size = new System.Drawing.Size(78, 25);
             this._chkShowTooltips.TabIndex = 17;
             this._chkShowTooltips.Text = "tooltips";
-            this._chkShowTooltips.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this._chkShowTooltips.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._chkShowTooltips.UseVisualStyleBackColor = true;
             // 
             // _chkShowApplicationLogOnErrors
@@ -359,6 +360,7 @@ namespace Earner.Forms
             this._lblShow.Size = new System.Drawing.Size(49, 21);
             this._lblShow.TabIndex = 21;
             this._lblShow.Text = "Show";
+            this._lblShow.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // _chkShowProgressbar
             // 
@@ -373,7 +375,7 @@ namespace Earner.Forms
             this._chkShowProgressbar.Size = new System.Drawing.Size(114, 25);
             this._chkShowProgressbar.TabIndex = 20;
             this._chkShowProgressbar.Text = "progress bar";
-            this._chkShowProgressbar.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this._chkShowProgressbar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._chkShowProgressbar.UseVisualStyleBackColor = true;
             // 
             // _chkConfirmBeforeClose
@@ -384,9 +386,9 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose.ForeColor = System.Drawing.Color.White;
             this._chkConfirmBeforeClose.Location = new System.Drawing.Point(10, 82);
             this._chkConfirmBeforeClose.Name = "_chkConfirmBeforeClose";
-            this._chkConfirmBeforeClose.Size = new System.Drawing.Size(220, 25);
+            this._chkConfirmBeforeClose.Size = new System.Drawing.Size(171, 25);
             this._chkConfirmBeforeClose.TabIndex = 19;
-            this._chkConfirmBeforeClose.Text = "Confirm before Earner close";
+            this._chkConfirmBeforeClose.Text = "Confirm before close";
             this._chkConfirmBeforeClose.UseVisualStyleBackColor = true;
             // 
             // _chkAutoStartWithWindows
@@ -397,13 +399,14 @@ namespace Earner.Forms
             this._chkAutoStartWithWindows.ForeColor = System.Drawing.Color.White;
             this._chkAutoStartWithWindows.Location = new System.Drawing.Point(10, 52);
             this._chkAutoStartWithWindows.Name = "_chkAutoStartWithWindows";
-            this._chkAutoStartWithWindows.Size = new System.Drawing.Size(161, 25);
+            this._chkAutoStartWithWindows.Size = new System.Drawing.Size(124, 25);
             this._chkAutoStartWithWindows.TabIndex = 18;
-            this._chkAutoStartWithWindows.Text = "Start with Windows";
+            this._chkAutoStartWithWindows.Text = "Run at startup";
             this._chkAutoStartWithWindows.UseVisualStyleBackColor = true;
             // 
             // _grpBoxTaskSettings
             // 
+            this._grpBoxTaskSettings.Controls.Add(this._lnkTaskLogLocation);
             this._grpBoxTaskSettings.Controls.Add(this._chkAutoShowTaskLog);
             this._grpBoxTaskSettings.Controls.Add(this._chkSaveTaskLog);
             this._grpBoxTaskSettings.Controls.Add(this._btnEditTasks);
@@ -416,6 +419,22 @@ namespace Earner.Forms
             this._grpBoxTaskSettings.TabIndex = 1;
             this._grpBoxTaskSettings.TabStop = false;
             this._grpBoxTaskSettings.Text = "Task settings";
+            // 
+            // _lnkTaskLogLocation
+            // 
+            this._lnkTaskLogLocation.ActiveLinkColor = System.Drawing.Color.White;
+            this._lnkTaskLogLocation.AutoSize = true;
+            this._lnkTaskLogLocation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lnkTaskLogLocation.LinkColor = System.Drawing.Color.White;
+            this._lnkTaskLogLocation.Location = new System.Drawing.Point(126, 23);
+            this._lnkTaskLogLocation.Name = "_lnkTaskLogLocation";
+            this._lnkTaskLogLocation.Size = new System.Drawing.Size(41, 21);
+            this._lnkTaskLogLocation.TabIndex = 17;
+            this._lnkTaskLogLocation.TabStop = true;
+            this._lnkTaskLogLocation.Text = "here";
+            this._lnkTaskLogLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._lnkTaskLogLocation.VisitedLinkColor = System.Drawing.Color.White;
+            this._lnkTaskLogLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TaskLogLocationLinkClicked);
             // 
             // _chkAutoShowTaskLog
             // 
@@ -519,5 +538,6 @@ namespace Earner.Forms
         private Label _lblSettingsHeader;
         private Label _lblShow;
         private CheckBox _chkShowProgressbar;
+        private LinkLabel _lnkTaskLogLocation;
     }
 }

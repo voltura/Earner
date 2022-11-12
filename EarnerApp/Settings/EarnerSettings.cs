@@ -2,6 +2,12 @@
 {
     internal sealed class EarnerSettings
     {
+        #region Private variables
+
+        private string _TaskLogSaveLocation = string.Empty;
+
+        #endregion Private variables
+
         #region Private constructor
 
         private EarnerSettings()
@@ -39,11 +45,30 @@
 
         public bool SaveTaskLog { get; set; } = false;
 
+        public string TaskLogSaveLocation {
+            get 
+            {
+                if (!Directory.Exists(_TaskLogSaveLocation))
+                {
+                    _TaskLogSaveLocation = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        Application.CompanyName,
+                        Application.ProductName);
+                }
+
+                return _TaskLogSaveLocation;
+            }
+            set
+            {
+                _TaskLogSaveLocation = value;
+            }
+        }
+
+        public bool AutoShowTaskLog { get; set; } = false;
+
         public bool ShowApplicationLogOnErrors { get; set; } = false;
 
         public bool ShowTooltips { get; set; } = false;
-
-        public bool AutoShowTaskLog { get; set; } = false;
 
         public bool AutoStartWithWindows { get; set; } = false;
 
@@ -65,9 +90,10 @@
             CurrencySymbol = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
             EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
             SaveTaskLog = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
+            TaskLogSaveLocation = EarnerConfig.GetAppSettings<string>("TaskLogSaveLocation");
+            AutoShowTaskLog = EarnerConfig.GetAppSettings<bool>("AutoShowTaskLog");
             ShowApplicationLogOnErrors = EarnerConfig.GetAppSettings<bool>("ShowAppLogOnError");
             ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
-            AutoShowTaskLog = EarnerConfig.GetAppSettings<bool>("AutoShowTaskLog");
             AutoStartWithWindows = EarnerConfig.GetAppSettings<bool>("AutoStartWithWindows");
             ConfirmBeforeClose = EarnerConfig.GetAppSettings<bool>("ConfirmBeforeClose");
             ShowProgressbar = EarnerConfig.GetAppSettings<bool>("ShowProgressbar");
@@ -82,8 +108,9 @@
             _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", MaxBillableDailyHours.ToString());
             _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", CurrencySymbol.ToString());
             _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", SaveTaskLog.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", ShowTooltips.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("TaskLogSaveLocation", TaskLogSaveLocation.ToString());
             _ = EarnerConfig.SaveAppSettingsString("AutoShowTaskLog", AutoShowTaskLog.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", ShowTooltips.ToString());
             _ = EarnerConfig.SaveAppSettingsString("AutoStartWithWindows", AutoStartWithWindows.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", ShowApplicationLogOnErrors.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ConfirmBeforeClose", ConfirmBeforeClose.ToString());

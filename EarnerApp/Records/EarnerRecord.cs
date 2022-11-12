@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return $"Task: '{Task}' Day: '{Date:yyyy-MM-dd}' Earned: '{Earned:0.00}{CurrencySymbol}' Time: '" + $"{Time:c}"[..8] + "'";
+            return $"Task: '{Task}' Date: '{Date:yyyy-MM-dd}' Day: '{Date:dddd}' Earned: '{Earned:0.00}{CurrencySymbol}' Time: '" + $"{Time:c}"[..8] + "'";
         }
 
         public override int GetHashCode()

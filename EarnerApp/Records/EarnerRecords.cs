@@ -26,13 +26,11 @@ namespace Earner.Records
             get
             {
                 string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{DateTime.Now:yyyy-MM-dd}.xlsx";
-                string appDataFolder = Path.Combine(Environment.GetFolderPath(
-                    Environment.SpecialFolder.LocalApplicationData),
-                    Application.CompanyName, Application.ProductName);
-                string excelFileFullPath = Path.Combine(appDataFolder, excelFileName);
-                if (!Directory.Exists(appDataFolder))
+                string taskLogSaveLocation = EarnerSettings.Instance.TaskLogSaveLocation;
+                string excelFileFullPath = Path.Combine(taskLogSaveLocation, excelFileName);
+                if (!Directory.Exists(taskLogSaveLocation))
                 {
-                    _ = Directory.CreateDirectory(appDataFolder);
+                    _ = Directory.CreateDirectory(taskLogSaveLocation);
                 }
                 return excelFileFullPath;
             }
@@ -136,7 +134,7 @@ namespace Earner.Records
                     {
                         i.Task,
                         i.Date,
-                        Day = i.Date.ToString("dddd"),
+                        Day = $"{i.Date:dddd}",
                         Earned = Math.Round(i.Earned, 2, MidpointRounding.AwayFromZero),
                         Currency = i.CurrencySymbol,
                         Time = $"{i.Time:c}"[..8],
@@ -146,7 +144,7 @@ namespace Earner.Records
                 {
                     Task = "Total",
                     Date = DateTime.Now,
-                    Day = DateTime.Now.Date.ToString("dddd"),
+                    Day = $"{DateTime.Now.Date:dddd}",
                     Earned = Math.Round(_earnerRecords.Sum(i => i.Earned), 2, MidpointRounding.AwayFromZero),
                     Currency = _Settings.CurrencySymbol,
                     Time = $"{TimeSpan.FromSeconds(_earnerRecords.Sum(i => Math.Round(i.Time.TotalSeconds, 1, MidpointRounding.AwayFromZero))):c}"[..8],
