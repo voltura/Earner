@@ -355,7 +355,7 @@ namespace Earner.Forms
             // 
             this._lblShow.AutoSize = true;
             this._lblShow.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._lblShow.Location = new System.Drawing.Point(6, 23);
+            this._lblShow.Location = new System.Drawing.Point(6, 24);
             this._lblShow.Name = "_lblShow";
             this._lblShow.Size = new System.Drawing.Size(49, 21);
             this._lblShow.TabIndex = 21;
