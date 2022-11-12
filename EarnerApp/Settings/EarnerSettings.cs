@@ -1,4 +1,6 @@
-﻿namespace Earner.Settings
+﻿using System.Globalization;
+
+namespace Earner.Settings
 {
     internal sealed class EarnerSettings
     {
@@ -12,6 +14,7 @@
 
         private EarnerSettings()
         {
+            CreateSettings();
         }
 
         #endregion Private constructor
@@ -24,6 +27,7 @@
         {
             get
             {
+                CreateSettings();
                 lazy.Value.Load();
                 return lazy.Value;
             }
@@ -84,6 +88,7 @@
 
         public void Load()
         {
+            CreateSettings();
             HourlyRate = EarnerConfig.GetAppSettings<double>("HourlyRate");
             FixedDailyCost = EarnerConfig.GetAppSettings<double>("FixedDailyCost");
             MaxBillableDailyHours = EarnerConfig.GetAppSettings<double>("MaxBillableDailyHours");
@@ -103,6 +108,7 @@
 
         public void Save()
         {
+            CreateSettings();
             _ = EarnerConfig.SaveAppSettingsString("HourlyRate", HourlyRate.ToString());
             _ = EarnerConfig.SaveAppSettingsString("FixedDailyCost", FixedDailyCost.ToString());
             _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", MaxBillableDailyHours.ToString());
@@ -121,5 +127,40 @@
         }
 
         #endregion Public methods
+
+        #region Private method that creates the application settings file if needed
+
+        private static void CreateSettings()
+        {
+            string settingsFile = Application.ExecutablePath.Replace(".exe", ".dll") + ".config";
+            if (!File.Exists(settingsFile))
+            {
+                Log.LogCaller();
+                string xml = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
+<configuration>
+	<appSettings>
+		<add key=""HourlyRate"" value=""1000""/>
+		<add key=""FixedDailyCost"" value=""0""/>
+		<add key=""MaxBillableDailyHours"" value=""8""/>
+		<add key=""CurrencySymbol"" value=""""/>
+		<add key=""Tasks"" value=""Task A,Task B,Task C""/>
+		<add key=""MaxLogFileSizeInMB"" value=""10""/>
+		<add key=""SaveTaskLog"" value=""true""/>
+		<add key=""TaskLogSaveLocation"" value=""""/>
+		<add key=""ShowAppLogOnError"" value=""false""/>
+		<add key=""ShowTooltips"" value=""false""/>
+		<add key=""AutoShowTaskLog"" value=""false""/>
+		<add key=""AutoStartWithWindows"" value=""false""/>
+		<add key=""ConfirmBeforeClose"" value=""false""/>
+		<add key=""ShowProgressbar"" value=""true""/>
+		<add key=""ShowSettingsOnStartup"" value=""true""/>
+	</appSettings>
+</configuration>";
+                File.WriteAllText(settingsFile, xml, System.Text.Encoding.UTF8);
+                Log.Info = $"Created '{settingsFile}'";
+            }
+        }
+
+        #endregion Private method that creates the application settings file if needed
     }
 }
