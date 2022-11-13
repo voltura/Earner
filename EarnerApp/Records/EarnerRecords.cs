@@ -48,7 +48,7 @@ namespace Earner.Records
         {
             get
             {
-                string jsonFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{DateTime.Now:yyyy-MM}.json";
+                string jsonFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}.json";
                 string jsonSaveLocation = EarnerSettings.Instance.JsonSaveLocation;
                 string jsonFileFullPath = Path.Combine(jsonSaveLocation, jsonFileName);
                 if (!Directory.Exists(jsonSaveLocation))
