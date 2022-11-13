@@ -293,7 +293,7 @@ namespace Earner.Forms
             this._grpBoxDeveloperSettings.Size = new System.Drawing.Size(277, 57);
             this._grpBoxDeveloperSettings.TabIndex = 3;
             this._grpBoxDeveloperSettings.TabStop = false;
-            this._grpBoxDeveloperSettings.Text = "Developer settings";
+            this._grpBoxDeveloperSettings.Text = "Advanced";
             // 
             // _grpBoxInterfaceSettings
             // 
@@ -311,7 +311,7 @@ namespace Earner.Forms
             this._grpBoxInterfaceSettings.Size = new System.Drawing.Size(277, 117);
             this._grpBoxInterfaceSettings.TabIndex = 2;
             this._grpBoxInterfaceSettings.TabStop = false;
-            this._grpBoxInterfaceSettings.Text = "Application settings";
+            this._grpBoxInterfaceSettings.Text = "Application";
             // 
             // _btnAbout
             // 
@@ -402,7 +402,7 @@ namespace Earner.Forms
             this._grpBoxTaskSettings.Size = new System.Drawing.Size(277, 87);
             this._grpBoxTaskSettings.TabIndex = 1;
             this._grpBoxTaskSettings.TabStop = false;
-            this._grpBoxTaskSettings.Text = "Task settings";
+            this._grpBoxTaskSettings.Text = "Tasks && log";
             // 
             // _btnEraseLogRecords
             // 
@@ -472,7 +472,7 @@ namespace Earner.Forms
             this._grpBoxGeneralSettings.Size = new System.Drawing.Size(277, 131);
             this._grpBoxGeneralSettings.TabIndex = 0;
             this._grpBoxGeneralSettings.TabStop = false;
-            this._grpBoxGeneralSettings.Text = "General settings";
+            this._grpBoxGeneralSettings.Text = "General";
             // 
             // _txtMaxBillableDailyHoursPlaceholder
             // 
