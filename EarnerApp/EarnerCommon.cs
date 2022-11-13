@@ -1,6 +1,7 @@
 ﻿#region Using statements
 
 using Microsoft.Win32;
+using System.Diagnostics;
 
 #endregion Using statements
 
@@ -53,7 +54,7 @@ namespace Earner
 
         #endregion Public properties
 
-        #region Public functions
+        #region Public methods
 
         public static double ConvertToDouble(string value)
         {
@@ -81,7 +82,7 @@ namespace Earner
             }
         }
 
-        public static void MakeProgressbarGreen(IntPtr pbHandle)
+        public static void SetProgressbarActive(IntPtr pbHandle)
         {
             _ = NativeMethods.SendMessage(pbHandle,
                0x400 + 16, //WM_USER + PBM_SETSTATE
@@ -89,8 +90,7 @@ namespace Earner
                0);
         }
 
-
-        public static void MakeProgressbarPaused(IntPtr pbHandle)
+        public static void SetProgressbarPaused(IntPtr pbHandle)
         {
             _ = NativeMethods.SendMessage(pbHandle,
                0x400 + 16, //WM_USER + PBM_SETSTATE
@@ -98,7 +98,7 @@ namespace Earner
                0);
         }
 
-        public static void MakeProgressbarError(IntPtr pbHandle)
+        public static void SetProgressbarErrorState(IntPtr pbHandle)
         {
             _ = NativeMethods.SendMessage(pbHandle,
                0x400 + 16, //WM_USER + PBM_SETSTATE
@@ -106,6 +106,24 @@ namespace Earner
                0);
         }
 
-        #endregion Public functions
+        public static void OpenUrl(string url)
+        {
+            try
+            {
+                using Process p = new();
+                p.StartInfo = new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = url
+                };
+                p.Start();
+            }
+            catch (Exception ex)
+            {
+                Log.Error = ex;
+            }
+        }
+
+        #endregion Public methods
     }
 }

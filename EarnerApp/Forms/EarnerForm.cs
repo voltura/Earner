@@ -88,7 +88,7 @@ namespace Earner.Forms
 
         private bool StartEarning()
         {
-            EarnerCommon.MakeProgressbarGreen(_pbWorkProgress.Handle);
+            EarnerCommon.SetProgressbarActive(_pbWorkProgress.Handle);
             if (_Settings.ShowSettingsOnStartup)
             {
                 using SettingsForm sf = new();
@@ -119,7 +119,7 @@ namespace Earner.Forms
 
         private bool StopEarning()
         {
-            EarnerCommon.MakeProgressbarPaused(_pbWorkProgress.Handle);
+            EarnerCommon.SetProgressbarPaused(_pbWorkProgress.Handle);
             _pbWorkProgress.Value = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _stopwatch.Stop();
@@ -147,7 +147,7 @@ namespace Earner.Forms
             else
             {
                 _pbWorkProgress.Value = 100;
-                EarnerCommon.MakeProgressbarError(_pbWorkProgress.Handle);
+                EarnerCommon.SetProgressbarErrorState(_pbWorkProgress.Handle);
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 Log.Info = "Working overtime";
             }

@@ -41,7 +41,7 @@ namespace Earner.Forms
         {
             _grpBoxGeneralSettings.SuspendLayout();
             SuspendLayout();
-            _txtHourlyRate.BackColor = Color.FromArgb(30, 30, 30);
+            _txtHourlyRate.BackColor = Color.FromArgb(47, 47, 47);
             _txtHourlyRate.BorderStyle = BorderStyle.None;
             _txtHourlyRate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             _txtHourlyRate.ForeColor = Color.White;
@@ -53,7 +53,7 @@ namespace Earner.Forms
             _txtHourlyRate.Text = "1000";
             _txtHourlyRate.TextAlign = HorizontalAlignment.Right;
             _txtHourlyRate.KeyPress += new KeyPressEventHandler(KeyPressEnterSave);
-            _txtFixedDailyCost.BackColor = Color.FromArgb(30, 30, 30);
+            _txtFixedDailyCost.BackColor = Color.FromArgb(47, 47, 47);
             _txtFixedDailyCost.BorderStyle = BorderStyle.None;
             _txtFixedDailyCost.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             _txtFixedDailyCost.ForeColor = Color.White;
@@ -65,7 +65,7 @@ namespace Earner.Forms
             _txtFixedDailyCost.Text = "0";
             _txtFixedDailyCost.TextAlign = HorizontalAlignment.Right;
             _txtFixedDailyCost.KeyPress += new KeyPressEventHandler(KeyPressEnterSave);
-            _txtMaxBillableDailyHours.BackColor = Color.FromArgb(30, 30, 30);
+            _txtMaxBillableDailyHours.BackColor = Color.FromArgb(47, 47, 47);
             _txtMaxBillableDailyHours.BorderStyle = BorderStyle.None;
             _txtMaxBillableDailyHours.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             _txtMaxBillableDailyHours.ForeColor = Color.White;
@@ -231,6 +231,20 @@ namespace Earner.Forms
                 Close();
             }
             Visible = true;
+        }
+
+        private void AboutClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Hide();
+                using AboutForm aboutForm = new();
+                _ = aboutForm.ShowDialog(this);
+            }
+            finally
+            {
+                Visible = true;
+            }
         }
 
         #endregion Private events

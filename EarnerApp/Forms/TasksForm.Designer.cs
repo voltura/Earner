@@ -119,7 +119,7 @@ namespace Earner.Forms
             // _btnAddTask
             // 
             this._btnAddTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnAddTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAddTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._btnAddTask.BackgroundImage = global::Earner.Properties.Resources.check_48x48;
             this._btnAddTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnAddTask.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -129,7 +129,7 @@ namespace Earner.Forms
             this._btnAddTask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnAddTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnAddTask.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._btnAddTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAddTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._btnAddTask.Location = new System.Drawing.Point(295, 32);
             this._btnAddTask.Margin = new System.Windows.Forms.Padding(0);
             this._btnAddTask.Name = "_btnAddTask";
@@ -141,7 +141,7 @@ namespace Earner.Forms
             // 
             // _cmbTasks
             // 
-            this._cmbTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this._cmbTasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._cmbTasks.DropDownHeight = 10;
             this._cmbTasks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this._cmbTasks.DropDownWidth = 10;
@@ -165,7 +165,7 @@ namespace Earner.Forms
             // _btnRemoveTask
             // 
             this._btnRemoveTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnRemoveTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnRemoveTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._btnRemoveTask.BackgroundImage = global::Earner.Properties.Resources.close_48x48;
             this._btnRemoveTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this._btnRemoveTask.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -175,7 +175,7 @@ namespace Earner.Forms
             this._btnRemoveTask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnRemoveTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnRemoveTask.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._btnRemoveTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnRemoveTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._btnRemoveTask.Location = new System.Drawing.Point(315, 32);
             this._btnRemoveTask.Margin = new System.Windows.Forms.Padding(0);
             this._btnRemoveTask.Name = "_btnRemoveTask";
