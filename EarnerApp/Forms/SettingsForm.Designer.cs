@@ -58,6 +58,7 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose = new System.Windows.Forms.CheckBox();
             this._chkAutoStartWithWindows = new System.Windows.Forms.CheckBox();
             this._grpBoxTaskSettings = new System.Windows.Forms.GroupBox();
+            this._btnAdminJsonDb = new System.Windows.Forms.Button();
             this._btnEraseLogRecords = new System.Windows.Forms.Button();
             this._lnkTaskLogLocation = new System.Windows.Forms.LinkLabel();
             this._chkAutoShowTaskLog = new System.Windows.Forms.CheckBox();
@@ -65,7 +66,6 @@ namespace Earner.Forms
             this._txtMaxBillableDailyHoursPlaceholder = new System.Windows.Forms.TextBox();
             this._txtFixedDailyCostPlaceholder = new System.Windows.Forms.TextBox();
             this._txtHourlyRatePlaceholder = new System.Windows.Forms.TextBox();
-            this._btnAdminJsonDb = new System.Windows.Forms.Button();
             this._topPanel.SuspendLayout();
             this._grpBoxDeveloperSettings.SuspendLayout();
             this._grpBoxInterfaceSettings.SuspendLayout();
@@ -243,6 +243,7 @@ namespace Earner.Forms
             this._chkSaveTaskLog.TabIndex = 14;
             this._chkSaveTaskLog.Text = "Save log";
             this._chkSaveTaskLog.UseVisualStyleBackColor = true;
+            this._chkSaveTaskLog.CheckedChanged += new System.EventHandler(this.SaveTaskLogCheckedChanged);
             // 
             // _toolTip
             // 
@@ -267,6 +268,7 @@ namespace Earner.Forms
             this._chkShowTooltips.Text = "tooltips";
             this._chkShowTooltips.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._chkShowTooltips.UseVisualStyleBackColor = true;
+            this._chkShowTooltips.CheckedChanged += new System.EventHandler(this.ShowTooltipsCheckedChanged);
             // 
             // _chkShowApplicationLogOnErrors
             // 
@@ -282,6 +284,7 @@ namespace Earner.Forms
             this._chkShowApplicationLogOnErrors.TabIndex = 20;
             this._chkShowApplicationLogOnErrors.Text = "Display errors";
             this._chkShowApplicationLogOnErrors.UseVisualStyleBackColor = true;
+            this._chkShowApplicationLogOnErrors.CheckedChanged += new System.EventHandler(this.ShowApplicationLogOnErrorsCheckedChanged);
             // 
             // _grpBoxDeveloperSettings
             // 
@@ -361,6 +364,7 @@ namespace Earner.Forms
             this._chkShowProgressbar.Text = "progress bar";
             this._chkShowProgressbar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._chkShowProgressbar.UseVisualStyleBackColor = true;
+            this._chkShowProgressbar.CheckedChanged += new System.EventHandler(this.ShowProgressbarCheckedChanged);
             // 
             // _chkConfirmBeforeClose
             // 
@@ -374,6 +378,7 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose.TabIndex = 19;
             this._chkConfirmBeforeClose.Text = "Confirm close";
             this._chkConfirmBeforeClose.UseVisualStyleBackColor = true;
+            this._chkConfirmBeforeClose.CheckedChanged += new System.EventHandler(this.ConfirmBeforeCloseCheckedChanged);
             // 
             // _chkAutoStartWithWindows
             // 
@@ -387,6 +392,7 @@ namespace Earner.Forms
             this._chkAutoStartWithWindows.TabIndex = 18;
             this._chkAutoStartWithWindows.Text = "Run at startup";
             this._chkAutoStartWithWindows.UseVisualStyleBackColor = true;
+            this._chkAutoStartWithWindows.CheckedChanged += new System.EventHandler(this.AutoStartWithWindowsCheckedChanged);
             // 
             // _grpBoxTaskSettings
             // 
@@ -405,6 +411,28 @@ namespace Earner.Forms
             this._grpBoxTaskSettings.TabIndex = 1;
             this._grpBoxTaskSettings.TabStop = false;
             this._grpBoxTaskSettings.Text = "Tasks && log";
+            // 
+            // _btnAdminJsonDb
+            // 
+            this._btnAdminJsonDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnAdminJsonDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.BackgroundImage = global::Earner.Properties.Resources.database_48x48;
+            this._btnAdminJsonDb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnAdminJsonDb.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.FlatAppearance.BorderSize = 0;
+            this._btnAdminJsonDb.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnAdminJsonDb.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnAdminJsonDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnAdminJsonDb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.Location = new System.Drawing.Point(158, 17);
+            this._btnAdminJsonDb.Margin = new System.Windows.Forms.Padding(0);
+            this._btnAdminJsonDb.Name = "_btnAdminJsonDb";
+            this._btnAdminJsonDb.Size = new System.Drawing.Size(29, 29);
+            this._btnAdminJsonDb.TabIndex = 602;
+            this._btnAdminJsonDb.Tag = "";
+            this._btnAdminJsonDb.UseVisualStyleBackColor = false;
+            this._btnAdminJsonDb.Click += new System.EventHandler(this.AdminJsonDbClick);
             // 
             // _btnEraseLogRecords
             // 
@@ -455,6 +483,7 @@ namespace Earner.Forms
             this._chkAutoShowTaskLog.TabIndex = 15;
             this._chkAutoShowTaskLog.Text = "Show log on close && reset";
             this._chkAutoShowTaskLog.UseVisualStyleBackColor = true;
+            this._chkAutoShowTaskLog.CheckedChanged += new System.EventHandler(this.AutoShowTaskLogCheckedChanged);
             // 
             // _grpBoxGeneralSettings
             // 
@@ -520,28 +549,6 @@ namespace Earner.Forms
             this._txtHourlyRatePlaceholder.TabStop = false;
             this._txtHourlyRatePlaceholder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._txtHourlyRatePlaceholder.Visible = false;
-            // 
-            // _btnAdminJsonDb
-            // 
-            this._btnAdminJsonDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnAdminJsonDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAdminJsonDb.BackgroundImage = global::Earner.Properties.Resources.database_48x48;
-            this._btnAdminJsonDb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this._btnAdminJsonDb.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAdminJsonDb.FlatAppearance.BorderSize = 0;
-            this._btnAdminJsonDb.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAdminJsonDb.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this._btnAdminJsonDb.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this._btnAdminJsonDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnAdminJsonDb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAdminJsonDb.Location = new System.Drawing.Point(158, 17);
-            this._btnAdminJsonDb.Margin = new System.Windows.Forms.Padding(0);
-            this._btnAdminJsonDb.Name = "_btnAdminJsonDb";
-            this._btnAdminJsonDb.Size = new System.Drawing.Size(29, 29);
-            this._btnAdminJsonDb.TabIndex = 602;
-            this._btnAdminJsonDb.Tag = "";
-            this._btnAdminJsonDb.UseVisualStyleBackColor = false;
-            this._btnAdminJsonDb.Click += new System.EventHandler(this.AdminJsonDbClick);
             // 
             // SettingsForm
             // 

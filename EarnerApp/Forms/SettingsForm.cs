@@ -106,13 +106,24 @@ namespace Earner.Forms
         {
             if (_Settings.ShowTooltips)
             {
-                _toolTip.SetToolTip(_btnClose, "Close settings");
+                _toolTip.SetToolTip(_lblHourlyRate, "Earnings per hour");
+                _toolTip.SetToolTip(_txtHourlyRate, "Earnings per hour");
+                _toolTip.SetToolTip(_lblFixedDailyCost, "Daily expenditures that should be deducted from earnings");
+                _toolTip.SetToolTip(_txtFixedDailyCost, "Daily expenditures that should be deducted from earnings");
                 _toolTip.SetToolTip(_lblMaxBillableDailyHours, "Earnings will stop after specified hours been exceeded");
+                _toolTip.SetToolTip(_txtMaxBillableDailyHours, "Max number of hours earnings are counted for per day");
+                _toolTip.SetToolTip(_lblCurrencySymbol, "Currency identifier text (max 3 characters)");
+                _toolTip.SetToolTip(_txtCurrencySymbol, "Currency identifier text (max 3 characters)");
+                _toolTip.SetToolTip(_btnClose, "Close settings");
                 _toolTip.SetToolTip(_btnSave, "Save settings");
-                _toolTip.SetToolTip(_btnEditTasks, "Edit tasks");
+                _toolTip.SetToolTip(_btnAbout, "Show information about Earner");
+                _toolTip.SetToolTip(_btnAdminJsonDb, "Administer work log");
+                _toolTip.SetToolTip(_btnEraseLogRecords, "Erase ALL log earnings and work");
+                _toolTip.SetToolTip(_lnkTaskLogLocation, "Select folder that Excel files are stored");
+                _toolTip.SetToolTip(_btnEditTasks, "Edit tasks; Add and Delete");
                 _toolTip.SetToolTip(_chkSaveTaskLog, "Show Excel file on Close/Reset");
                 _toolTip.SetToolTip(_chkShowTooltips, "Show tooltips");
-                _toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show tooltips");
+                _toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show application log on errors (technical)");
                 _toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or reset is pressed");
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start Earner with Windows");
                 _toolTip.SetToolTip(_chkConfirmBeforeClose, "Show confirmation dialog when Close is pressed");
@@ -120,8 +131,19 @@ namespace Earner.Forms
             }
             else
             {
-                _toolTip.SetToolTip(_btnClose, null);
+                _toolTip.SetToolTip(_lblHourlyRate, null);
+                _toolTip.SetToolTip(_txtHourlyRate, null);
+                _toolTip.SetToolTip(_lblFixedDailyCost, null);
+                _toolTip.SetToolTip(_txtFixedDailyCost, null);
                 _toolTip.SetToolTip(_lblMaxBillableDailyHours, null);
+                _toolTip.SetToolTip(_txtMaxBillableDailyHours, null);
+                _toolTip.SetToolTip(_lblCurrencySymbol, null);
+                _toolTip.SetToolTip(_txtCurrencySymbol, null);
+                _toolTip.SetToolTip(_lnkTaskLogLocation, null);
+                _toolTip.SetToolTip(_btnEraseLogRecords, null);
+                _toolTip.SetToolTip(_btnAdminJsonDb, null);
+                _toolTip.SetToolTip(_btnAbout, null);
+                _toolTip.SetToolTip(_btnClose, null);
                 _toolTip.SetToolTip(_btnSave, null);
                 _toolTip.SetToolTip(_btnEditTasks, null);
                 _toolTip.SetToolTip(_chkSaveTaskLog, null);
@@ -261,6 +283,48 @@ namespace Earner.Forms
             {
                 Visible = true;
             }
+        }
+
+        private void ShowTooltipsCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.ShowTooltips = _chkShowTooltips.Checked;
+            _Settings.Save();
+        }
+
+        private void ShowProgressbarCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
+            _Settings.Save();
+        }
+
+        private void AutoStartWithWindowsCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
+            _Settings.Save();
+        }
+
+        private void ConfirmBeforeCloseCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
+            _Settings.Save();
+        }
+
+        private void ShowApplicationLogOnErrorsCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.ShowApplicationLogOnErrors = _chkShowApplicationLogOnErrors.Checked;
+            _Settings.Save();
+        }
+
+        private void SaveTaskLogCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.SaveTaskLog = _chkSaveTaskLog.Checked;
+            _Settings.Save();
+        }
+
+        private void AutoShowTaskLogCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
+            _Settings.Save();
         }
 
         #endregion Private events

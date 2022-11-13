@@ -65,16 +65,22 @@ namespace Earner.Forms
             {
                 _toolTip.SetToolTip(_lblEarned, "Earnings");
                 _toolTip.SetToolTip(_btnOptions, "Show settings");
-                _toolTip.SetToolTip(_btnStart, "Start/Stop task");
-                _toolTip.SetToolTip(_lblWorkTime, "Time elapsed");
+                _toolTip.SetToolTip(_btnStart, "Start/Stop/Change task");
+                _toolTip.SetToolTip(_lblWorkTime, "Time worked today");
+                _toolTip.SetToolTip(_pbWorkProgress, "Work progress (% of billable hours)");
                 _toolTip.SetToolTip(_btnHide, "Minimize app");
                 _toolTip.SetToolTip(_btnClose, "Close app");
                 _toolTip.SetToolTip(_btnRestart, "Reset todays earnings");
-                _toolTip.SetToolTip(_btnShowRecords, "Show earnings");
+                _toolTip.SetToolTip(_btnShowRecords, "Show earnings and work log");
+                _toolTip.SetToolTip(_lblActiveTask, "Active task");
+                _toolTip.SetToolTip(_lblEarnerHeader, $"{Application.ProductName} {Application.ProductVersion} by Voltura AB");
             }
             else
             {
                 _toolTip.Hide(this);
+                _toolTip.SetToolTip(_lblEarnerHeader, null);
+                _toolTip.SetToolTip(_lblActiveTask, null);
+                _toolTip.SetToolTip(_pbWorkProgress, null);
                 _toolTip.SetToolTip(_lblEarned, null);
                 _toolTip.SetToolTip(_btnOptions, null);
                 _toolTip.SetToolTip(_btnStart, null);
