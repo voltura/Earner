@@ -65,6 +65,7 @@ namespace Earner.Forms
             this._txtMaxBillableDailyHoursPlaceholder = new System.Windows.Forms.TextBox();
             this._txtFixedDailyCostPlaceholder = new System.Windows.Forms.TextBox();
             this._txtHourlyRatePlaceholder = new System.Windows.Forms.TextBox();
+            this._btnAdminJsonDb = new System.Windows.Forms.Button();
             this._topPanel.SuspendLayout();
             this._grpBoxDeveloperSettings.SuspendLayout();
             this._grpBoxInterfaceSettings.SuspendLayout();
@@ -219,7 +220,7 @@ namespace Earner.Forms
             this._btnEditTasks.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this._btnEditTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnEditTasks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnEditTasks.Location = new System.Drawing.Point(236, 18);
+            this._btnEditTasks.Location = new System.Drawing.Point(236, 17);
             this._btnEditTasks.Margin = new System.Windows.Forms.Padding(0);
             this._btnEditTasks.Name = "_btnEditTasks";
             this._btnEditTasks.Size = new System.Drawing.Size(29, 29);
@@ -389,6 +390,7 @@ namespace Earner.Forms
             // 
             // _grpBoxTaskSettings
             // 
+            this._grpBoxTaskSettings.Controls.Add(this._btnAdminJsonDb);
             this._grpBoxTaskSettings.Controls.Add(this._btnEraseLogRecords);
             this._grpBoxTaskSettings.Controls.Add(this._lnkTaskLogLocation);
             this._grpBoxTaskSettings.Controls.Add(this._chkAutoShowTaskLog);
@@ -416,7 +418,7 @@ namespace Earner.Forms
             this._btnEraseLogRecords.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this._btnEraseLogRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnEraseLogRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnEraseLogRecords.Location = new System.Drawing.Point(197, 18);
+            this._btnEraseLogRecords.Location = new System.Drawing.Point(197, 17);
             this._btnEraseLogRecords.Margin = new System.Windows.Forms.Padding(0);
             this._btnEraseLogRecords.Name = "_btnEraseLogRecords";
             this._btnEraseLogRecords.Size = new System.Drawing.Size(29, 29);
@@ -519,6 +521,28 @@ namespace Earner.Forms
             this._txtHourlyRatePlaceholder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._txtHourlyRatePlaceholder.Visible = false;
             // 
+            // _btnAdminJsonDb
+            // 
+            this._btnAdminJsonDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnAdminJsonDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.BackgroundImage = global::Earner.Properties.Resources.database_48x48;
+            this._btnAdminJsonDb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnAdminJsonDb.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.FlatAppearance.BorderSize = 0;
+            this._btnAdminJsonDb.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnAdminJsonDb.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnAdminJsonDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnAdminJsonDb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAdminJsonDb.Location = new System.Drawing.Point(158, 17);
+            this._btnAdminJsonDb.Margin = new System.Windows.Forms.Padding(0);
+            this._btnAdminJsonDb.Name = "_btnAdminJsonDb";
+            this._btnAdminJsonDb.Size = new System.Drawing.Size(29, 29);
+            this._btnAdminJsonDb.TabIndex = 602;
+            this._btnAdminJsonDb.Tag = "";
+            this._btnAdminJsonDb.UseVisualStyleBackColor = false;
+            this._btnAdminJsonDb.Click += new System.EventHandler(this.AdminJsonDbClick);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -591,5 +615,6 @@ namespace Earner.Forms
         private TextBox _txtFixedDailyCostPlaceholder;
         private TextBox _txtHourlyRatePlaceholder;
         private Button _btnAbout;
+        private Button _btnAdminJsonDb;
     }
 }
