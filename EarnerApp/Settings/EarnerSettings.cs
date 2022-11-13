@@ -58,7 +58,8 @@
                     _TaskLogSaveLocation = Path.Combine(
                         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                         Application.CompanyName,
-                        Application.ProductName);
+                        Application.ProductName,
+                        "Exports");
                 }
 
                 return _TaskLogSaveLocation;
