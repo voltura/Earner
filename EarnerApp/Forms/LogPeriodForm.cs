@@ -1,19 +1,25 @@
+#region Using statements
+
+using Earner.Records;
 using Earner.Settings;
+
+#endregion Using statements
 
 namespace Earner.Forms
 {
-    public partial class ConfirmForm : Form
+    public partial class LogPeriodForm : Form
     {
         #region Private variables
 
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
+
         private bool _DoNotChangeFontSize = false;
 
         #endregion Private variables
 
         #region Constructor
 
-        public ConfirmForm()
+        public LogPeriodForm()
         {
             Log.Init();
             Log.LogCaller();
@@ -35,28 +41,24 @@ namespace Earner.Forms
         {
             if (_Settings.ShowTooltips)
             {
-                _toolTip.SetToolTip(LblQuestion, "Please confirm this question");
-                _toolTip.SetToolTip(_btnYes, "Yes, continue");
-                _toolTip.SetToolTip(_btnNo, "No, do not continue");
+                _toolTip.SetToolTip(_btnDay, "Log of todays work");
+                _toolTip.SetToolTip(_btnMonth, "Log of current months work");
+                _toolTip.SetToolTip(_btnYear, "Log of current years work");
+                _toolTip.SetToolTip(_btnAll, "Log of all work");
             }
             else
             {
                 _toolTip.Hide(this);
-                _toolTip.SetToolTip(LblQuestion, null);
-                _toolTip.SetToolTip(_btnYes, null);
-                _toolTip.SetToolTip(_btnNo, null);
+                _toolTip.SetToolTip(_btnDay, null);
+                _toolTip.SetToolTip(_btnMonth, null);
+                _toolTip.SetToolTip(_btnYear, null);
+                _toolTip.SetToolTip(_btnAll, null);
             }
         }
 
         #endregion Private methods
 
         #region Private events
-
-        private void YesClick(object sender, EventArgs e)
-        {
-            Log.LogCaller();
-            Close();
-        }
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)
         {
@@ -67,9 +69,29 @@ namespace Earner.Forms
             }
         }
 
-        private void NoClick(object sender, EventArgs e)
+        private void DayClick(object sender, EventArgs e)
         {
             Log.LogCaller();
+            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.DAY;
+            Close();
+        }
+
+        private void MonthClick(object sender, EventArgs e)
+        {
+            Log.LogCaller();
+            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.MONTH;
+            Close();
+        }
+        private void YearClick(object sender, EventArgs e)
+        {
+            Log.LogCaller();
+            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.YEAR;
+            Close();
+        }
+        private void AllClick(object sender, EventArgs e)
+        {
+            Log.LogCaller();
+            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.ALL;
             Close();
         }
 
@@ -83,12 +105,12 @@ namespace Earner.Forms
             EarnerCommon.ScaleFont(label, 14);
         }
 
-        private void ConfirmFormResize(object sender, EventArgs e)
+        private void LogPeriodFormResize(object sender, EventArgs e)
         {
             _DoNotChangeFontSize = WindowState == FormWindowState.Minimized;
         }
 
-        private void ConfirmFormKeyDown(object sender, KeyEventArgs e)
+        private void LogPeriodFormKeyDown(object sender, KeyEventArgs e)
         {
             Log.LogCaller();
             if (e.KeyCode == Keys.Escape)

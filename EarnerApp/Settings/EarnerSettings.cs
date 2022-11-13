@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-
-namespace Earner.Settings
+﻿namespace Earner.Settings
 {
     internal sealed class EarnerSettings
     {
         #region Private variables
 
         private string _TaskLogSaveLocation = string.Empty;
+
+        private string _JsonSaveLocation = string.Empty;
 
         #endregion Private variables
 
@@ -49,8 +49,9 @@ namespace Earner.Settings
 
         public bool SaveTaskLog { get; set; } = false;
 
-        public string TaskLogSaveLocation {
-            get 
+        public string TaskLogSaveLocation
+        {
+            get
             {
                 if (!Directory.Exists(_TaskLogSaveLocation))
                 {
@@ -65,6 +66,27 @@ namespace Earner.Settings
             set
             {
                 _TaskLogSaveLocation = value;
+            }
+        }
+
+        public string JsonSaveLocation
+        {
+            get
+            {
+                if (!Directory.Exists(_JsonSaveLocation))
+                {
+                    _JsonSaveLocation = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        Application.CompanyName,
+                        Application.ProductName,
+                        "JsonDB");
+                }
+
+                return _JsonSaveLocation;
+            }
+            set
+            {
+                _JsonSaveLocation = value;
             }
         }
 
@@ -96,6 +118,7 @@ namespace Earner.Settings
             EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
             SaveTaskLog = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
             TaskLogSaveLocation = EarnerConfig.GetAppSettings<string>("TaskLogSaveLocation");
+            JsonSaveLocation = EarnerConfig.GetAppSettings<string>("JsonSaveLocation");
             AutoShowTaskLog = EarnerConfig.GetAppSettings<bool>("AutoShowTaskLog");
             ShowApplicationLogOnErrors = EarnerConfig.GetAppSettings<bool>("ShowAppLogOnError");
             ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
@@ -112,9 +135,10 @@ namespace Earner.Settings
             _ = EarnerConfig.SaveAppSettingsString("HourlyRate", HourlyRate.ToString());
             _ = EarnerConfig.SaveAppSettingsString("FixedDailyCost", FixedDailyCost.ToString());
             _ = EarnerConfig.SaveAppSettingsString("MaxBillableDailyHours", MaxBillableDailyHours.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", CurrencySymbol.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("CurrencySymbol", CurrencySymbol);
             _ = EarnerConfig.SaveAppSettingsString("SaveTaskLog", SaveTaskLog.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("TaskLogSaveLocation", TaskLogSaveLocation.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("TaskLogSaveLocation", TaskLogSaveLocation);
+            _ = EarnerConfig.SaveAppSettingsString("JsonSaveLocation", JsonSaveLocation);
             _ = EarnerConfig.SaveAppSettingsString("AutoShowTaskLog", AutoShowTaskLog.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", ShowTooltips.ToString());
             _ = EarnerConfig.SaveAppSettingsString("AutoStartWithWindows", AutoStartWithWindows.ToString());
@@ -147,6 +171,7 @@ namespace Earner.Settings
 		<add key=""MaxLogFileSizeInMB"" value=""10""/>
 		<add key=""SaveTaskLog"" value=""true""/>
 		<add key=""TaskLogSaveLocation"" value=""""/>
+        <add key=""JsonSaveLocation"" value=""""/>
 		<add key=""ShowAppLogOnError"" value=""false""/>
 		<add key=""ShowTooltips"" value=""false""/>
 		<add key=""AutoShowTaskLog"" value=""false""/>

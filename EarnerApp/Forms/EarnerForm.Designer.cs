@@ -314,7 +314,7 @@
             this.Text = "Earner";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerFormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EarnerFormKeyDown);
             this.Resize += new System.EventHandler(this.EarnerFormResize);
             this._topPanel.ResumeLayout(false);

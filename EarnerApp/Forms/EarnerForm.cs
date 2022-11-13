@@ -2,6 +2,7 @@
 
 using Earner.Records;
 using Earner.Settings;
+using System.Diagnostics;
 
 #endregion Using statements
 
@@ -11,14 +12,22 @@ namespace Earner.Forms
     {
         #region Private variables
 
-        private double _Earned;
+        private double _TotalSecondsWorkedTodayWhenAppStarted;
+
         private TimeSpan _ElapsedTime;
+
         private DateTime _ActiveDay;
+
         private string _ActiveTask = string.Empty;
-        private readonly EarnerRecords _EarnerRecords = new();
-        private readonly System.Diagnostics.Stopwatch _stopwatch = new();
+
+        private readonly EarnerRecords _EarnerRecords;
+
+        private readonly Stopwatch _stopwatch = new();
+
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
+
         private bool _DoNotChangeFontSize = false;
+
         private int _unfocusCount = 0;
 
         #endregion Private variables
@@ -29,6 +38,8 @@ namespace Earner.Forms
         {
             Log.Init();
             Log.LogCaller();
+            _EarnerRecords = new EarnerRecords();
+            _TotalSecondsWorkedTodayWhenAppStarted = _EarnerRecords.TotalSecondsWorkedToday;
             InitializeComponent();
             LoadAppSettings();
             _ = StartEarning();
@@ -81,17 +92,21 @@ namespace Earner.Forms
             if (_Settings.ShowSettingsOnStartup)
             {
                 using SettingsForm sf = new();
-                _ = sf.ShowDialog(this);
+                sf.ShowDialog(this);
                 _Settings.ShowSettingsOnStartup = false;
                 _Settings.Save();
             }
+
             using TasksForm tasksForm = new();
-            if (DialogResult.OK != tasksForm.ShowDialog(this))
+            DialogResult tasksFormResult;
+            tasksFormResult = tasksForm.ShowDialog(this);
+            if (tasksFormResult != DialogResult.OK)
             {
                 return false;
             }
+
             LoadAppSettings();
-            _pbWorkProgress.Value = 0;
+            _pbWorkProgress.Value = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _ActiveDay = DateTime.Today;
             _stopwatch.Start();
@@ -105,7 +120,7 @@ namespace Earner.Forms
         private bool StopEarning()
         {
             EarnerCommon.MakeProgressbarPaused(_pbWorkProgress.Handle);
-            _pbWorkProgress.Value = 0;
+            _pbWorkProgress.Value = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _stopwatch.Stop();
             _earnerTimer.Stop();
@@ -114,16 +129,20 @@ namespace Earner.Forms
             return true;
         }
 
-        private double UpdateEarnings()
+        private void UpdateEarnings()
         {
             _ElapsedTime = _stopwatch.Elapsed;
-            double totalEarnings = _ElapsedTime.TotalSeconds * (_Settings.HourlyRate / 3600.00d);
-            if (_ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
+            _stopwatch.Restart();
+            double activeTaskEarningsToday = _EarnerRecords.TotalEarningsTodayForTask(_ActiveTask) + (_ElapsedTime.TotalSeconds * (_Settings.HourlyRate / 3600.00d));
+            if (_TotalSecondsWorkedTodayWhenAppStarted + _ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
             {
-                _pbWorkProgress.Value = Convert.ToInt32(Math.Round((_ElapsedTime.TotalSeconds / (_Settings.MaxBillableDailyHours * 3600)) * 100, 0));
+                _pbWorkProgress.Value = Convert.ToInt32(Math.Round((_TotalSecondsWorkedTodayWhenAppStarted + _ElapsedTime.TotalSeconds) / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
-                _Earned = totalEarnings;
-                _EarnerRecords.UpdateRecord(_ActiveTask, _Settings.HourlyRate, totalEarnings, _Settings.CurrencySymbol);
+                _EarnerRecords.UpdateRecord(
+                    _ActiveTask,
+                    activeTaskEarningsToday,
+                    _ElapsedTime.TotalSeconds + _EarnerRecords.TotalSecondsTodayForTask(_ActiveTask),
+                    _Settings.CurrencySymbol);
             }
             else
             {
@@ -132,15 +151,15 @@ namespace Earner.Forms
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 Log.Info = "Working overtime";
             }
-            double weightedEarnings = _Earned - _Settings.FixedDailyCost;
-            return weightedEarnings;
         }
 
-        private void UpdateEarningsUI(double weightedEarnings)
+        private void UpdateEarningsUI()
         {
+            double weightedEarnings = _EarnerRecords.TotalEarningsToday - _Settings.FixedDailyCost;
             _lblEarned.Text = $"{weightedEarnings:00000}{_Settings.CurrencySymbol}";
-            _lblWorkTime.Text = $"{_ElapsedTime:c}"[..8];
-            _lblWorkTime.ForeColor = _ElapsedTime.TotalHours <= _Settings.MaxBillableDailyHours ? Color.White : Color.Red;
+            TimeSpan totalToday = TimeSpan.FromSeconds(_EarnerRecords.TotalSecondsWorkedToday);
+            _lblWorkTime.Text = $"{totalToday:c}"[..8];
+            _lblWorkTime.ForeColor = totalToday.TotalHours <= _Settings.MaxBillableDailyHours ? Color.White : Color.Red;
             UnfocusForm();
         }
 
@@ -151,6 +170,7 @@ namespace Earner.Forms
                 _unfocusCount = 0;
                 return;
             }
+
             _unfocusCount++;
             if (_unfocusCount > 10)
             {
@@ -178,17 +198,26 @@ namespace Earner.Forms
         {
             Log.LogCaller();
             using SettingsForm sf = new();
-            if (sf.ShowDialog(this) == DialogResult.OK)
+            sf.ShowDialog(this);
+            if (sf.DialogResult == DialogResult.OK)
             {
                 LoadAppSettings();
                 Tick(this, new EventArgs());
+            }
+            else if (sf.DialogResult == DialogResult.TryAgain)
+            {
+                EarnerRecords.EraseLog();
+                _EarnerRecords.RemoveAllEarningRecords();
+                _TotalSecondsWorkedTodayWhenAppStarted = 0;
+                _stopwatch.Reset();
+                _ = StartEarning();
             }
         }
 
         private void Tick(object sender, EventArgs e)
         {
-            double weightedEarnings = UpdateEarnings();
-            UpdateEarningsUI(weightedEarnings);
+            UpdateEarnings();
+            UpdateEarningsUI();
 
             if (_ActiveDay != DateTime.Today)
             {
@@ -201,8 +230,9 @@ namespace Earner.Forms
                     StopEarning();
                     return;
                 }
-                _Earned = 0;
+
                 _stopwatch.Reset();
+                _TotalSecondsWorkedTodayWhenAppStarted = 0;
                 _ = StartEarning();
             }
         }
@@ -232,6 +262,7 @@ namespace Earner.Forms
                 {
                     return;
                 }
+
             }
 
             Close();
@@ -248,21 +279,20 @@ namespace Earner.Forms
 
             _EarnerRecords.LogRecords();
             _EarnerRecords.RemoveTodaysEarningRecords();
-            _Earned = 0;
+            _TotalSecondsWorkedTodayWhenAppStarted = 0;
             _stopwatch.Reset();
             _ = StartEarning();
         }
 
         private void ShowRecordsClick(object sender, EventArgs e)
         {
-            _EarnerRecords.LogRecords();
-            if (!_Settings.AutoShowTaskLog)
-            {
-                EarnerRecords.ShowExcel();
-            }
+
+            using LogPeriodForm logPeriodForm = new();
+            logPeriodForm.ShowDialog(this);
+            _EarnerRecords.LogRecords(true, (EarnerRecords.REPORT_PERIOD)logPeriodForm.DialogResult);
         }
 
-        private void EarnerForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void EarnerFormClosing(object sender, FormClosingEventArgs e)
         {
             _EarnerRecords.LogRecords();
         }
@@ -288,7 +318,7 @@ namespace Earner.Forms
             {
                 using ConfirmForm confirmForm = new();
                 confirmForm.LblQuestion.Text = "Close application?";
-                if (_Settings.ConfirmBeforeClose || DialogResult.Yes == confirmForm.ShowDialog())
+                if (_Settings.ConfirmBeforeClose || DialogResult.Yes == confirmForm.ShowDialog(this))
                 {
                     CloseClick(sender, e);
                 }

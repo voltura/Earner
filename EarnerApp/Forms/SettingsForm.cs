@@ -1,4 +1,9 @@
+#region Using statements
+
 using Earner.Settings;
+using EarnerUserControls;
+
+#endregion Using statements
 
 namespace Earner.Forms
 {
@@ -8,6 +13,12 @@ namespace Earner.Forms
 
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
+        private readonly NumericTextBox _txtFixedDailyCost;
+
+        private readonly NumericTextBox _txtMaxBillableDailyHours;
+
+        private readonly NumericTextBox _txtHourlyRate;
+
         #endregion Private variables
 
         #region Constructor
@@ -15,12 +26,64 @@ namespace Earner.Forms
         public SettingsForm()
         {
             InitializeComponent();
+            _txtHourlyRate = new NumericTextBox();
+            _txtFixedDailyCost = new NumericTextBox();
+            _txtMaxBillableDailyHours = new NumericTextBox();
+            AddNumericTextBoxFieldsToForm();
             LoadAppSettings();
         }
 
         #endregion Constructor
 
         #region Private methods
+
+        private void AddNumericTextBoxFieldsToForm()
+        {
+            _grpBoxGeneralSettings.SuspendLayout();
+            SuspendLayout();
+            _txtHourlyRate.BackColor = Color.FromArgb(30, 30, 30);
+            _txtHourlyRate.BorderStyle = BorderStyle.None;
+            _txtHourlyRate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            _txtHourlyRate.ForeColor = Color.White;
+            _txtHourlyRate.Location = _txtHourlyRatePlaceholder.Location;
+            _txtHourlyRate.MaxLength = 5;
+            _txtHourlyRate.Name = "_txtHourlyRate";
+            _txtHourlyRate.Size = _txtHourlyRatePlaceholder.Size;
+            _txtHourlyRate.TabIndex = 10;
+            _txtHourlyRate.Text = "1000";
+            _txtHourlyRate.TextAlign = HorizontalAlignment.Right;
+            _txtHourlyRate.KeyPress += new KeyPressEventHandler(KeyPressEnterSave);
+            _txtFixedDailyCost.BackColor = Color.FromArgb(30, 30, 30);
+            _txtFixedDailyCost.BorderStyle = BorderStyle.None;
+            _txtFixedDailyCost.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            _txtFixedDailyCost.ForeColor = Color.White;
+            _txtFixedDailyCost.Location = _txtFixedDailyCostPlaceholder.Location;
+            _txtFixedDailyCost.MaxLength = 5;
+            _txtFixedDailyCost.Name = "_txtFixedDailyCost";
+            _txtFixedDailyCost.Size = _txtFixedDailyCostPlaceholder.Size;
+            _txtFixedDailyCost.TabIndex = 11;
+            _txtFixedDailyCost.Text = "0";
+            _txtFixedDailyCost.TextAlign = HorizontalAlignment.Right;
+            _txtFixedDailyCost.KeyPress += new KeyPressEventHandler(KeyPressEnterSave);
+            _txtMaxBillableDailyHours.BackColor = Color.FromArgb(30, 30, 30);
+            _txtMaxBillableDailyHours.BorderStyle = BorderStyle.None;
+            _txtMaxBillableDailyHours.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            _txtMaxBillableDailyHours.ForeColor = Color.White;
+            _txtMaxBillableDailyHours.Location = _txtMaxBillableDailyHoursPlaceholder.Location;
+            _txtMaxBillableDailyHours.MaxLength = 5;
+            _txtMaxBillableDailyHours.Name = "_txtMaxBillableDailyHours";
+            _txtMaxBillableDailyHours.Size = _txtMaxBillableDailyHoursPlaceholder.Size;
+            _txtMaxBillableDailyHours.TabIndex = 12;
+            _txtMaxBillableDailyHours.Text = "8";
+            _txtMaxBillableDailyHours.TextAlign = HorizontalAlignment.Right;
+            _txtMaxBillableDailyHours.KeyPress += new KeyPressEventHandler(KeyPressEnterSave);
+            _grpBoxGeneralSettings.Controls.Add(_txtMaxBillableDailyHours);
+            _grpBoxGeneralSettings.Controls.Add(_txtHourlyRate);
+            _grpBoxGeneralSettings.Controls.Add(_txtFixedDailyCost);
+            _grpBoxGeneralSettings.ResumeLayout(false);
+            _grpBoxGeneralSettings.PerformLayout();
+            ResumeLayout(false);
+        }
 
         private void LoadAppSettings()
         {
@@ -117,7 +180,6 @@ namespace Earner.Forms
             _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
             _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
             _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
-            // _Settings.TaskLogSaveLocation = 
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
@@ -126,12 +188,12 @@ namespace Earner.Forms
         private void EditTasksClick(object sender, EventArgs e)
         {
             using TasksForm tasksForm = new();
-            _ = tasksForm.ShowDialog();
+            _ = tasksForm.ShowDialog(this);
         }
 
-        private void KeyPressEnterSave(object sender, KeyPressEventArgs e)
+        private void KeyPressEnterSave(object? sender, KeyPressEventArgs? e)
         {
-            if (e is not null && ((byte)e.KeyChar) == (byte)Keys.Enter)
+            if (sender is not null && e is not null && ((byte)e.KeyChar) == (byte)Keys.Enter)
             {
                 SaveClick(sender, e);
             }
@@ -150,12 +212,25 @@ namespace Earner.Forms
             using FolderBrowserDialog fbd = new();
             fbd.InitialDirectory = _Settings.TaskLogSaveLocation;
 
-            if (fbd.ShowDialog() == DialogResult.OK && _Settings.TaskLogSaveLocation != fbd.SelectedPath && Directory.Exists(fbd.SelectedPath))
+            if (fbd.ShowDialog(this) == DialogResult.OK && _Settings.TaskLogSaveLocation != fbd.SelectedPath && Directory.Exists(fbd.SelectedPath))
             {
                 _Settings.TaskLogSaveLocation = fbd.SelectedPath;
                 _Settings.Save();
-                Log.Info = "Saved task log path '{fbd.SelectedPath}'";
+                Log.Info = $"Saved task log path '{fbd.SelectedPath}'";
             }
+        }
+
+        private void EraseLogRecordsClick(object sender, EventArgs e)
+        {
+            Hide();
+            using ConfirmForm confirmForm = new();
+            confirmForm.LblQuestion.Text = "Erase ALL work log records\nincluding todays work progress?";
+            if (DialogResult.Yes == confirmForm.ShowDialog(this))
+            {
+                DialogResult = DialogResult.TryAgain;
+                Close();
+            }
+            Visible = true;
         }
 
         #endregion Private events

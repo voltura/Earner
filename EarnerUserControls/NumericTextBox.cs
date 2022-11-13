@@ -4,7 +4,7 @@
     {
         #region Private variables
 
-        private bool _NonNumberEntered = false;
+        private bool _NonNumberEntered;
 
         #endregion Private variables
 

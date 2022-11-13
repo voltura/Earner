@@ -160,7 +160,6 @@
             this.Controls.Add(this._btnYes);
             this.Controls.Add(this._topPanel);
             this.Controls.Add(this.LblQuestion);
-            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -176,7 +175,7 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConfirmFormKeyDown);
-            this.Resize += new System.EventHandler(this.EarnerFormResize);
+            this.Resize += new System.EventHandler(this.ConfirmFormResize);
             this._topPanel.ResumeLayout(false);
             this._topPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxConfirmHeader)).EndInit();

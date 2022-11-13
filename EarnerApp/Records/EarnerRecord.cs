@@ -1,13 +1,35 @@
 ﻿namespace Earner.Records
 {
+    /// <summary>
+    /// Keep track of task and earnings for the same for specific date
+    /// </summary>
     internal record EarnerRecord : IEquatable<EarnerRecord>
     {
         #region Public properties
 
+        /// <summary>
+        /// Task description (also used as identifier)
+        /// </summary>
         public string Task { get; init; } = string.Empty;
+
+        /// <summary>
+        /// Total earnings for date
+        /// </summary>
         public double Earned { get; set; } = 0.0d;
+
+        /// <summary>
+        /// Date for earner record
+        /// </summary>
         public DateTime Date { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// Time spent on task today
+        /// </summary>
         public TimeSpan Time { get; set; } = TimeSpan.Zero;
+
+        /// <summary>
+        /// Currency symbol (max 3 characters)
+        /// </summary>
         public string CurrencySymbol { get; init; } = string.Empty;
 
         #endregion Public properties
