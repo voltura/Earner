@@ -13,4 +13,16 @@
 
 - Administer work tasks log via UI table style, remove, modify, add record manually
 
+- Add button (icon) to display app log in Settings form
+
+- Add option in settings or task admin to delete all exported Excel files (in folder x)
+
+- Cleanup exports older that x months?
+
+- Add feature request and bug report link to about form
+
+- Add donate button somewhere
+
+- Add sound for when overtime occurs + setting to use on/off per
+
 Joakim Skoglund, 2022-11-13
