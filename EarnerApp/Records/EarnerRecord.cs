@@ -30,7 +30,12 @@
         /// <summary>
         /// Currency symbol (max 3 characters)
         /// </summary>
-        public string CurrencySymbol { get; init; } = string.Empty;
+        public string CurrencySymbol { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Hourly rate for this task
+        /// </summary>
+        public double HourlyRate { get; set; }
 
         #endregion Public properties
 

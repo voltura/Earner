@@ -12,8 +12,6 @@ namespace Earner.Forms
     {
         #region Private variables
 
-        private double _TotalSecondsWorkedTodayWhenAppStarted;
-
         private TimeSpan _ElapsedTime;
 
         private DateTime _ActiveDay;
@@ -38,11 +36,10 @@ namespace Earner.Forms
         {
             Log.Init();
             Log.LogCaller();
-            _EarnerRecords = new EarnerRecords();
-            _TotalSecondsWorkedTodayWhenAppStarted = _EarnerRecords.TotalSecondsWorkedToday;
+            _EarnerRecords = EarnerRecords.Instance;
             InitializeComponent();
             LoadAppSettings();
-            _ = StartEarning();
+            StartEarning();
         }
 
         #endregion Constructor
@@ -92,7 +89,7 @@ namespace Earner.Forms
             }
         }
 
-        private bool StartEarning()
+        private void StartEarning()
         {
             EarnerCommon.SetProgressbarActive(_pbWorkProgress.Handle);
             if (_Settings.ShowSettingsOnStartup)
@@ -106,13 +103,9 @@ namespace Earner.Forms
             using TasksForm tasksForm = new();
             DialogResult tasksFormResult;
             tasksFormResult = tasksForm.ShowDialog(this);
-            if (tasksFormResult != DialogResult.OK)
-            {
-                return false;
-            }
-
             LoadAppSettings();
-            _pbWorkProgress.Value = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
+            int workedPercentageToday = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
+            _pbWorkProgress.Value = workedPercentageToday > 100 ? 100 : workedPercentageToday;
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _ActiveDay = DateTime.Today;
             _stopwatch.Start();
@@ -120,19 +113,18 @@ namespace Earner.Forms
             _btnStart.Tag = "Stop";
             _btnStart.BackgroundImage = Properties.Resources.pause_48x48;
             Tick(this, new EventArgs());
-            return true;
         }
 
-        private bool StopEarning()
+        private void StopEarning()
         {
             EarnerCommon.SetProgressbarPaused(_pbWorkProgress.Handle);
-            _pbWorkProgress.Value = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
+            int progress = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
+            _pbWorkProgress.Value = progress > 100 ? 100 : progress;
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _stopwatch.Stop();
             _earnerTimer.Stop();
             _btnStart.Tag = "Start";
             _btnStart.BackgroundImage = Properties.Resources.play_48x48;
-            return true;
         }
 
         private void UpdateEarnings()
@@ -140,15 +132,17 @@ namespace Earner.Forms
             _ElapsedTime = _stopwatch.Elapsed;
             _stopwatch.Restart();
             double activeTaskEarningsToday = _EarnerRecords.TotalEarningsTodayForTask(_ActiveTask) + (_ElapsedTime.TotalSeconds * (_Settings.HourlyRate / 3600.00d));
-            if (_TotalSecondsWorkedTodayWhenAppStarted + _ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
+            if (_EarnerRecords.TotalSecondsWorkedToday + _ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
             {
-                _pbWorkProgress.Value = Convert.ToInt32(Math.Round((_TotalSecondsWorkedTodayWhenAppStarted + _ElapsedTime.TotalSeconds) / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
+                int progress = Convert.ToInt32(Math.Round((_EarnerRecords.TotalSecondsWorkedToday + _ElapsedTime.TotalSeconds) / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
+                _pbWorkProgress.Value = progress > 100 ? 100 : progress;
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 _EarnerRecords.UpdateRecord(
                     _ActiveTask,
                     activeTaskEarningsToday,
                     _ElapsedTime.TotalSeconds + _EarnerRecords.TotalSecondsTodayForTask(_ActiveTask),
-                    _Settings.CurrencySymbol);
+                    _Settings.CurrencySymbol,
+                    _Settings.HourlyRate);
             }
             else
             {
@@ -197,26 +191,32 @@ namespace Earner.Forms
         private void StartStopClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            _ = (_btnStart.Tag.ToString() == "Start") ? StartEarning() : StopEarning();
+            if (_btnStart.Tag.ToString() == "Start")
+            {
+                StartEarning();
+            }
+            else 
+            {
+                StopEarning();
+            }
         }
 
         private void OptionsClick(object sender, EventArgs e)
         {
             Log.LogCaller();
+            StopEarning();
             using SettingsForm sf = new();
             sf.ShowDialog(this);
             if (sf.DialogResult == DialogResult.OK)
             {
-                LoadAppSettings();
-                Tick(this, new EventArgs());
+               StartEarning();
             }
             else if (sf.DialogResult == DialogResult.TryAgain)
             {
                 EarnerRecords.EraseLog();
                 _EarnerRecords.RemoveAllEarningRecords();
-                _TotalSecondsWorkedTodayWhenAppStarted = 0;
                 _stopwatch.Reset();
-                _ = StartEarning();
+                StartEarning();
             }
         }
 
@@ -238,8 +238,7 @@ namespace Earner.Forms
                 }
 
                 _stopwatch.Reset();
-                _TotalSecondsWorkedTodayWhenAppStarted = 0;
-                _ = StartEarning();
+               StartEarning();
             }
         }
 
@@ -285,9 +284,8 @@ namespace Earner.Forms
 
             _EarnerRecords.LogRecords();
             _EarnerRecords.RemoveTodaysEarningRecords();
-            _TotalSecondsWorkedTodayWhenAppStarted = 0;
             _stopwatch.Reset();
-            _ = StartEarning();
+            StartEarning();
         }
 
         private void ShowRecordsClick(object sender, EventArgs e)

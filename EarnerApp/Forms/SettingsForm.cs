@@ -271,13 +271,11 @@ namespace Earner.Forms
 
         private void AdminJsonDbClick(object sender, EventArgs e)
         {
-            // TODO: Create Admin Json DB UI where user can display, modify, delete, add EarnerRecords
             try
             {
                 Hide();
-                using ConfirmForm confirm = new();
-                confirm.LblQuestion.Text = "This feature is not implemented yet.";
-                _ = confirm.ShowDialog(this);
+                using LogAdminForm logAdmin = new();
+                _ = logAdmin.ShowDialog(this);
             }
             finally
             {

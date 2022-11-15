@@ -1,6 +1,4 @@
-﻿using EarnerUserControls;
-
-namespace Earner.Forms
+﻿namespace Earner.Forms
 {
     partial class TasksForm
     {
@@ -242,6 +240,7 @@ namespace Earner.Forms
         }
 
         #endregion
+ 
         private Panel _topPanel;
         private Button _btnClose;
         private Label _lblExistingTasks;

@@ -1,4 +1,8 @@
+#region Using statements
+
 using Earner.Settings;
+
+#endregion Using statements
 
 namespace Earner.Forms
 {
