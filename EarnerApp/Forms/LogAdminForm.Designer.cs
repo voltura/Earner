@@ -136,6 +136,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this._dgvEarnerRecords.DefaultCellStyle = dataGridViewCellStyle1;
+            this._dgvEarnerRecords.Enabled = false;
             this._dgvEarnerRecords.Location = new System.Drawing.Point(12, 32);
             this._dgvEarnerRecords.Name = "_dgvEarnerRecords";
             this._dgvEarnerRecords.RowTemplate.Height = 25;
