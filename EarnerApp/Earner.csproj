@@ -17,9 +17,9 @@
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<NeutralLanguage>en</NeutralLanguage>
-		<AssemblyVersion>1.0.2.6</AssemblyVersion>
-		<FileVersion>1.0.2.6</FileVersion>
-		<AssemblyInformationalVersion>1.0.2.6</AssemblyInformationalVersion>
+		<AssemblyVersion>1.0.2.7</AssemblyVersion>
+		<FileVersion>1.0.2.7</FileVersion>
+		<AssemblyInformationalVersion>1.0.2.7</AssemblyInformationalVersion>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -27,8 +27,9 @@
 		<PublishReadyToRun>true</PublishReadyToRun>
 		<SelfContained>true</SelfContained>
 		<PackageIcon>dollar.ico</PackageIcon>
-		<Version>1.0.2.6</Version>
+		<Version>1.0.2.7</Version>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -50,6 +51,10 @@
 		<DebugType>embedded</DebugType>
 		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="app.manifest" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="dollar.ico" />

@@ -38,6 +38,7 @@
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._dgvEarnerRecords = new System.Windows.Forms.DataGridView();
             this._btnCloseForm = new System.Windows.Forms.Button();
+            this._lblValidation = new System.Windows.Forms.Label();
             this._topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dgvEarnerRecords)).BeginInit();
             this.SuspendLayout();
@@ -136,12 +137,15 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this._dgvEarnerRecords.DefaultCellStyle = dataGridViewCellStyle1;
-            this._dgvEarnerRecords.Enabled = false;
+            this._dgvEarnerRecords.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._dgvEarnerRecords.Location = new System.Drawing.Point(12, 32);
             this._dgvEarnerRecords.Name = "_dgvEarnerRecords";
+            this._dgvEarnerRecords.ReadOnly = true;
             this._dgvEarnerRecords.RowTemplate.Height = 25;
             this._dgvEarnerRecords.Size = new System.Drawing.Size(774, 370);
             this._dgvEarnerRecords.TabIndex = 501;
+            this._dgvEarnerRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.EarnerRecordsCellFormatting);
+            this._dgvEarnerRecords.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.EarnerRecordsCellValidating);
             // 
             // _btnCloseForm
             // 
@@ -166,12 +170,24 @@
             this._btnCloseForm.UseVisualStyleBackColor = false;
             this._btnCloseForm.Click += new System.EventHandler(this.CloseClick);
             // 
+            // _lblValidation
+            // 
+            this._lblValidation.AutoSize = true;
+            this._lblValidation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._lblValidation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblValidation.ForeColor = System.Drawing.Color.White;
+            this._lblValidation.Location = new System.Drawing.Point(12, 405);
+            this._lblValidation.Name = "_lblValidation";
+            this._lblValidation.Size = new System.Drawing.Size(0, 21);
+            this._lblValidation.TabIndex = 91;
+            // 
             // LogAdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(798, 433);
+            this.Controls.Add(this._lblValidation);
             this.Controls.Add(this._btnCloseForm);
             this.Controls.Add(this._dgvEarnerRecords);
             this.Controls.Add(this._btnClose);
@@ -190,12 +206,11 @@
             this.Text = "Earner - Log administration";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
-            this.DoubleClick += new System.EventHandler(this.SaveClick);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogAdminFormKeyDown);
             this._topPanel.ResumeLayout(false);
             this._topPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dgvEarnerRecords)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -208,5 +223,6 @@
         private ToolTip _toolTip;
         private DataGridView _dgvEarnerRecords;
         private Button _btnCloseForm;
+        private Label _lblValidation;
     }
 }

@@ -23,14 +23,12 @@ namespace Earner
             {
                 return;
             }
-
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
             Log.Info = "=== Application started ===";
             Log.Info = $"{Application.ProductName} version {Application.ProductVersion}";
-            Application.EnableVisualStyles();
-            Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
-            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Forms.EarnerForm());
         }
 

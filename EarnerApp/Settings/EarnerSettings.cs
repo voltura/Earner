@@ -181,6 +181,9 @@
 		<add key=""ShowProgressbar"" value=""true""/>
 		<add key=""ShowSettingsOnStartup"" value=""true""/>
 	</appSettings>
+  <System.Windows.Forms.ApplicationConfigurationSection>
+    <add key=""DpiAwareness"" value=""PerMonitorV2"" />
+  </System.Windows.Forms.ApplicationConfigurationSection>
 </configuration>";
                 File.WriteAllText(settingsFile, xml, System.Text.Encoding.UTF8);
                 Log.Info = $"Created '{settingsFile}'";

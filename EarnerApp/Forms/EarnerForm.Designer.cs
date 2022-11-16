@@ -49,19 +49,18 @@
             // 
             // _lblEarned
             // 
-            this._lblEarned.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._lblEarned.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._lblEarned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._lblEarned.Font = new System.Drawing.Font("Segoe UI Light", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._lblEarned.Font = new System.Drawing.Font("Segoe UI Light", 52F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblEarned.ForeColor = System.Drawing.Color.White;
             this._lblEarned.Location = new System.Drawing.Point(0, 15);
             this._lblEarned.Margin = new System.Windows.Forms.Padding(0);
             this._lblEarned.Name = "_lblEarned";
-            this._lblEarned.Size = new System.Drawing.Size(271, 82);
+            this._lblEarned.Size = new System.Drawing.Size(271, 81);
             this._lblEarned.TabIndex = 0;
-            this._lblEarned.Text = "00000kr";
-            this._lblEarned.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this._lblEarned.Text = "00000";
+            this._lblEarned.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._lblEarned.TextChanged += new System.EventHandler(this.ScaleTextChanged);
             // 
             // _btnOptions
@@ -123,7 +122,7 @@
             this._lblWorkTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this._lblWorkTime.Font = new System.Drawing.Font("Segoe UI Light", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblWorkTime.ForeColor = System.Drawing.Color.White;
-            this._lblWorkTime.Location = new System.Drawing.Point(2, 116);
+            this._lblWorkTime.Location = new System.Drawing.Point(2, 112);
             this._lblWorkTime.Margin = new System.Windows.Forms.Padding(0);
             this._lblWorkTime.Name = "_lblWorkTime";
             this._lblWorkTime.Size = new System.Drawing.Size(122, 41);
@@ -263,10 +262,10 @@
             this._lblActiveTask.BackColor = System.Drawing.Color.Transparent;
             this._lblActiveTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lblActiveTask.ForeColor = System.Drawing.Color.White;
-            this._lblActiveTask.Location = new System.Drawing.Point(0, 100);
+            this._lblActiveTask.Location = new System.Drawing.Point(0, 101);
             this._lblActiveTask.Margin = new System.Windows.Forms.Padding(0);
             this._lblActiveTask.Name = "_lblActiveTask";
-            this._lblActiveTask.Size = new System.Drawing.Size(271, 21);
+            this._lblActiveTask.Size = new System.Drawing.Size(271, 20);
             this._lblActiveTask.TabIndex = 8;
             this._lblActiveTask.Tag = "ActiveTask";
             this._lblActiveTask.Text = "Task A";
@@ -301,7 +300,6 @@
             this.Controls.Add(this._lblActiveTask);
             this.Controls.Add(this._lblEarned);
             this.Controls.Add(this._lblWorkTime);
-            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -313,7 +311,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Earner";
             this.TopMost = true;
-            this.TransparencyKey = System.Drawing.Color.Cyan;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerFormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EarnerFormKeyDown);
             this.Resize += new System.EventHandler(this.EarnerFormResize);

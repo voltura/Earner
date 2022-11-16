@@ -308,7 +308,7 @@ namespace Earner.Forms
                 return;
             }
             Label label = (Label)sender;
-            EarnerCommon.ScaleFont(label, label.Tag is null ? 62 : 10);
+            EarnerCommon.ScaleFont(label, label.Tag is null ? 52 : 10);
         }
 
         private void EarnerFormResize(object sender, EventArgs e)
