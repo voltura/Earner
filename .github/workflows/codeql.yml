@@ -43,10 +43,10 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-    - name: Install .NET 6
+    - name: Install .NET 7
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
         dotnet-quality: 'signed'
     - name: Build Earner
       run: dotnet build Earner.sln /p:Platform=x64 /property:Configuration=Release -m
