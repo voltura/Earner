@@ -125,5 +125,19 @@ namespace Earner
         }
 
         #endregion Public methods
+
+        #region Extension methods
+
+        public static DateTime FirstDateInWeek(this DateTime dt)
+        {
+            while (dt.DayOfWeek != Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
+            {
+                dt.AddDays(-1);
+            }
+
+            return dt;
+        }
+
+        #endregion Extension methods
     }
 }

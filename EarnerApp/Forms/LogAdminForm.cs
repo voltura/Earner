@@ -4,13 +4,13 @@ using Earner.Records;
 using Earner.Settings;
 using System.ComponentModel;
 using System.Globalization;
-using System.Windows.Forms;
+using static Earner.Records.EarnerRecords;
 
 #endregion Using statements
 
 namespace Earner.Forms
 {
-    public partial class LogAdminForm : Form
+    internal partial class LogAdminForm : Form
     {
         #region Private variables
 
@@ -18,12 +18,15 @@ namespace Earner.Forms
 
         private readonly EarnerRecords _EarnerRecords = EarnerRecords.Instance;
 
+        private readonly REPORT_PERIOD _REPORT_PERIOD;
+
         #endregion Private variables
 
         #region Constructor
 
-        public LogAdminForm()
+        public LogAdminForm(REPORT_PERIOD period = REPORT_PERIOD.ALL)
         {
+            _REPORT_PERIOD = period;
             InitializeComponent();
             _Settings.Load();
             SetTooltips();
@@ -33,8 +36,26 @@ namespace Earner.Forms
         private void PopulateDatagrid()
         {
             BindingList<EarnerRecord> bindingsList = new();
-            
-            foreach (EarnerRecord record in _EarnerRecords.EarnerRecordList)
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+
+            foreach (EarnerRecord record in _EarnerRecords.EarnerRecordList
+                    .Where(i => i.Earned > 0)
+                    .Where(i =>
+                    {
+                        return _REPORT_PERIOD switch
+                        {
+                            REPORT_PERIOD.ALL => true,
+                            REPORT_PERIOD.YEAR => DateTime.Now.Year == i.Date.Year,
+                            REPORT_PERIOD.MONTH => DateTime.Now.Month == i.Date.Month && DateTime.Now.Year == i.Date.Year,
+                            REPORT_PERIOD.WEEK => cal.GetWeekOfYear(DateTime.Now.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) == cal.GetWeekOfYear(i.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) && DateTime.Now.Month == i.Date.Month && DateTime.Now.Year == i.Date.Year,
+                            REPORT_PERIOD.DAY => DateTime.Now.Day == i.Date.Day && DateTime.Now.Year == i.Date.Year && DateTime.Now.Month == i.Date.Month,
+                            _ => DateTime.Now.Day == i.Date.Day && DateTime.Now.Year == i.Date.Year && DateTime.Now.Month == i.Date.Month
+                        };
+                    })
+                    .OrderByDescending(i => i.Date)
+                    .ThenByDescending(i => i.Earned)
+                    .ThenByDescending(i => i.Task))
             {
                 bindingsList.Add(record);
             }
@@ -91,12 +112,15 @@ namespace Earner.Forms
         {
             if (_dgvEarnerRecords.Columns[e.ColumnIndex].DataPropertyName == "Task" && e.Value is not null)
             {
-                //_dgvEarnerRecords.Columns[e.ColumnIndex].ReadOnly = true;
+                _dgvEarnerRecords.Columns[e.ColumnIndex].ReadOnly = true;
             }
             else if (_dgvEarnerRecords.Columns[e.ColumnIndex].DataPropertyName == "Earned" && e.Value is not null)
             {
                 e.Value = Math.Round((double)e.Value!, 2, MidpointRounding.AwayFromZero);
-                e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                if (e.CellStyle is not null)
+                {
+                    e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
             }
             else if (_dgvEarnerRecords.Columns[e.ColumnIndex].DataPropertyName == "Time" && e.Value is not null)
             {
@@ -106,14 +130,17 @@ namespace Earner.Forms
 
         private void EarnerRecordsCellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e is not null && e.ColumnIndex == 0)  // Task must be atleast one char and max 22
+            if (e is not null && e.ColumnIndex == 0)  // Task must be at least one char and max 22
             {
+                e.Cancel = true;
                 int len = e.FormattedValue is null ? 0 : e.FormattedValue.ToString()!.Length;
                 if (len < 1 || len > 22)
                 {
-                    _lblValidation.Text = "Task must be atleast 1 character and max 22";
-                    e.Cancel = true;
-                    return;
+                    _lblValidation.Text = "Task must be at least 1 character and max 22";
+                }
+                else
+                {
+                    e.Cancel = false;
                 }
 
                 return;
@@ -121,107 +148,161 @@ namespace Earner.Forms
 
             if (e is not null && e.ColumnIndex == 1)  // Earned must be a numeric value
             {
-                if (!double.TryParse(e.FormattedValue.ToString(), out _))
-                {
-                    _lblValidation.Text = "Earned must be a numeric value";
-                    e.Cancel = true;
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                e.Cancel = true;
+                if (e.FormattedValue is null || string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     _lblValidation.Text = "Earned must be a numeric value, can be 0";
-                    e.Cancel = true;
-                    return;
                 }
-                _lblValidation.Text = "";
+                else if (!double.TryParse(e.FormattedValue.ToString(), out _))
+                {
+                    _lblValidation.Text = "Earned must be a numeric value";
+                }
+                else
+                {
+                    e.Cancel = false;
+                    _lblValidation.Text = "";
+                }
+
                 return;
             }
+
             if (e is not null && e.ColumnIndex == 2)  // Date must be in yyyy-MM-dd format
             {
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                e.Cancel = true;
+                if (e.FormattedValue is null || string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     _lblValidation.Text = "Please enter Date in yyyy-MM-dd format";
-                    e.Cancel = true;
-                    return;
                 }
-                else if (!DateTime.TryParseExact(e.FormattedValue.ToString(), @"yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out _))
+                else if (!DateTime.TryParseExact(e.FormattedValue.ToString(), @"yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime enteredDateTime))
                 {
                     _lblValidation.Text = "Please enter Date in yyyy-MM-dd format";
-                    e.Cancel = true;
-                    return;
                 }
-                _lblValidation.Text = "";
+                else
+                {
+                    DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+                    Calendar cal = dfi.Calendar;
+                    switch (_REPORT_PERIOD)
+                    {
+                        case REPORT_PERIOD.ALL:
+                            break;
+                        case REPORT_PERIOD.YEAR:
+                            if (DateTime.Now.Year != enteredDateTime.Date.Year)
+                            {
+                                _lblValidation.Text = "Please enter date from this year";
+                                return;
+                            }
+
+                            break;
+                        case REPORT_PERIOD.MONTH:
+                            bool inThisMonth = DateTime.Now.Month == enteredDateTime.Date.Month && DateTime.Now.Year == enteredDateTime.Date.Year;
+                            if (!inThisMonth)
+                            {
+                                _lblValidation.Text = "Please enter date from this month";
+                                return;
+                            }
+
+                            break;
+                        case REPORT_PERIOD.WEEK:
+                            bool inThisWeek = cal.GetWeekOfYear(DateTime.Now.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) == cal.GetWeekOfYear(enteredDateTime.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) && DateTime.Now.Month == enteredDateTime.Date.Month && DateTime.Now.Year == enteredDateTime.Date.Year;
+                            if (!inThisWeek)
+                            {
+                                _lblValidation.Text = "Please enter date from this week";
+                                return;
+                            }
+
+                            break;
+                        case REPORT_PERIOD.DAY:
+                            if (enteredDateTime.Date != DateTime.Now.Date)
+                            {
+                                _lblValidation.Text = "Please enter todays date";
+                                return;
+                            }
+
+                            break;
+                        default:
+                            break;
+                    }
+                    int numberOfRecords = _EarnerRecords.EarnerRecordList.Count(er =>
+                    {
+                        bool sameTaskAndDate = er.Date.Date == enteredDateTime.Date && er.Task == _dgvEarnerRecords.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        return sameTaskAndDate;
+                    });
+                    if (numberOfRecords > 1)
+                    {
+                        _lblValidation.Text = "Same task already exist for this day - only one allowed";
+                    }
+                    else
+                    {
+                        e.Cancel = false;
+                        _lblValidation.Text = "";
+                    }
+                }
+
                 return;
             }
 
             if (e is not null && e.ColumnIndex == 3)  // Time must be in 00:00:00 format
             {
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                e.Cancel = true;
+                if (e.FormattedValue is null)
                 {
                     _lblValidation.Text = "Please enter time in hh:mm:ss format";
-                    e.Cancel = true;
-                    return;
                 }
-                else if (e.FormattedValue is null)
+                else if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     _lblValidation.Text = "Please enter time in hh:mm:ss format";
-                    e.Cancel = true;
-                    return;
+                }
+                else if (!TimeSpan.TryParseExact(e.FormattedValue.ToString() + "", @"hh\:mm\:ss",
+                                CultureInfo.InvariantCulture, TimeSpanStyles.None, out _))
+                {
+                    _lblValidation.Text = "Please enter time in hh:mm:ss format";
                 }
                 else
-                { 
-                    try
-                    {
-                        if (!TimeSpan.TryParseExact(e.FormattedValue.ToString()+"", @"hh\:mm\:ss",
-                                 CultureInfo.InvariantCulture, TimeSpanStyles.None, out _))
-                        {
-                            _lblValidation.Text = "Please enter time in hh:mm:ss format";
-                            e.Cancel = true;
-                            return;
-                        }
-                    }
-                    catch
-                    {
-                        _lblValidation.Text = "Please enter time in hh:mm:ss format";
-                        e.Cancel = true;
-                        return;
-                    }
+                {
+                    e.Cancel = false;
+                    _lblValidation.Text = "";
                 }
-                _lblValidation.Text = "";
+
                 return;
             }
 
-            if (e is not null && e.ColumnIndex == 4)  // Currency Symbol 0-2 char
+            if (e is not null && e.ColumnIndex == 4)  // Currency Symbol 0-3 char
             {
+                e.Cancel = false;
                 if (e.FormattedValue is null || string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
+                    _lblValidation.Text = "";
                 }
-                else if (e.FormattedValue.ToString()!.Length > 2)
+                else if (e.FormattedValue.ToString()!.Length > 3)
                 {
-                    _lblValidation.Text = "Currency Symbol cannot be more that 2 characters";
                     e.Cancel = true;
-                    return;
+                    _lblValidation.Text = "Currency Symbol cannot be more that 3 characters";
                 }
-                _lblValidation.Text = "";
+
                 return;
             }
 
             if (e is not null && e.ColumnIndex == 4)  // HourlyRate
             {
+                e.Cancel = true;
                 if (e.FormattedValue is null || string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     _lblValidation.Text = "Need to specify an hourly rate";
-                    e.Cancel = true;
-                    return;
                 }
-                else if (!double.TryParse(e.FormattedValue.ToString(), out _))
+                else if (!double.TryParse(e.FormattedValue.ToString(), out double hr))
                 {
                     _lblValidation.Text = "Hourly rate need to be numeric";
-                    e.Cancel = true;
-                    return;
                 }
-                _lblValidation.Text = "";
+                else if (hr > 100000)
+                {
+                    _lblValidation.Text = "Hourly rate need to be less than 100000";
+                }
+                else
+                {
+                    e.Cancel = false;
+                    _lblValidation.Text = "";
+                }
+
                 return;
             }
 
@@ -229,5 +310,14 @@ namespace Earner.Forms
 
         #endregion Private events
 
+        private void EarnerRecordsDefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Value = "Task_" + DateTime.Now.Ticks.ToString().Substring(10);
+            e.Row.Cells[1].Value = "0";
+            e.Row.Cells[2].Value = DateTime.Now.ToString("yyyy-MM-dd");
+            e.Row.Cells[3].Value = "0";
+            e.Row.Cells[4].Value = _Settings.CurrencySymbol;
+            e.Row.Cells[5].Value = Math.Round(_Settings.HourlyRate, 2, MidpointRounding.AwayFromZero).ToString();
+        }
     }
 }

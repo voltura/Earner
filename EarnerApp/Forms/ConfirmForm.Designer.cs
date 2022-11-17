@@ -160,6 +160,7 @@
             this.Controls.Add(this._btnYes);
             this.Controls.Add(this._topPanel);
             this.Controls.Add(this.LblQuestion);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

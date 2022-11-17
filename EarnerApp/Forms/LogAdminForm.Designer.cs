@@ -137,8 +137,10 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this._dgvEarnerRecords.DefaultCellStyle = dataGridViewCellStyle1;
+            this._dgvEarnerRecords.Enabled = false;
             this._dgvEarnerRecords.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this._dgvEarnerRecords.Location = new System.Drawing.Point(12, 32);
+            this._dgvEarnerRecords.MultiSelect = false;
             this._dgvEarnerRecords.Name = "_dgvEarnerRecords";
             this._dgvEarnerRecords.ReadOnly = true;
             this._dgvEarnerRecords.RowTemplate.Height = 25;
@@ -146,6 +148,7 @@
             this._dgvEarnerRecords.TabIndex = 501;
             this._dgvEarnerRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.EarnerRecordsCellFormatting);
             this._dgvEarnerRecords.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.EarnerRecordsCellValidating);
+            this._dgvEarnerRecords.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.EarnerRecordsDefaultValuesNeeded);
             // 
             // _btnCloseForm
             // 
@@ -193,6 +196,7 @@
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._btnSave);
             this.Controls.Add(this._topPanel);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

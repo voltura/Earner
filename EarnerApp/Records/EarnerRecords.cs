@@ -5,6 +5,7 @@ using MiniExcelLibs;
 using MiniExcelLibs.Attributes;
 using MiniExcelLibs.OpenXml;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text.Json;
 
 #endregion Using statements
@@ -46,15 +47,15 @@ namespace Earner.Records
 
         #endregion Singleton instance via Lazy
 
-
         #region Public enums
 
-        public enum REPORT_PERIOD : int
+        public enum REPORT_PERIOD
         {
-            DAY = 4,
-            MONTH = 1,
-            YEAR = 2,
-            ALL = 3
+            DAY,
+            WEEK,
+            MONTH,
+            YEAR,
+            ALL
         }
 
         #endregion Public enums
@@ -307,6 +308,8 @@ namespace Earner.Records
                         new DynamicExcelColumn("Seconds") { Index = 7, Width = 12 }
                     }
                 };
+                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+                Calendar cal = dfi.Calendar;
                 var values = _EarnerRecordList
                     .Where(i => i.Earned > 0)
                     .Where(i =>
@@ -315,8 +318,10 @@ namespace Earner.Records
                         {
                             REPORT_PERIOD.ALL => true,
                             REPORT_PERIOD.YEAR => DateTime.Now.Year == i.Date.Year,
-                            REPORT_PERIOD.MONTH => DateTime.Now.Month == i.Date.Month,
-                            _ => DateTime.Now.Day == i.Date.Day
+                            REPORT_PERIOD.MONTH => DateTime.Now.Month == i.Date.Month && DateTime.Now.Year == i.Date.Year,
+                            REPORT_PERIOD.WEEK => cal.GetWeekOfYear(DateTime.Now.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) == cal.GetWeekOfYear(i.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) && DateTime.Now.Month == i.Date.Month && DateTime.Now.Year == i.Date.Year,
+                            REPORT_PERIOD.DAY => DateTime.Now.Day == i.Date.Day && DateTime.Now.Year == i.Date.Year && DateTime.Now.Month == i.Date.Month,
+                            _ => DateTime.Now.Day == i.Date.Day && DateTime.Now.Year == i.Date.Year && DateTime.Now.Month == i.Date.Month
                         };
                     })
                     .OrderByDescending(i => i.Earned)

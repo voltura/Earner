@@ -94,15 +94,32 @@ namespace Earner.Forms
             EarnerCommon.SetProgressbarActive(_pbWorkProgress.Handle);
             if (_Settings.ShowSettingsOnStartup)
             {
-                using SettingsForm sf = new();
-                sf.ShowDialog(this);
-                _Settings.ShowSettingsOnStartup = false;
-                _Settings.Save();
+                try
+                {
+                    Visible = false;
+                    using SettingsForm sf = new();
+                    sf.ShowDialog(this);
+                    _Settings.ShowSettingsOnStartup = false;
+                    _Settings.Save();
+                }
+                finally
+                {
+                    Visible = true;
+                }
             }
 
-            using TasksForm tasksForm = new();
-            DialogResult tasksFormResult;
-            tasksFormResult = tasksForm.ShowDialog(this);
+            try
+            {
+                Visible = false;
+                using TasksForm tasksForm = new();
+                DialogResult tasksFormResult;
+                tasksFormResult = tasksForm.ShowDialog(this);
+            }
+            finally
+            {
+                Visible = true;
+            }
+
             LoadAppSettings();
             int workedPercentageToday = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
             _pbWorkProgress.Value = workedPercentageToday > 100 ? 100 : workedPercentageToday;
@@ -191,11 +208,11 @@ namespace Earner.Forms
         private void StartStopClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            if (_btnStart.Tag.ToString() == "Start")
+            if (_btnStart.Tag is not null && _btnStart.Tag.ToString() == "Start")
             {
                 StartEarning();
             }
-            else 
+            else
             {
                 StopEarning();
             }
@@ -205,13 +222,22 @@ namespace Earner.Forms
         {
             Log.LogCaller();
             StopEarning();
-            using SettingsForm sf = new();
-            sf.ShowDialog(this);
-            if (sf.DialogResult == DialogResult.OK)
+            DialogResult sfDialogResult = DialogResult.None;
+            try
             {
-               StartEarning();
+                Visible = false;
+                using SettingsForm sf = new();
+                sfDialogResult = sf.ShowDialog(this);
             }
-            else if (sf.DialogResult == DialogResult.TryAgain)
+            finally
+            {
+                Visible = true;
+            }
+            if (sfDialogResult == DialogResult.OK)
+            {
+                StartEarning();
+            }
+            else if (sfDialogResult == DialogResult.TryAgain)
             {
                 EarnerRecords.EraseLog();
                 _EarnerRecords.RemoveAllEarningRecords();
@@ -229,16 +255,26 @@ namespace Earner.Forms
             {
                 _earnerTimer.Stop();
                 _EarnerRecords.LogRecords();
-                using ConfirmForm confirmForm = new();
-                confirmForm.LblQuestion.Text = "New day, new earnings!\nStart earnings for today?";
-                if (DialogResult.Yes != confirmForm.ShowDialog(this))
+                DialogResult cfdr = DialogResult.None;
+                try
+                {
+                    Visible = false;
+                    using ConfirmForm confirmForm = new();
+                    confirmForm.LblQuestion.Text = "New day, new earnings!\nStart earnings for today?";
+                    cfdr = confirmForm.ShowDialog(this);
+                }
+                finally
+                {
+                    Visible = true;
+                }
+                if (DialogResult.Yes != cfdr)
                 {
                     StopEarning();
                     return;
                 }
 
                 _stopwatch.Reset();
-               StartEarning();
+                StartEarning();
             }
         }
 
@@ -261,13 +297,22 @@ namespace Earner.Forms
         {
             if (_Settings.ConfirmBeforeClose)
             {
-                using ConfirmForm confirmForm = new();
-                confirmForm.LblQuestion.Text = "Close application?";
-                if (DialogResult.Yes != confirmForm.ShowDialog(this))
+                DialogResult cfdr = DialogResult.None;
+                try
+                {
+                    Visible = false;
+                    using ConfirmForm confirmForm = new();
+                    confirmForm.LblQuestion.Text = "Close application?";
+                    cfdr = confirmForm.ShowDialog(this);
+                }
+                finally
+                {
+                    Visible = true;
+                }
+                if (DialogResult.Yes != cfdr)
                 {
                     return;
                 }
-
             }
 
             Close();
@@ -275,9 +320,19 @@ namespace Earner.Forms
 
         private void RestartClick(object sender, EventArgs e)
         {
-            using ConfirmForm confirmForm = new();
-            confirmForm.LblQuestion.Text = "Restart todays earnings?\nIt will erase todays work log.";
-            if (DialogResult.Yes != confirmForm.ShowDialog(this))
+            DialogResult cfdr = DialogResult.None;
+            try
+            {
+                Visible = false;
+                using ConfirmForm confirmForm = new();
+                confirmForm.LblQuestion.Text = "Restart todays earnings?\nIt will erase todays work log.";
+                cfdr = confirmForm.ShowDialog(this);
+            }
+            finally
+            {
+                Visible = true;
+            }
+            if (DialogResult.Yes != cfdr)
             {
                 return;
             }
@@ -290,10 +345,20 @@ namespace Earner.Forms
 
         private void ShowRecordsClick(object sender, EventArgs e)
         {
+            try
+            {
+                Visible = false;
+                using LogPeriodForm logPeriodForm = new();
+                if (DialogResult.OK == logPeriodForm.ShowDialog(this))
+                {
+                    _EarnerRecords.LogRecords(true, logPeriodForm.ReportPeriod);
+                }
 
-            using LogPeriodForm logPeriodForm = new();
-            logPeriodForm.ShowDialog(this);
-            _EarnerRecords.LogRecords(true, (EarnerRecords.REPORT_PERIOD)logPeriodForm.DialogResult);
+            }
+            finally
+            {
+                Visible = true;
+            }
         }
 
         private void EarnerFormClosing(object sender, FormClosingEventArgs e)
@@ -320,9 +385,19 @@ namespace Earner.Forms
         {
             if (e.KeyCode == Keys.Escape)
             {
-                using ConfirmForm confirmForm = new();
-                confirmForm.LblQuestion.Text = "Close application?";
-                if (_Settings.ConfirmBeforeClose || DialogResult.Yes == confirmForm.ShowDialog(this))
+                DialogResult dialogResult = DialogResult.None;
+                try
+                {
+                    Visible = false;
+                    using ConfirmForm confirmForm = new();
+                    confirmForm.LblQuestion.Text = "Close application?";
+                    dialogResult = confirmForm.ShowDialog(this);
+                }
+                finally
+                {
+                    Visible = true;
+                }
+                if (_Settings.ConfirmBeforeClose || dialogResult == DialogResult.Yes)
                 {
                     CloseClick(sender, e);
                 }

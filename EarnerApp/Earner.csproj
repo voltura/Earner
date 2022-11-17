@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net7.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -17,9 +17,9 @@
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<NeutralLanguage>en</NeutralLanguage>
-		<AssemblyVersion>1.0.2.7</AssemblyVersion>
-		<FileVersion>1.0.2.7</FileVersion>
-		<AssemblyInformationalVersion>1.0.2.7</AssemblyInformationalVersion>
+		<AssemblyVersion>1.0.2.8</AssemblyVersion>
+		<FileVersion>1.0.2.8</FileVersion>
+		<AssemblyInformationalVersion>1.0.2.8</AssemblyInformationalVersion>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -27,7 +27,8 @@
 		<PublishReadyToRun>true</PublishReadyToRun>
 		<SelfContained>true</SelfContained>
 		<PackageIcon>dollar.ico</PackageIcon>
-		<Version>1.0.2.7</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Version>1.0.2.8</Version>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
@@ -38,7 +39,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DebugType>embedded</DebugType>
+		<DebuggerSupport>false</DebuggerSupport>
 		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
 
@@ -48,8 +49,21 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DebugSymbols>true</DebugSymbols>
 		<DebugType>embedded</DebugType>
+		<EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
+		<EventSourceSupport>false</EventSourceSupport>
+		<HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+		<UseNativeHttpHandler>true</UseNativeHttpHandler>
 		<PublishSingleFile>true</PublishSingleFile>
+		<UseSystemResourceKeys>true</UseSystemResourceKeys>
+		<BuiltInComInteropSupport>false</BuiltInComInteropSupport>
+		<EnableCppCLIHostActivation>false</EnableCppCLIHostActivation>
+		<EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>false</EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>
+		<StartupHookSupport>false</StartupHookSupport>
+		<CustomResourceTypesSupport>true</CustomResourceTypesSupport>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,6 +1,5 @@
 #region Using statements
 
-using System.Windows.Forms.VisualStyles;
 
 #endregion Using statements
 

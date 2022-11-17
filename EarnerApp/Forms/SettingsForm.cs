@@ -209,8 +209,16 @@ namespace Earner.Forms
 
         private void EditTasksClick(object sender, EventArgs e)
         {
-            using TasksForm tasksForm = new();
-            _ = tasksForm.ShowDialog(this);
+            try
+            {
+                Visible = false;
+                using TasksForm tasksForm = new();
+                _ = tasksForm.ShowDialog(this);
+            }
+            finally
+            {
+                Visible = true;
+            }
         }
 
         private void KeyPressEnterSave(object? sender, KeyPressEventArgs? e)
@@ -244,7 +252,7 @@ namespace Earner.Forms
 
         private void EraseLogRecordsClick(object sender, EventArgs e)
         {
-            Hide();
+            Visible = false;
             using ConfirmForm confirmForm = new();
             confirmForm.LblQuestion.Text = "Erase ALL work log records\nincluding todays work progress?";
             if (DialogResult.Yes == confirmForm.ShowDialog(this))
@@ -259,7 +267,7 @@ namespace Earner.Forms
         {
             try
             {
-                Hide();
+                Visible = false;
                 using AboutForm aboutForm = new();
                 _ = aboutForm.ShowDialog(this);
             }
@@ -273,9 +281,14 @@ namespace Earner.Forms
         {
             try
             {
-                Hide();
-                using LogAdminForm logAdmin = new();
-                _ = logAdmin.ShowDialog(this);
+                Visible = false;
+                using LogPeriodForm logPeriodForm = new();
+                if (DialogResult.OK == logPeriodForm.ShowDialog(this))
+                {
+                    using LogAdminForm logAdminForm = new(logPeriodForm.ReportPeriod);
+                    _ = logAdminForm.ShowDialog(this);
+                }
+
             }
             finally
             {

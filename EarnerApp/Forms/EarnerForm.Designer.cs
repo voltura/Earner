@@ -300,6 +300,7 @@
             this.Controls.Add(this._lblActiveTask);
             this.Controls.Add(this._lblEarned);
             this.Controls.Add(this._lblWorkTime);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -309,6 +310,7 @@
             this.MdiChildrenMinimizedAnchorBottom = false;
             this.Name = "EarnerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Earner";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EarnerFormClosing);

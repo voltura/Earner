@@ -2,12 +2,13 @@
 
 using Earner.Records;
 using Earner.Settings;
+using static Earner.Records.EarnerRecords;
 
 #endregion Using statements
 
 namespace Earner.Forms
 {
-    public partial class LogPeriodForm : Form
+    internal partial class LogPeriodForm : Form
     {
         #region Private variables
 
@@ -30,6 +31,12 @@ namespace Earner.Forms
 
         #endregion Constructor
 
+        #region Public properties
+
+        public REPORT_PERIOD ReportPeriod { get; private set; } = REPORT_PERIOD.ALL;
+
+        #endregion Public properties
+
         #region Private methods
 
         private void LoadAppSettings()
@@ -42,6 +49,7 @@ namespace Earner.Forms
             if (_Settings.ShowTooltips)
             {
                 _toolTip.SetToolTip(_btnDay, "Log of todays work");
+                _toolTip.SetToolTip(_btnThisWeek, "Log of current weeks work");
                 _toolTip.SetToolTip(_btnMonth, "Log of current months work");
                 _toolTip.SetToolTip(_btnYear, "Log of current years work");
                 _toolTip.SetToolTip(_btnAll, "Log of all work");
@@ -50,6 +58,7 @@ namespace Earner.Forms
             {
                 _toolTip.Hide(this);
                 _toolTip.SetToolTip(_btnDay, null);
+                _toolTip.SetToolTip(_btnThisWeek, null);
                 _toolTip.SetToolTip(_btnMonth, null);
                 _toolTip.SetToolTip(_btnYear, null);
                 _toolTip.SetToolTip(_btnAll, null);
@@ -72,26 +81,26 @@ namespace Earner.Forms
         private void DayClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.DAY;
+            ReportPeriod = REPORT_PERIOD.DAY;
             Close();
         }
 
         private void MonthClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.MONTH;
+            ReportPeriod = REPORT_PERIOD.MONTH;
             Close();
         }
         private void YearClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.YEAR;
+            ReportPeriod = REPORT_PERIOD.YEAR;
             Close();
         }
         private void AllClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            DialogResult = (DialogResult)EarnerRecords.REPORT_PERIOD.ALL;
+            ReportPeriod = EarnerRecords.REPORT_PERIOD.ALL;
             Close();
         }
 
@@ -101,6 +110,7 @@ namespace Earner.Forms
             {
                 return;
             }
+
             Label label = (Label)sender;
             EarnerCommon.ScaleFont(label, 14);
         }
@@ -120,9 +130,21 @@ namespace Earner.Forms
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                DialogResult = DialogResult.Yes;
+                DialogResult = DialogResult.OK;
                 Close();
             }
+        }
+
+        private void CancelClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ThisWeekClick(object sender, EventArgs e)
+        {
+            Log.LogCaller();
+            ReportPeriod = REPORT_PERIOD.WEEK;
+            Close();
         }
 
         #endregion Private events

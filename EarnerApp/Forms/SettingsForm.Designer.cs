@@ -232,8 +232,8 @@ namespace Earner.Forms
             // _chkSaveTaskLog
             // 
             this._chkSaveTaskLog.AutoSize = true;
-            this._chkSaveTaskLog.Checked = true;
             this._chkSaveTaskLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._chkSaveTaskLog.Checked = true;
             this._chkSaveTaskLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkSaveTaskLog.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkSaveTaskLog.ForeColor = System.Drawing.Color.White;
@@ -256,8 +256,8 @@ namespace Earner.Forms
             // _chkShowTooltips
             // 
             this._chkShowTooltips.AutoSize = true;
-            this._chkShowTooltips.Checked = true;
             this._chkShowTooltips.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._chkShowTooltips.Checked = true;
             this._chkShowTooltips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowTooltips.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowTooltips.ForeColor = System.Drawing.Color.White;
@@ -273,8 +273,8 @@ namespace Earner.Forms
             // _chkShowApplicationLogOnErrors
             // 
             this._chkShowApplicationLogOnErrors.AutoSize = true;
-            this._chkShowApplicationLogOnErrors.Checked = true;
             this._chkShowApplicationLogOnErrors.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._chkShowApplicationLogOnErrors.Checked = true;
             this._chkShowApplicationLogOnErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowApplicationLogOnErrors.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowApplicationLogOnErrors.ForeColor = System.Drawing.Color.White;
@@ -352,8 +352,8 @@ namespace Earner.Forms
             // _chkShowProgressbar
             // 
             this._chkShowProgressbar.AutoSize = true;
-            this._chkShowProgressbar.Checked = true;
             this._chkShowProgressbar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._chkShowProgressbar.Checked = true;
             this._chkShowProgressbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowProgressbar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowProgressbar.ForeColor = System.Drawing.Color.White;
@@ -563,6 +563,7 @@ namespace Earner.Forms
             this.Controls.Add(this._btnSave);
             this.Controls.Add(this._topPanel);
             this.Controls.Add(this._grpBoxGeneralSettings);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
