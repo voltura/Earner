@@ -312,7 +312,7 @@ namespace Earner.Forms
 
         private void EarnerRecordsDefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            e.Row.Cells[0].Value = "Task_" + DateTime.Now.Ticks.ToString().Substring(10);
+            e.Row.Cells[0].Value = $"Task_{DateTime.Now.Ticks.ToString()[10..]}";
             e.Row.Cells[1].Value = "0";
             e.Row.Cells[2].Value = DateTime.Now.ToString("yyyy-MM-dd");
             e.Row.Cells[3].Value = "0";

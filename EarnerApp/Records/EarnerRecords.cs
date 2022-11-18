@@ -299,7 +299,7 @@ namespace Earner.Records
                 {
                     DynamicColumns = new DynamicExcelColumn[] {
                         new DynamicExcelColumn("Task") { Index = 0, Width = 22 },
-                        new DynamicExcelColumn("Date") { Format = "yyyy-MM-dd", Index = 1, Width = 12 },
+                        new DynamicExcelColumn("Date") { Index = 1, Width = 12 },
                         new DynamicExcelColumn("Day") { Index = 2, Width = 12 },
                         new DynamicExcelColumn("Earned") { Index = 3, Width = 12 },
                         new DynamicExcelColumn("Currency") { Index = 4, Width = 12 },
@@ -329,7 +329,7 @@ namespace Earner.Records
                     .Select(i => new
                     {
                         i.Task,
-                        i.Date,
+                        Date = $"{i.Date:yyyy-MM-dd}",
                         Day = $"{i.Date:dddd}",
                         Earned = Math.Round(i.Earned, 2, MidpointRounding.AwayFromZero),
                         Currency = i.CurrencySymbol,
@@ -340,8 +340,8 @@ namespace Earner.Records
                 values = values.Append(new
                 {
                     Task = "Total",
-                    Date = DateTime.Now,
-                    Day = $"{DateTime.Now.Date:dddd}",
+                    Date = "",
+                    Day = "",
                     Earned = Math.Round(values.Sum(i => i.Earned), 2, MidpointRounding.AwayFromZero),
                     Currency = _Settings.CurrencySymbol,
                     Time = $"{TimeSpan.FromSeconds(Math.Round(values.Sum((v) => v.Seconds), 0)):c}"[..8],
