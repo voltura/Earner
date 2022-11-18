@@ -7,7 +7,7 @@ In general always use latest version. The latest version will receive security u
 | Version   | Supported          |
 | --------- | ------------------ |
 | 1.0.3.x   | :white_check_mark: |
-| < 1.0.1   | :x:                |
+| < 1.2.9   | :x:                |
 
 ## Reporting a Vulnerability
 
