@@ -367,7 +367,7 @@ namespace Earner.Forms
                 {
                     Log.Clear();
                 }
-                
+
             }
             finally
             {

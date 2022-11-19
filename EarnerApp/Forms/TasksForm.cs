@@ -8,6 +8,12 @@ namespace Earner.Forms
 {
     public partial class TasksForm : Form
     {
+        #region Private constants
+
+        private const int MAX_NUMBER_OF_TASKS = 40;
+
+        #endregion Private constants
+
         #region Private variables
 
         private List<string> _EarnerTasks;
@@ -92,6 +98,63 @@ namespace Earner.Forms
             _Settings.Save();
         }
 
+        private bool AddTask()
+        {
+            string potentialNewTask = _cmbTasks.Text.Trim();
+            if (potentialNewTask.Length == 0)
+            {
+                return false;
+            }
+
+            if (!_EarnerTasks.Contains(potentialNewTask))
+            {
+                if (_cmbTasks.Items.Count > MAX_NUMBER_OF_TASKS)
+                {
+                    try
+                    {
+                        Visible = false;
+                        using ConfirmForm confirmForm = new();
+                        confirmForm.LblQuestion.Text = $"Max {MAX_NUMBER_OF_TASKS} tasks.\nPlease delete one before adding new.";
+                        confirmForm.ShowDialog(this);
+                    }
+                    finally
+                    {
+                        Visible = true;
+                    }
+                    return false;
+                }
+
+                _ = _cmbTasks.Items.Add(potentialNewTask);
+                SaveTasksFromForm();
+                _cmbTasks.SelectedText = null;
+                _cmbTasks.SelectedItem = potentialNewTask;
+            }
+            return true;
+        }
+
+        private void SaveTasksAndClose()
+        {
+            SaveTasksFromForm();
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void RemoveTaskAndSelectItem()
+        {
+            string potentialRemoveTask = _cmbTasks.Text.Trim();
+            if (_EarnerTasks.Contains(potentialRemoveTask))
+            {
+                _cmbTasks.Items.Remove(potentialRemoveTask);
+                SaveTasksFromForm();
+                _cmbTasks.SelectedText = null;
+                _cmbTasks.Text = null;
+                if (_cmbTasks.Items.Count > 0)
+                {
+                    _cmbTasks.SelectedItem = _cmbTasks.Items[0];
+                }
+            }
+        }
+
         #endregion Private methods
 
         #region Private events
@@ -131,61 +194,41 @@ namespace Earner.Forms
         {
             if (e.KeyCode == Keys.Escape)
             {
-                SaveClick(sender, e);
+                SaveTasksAndClose();
             }
         }
 
         private void SaveClick(object sender, EventArgs e)
         {
-            SaveTasksFromForm();
-            DialogResult = DialogResult.OK;
-            Close();
+            SaveTasksAndClose();
         }
 
         private void AddTaskClick(object sender, EventArgs e)
         {
-            string potentialNewTask = _cmbTasks.Text.Trim();
-            if (potentialNewTask.Length == 0)
-            {
-                return;
-            }
-            if (!_EarnerTasks.Contains(potentialNewTask))
-            {
-                _ = _cmbTasks.Items.Add(potentialNewTask);
-                SaveTasksFromForm();
-                _cmbTasks.SelectedText = null;
-                _cmbTasks.SelectedItem = potentialNewTask;
-            }
+            _ = AddTask();
         }
 
         private void RemoveTaskClick(object sender, EventArgs e)
         {
-            string potentialRemoveTask = _cmbTasks.Text.Trim();
-            if (_EarnerTasks.Contains(potentialRemoveTask))
-            {
-                _cmbTasks.Items.Remove(potentialRemoveTask);
-                SaveTasksFromForm();
-                _cmbTasks.SelectedText = null;
-                _cmbTasks.Text = null;
-                if (_cmbTasks.Items.Count > 0)
-                {
-                    _cmbTasks.SelectedItem = _cmbTasks.Items[0];
-                }
-            }
+            RemoveTaskAndSelectItem();
         }
 
         private void KeyPressEnterAddTask(object sender, KeyPressEventArgs e)
         {
             if (e is not null && ((byte)e.KeyChar) == (byte)Keys.Enter)
             {
-                AddTaskClick(sender, e);
+                if (AddTask())
+                {
+                    SaveTasksAndClose();
+                }
+
                 return;
             }
         }
 
         private void TasksDoubleClick(object sender, MouseEventArgs e)
         {
-            SaveClick(sender, e);
+            SaveTasksAndClose();
         }
 
         #endregion Private events
