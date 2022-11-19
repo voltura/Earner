@@ -2,7 +2,7 @@
 Windows app that displays earnings in real time and logs time worked on specified tasks.
 Generates an Excel file with a log of the earnings and work performed for specified time period (all, year, month, week, day).
 
-[![Latest release zip package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.2.9.zip)
+[![Latest release zip package](https://img.shields.io/github/v/release/voltura/Earner?label=download%20latest%20release&style=for-the-badge)](https://github.com/voltura/Earner/releases/latest/download/Earner_1.0.3.0.zip)
 
 [![Github All Releases](https://img.shields.io/github/downloads/voltura/Earner/total.svg)]()
 [![License](https://img.shields.io/badge/licence-MIT-green)]()
@@ -25,4 +25,9 @@ Generates an Excel file with a log of the earnings and work performed for specif
 
 ### Settings
 
-<img width="262" alt="Earner settings" src="https://user-images.githubusercontent.com/2292809/201832658-d7bd509c-27d1-4423-b7eb-47da1e31898d.png">
+<img width="265" alt="Settings" src="https://user-images.githubusercontent.com/2292809/202826503-a155aac7-580c-412b-9ca9-e528456a6e10.png">
+
+
+### About
+
+<img width="224" alt="About" src="https://user-images.githubusercontent.com/2292809/202826436-0cea0976-edbe-4efd-9d6f-b9e7f263e808.png">
