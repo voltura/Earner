@@ -455,9 +455,9 @@ namespace Earner.Forms
             // 
             // _grpBoxTaskSettings
             // 
+            this._grpBoxTaskSettings.Controls.Add(this._lnkTaskLogLocation);
             this._grpBoxTaskSettings.Controls.Add(this._btnAdminJsonDb);
             this._grpBoxTaskSettings.Controls.Add(this._btnEraseLogRecords);
-            this._grpBoxTaskSettings.Controls.Add(this._lnkTaskLogLocation);
             this._grpBoxTaskSettings.Controls.Add(this._chkAutoShowTaskLog);
             this._grpBoxTaskSettings.Controls.Add(this._chkSaveTaskLog);
             this._grpBoxTaskSettings.Controls.Add(this._btnEditTasks);
@@ -519,7 +519,7 @@ namespace Earner.Forms
             this._lnkTaskLogLocation.AutoSize = true;
             this._lnkTaskLogLocation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lnkTaskLogLocation.LinkColor = System.Drawing.Color.White;
-            this._lnkTaskLogLocation.Location = new System.Drawing.Point(92, 23);
+            this._lnkTaskLogLocation.Location = new System.Drawing.Point(89, 23);
             this._lnkTaskLogLocation.Name = "_lnkTaskLogLocation";
             this._lnkTaskLogLocation.Size = new System.Drawing.Size(41, 21);
             this._lnkTaskLogLocation.TabIndex = 15;
