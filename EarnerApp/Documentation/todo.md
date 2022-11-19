@@ -13,7 +13,7 @@
 
 - Administer work tasks log via UI table style, remove, modify, add record manually
 
-- Add button (icon) to display app log in Settings form
+[DONE] - Add button (icon) to display app log in Settings form
 
 - Add option in settings or task admin to delete all exported Excel files (in folder x)
 

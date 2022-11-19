@@ -128,6 +128,8 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start Earner with Windows");
                 _toolTip.SetToolTip(_chkConfirmBeforeClose, "Show confirmation dialog when Close is pressed");
                 _toolTip.SetToolTip(_chkShowProgressbar, "Show work progress bar");
+                _toolTip.SetToolTip(_btnShowAppLog, "Show application log (advanced)");
+                _toolTip.SetToolTip(_btnClearAppLog, "Clear application log (advanced)");
             }
             else
             {
@@ -153,6 +155,8 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, null);
                 _toolTip.SetToolTip(_chkConfirmBeforeClose, null);
                 _toolTip.SetToolTip(_chkShowProgressbar, null);
+                _toolTip.SetToolTip(_btnShowAppLog, null);
+                _toolTip.SetToolTip(_btnClearAppLog, null);
             }
         }
 
@@ -336,6 +340,16 @@ namespace Earner.Forms
         {
             _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
             _Settings.Save();
+        }
+
+        private void ShowAppLogClick(object sender, EventArgs e)
+        {
+            Log.Show();
+        }
+
+        private void ClearAppLogClick(object sender, EventArgs e)
+        {
+            Log.Clear();
         }
 
         #endregion Private events

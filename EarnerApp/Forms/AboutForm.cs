@@ -1,6 +1,7 @@
 #region Using statements
 
 using Earner.Settings;
+using System.Text.Encodings.Web;
 
 #endregion Using statements
 
@@ -42,11 +43,21 @@ namespace Earner.Forms
             if (_Settings.ShowTooltips)
             {
                 _toolTip.SetToolTip(_btnOK, "Close about info");
+                _toolTip.SetToolTip(_btnClose, "Close about info");
+                _toolTip.SetToolTip(_lnkEarnerWebPage, "Open Earner web page");
+                _toolTip.SetToolTip(_lnkSubmitBug, "Submit a bug report on the web");
+                _toolTip.SetToolTip(_btnEarnerWebPage, "Open Earner web page");
+                _toolTip.SetToolTip(_btnSubmitBug, "Submit a bug report on the web");
             }
             else
             {
                 _toolTip.Hide(this);
                 _toolTip.SetToolTip(_btnOK, null);
+                _toolTip.SetToolTip(_btnClose, null);
+                _toolTip.SetToolTip(_lnkEarnerWebPage, null);
+                _toolTip.SetToolTip(_lnkSubmitBug, null);
+                _toolTip.SetToolTip(_btnEarnerWebPage, null);
+                _toolTip.SetToolTip(_btnSubmitBug, null);
             }
         }
 
@@ -96,6 +107,18 @@ namespace Earner.Forms
         }
 
         private void EarnerWebPageLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Log.LogCaller();
+            EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+        }
+
+        private void SubmitBugClick(object sender, EventArgs e)
+        {
+            Log.LogCaller();
+            EarnerCommon.OpenUrl(@$"https://github.com/voltura/Earner/issues/new?assignees=&labels=&template=bug_report.md&title={UrlEncoder.Default.Encode(_lblAppInfo.Text)}");
+        }
+
+        private void EarnerWebPageClick(object sender, EventArgs e)
         {
             Log.LogCaller();
             EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");

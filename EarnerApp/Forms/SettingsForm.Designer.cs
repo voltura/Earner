@@ -51,6 +51,8 @@ namespace Earner.Forms
             this._chkShowTooltips = new System.Windows.Forms.CheckBox();
             this._chkShowApplicationLogOnErrors = new System.Windows.Forms.CheckBox();
             this._grpBoxDeveloperSettings = new System.Windows.Forms.GroupBox();
+            this._btnClearAppLog = new System.Windows.Forms.Button();
+            this._btnShowAppLog = new System.Windows.Forms.Button();
             this._grpBoxInterfaceSettings = new System.Windows.Forms.GroupBox();
             this._btnAbout = new System.Windows.Forms.Button();
             this._lblShow = new System.Windows.Forms.Label();
@@ -202,7 +204,7 @@ namespace Earner.Forms
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(29, 29);
-            this._btnSave.TabIndex = 21;
+            this._btnSave.TabIndex = 28;
             this._btnSave.Tag = "";
             this._btnSave.UseVisualStyleBackColor = false;
             this._btnSave.Click += new System.EventHandler(this.SaveClick);
@@ -224,7 +226,7 @@ namespace Earner.Forms
             this._btnEditTasks.Margin = new System.Windows.Forms.Padding(0);
             this._btnEditTasks.Name = "_btnEditTasks";
             this._btnEditTasks.Size = new System.Drawing.Size(29, 29);
-            this._btnEditTasks.TabIndex = 16;
+            this._btnEditTasks.TabIndex = 18;
             this._btnEditTasks.Tag = "";
             this._btnEditTasks.UseVisualStyleBackColor = false;
             this._btnEditTasks.Click += new System.EventHandler(this.EditTasksClick);
@@ -232,8 +234,8 @@ namespace Earner.Forms
             // _chkSaveTaskLog
             // 
             this._chkSaveTaskLog.AutoSize = true;
-            this._chkSaveTaskLog.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkSaveTaskLog.Checked = true;
+            this._chkSaveTaskLog.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkSaveTaskLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkSaveTaskLog.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkSaveTaskLog.ForeColor = System.Drawing.Color.White;
@@ -256,15 +258,15 @@ namespace Earner.Forms
             // _chkShowTooltips
             // 
             this._chkShowTooltips.AutoSize = true;
-            this._chkShowTooltips.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkShowTooltips.Checked = true;
+            this._chkShowTooltips.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkShowTooltips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowTooltips.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowTooltips.ForeColor = System.Drawing.Color.White;
             this._chkShowTooltips.Location = new System.Drawing.Point(58, 23);
             this._chkShowTooltips.Name = "_chkShowTooltips";
             this._chkShowTooltips.Size = new System.Drawing.Size(78, 25);
-            this._chkShowTooltips.TabIndex = 17;
+            this._chkShowTooltips.TabIndex = 20;
             this._chkShowTooltips.Text = "tooltips";
             this._chkShowTooltips.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._chkShowTooltips.UseVisualStyleBackColor = true;
@@ -273,21 +275,23 @@ namespace Earner.Forms
             // _chkShowApplicationLogOnErrors
             // 
             this._chkShowApplicationLogOnErrors.AutoSize = true;
-            this._chkShowApplicationLogOnErrors.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkShowApplicationLogOnErrors.Checked = true;
+            this._chkShowApplicationLogOnErrors.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkShowApplicationLogOnErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowApplicationLogOnErrors.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowApplicationLogOnErrors.ForeColor = System.Drawing.Color.White;
             this._chkShowApplicationLogOnErrors.Location = new System.Drawing.Point(10, 21);
             this._chkShowApplicationLogOnErrors.Name = "_chkShowApplicationLogOnErrors";
             this._chkShowApplicationLogOnErrors.Size = new System.Drawing.Size(123, 25);
-            this._chkShowApplicationLogOnErrors.TabIndex = 20;
+            this._chkShowApplicationLogOnErrors.TabIndex = 25;
             this._chkShowApplicationLogOnErrors.Text = "Display errors";
             this._chkShowApplicationLogOnErrors.UseVisualStyleBackColor = true;
             this._chkShowApplicationLogOnErrors.CheckedChanged += new System.EventHandler(this.ShowApplicationLogOnErrorsCheckedChanged);
             // 
             // _grpBoxDeveloperSettings
             // 
+            this._grpBoxDeveloperSettings.Controls.Add(this._btnClearAppLog);
+            this._grpBoxDeveloperSettings.Controls.Add(this._btnShowAppLog);
             this._grpBoxDeveloperSettings.Controls.Add(this._chkShowApplicationLogOnErrors);
             this._grpBoxDeveloperSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._grpBoxDeveloperSettings.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -298,6 +302,46 @@ namespace Earner.Forms
             this._grpBoxDeveloperSettings.TabIndex = 3;
             this._grpBoxDeveloperSettings.TabStop = false;
             this._grpBoxDeveloperSettings.Text = "Advanced";
+            // 
+            // _btnClearAppLog
+            // 
+            this._btnClearAppLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnClearAppLog.BackgroundImage = global::Earner.Properties.Resources.close_48x48;
+            this._btnClearAppLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnClearAppLog.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnClearAppLog.FlatAppearance.BorderSize = 0;
+            this._btnClearAppLog.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnClearAppLog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnClearAppLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this._btnClearAppLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnClearAppLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnClearAppLog.Location = new System.Drawing.Point(197, 17);
+            this._btnClearAppLog.Margin = new System.Windows.Forms.Padding(0);
+            this._btnClearAppLog.Name = "_btnClearAppLog";
+            this._btnClearAppLog.Size = new System.Drawing.Size(29, 29);
+            this._btnClearAppLog.TabIndex = 26;
+            this._btnClearAppLog.UseVisualStyleBackColor = false;
+            this._btnClearAppLog.Click += new System.EventHandler(this.ClearAppLogClick);
+            // 
+            // _btnShowAppLog
+            // 
+            this._btnShowAppLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowAppLog.BackgroundImage = global::Earner.Properties.Resources.log;
+            this._btnShowAppLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnShowAppLog.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowAppLog.FlatAppearance.BorderSize = 0;
+            this._btnShowAppLog.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowAppLog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnShowAppLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnShowAppLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnShowAppLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnShowAppLog.Location = new System.Drawing.Point(240, 17);
+            this._btnShowAppLog.Margin = new System.Windows.Forms.Padding(0);
+            this._btnShowAppLog.Name = "_btnShowAppLog";
+            this._btnShowAppLog.Size = new System.Drawing.Size(27, 29);
+            this._btnShowAppLog.TabIndex = 27;
+            this._btnShowAppLog.UseVisualStyleBackColor = false;
+            this._btnShowAppLog.Click += new System.EventHandler(this.ShowAppLogClick);
             // 
             // _grpBoxInterfaceSettings
             // 
@@ -333,8 +377,7 @@ namespace Earner.Forms
             this._btnAbout.Margin = new System.Windows.Forms.Padding(0);
             this._btnAbout.Name = "_btnAbout";
             this._btnAbout.Size = new System.Drawing.Size(29, 29);
-            this._btnAbout.TabIndex = 602;
-            this._btnAbout.TabStop = false;
+            this._btnAbout.TabIndex = 24;
             this._btnAbout.UseVisualStyleBackColor = false;
             this._btnAbout.Click += new System.EventHandler(this.AboutClick);
             // 
@@ -352,15 +395,15 @@ namespace Earner.Forms
             // _chkShowProgressbar
             // 
             this._chkShowProgressbar.AutoSize = true;
-            this._chkShowProgressbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkShowProgressbar.Checked = true;
+            this._chkShowProgressbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkShowProgressbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._chkShowProgressbar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._chkShowProgressbar.ForeColor = System.Drawing.Color.White;
             this._chkShowProgressbar.Location = new System.Drawing.Point(140, 23);
             this._chkShowProgressbar.Name = "_chkShowProgressbar";
             this._chkShowProgressbar.Size = new System.Drawing.Size(114, 25);
-            this._chkShowProgressbar.TabIndex = 20;
+            this._chkShowProgressbar.TabIndex = 21;
             this._chkShowProgressbar.Text = "progress bar";
             this._chkShowProgressbar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._chkShowProgressbar.UseVisualStyleBackColor = true;
@@ -375,7 +418,7 @@ namespace Earner.Forms
             this._chkConfirmBeforeClose.Location = new System.Drawing.Point(10, 82);
             this._chkConfirmBeforeClose.Name = "_chkConfirmBeforeClose";
             this._chkConfirmBeforeClose.Size = new System.Drawing.Size(122, 25);
-            this._chkConfirmBeforeClose.TabIndex = 19;
+            this._chkConfirmBeforeClose.TabIndex = 23;
             this._chkConfirmBeforeClose.Text = "Confirm close";
             this._chkConfirmBeforeClose.UseVisualStyleBackColor = true;
             this._chkConfirmBeforeClose.CheckedChanged += new System.EventHandler(this.ConfirmBeforeCloseCheckedChanged);
@@ -389,7 +432,7 @@ namespace Earner.Forms
             this._chkAutoStartWithWindows.Location = new System.Drawing.Point(10, 52);
             this._chkAutoStartWithWindows.Name = "_chkAutoStartWithWindows";
             this._chkAutoStartWithWindows.Size = new System.Drawing.Size(124, 25);
-            this._chkAutoStartWithWindows.TabIndex = 18;
+            this._chkAutoStartWithWindows.TabIndex = 22;
             this._chkAutoStartWithWindows.Text = "Run at startup";
             this._chkAutoStartWithWindows.UseVisualStyleBackColor = true;
             this._chkAutoStartWithWindows.CheckedChanged += new System.EventHandler(this.AutoStartWithWindowsCheckedChanged);
@@ -429,7 +472,7 @@ namespace Earner.Forms
             this._btnAdminJsonDb.Margin = new System.Windows.Forms.Padding(0);
             this._btnAdminJsonDb.Name = "_btnAdminJsonDb";
             this._btnAdminJsonDb.Size = new System.Drawing.Size(29, 29);
-            this._btnAdminJsonDb.TabIndex = 602;
+            this._btnAdminJsonDb.TabIndex = 16;
             this._btnAdminJsonDb.Tag = "";
             this._btnAdminJsonDb.UseVisualStyleBackColor = false;
             this._btnAdminJsonDb.Click += new System.EventHandler(this.AdminJsonDbClick);
@@ -450,8 +493,7 @@ namespace Earner.Forms
             this._btnEraseLogRecords.Margin = new System.Windows.Forms.Padding(0);
             this._btnEraseLogRecords.Name = "_btnEraseLogRecords";
             this._btnEraseLogRecords.Size = new System.Drawing.Size(29, 29);
-            this._btnEraseLogRecords.TabIndex = 601;
-            this._btnEraseLogRecords.TabStop = false;
+            this._btnEraseLogRecords.TabIndex = 17;
             this._btnEraseLogRecords.UseVisualStyleBackColor = false;
             this._btnEraseLogRecords.Click += new System.EventHandler(this.EraseLogRecordsClick);
             // 
@@ -464,7 +506,7 @@ namespace Earner.Forms
             this._lnkTaskLogLocation.Location = new System.Drawing.Point(92, 23);
             this._lnkTaskLogLocation.Name = "_lnkTaskLogLocation";
             this._lnkTaskLogLocation.Size = new System.Drawing.Size(41, 21);
-            this._lnkTaskLogLocation.TabIndex = 17;
+            this._lnkTaskLogLocation.TabIndex = 15;
             this._lnkTaskLogLocation.TabStop = true;
             this._lnkTaskLogLocation.Text = "here";
             this._lnkTaskLogLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -480,7 +522,7 @@ namespace Earner.Forms
             this._chkAutoShowTaskLog.Location = new System.Drawing.Point(10, 52);
             this._chkAutoShowTaskLog.Name = "_chkAutoShowTaskLog";
             this._chkAutoShowTaskLog.Size = new System.Drawing.Size(207, 25);
-            this._chkAutoShowTaskLog.TabIndex = 15;
+            this._chkAutoShowTaskLog.TabIndex = 19;
             this._chkAutoShowTaskLog.Text = "Show log on close && reset";
             this._chkAutoShowTaskLog.UseVisualStyleBackColor = true;
             this._chkAutoShowTaskLog.CheckedChanged += new System.EventHandler(this.AutoShowTaskLogCheckedChanged);
@@ -624,5 +666,7 @@ namespace Earner.Forms
         private TextBox _txtHourlyRatePlaceholder;
         private Button _btnAbout;
         private Button _btnAdminJsonDb;
+        private Button _btnShowAppLog;
+        private Button _btnClearAppLog;
     }
 }
