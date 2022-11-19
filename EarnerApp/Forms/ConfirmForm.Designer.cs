@@ -175,6 +175,7 @@
             this.Text = "Earner - Confirm Message";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
+            this.Shown += new System.EventHandler(this.ConfirmFormShown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConfirmFormKeyDown);
             this.Resize += new System.EventHandler(this.ConfirmFormResize);
             this._topPanel.ResumeLayout(false);

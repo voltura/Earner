@@ -40,6 +40,7 @@
             this._btnClose = new System.Windows.Forms.Button();
             this._lnkSubmitBug = new System.Windows.Forms.LinkLabel();
             this._btnSubmitBug = new System.Windows.Forms.Button();
+            this._btnSupportMe = new System.Windows.Forms.Button();
             this._topPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this._lblAppInfo.Location = new System.Drawing.Point(0, 29);
             this._lblAppInfo.Margin = new System.Windows.Forms.Padding(0);
             this._lblAppInfo.Name = "_lblAppInfo";
-            this._lblAppInfo.Size = new System.Drawing.Size(271, 46);
+            this._lblAppInfo.Size = new System.Drawing.Size(271, 34);
             this._lblAppInfo.TabIndex = 0;
             this._lblAppInfo.Text = "Earner by Voltura AB";
             this._lblAppInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,10 +123,10 @@
             this._btnEarnerWebPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnEarnerWebPage.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnEarnerWebPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnEarnerWebPage.Location = new System.Drawing.Point(18, 80);
+            this._btnEarnerWebPage.Location = new System.Drawing.Point(29, 99);
             this._btnEarnerWebPage.Margin = new System.Windows.Forms.Padding(0);
             this._btnEarnerWebPage.Name = "_btnEarnerWebPage";
-            this._btnEarnerWebPage.Size = new System.Drawing.Size(29, 29);
+            this._btnEarnerWebPage.Size = new System.Drawing.Size(23, 23);
             this._btnEarnerWebPage.TabIndex = 1;
             this._btnEarnerWebPage.UseVisualStyleBackColor = false;
             this._btnEarnerWebPage.Click += new System.EventHandler(this.EarnerWebPageClick);
@@ -146,7 +147,7 @@
             this._lnkEarnerWebPage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lnkEarnerWebPage.ForeColor = System.Drawing.Color.White;
             this._lnkEarnerWebPage.LinkColor = System.Drawing.Color.White;
-            this._lnkEarnerWebPage.Location = new System.Drawing.Point(60, 84);
+            this._lnkEarnerWebPage.Location = new System.Drawing.Point(60, 99);
             this._lnkEarnerWebPage.Name = "_lnkEarnerWebPage";
             this._lnkEarnerWebPage.Size = new System.Drawing.Size(168, 21);
             this._lnkEarnerWebPage.TabIndex = 2;
@@ -186,7 +187,7 @@
             this._lnkSubmitBug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lnkSubmitBug.ForeColor = System.Drawing.Color.White;
             this._lnkSubmitBug.LinkColor = System.Drawing.Color.White;
-            this._lnkSubmitBug.Location = new System.Drawing.Point(60, 123);
+            this._lnkSubmitBug.Location = new System.Drawing.Point(60, 125);
             this._lnkSubmitBug.Name = "_lnkSubmitBug";
             this._lnkSubmitBug.Size = new System.Drawing.Size(150, 21);
             this._lnkSubmitBug.TabIndex = 4;
@@ -208,13 +209,33 @@
             this._btnSubmitBug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSubmitBug.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSubmitBug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSubmitBug.Location = new System.Drawing.Point(18, 118);
+            this._btnSubmitBug.Location = new System.Drawing.Point(29, 125);
             this._btnSubmitBug.Margin = new System.Windows.Forms.Padding(0);
             this._btnSubmitBug.Name = "_btnSubmitBug";
-            this._btnSubmitBug.Size = new System.Drawing.Size(29, 29);
+            this._btnSubmitBug.Size = new System.Drawing.Size(23, 23);
             this._btnSubmitBug.TabIndex = 3;
             this._btnSubmitBug.UseVisualStyleBackColor = false;
             this._btnSubmitBug.Click += new System.EventHandler(this.SubmitBugClick);
+            // 
+            // _btnSupportMe
+            // 
+            this._btnSupportMe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnSupportMe.BackgroundImage = global::Earner.Properties.Resources.kofi;
+            this._btnSupportMe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnSupportMe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnSupportMe.FlatAppearance.BorderSize = 0;
+            this._btnSupportMe.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnSupportMe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnSupportMe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnSupportMe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnSupportMe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnSupportMe.Location = new System.Drawing.Point(121, 70);
+            this._btnSupportMe.Margin = new System.Windows.Forms.Padding(0);
+            this._btnSupportMe.Name = "_btnSupportMe";
+            this._btnSupportMe.Size = new System.Drawing.Size(29, 29);
+            this._btnSupportMe.TabIndex = 602;
+            this._btnSupportMe.UseVisualStyleBackColor = false;
+            this._btnSupportMe.Click += new System.EventHandler(this.SupportMeClick);
             // 
             // AboutForm
             // 
@@ -222,6 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(271, 153);
+            this.Controls.Add(this._btnSupportMe);
             this.Controls.Add(this._btnSubmitBug);
             this.Controls.Add(this._btnEarnerWebPage);
             this.Controls.Add(this._lnkSubmitBug);
@@ -245,6 +267,7 @@
             this.Text = "Earner - About";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Cyan;
+            this.Shown += new System.EventHandler(this.AboutFormShown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutFormKeyDown);
             this.Resize += new System.EventHandler(this.AboutFormResize);
             this._topPanel.ResumeLayout(false);
@@ -266,5 +289,6 @@
         private Button _btnEarnerWebPage;
         private LinkLabel _lnkSubmitBug;
         private Button _btnSubmitBug;
+        private Button _btnSupportMe;
     }
 }

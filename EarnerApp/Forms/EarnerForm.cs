@@ -3,6 +3,7 @@
 using Earner.Records;
 using Earner.Settings;
 using System.Diagnostics;
+using System.Media;
 
 #endregion Using statements
 
@@ -20,13 +21,15 @@ namespace Earner.Forms
 
         private readonly EarnerRecords _EarnerRecords;
 
-        private readonly Stopwatch _stopwatch = new();
+        private readonly Stopwatch _Stopwatch = new();
 
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
         private bool _DoNotChangeFontSize = false;
 
-        private int _unfocusCount = 0;
+        private int _UnfocusCount = 0;
+
+        private bool _PlayedOvertimeTuneToday = false;
 
         #endregion Private variables
 
@@ -125,7 +128,7 @@ namespace Earner.Forms
             _pbWorkProgress.Value = workedPercentageToday > 100 ? 100 : workedPercentageToday;
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             _ActiveDay = DateTime.Today;
-            _stopwatch.Start();
+            _Stopwatch.Start();
             _earnerTimer.Start();
             _btnStart.Tag = "Stop";
             _btnStart.BackgroundImage = Properties.Resources.pause_48x48;
@@ -138,7 +141,7 @@ namespace Earner.Forms
             int progress = Convert.ToInt32(Math.Round(_EarnerRecords.TotalSecondsWorkedToday / (_Settings.MaxBillableDailyHours * 3600) * 100, 0));
             _pbWorkProgress.Value = progress > 100 ? 100 : progress;
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
-            _stopwatch.Stop();
+            _Stopwatch.Stop();
             _earnerTimer.Stop();
             _btnStart.Tag = "Start";
             _btnStart.BackgroundImage = Properties.Resources.play_48x48;
@@ -146,8 +149,8 @@ namespace Earner.Forms
 
         private void UpdateEarnings()
         {
-            _ElapsedTime = _stopwatch.Elapsed;
-            _stopwatch.Restart();
+            _ElapsedTime = _Stopwatch.Elapsed;
+            _Stopwatch.Restart();
             double activeTaskEarningsToday = _EarnerRecords.TotalEarningsTodayForTask(_ActiveTask) + (_ElapsedTime.TotalSeconds * (_Settings.HourlyRate / 3600.00d));
             if (_EarnerRecords.TotalSecondsWorkedToday + _ElapsedTime.TotalSeconds <= _Settings.MaxBillableDailyHours * 3600)
             {
@@ -166,7 +169,17 @@ namespace Earner.Forms
                 _pbWorkProgress.Value = 100;
                 EarnerCommon.SetProgressbarErrorState(_pbWorkProgress.Handle);
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
+                PlayOvertimeTune();
                 Log.Info = "Working overtime";
+            }
+        }
+
+        private void PlayOvertimeTune()
+        {
+            if (_Settings.PlaySounds && _PlayedOvertimeTuneToday == false)
+            {
+                SystemSounds.Exclamation.Play();
+                _PlayedOvertimeTuneToday = true;
             }
         }
 
@@ -184,21 +197,21 @@ namespace Earner.Forms
         {
             if (ActiveControl is null)
             {
-                _unfocusCount = 0;
+                _UnfocusCount = 0;
                 return;
             }
 
-            _unfocusCount++;
-            if (_unfocusCount > 10)
+            _UnfocusCount++;
+            if (_UnfocusCount > 10)
             {
                 ActiveControl = null;
-                _unfocusCount = 0;
+                _UnfocusCount = 0;
             }
         }
 
         private void ResetUnfocusFormCounter()
         {
-            _unfocusCount = 0;
+            _UnfocusCount = 0;
         }
 
         #endregion Private methods
@@ -241,7 +254,7 @@ namespace Earner.Forms
             {
                 EarnerRecords.EraseLog();
                 _EarnerRecords.RemoveAllEarningRecords();
-                _stopwatch.Reset();
+                _Stopwatch.Reset();
                 StartEarning();
             }
         }
@@ -255,25 +268,26 @@ namespace Earner.Forms
             {
                 _earnerTimer.Stop();
                 _EarnerRecords.LogRecords();
-                DialogResult cfdr = DialogResult.None;
+                DialogResult confirmResult = DialogResult.None;
                 try
                 {
+                    _PlayedOvertimeTuneToday = false;
                     Visible = false;
                     using ConfirmForm confirmForm = new();
                     confirmForm.LblQuestion.Text = "New day, new earnings!\nStart earnings for today?";
-                    cfdr = confirmForm.ShowDialog(this);
+                    confirmResult = confirmForm.ShowDialog(this);
                 }
                 finally
                 {
                     Visible = true;
                 }
-                if (DialogResult.Yes != cfdr)
+                if (DialogResult.Yes != confirmResult)
                 {
                     StopEarning();
                     return;
                 }
 
-                _stopwatch.Reset();
+                _Stopwatch.Reset();
                 StartEarning();
             }
         }
@@ -295,7 +309,7 @@ namespace Earner.Forms
 
         private void CloseClick(object sender, EventArgs e)
         {
-            if (_Settings.ConfirmBeforeClose)
+            if (_Settings.UseConfirmations)
             {
                 DialogResult cfdr = DialogResult.None;
                 try
@@ -320,26 +334,26 @@ namespace Earner.Forms
 
         private void RestartClick(object sender, EventArgs e)
         {
-            DialogResult cfdr = DialogResult.None;
+            DialogResult confirmResult = DialogResult.None;
             try
             {
                 Visible = false;
                 using ConfirmForm confirmForm = new();
                 confirmForm.LblQuestion.Text = "Restart todays earnings?\nIt will erase todays work log.";
-                cfdr = confirmForm.ShowDialog(this);
+                confirmResult = confirmForm.ShowDialog(this);
             }
             finally
             {
                 Visible = true;
             }
-            if (DialogResult.Yes != cfdr)
+            if (DialogResult.Yes != confirmResult)
             {
                 return;
             }
 
             _EarnerRecords.LogRecords();
             _EarnerRecords.RemoveTodaysEarningRecords();
-            _stopwatch.Reset();
+            _Stopwatch.Reset();
             StartEarning();
         }
 
@@ -397,7 +411,7 @@ namespace Earner.Forms
                 {
                     Visible = true;
                 }
-                if (_Settings.ConfirmBeforeClose || dialogResult == DialogResult.Yes)
+                if (_Settings.UseConfirmations || dialogResult == DialogResult.Yes)
                 {
                     CloseClick(sender, e);
                 }

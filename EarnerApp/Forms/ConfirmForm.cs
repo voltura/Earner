@@ -1,4 +1,5 @@
 using Earner.Settings;
+using System.Media;
 
 namespace Earner.Forms
 {
@@ -100,6 +101,14 @@ namespace Earner.Forms
             {
                 DialogResult = DialogResult.Yes;
                 Close();
+            }
+        }
+
+        private void ConfirmFormShown(object sender, EventArgs e)
+        {
+            if (_Settings.PlaySounds)
+            {
+                SystemSounds.Exclamation.Play();
             }
         }
 

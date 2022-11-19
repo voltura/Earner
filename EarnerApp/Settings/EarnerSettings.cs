@@ -99,11 +99,13 @@
 
         public bool AutoStartWithWindows { get; set; } = false;
 
-        public bool ConfirmBeforeClose { get; set; } = true;
+        public bool UseConfirmations { get; set; } = true;
 
         public bool ShowProgressbar { get; set; } = true;
 
         public bool ShowSettingsOnStartup { get; set; } = true;
+
+        public bool PlaySounds { get; set; } = false;
 
         #endregion Public properties
 
@@ -124,9 +126,10 @@
             ShowApplicationLogOnErrors = EarnerConfig.GetAppSettings<bool>("ShowAppLogOnError");
             ShowTooltips = EarnerConfig.GetAppSettings<bool>("ShowTooltips");
             AutoStartWithWindows = EarnerConfig.GetAppSettings<bool>("AutoStartWithWindows");
-            ConfirmBeforeClose = EarnerConfig.GetAppSettings<bool>("ConfirmBeforeClose");
+            UseConfirmations = EarnerConfig.GetAppSettings<bool>("UseConfirmations");
             ShowProgressbar = EarnerConfig.GetAppSettings<bool>("ShowProgressbar");
             ShowSettingsOnStartup = EarnerConfig.GetAppSettings<bool>("ShowSettingsOnStartup");
+            PlaySounds = EarnerConfig.GetAppSettings<bool>("PlaySounds");
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
@@ -144,9 +147,10 @@
             _ = EarnerConfig.SaveAppSettingsString("ShowTooltips", ShowTooltips.ToString());
             _ = EarnerConfig.SaveAppSettingsString("AutoStartWithWindows", AutoStartWithWindows.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowAppLogOnError", ShowApplicationLogOnErrors.ToString());
-            _ = EarnerConfig.SaveAppSettingsString("ConfirmBeforeClose", ConfirmBeforeClose.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("UseConfirmations", UseConfirmations.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowProgressbar", ShowProgressbar.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowSettingsOnStartup", ShowSettingsOnStartup.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("PlaySounds", PlaySounds.ToString());
             _ = EarnerConfig.SaveAppSettingsList("Tasks", EarnerTasks);
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
@@ -177,9 +181,10 @@
 		<add key=""ShowTooltips"" value=""false""/>
 		<add key=""AutoShowTaskLog"" value=""false""/>
 		<add key=""AutoStartWithWindows"" value=""false""/>
-		<add key=""ConfirmBeforeClose"" value=""false""/>
+		<add key=""UseConfirmations"" value=""false""/>
 		<add key=""ShowProgressbar"" value=""true""/>
 		<add key=""ShowSettingsOnStartup"" value=""true""/>
+        <add key=""PlaySounds"" value=""false""/>
 	</appSettings>
   <System.Windows.Forms.ApplicationConfigurationSection>
     <add key=""DpiAwareness"" value=""PerMonitorV2"" />

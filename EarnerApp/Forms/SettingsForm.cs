@@ -97,7 +97,7 @@ namespace Earner.Forms
             _chkShowTooltips.Checked = _Settings.ShowTooltips;
             _chkAutoShowTaskLog.Checked = _Settings.AutoShowTaskLog;
             _chkAutoStartWithWindows.Checked = _Settings.AutoStartWithWindows;
-            _chkConfirmBeforeClose.Checked = _Settings.ConfirmBeforeClose;
+            _chkUseConfirmations.Checked = _Settings.UseConfirmations;
             _chkShowProgressbar.Checked = _Settings.ShowProgressbar;
             SetTooltips();
         }
@@ -126,7 +126,8 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkShowApplicationLogOnErrors, "Show application log on errors (technical)");
                 _toolTip.SetToolTip(_chkAutoShowTaskLog, "Automatically show earnings when app is closed or reset is pressed");
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, "Automatically start Earner with Windows");
-                _toolTip.SetToolTip(_chkConfirmBeforeClose, "Show confirmation dialog when Close is pressed");
+                _toolTip.SetToolTip(_chkPlaySounds, "Use sound notifications");
+                _toolTip.SetToolTip(_chkUseConfirmations, "Show confirmation dialog when Close is pressed");
                 _toolTip.SetToolTip(_chkShowProgressbar, "Show work progress bar");
                 _toolTip.SetToolTip(_btnShowAppLog, "Show application log (advanced)");
                 _toolTip.SetToolTip(_btnClearAppLog, "Clear application log (advanced)");
@@ -153,7 +154,8 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkShowApplicationLogOnErrors, null);
                 _toolTip.SetToolTip(_chkAutoShowTaskLog, null);
                 _toolTip.SetToolTip(_chkAutoStartWithWindows, null);
-                _toolTip.SetToolTip(_chkConfirmBeforeClose, null);
+                _toolTip.SetToolTip(_chkPlaySounds, null);
+                _toolTip.SetToolTip(_chkUseConfirmations, null);
                 _toolTip.SetToolTip(_chkShowProgressbar, null);
                 _toolTip.SetToolTip(_btnShowAppLog, null);
                 _toolTip.SetToolTip(_btnClearAppLog, null);
@@ -204,7 +206,7 @@ namespace Earner.Forms
             _Settings.ShowApplicationLogOnErrors = _chkShowApplicationLogOnErrors.Checked;
             _Settings.AutoShowTaskLog = _chkAutoShowTaskLog.Checked;
             _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
-            _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
+            _Settings.UseConfirmations = _chkUseConfirmations.Checked;
             _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
@@ -304,6 +306,7 @@ namespace Earner.Forms
         {
             _Settings.ShowTooltips = _chkShowTooltips.Checked;
             _Settings.Save();
+            SetTooltips();
         }
 
         private void ShowProgressbarCheckedChanged(object sender, EventArgs e)
@@ -318,9 +321,9 @@ namespace Earner.Forms
             _Settings.Save();
         }
 
-        private void ConfirmBeforeCloseCheckedChanged(object sender, EventArgs e)
+        private void UseConfirmationsCheckedChanged(object sender, EventArgs e)
         {
-            _Settings.ConfirmBeforeClose = _chkConfirmBeforeClose.Checked;
+            _Settings.UseConfirmations = _chkUseConfirmations.Checked;
             _Settings.Save();
         }
 
@@ -349,7 +352,33 @@ namespace Earner.Forms
 
         private void ClearAppLogClick(object sender, EventArgs e)
         {
-            Log.Clear();
+            try
+            {
+                DialogResult dialogResult = DialogResult.Yes;
+                if (_Settings.UseConfirmations)
+                {
+                    Visible = false;
+                    using ConfirmForm confirmForm = new();
+                    confirmForm.LblQuestion.Text = "Clear the application log?";
+                    dialogResult = confirmForm.ShowDialog(this);
+                }
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Log.Clear();
+                }
+                
+            }
+            finally
+            {
+                Visible = true;
+            }
+        }
+
+        private void PlaySoundsCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.PlaySounds = _chkPlaySounds.Checked;
+            _Settings.Save();
         }
 
         #endregion Private events

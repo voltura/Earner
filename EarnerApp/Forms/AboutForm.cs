@@ -1,6 +1,7 @@
 #region Using statements
 
 using Earner.Settings;
+using System.Media;
 using System.Text.Encodings.Web;
 
 #endregion Using statements
@@ -40,6 +41,7 @@ namespace Earner.Forms
 
         private void SetTooltips()
         {
+            _toolTip.SetToolTip(_btnSupportMe, "Buy me a coffee!");
             if (_Settings.ShowTooltips)
             {
                 _toolTip.SetToolTip(_btnOK, "Close about info");
@@ -51,7 +53,6 @@ namespace Earner.Forms
             }
             else
             {
-                _toolTip.Hide(this);
                 _toolTip.SetToolTip(_btnOK, null);
                 _toolTip.SetToolTip(_btnClose, null);
                 _toolTip.SetToolTip(_lnkEarnerWebPage, null);
@@ -122,6 +123,20 @@ namespace Earner.Forms
         {
             Log.LogCaller();
             EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+        }
+
+        private void AboutFormShown(object sender, EventArgs e)
+        {
+            if (_Settings.PlaySounds)
+            {
+                SystemSounds.Exclamation.Play();
+            }
+        }
+
+        private void SupportMeClick(object sender, EventArgs e)
+        {
+            Log.LogCaller();
+            EarnerCommon.OpenUrl(@"https://ko-fi.com/voltura");
         }
 
         #endregion Private events
