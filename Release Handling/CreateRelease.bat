@@ -82,17 +82,12 @@ EXIT
 :: ==========================
 :CREATE_FILES_FOR_RELEASE
 CD /D "%SCRIPT_FOLDER%"
-IF "%RESULT%" EQU "0" (
-	CALL :GENERATE_MD5 Earner.exe
-	CALL :COMPRESS_Earner_ZIP
-	CALL :GENERATE_MD5 Earner_%VERSION%.zip
-	CALL :GENERATE_VERSION_INFO %VERSION% Earner_%VERSION%.zip
-	CALL :COPY_RELEASE
-	CALL :DISP_MSG "Generated all release files successfully." 0
-) ELSE (
-	NOTEPAD.EXE "%SCRIPT_FOLDER%\Earner_%VERSION%_Installer.log"
-	CALL :ERROR_MESSAGE_EXIT "Failed to compile installer." %RESULT%
-)
+CALL :GENERATE_MD5 Earner.exe
+CALL :COMPRESS_Earner_ZIP
+CALL :GENERATE_MD5 Earner_%VERSION%.zip
+CALL :GENERATE_VERSION_INFO %VERSION% Earner_%VERSION%.zip
+CALL :COPY_RELEASE
+CALL :DISP_MSG "Generated all release files successfully." 0
 CD /D "%SCRIPT_DIR%"
 GOTO :EOF
 
