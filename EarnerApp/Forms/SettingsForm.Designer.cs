@@ -347,8 +347,8 @@ namespace Earner.Forms
             // 
             // _grpBoxInterfaceSettings
             // 
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkUpdateChecks);
             this._grpBoxInterfaceSettings.Controls.Add(this._btnAbout);
+            this._grpBoxInterfaceSettings.Controls.Add(this._chkUpdateChecks);
             this._grpBoxInterfaceSettings.Controls.Add(this._chkPlaySounds);
             this._grpBoxInterfaceSettings.Controls.Add(this._lblShow);
             this._grpBoxInterfaceSettings.Controls.Add(this._chkShowProgressbar);
@@ -663,6 +663,7 @@ namespace Earner.Forms
             this._grpBoxGeneralSettings.ResumeLayout(false);
             this._grpBoxGeneralSettings.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion
