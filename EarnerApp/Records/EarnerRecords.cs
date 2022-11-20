@@ -16,7 +16,6 @@ namespace Earner.Records
     {
         #region Private variables
 
-        private List<EarnerRecord> _EarnerRecordList = new();
 
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
 
@@ -37,13 +36,7 @@ namespace Earner.Records
 
         private static readonly Lazy<EarnerRecords> lazy = new(() => new EarnerRecords());
 
-        public static EarnerRecords Instance
-        {
-            get
-            {
-                return lazy.Value;
-            }
-        }
+        public static EarnerRecords Instance => lazy.Value;
 
         #endregion Singleton instance via Lazy
 
@@ -62,7 +55,7 @@ namespace Earner.Records
 
         #region Public properties
 
-        public List<EarnerRecord> EarnerRecordList { get => _EarnerRecordList; set => _EarnerRecordList = value; }
+        public List<EarnerRecord> EarnerRecordList { get; set; } = new();
 
         public static string CurrentJsonFileName
         {
@@ -83,18 +76,12 @@ namespace Earner.Records
         {
             get
             {
-                double totalSecondsWorkedToday = _EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date ? er.Time.TotalSeconds : 0.00d);
+                double totalSecondsWorkedToday = EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date ? er.Time.TotalSeconds : 0.00d);
                 return totalSecondsWorkedToday >= 24 * 60 * 60 ? (24 * 60 * 60) - 1 : totalSecondsWorkedToday;
             }
         }
 
-        public double TotalEarningsToday
-        {
-            get
-            {
-                return _EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date ? er.Earned : 0.00d);
-            }
-        }
+        public double TotalEarningsToday => EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date ? er.Earned : 0.00d);
 
         #endregion Public properties
 
@@ -140,13 +127,13 @@ namespace Earner.Records
 
         public double TotalEarningsTodayForTask(string task)
         {
-            double totalEarningsTodayForTask = _EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date && er.Task == task ? er.Earned : 0.00d);
+            double totalEarningsTodayForTask = EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date && er.Task == task ? er.Earned : 0.00d);
             return totalEarningsTodayForTask;
         }
 
         public double TotalSecondsTodayForTask(string task)
         {
-            return _EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date && er.Task == task ? er.Time.TotalSeconds : 0.00d);
+            return EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date && er.Task == task ? er.Time.TotalSeconds : 0.00d);
         }
 
         public void LoadRecordsFromJsonDb()
@@ -157,7 +144,7 @@ namespace Earner.Records
                 if (File.Exists(CurrentJsonFileName))
                 {
                     string jsonEarnerRecordList = File.ReadAllText(CurrentJsonFileName);
-                    _EarnerRecordList.AddRange(JsonSerializer.Deserialize<List<EarnerRecord>>(jsonEarnerRecordList)!);
+                    EarnerRecordList.AddRange(JsonSerializer.Deserialize<List<EarnerRecord>>(jsonEarnerRecordList)!);
                 }
 
             }
@@ -191,15 +178,15 @@ namespace Earner.Records
                 };
 
                 // create new record
-                if (_EarnerRecordList.Count == 0 || !_EarnerRecordList.Contains(tempEarnerRecord))
+                if (EarnerRecordList.Count == 0 || !EarnerRecordList.Contains(tempEarnerRecord))
                 {
-                    _EarnerRecordList.Add(tempEarnerRecord);
+                    EarnerRecordList.Add(tempEarnerRecord);
                     Log.Info = $"Created a new Earner record; {tempEarnerRecord}";
                     return;
                 }
 
                 // update existing record
-                EarnerRecord existingRecord = _EarnerRecordList.Find((r) => r.Task == task && r.Date.Date == DateTime.Now.Date)!;
+                EarnerRecord existingRecord = EarnerRecordList.Find((r) => r.Task == task && r.Date.Date == DateTime.Now.Date)!;
                 existingRecord.Earned = totalEarningsForTaskToday;
                 existingRecord.HourlyRate = hourlyRate;
                 existingRecord.CurrencySymbol = currencySymbol;
@@ -210,9 +197,9 @@ namespace Earner.Records
         public void RemoveTodaysEarningRecords()
         {
             Log.LogCaller();
-            _EarnerRecordList = _EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date) is null ? new List<EarnerRecord>() : _EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date).ToList();
+            EarnerRecordList = EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date) is null ? new List<EarnerRecord>() : EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date).ToList();
             _Settings.Load();
-            if (!_Settings.SaveTaskLog || _EarnerRecordList.Count == 0)
+            if (!_Settings.SaveTaskLog || EarnerRecordList.Count == 0)
             {
                 return;
             }
@@ -223,9 +210,9 @@ namespace Earner.Records
         public void RemoveAllEarningRecords()
         {
             Log.LogCaller();
-            _EarnerRecordList = new List<EarnerRecord>();
+            EarnerRecordList = new List<EarnerRecord>();
             _Settings.Load();
-            if (!_Settings.SaveTaskLog || _EarnerRecordList.Count == 0)
+            if (!_Settings.SaveTaskLog || EarnerRecordList.Count == 0)
             {
                 return;
             }
@@ -236,7 +223,7 @@ namespace Earner.Records
         public void LogRecords(bool forceDisplayExcel = false, REPORT_PERIOD period = REPORT_PERIOD.DAY)
         {
             _Settings.Load();
-            if (!_Settings.SaveTaskLog || _EarnerRecordList.Count == 0)
+            if (!_Settings.SaveTaskLog || EarnerRecordList.Count == 0)
             {
                 return;
             }
@@ -255,7 +242,7 @@ namespace Earner.Records
             {
                 Log.LogCaller();
                 JsonSerializerOptions options = new(JsonSerializerDefaults.General) { WriteIndented = true };
-                string jsonEarnerRecordList = JsonSerializer.Serialize(_EarnerRecordList, options);
+                string jsonEarnerRecordList = JsonSerializer.Serialize(EarnerRecordList, options);
                 File.WriteAllText(CurrentJsonFileName, jsonEarnerRecordList);
             }
             catch (Exception ex)
@@ -310,7 +297,7 @@ namespace Earner.Records
                 };
                 DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
                 Calendar cal = dfi.Calendar;
-                var values = _EarnerRecordList
+                var values = EarnerRecordList
                     .Where(i => i.Earned > 0)
                     .Where(i =>
                     {

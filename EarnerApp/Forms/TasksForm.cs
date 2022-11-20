@@ -30,7 +30,7 @@ namespace Earner.Forms
         {
             InitializeComponent();
             _Settings.Load();
-            _EarnerTasks = _Settings.EarnerTasks;
+            _EarnerTasks = _Settings.Tasks;
             SetTooltips();
             LoadTasksToUI();
             WireupTasksDoubleClickHandler();
@@ -94,7 +94,7 @@ namespace Earner.Forms
                 _EarnerTasks.Add(_cmbTasks.SelectedItem.ToString() + "");
                 _EarnerTasks.AddRange(_cmbTasks.Items.Cast<string>().ToList().Where((task) => task != _cmbTasks.SelectedItem.ToString()).ToList());
             }
-            _Settings.EarnerTasks = _EarnerTasks;
+            _Settings.Tasks = _EarnerTasks;
             _Settings.Save();
         }
 
@@ -115,7 +115,7 @@ namespace Earner.Forms
                         Visible = false;
                         using ConfirmForm confirmForm = new();
                         confirmForm.LblQuestion.Text = $"Max {MAX_NUMBER_OF_TASKS} tasks.\nPlease delete one before adding new.";
-                        confirmForm.ShowDialog(this);
+                        _ = confirmForm.ShowDialog(this);
                     }
                     finally
                     {

@@ -116,7 +116,7 @@ namespace Earner
                     UseShellExecute = true,
                     FileName = url
                 };
-                p.Start();
+                _ = p.Start();
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace Earner
         {
             while (dt.DayOfWeek != Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
             {
-                dt.AddDays(-1);
+                _ = dt.AddDays(-1);
             }
 
             return dt;

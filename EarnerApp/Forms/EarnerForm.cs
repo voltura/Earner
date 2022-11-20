@@ -1,9 +1,11 @@
 #region Using statements
 
+using Earner.Properties;
 using Earner.Records;
 using Earner.Settings;
 using System.Diagnostics;
 using System.Media;
+using Application = System.Windows.Forms.Application;
 
 #endregion Using statements
 
@@ -31,6 +33,8 @@ namespace Earner.Forms
 
         private bool _PlayedOvertimeTuneToday = false;
 
+        private string _InternetVersion = string.Empty;
+
         #endregion Private variables
 
         #region Constructor
@@ -53,7 +57,7 @@ namespace Earner.Forms
         {
             _Settings.Load();
             SetTooltips();
-            _ActiveTask = _Settings.EarnerTasks.FirstOrDefault("Default Task");
+            _ActiveTask = _Settings.Tasks.FirstOrDefault("Default Task");
             _lblActiveTask.Text = $"Working with {_ActiveTask}";
             _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
@@ -101,7 +105,7 @@ namespace Earner.Forms
                 {
                     Visible = false;
                     using SettingsForm sf = new();
-                    sf.ShowDialog(this);
+                    _ = sf.ShowDialog(this);
                     _Settings.ShowSettingsOnStartup = false;
                     _Settings.Save();
                 }
@@ -214,6 +218,92 @@ namespace Earner.Forms
             _UnfocusCount = 0;
         }
 
+        private void UpdateCheckCallbackFunction(string internetVersion)
+        {
+            if (string.IsNullOrWhiteSpace(internetVersion))
+            {
+                return;
+            }
+
+            _InternetVersion = internetVersion;
+            if (UpdateHandler.IsNewerVersion(Application.ProductVersion, _InternetVersion))
+            {
+                WriteTextSafe($"{Application.ProductName} {_InternetVersion} available!", Color.White);
+                ChangeHideToUpdate();
+            }
+            else
+            {
+                WriteTextSafe($"{Application.ProductName} {Application.ProductVersion}", Color.FromArgb(64, 64, 64));
+            }
+        }
+
+        public void WriteTextSafe(string text, Color color)
+        {
+            if (_lblEarnerHeader.InvokeRequired)
+            {
+                void safeWrite()
+                {
+                    WriteTextSafe(text, color);
+                }
+                _lblEarnerHeader.Invoke(safeWrite);
+            }
+            else
+            {
+                _lblEarnerHeader.Text = text;
+                _lblEarnerHeader.ForeColor = color;
+            }
+        }
+
+        public void ChangeHideToUpdate()
+        {
+            if (_btnHide.InvokeRequired)
+            {
+                void safeChangeHideToUpdate()
+                {
+                    ChangeHideToUpdate();
+                }
+                _lblEarnerHeader.Invoke(safeChangeHideToUpdate);
+            }
+            else
+            {
+                _btnHide.Tag = "Update";
+                _btnHide.BackgroundImage = Resources.info_48x48;
+            }
+        }
+
+        private void GetAndDisplayUpdateInfoInHeader()
+        {
+            if (_Settings.UpdateChecks)
+            {
+                _ = Task.Run(() => UpdateHandler.Instance.GetAsyncVersionInfoWithCallback(UpdateCheckCallbackFunction));
+            }
+        }
+
+        private void NewVersionGoToWebPage()
+        {
+            bool visibleState = Visible;
+            if (_Settings.UpdateChecks == false ||
+                string.IsNullOrWhiteSpace(_InternetVersion) ||
+                UpdateHandler.IsNewerVersion(Application.ProductVersion, _InternetVersion) == false)
+            {
+                return;
+            }
+            try
+            {
+                using ConfirmForm confirmForm = new();
+                confirmForm.LblQuestion.Text = $"Earner {_InternetVersion} available, open web page?";
+                if (confirmForm.ShowDialog() == DialogResult.Yes)
+                {
+                    Visible = false;
+                    EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+                }
+            }
+            finally
+            {
+                Visible = visibleState;
+            }
+        }
+
         #endregion Private methods
 
         #region Private events
@@ -294,6 +384,14 @@ namespace Earner.Forms
 
         private void HideClick(object sender, EventArgs e)
         {
+            if (_btnHide.Tag != null && _btnHide.Tag.ToString() == "Update")
+            {
+                NewVersionGoToWebPage();
+                _btnHide.Tag = null;
+                _btnHide.BackgroundImage = Resources.minimize_48x48;
+                return;
+            }
+
             _DoNotChangeFontSize = true;
             WindowState = FormWindowState.Minimized;
         }
@@ -436,6 +534,16 @@ namespace Earner.Forms
         private void StartFocusEnter(object sender, EventArgs e)
         {
             ResetUnfocusFormCounter();
+        }
+
+        private void EarnerFormLoad(object sender, EventArgs e)
+        {
+            GetAndDisplayUpdateInfoInHeader();
+        }
+
+        private void EarnerFormShown(object sender, EventArgs e)
+        {
+            GetAndDisplayUpdateInfoInHeader();
         }
 
         #endregion Private events

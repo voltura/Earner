@@ -134,7 +134,7 @@ namespace Earner.Forms
             {
                 e.Cancel = true;
                 int len = e.FormattedValue is null ? 0 : e.FormattedValue.ToString()!.Length;
-                if (len < 1 || len > 22)
+                if (len is < 1 or > 22)
                 {
                     _lblValidation.Text = "Task must be at least 1 character and max 22";
                 }

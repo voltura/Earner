@@ -59,7 +59,7 @@
 
         bool IEquatable<EarnerRecord>.Equals(EarnerRecord? other)
         {
-            return other is not null && (ReferenceEquals(this, other) || other.Task == Task && other.Date.Date == Date.Date);
+            return other is not null && (ReferenceEquals(this, other) || (other.Task == Task && other.Date.Date == Date.Date));
         }
 
         #endregion IEquatable interface

@@ -45,7 +45,7 @@
 
         public string CurrencySymbol { get; set; } = "kr";
 
-        public List<string> EarnerTasks { get; set; } = new();
+        public List<string> Tasks { get; set; } = new();
 
         public bool SaveTaskLog { get; set; } = false;
 
@@ -64,10 +64,7 @@
 
                 return _TaskLogSaveLocation;
             }
-            set
-            {
-                _TaskLogSaveLocation = value;
-            }
+            set => _TaskLogSaveLocation = value;
         }
 
         public string JsonSaveLocation
@@ -85,10 +82,7 @@
 
                 return _JsonSaveLocation;
             }
-            set
-            {
-                _JsonSaveLocation = value;
-            }
+            set => _JsonSaveLocation = value;
         }
 
         public bool AutoShowTaskLog { get; set; } = false;
@@ -107,6 +101,8 @@
 
         public bool PlaySounds { get; set; } = false;
 
+        public bool UpdateChecks { get; set; } = false;
+
         #endregion Public properties
 
         #region Public methods
@@ -118,7 +114,7 @@
             FixedDailyCost = EarnerConfig.GetAppSettings<double>("FixedDailyCost");
             MaxBillableDailyHours = EarnerConfig.GetAppSettings<double>("MaxBillableDailyHours");
             CurrencySymbol = EarnerConfig.GetAppSettings<string>("CurrencySymbol");
-            EarnerTasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
+            Tasks = EarnerConfig.GetAppSettings<List<string>>("Tasks");
             SaveTaskLog = EarnerConfig.GetAppSettings<bool>("SaveTaskLog");
             TaskLogSaveLocation = EarnerConfig.GetAppSettings<string>("TaskLogSaveLocation");
             JsonSaveLocation = EarnerConfig.GetAppSettings<string>("JsonSaveLocation");
@@ -130,6 +126,7 @@
             ShowProgressbar = EarnerConfig.GetAppSettings<bool>("ShowProgressbar");
             ShowSettingsOnStartup = EarnerConfig.GetAppSettings<bool>("ShowSettingsOnStartup");
             PlaySounds = EarnerConfig.GetAppSettings<bool>("PlaySounds");
+            UpdateChecks = EarnerConfig.GetAppSettings<bool>("UpdateChecks");
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
@@ -151,7 +148,8 @@
             _ = EarnerConfig.SaveAppSettingsString("ShowProgressbar", ShowProgressbar.ToString());
             _ = EarnerConfig.SaveAppSettingsString("ShowSettingsOnStartup", ShowSettingsOnStartup.ToString());
             _ = EarnerConfig.SaveAppSettingsString("PlaySounds", PlaySounds.ToString());
-            _ = EarnerConfig.SaveAppSettingsList("Tasks", EarnerTasks);
+            _ = EarnerConfig.SaveAppSettingsString("UpdateChecks", UpdateChecks.ToString());
+            _ = EarnerConfig.SaveAppSettingsList("Tasks", Tasks);
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
@@ -185,6 +183,7 @@
 		<add key=""ShowProgressbar"" value=""true""/>
 		<add key=""ShowSettingsOnStartup"" value=""true""/>
         <add key=""PlaySounds"" value=""false""/>
+		<add key=""UpdateChecks"" value=""false""/>
 	</appSettings>
   <System.Windows.Forms.ApplicationConfigurationSection>
     <add key=""DpiAwareness"" value=""PerMonitorV2"" />

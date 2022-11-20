@@ -24,6 +24,19 @@ namespace Earner
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        [DllImport("wininet.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool InternetGetConnectedState(out int Description, int ReservedValue);
+
         #endregion Public methods
+
+        #region External wininet.dll function to check Internet connection state
+
+        internal static bool IsConnectedToInternet()
+        {
+            return InternetGetConnectedState(out _, 0);
+        }
+
+        #endregion External wininet.dll function to check Internet connection state
     }
 }

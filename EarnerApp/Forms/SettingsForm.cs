@@ -25,12 +25,14 @@ namespace Earner.Forms
 
         public SettingsForm()
         {
+            Enabled = false;
             InitializeComponent();
             _txtHourlyRate = new NumericTextBox();
             _txtFixedDailyCost = new NumericTextBox();
             _txtMaxBillableDailyHours = new NumericTextBox();
             AddNumericTextBoxFieldsToForm();
             LoadAppSettings();
+            Enabled = true;
         }
 
         #endregion Constructor
@@ -99,6 +101,7 @@ namespace Earner.Forms
             _chkAutoStartWithWindows.Checked = _Settings.AutoStartWithWindows;
             _chkUseConfirmations.Checked = _Settings.UseConfirmations;
             _chkShowProgressbar.Checked = _Settings.ShowProgressbar;
+            _chkUpdateChecks.Checked = _Settings.UpdateChecks;
             SetTooltips();
         }
 
@@ -131,6 +134,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkShowProgressbar, "Show work progress bar");
                 _toolTip.SetToolTip(_btnShowAppLog, "Show application log (advanced)");
                 _toolTip.SetToolTip(_btnClearAppLog, "Clear application log (advanced)");
+                _toolTip.SetToolTip(_chkUpdateChecks, "Periodically check for application updates");
             }
             else
             {
@@ -159,6 +163,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_chkShowProgressbar, null);
                 _toolTip.SetToolTip(_btnShowAppLog, null);
                 _toolTip.SetToolTip(_btnClearAppLog, null);
+                _toolTip.SetToolTip(_chkUpdateChecks, null);
             }
         }
 
@@ -208,6 +213,7 @@ namespace Earner.Forms
             _Settings.AutoStartWithWindows = _chkAutoStartWithWindows.Checked;
             _Settings.UseConfirmations = _chkUseConfirmations.Checked;
             _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
+            _Settings.UpdateChecks = _chkUpdateChecks.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
@@ -379,6 +385,28 @@ namespace Earner.Forms
         {
             _Settings.PlaySounds = _chkPlaySounds.Checked;
             _Settings.Save();
+        }
+
+        private void UpdateChecksCheckedChanged(object sender, EventArgs e)
+        {
+            if (Enabled == false || Visible == false)
+            {
+                return;
+            }
+
+            _Settings.UpdateChecks = _chkUpdateChecks.Checked;
+            _Settings.Save();
+
+            if (_Settings.UpdateChecks &&
+                UpdateHandler.Instance.UpdateAvailable(out string internetVersion))
+            {
+                using ConfirmForm confirmForm = new();
+                confirmForm.LblQuestion.Text = $"Earner {internetVersion} available, open web page?";
+                if (confirmForm.ShowDialog() == DialogResult.Yes)
+                {
+                    EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+                }
+            }
         }
 
         #endregion Private events
