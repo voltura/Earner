@@ -45,6 +45,7 @@ namespace Earner.Forms
             Log.LogCaller();
             _EarnerRecords = EarnerRecords.Instance;
             InitializeComponent();
+            _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";
             LoadAppSettings();
             StartEarning();
         }
@@ -59,7 +60,6 @@ namespace Earner.Forms
             SetTooltips();
             _ActiveTask = _Settings.Tasks.FirstOrDefault("Default Task");
             _lblActiveTask.Text = $"Working with {_ActiveTask}";
-            _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
         }
 
