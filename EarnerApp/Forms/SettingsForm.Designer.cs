@@ -55,6 +55,7 @@ namespace Earner.Forms
             this._btnShowAppLog = new System.Windows.Forms.Button();
             this._grpBoxApplicationSettings = new System.Windows.Forms.GroupBox();
             this._btnAbout = new System.Windows.Forms.Button();
+            this._chkMinimizeToTaskbar = new System.Windows.Forms.CheckBox();
             this._chkStayOnTop = new System.Windows.Forms.CheckBox();
             this._chkUpdateChecks = new System.Windows.Forms.CheckBox();
             this._chkPlaySounds = new System.Windows.Forms.CheckBox();
@@ -71,7 +72,6 @@ namespace Earner.Forms
             this._txtMaxBillableDailyHoursPlaceholder = new System.Windows.Forms.TextBox();
             this._txtFixedDailyCostPlaceholder = new System.Windows.Forms.TextBox();
             this._txtHourlyRatePlaceholder = new System.Windows.Forms.TextBox();
-            this._chkMinimizeToTaskbar = new System.Windows.Forms.CheckBox();
             this._topPanel.SuspendLayout();
             this._grpBoxDeveloperSettings.SuspendLayout();
             this._grpBoxApplicationSettings.SuspendLayout();
@@ -389,6 +389,20 @@ namespace Earner.Forms
             this._btnAbout.UseVisualStyleBackColor = false;
             this._btnAbout.Click += new System.EventHandler(this.AboutClick);
             // 
+            // _chkMinimizeToTaskbar
+            // 
+            this._chkMinimizeToTaskbar.AutoSize = true;
+            this._chkMinimizeToTaskbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._chkMinimizeToTaskbar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._chkMinimizeToTaskbar.ForeColor = System.Drawing.Color.White;
+            this._chkMinimizeToTaskbar.Location = new System.Drawing.Point(101, 111);
+            this._chkMinimizeToTaskbar.Name = "_chkMinimizeToTaskbar";
+            this._chkMinimizeToTaskbar.Size = new System.Drawing.Size(129, 25);
+            this._chkMinimizeToTaskbar.TabIndex = 27;
+            this._chkMinimizeToTaskbar.Text = "Min. to taskbar";
+            this._chkMinimizeToTaskbar.UseVisualStyleBackColor = true;
+            this._chkMinimizeToTaskbar.CheckedChanged += new System.EventHandler(this.MinimizeToTaskbarCheckedChanged);
+            // 
             // _chkStayOnTop
             // 
             this._chkStayOnTop.AutoSize = true;
@@ -511,7 +525,7 @@ namespace Earner.Forms
             this._lnkTaskLogLocation.AutoSize = true;
             this._lnkTaskLogLocation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._lnkTaskLogLocation.LinkColor = System.Drawing.Color.White;
-            this._lnkTaskLogLocation.Location = new System.Drawing.Point(89, 23);
+            this._lnkTaskLogLocation.Location = new System.Drawing.Point(90, 23);
             this._lnkTaskLogLocation.Name = "_lnkTaskLogLocation";
             this._lnkTaskLogLocation.Size = new System.Drawing.Size(41, 21);
             this._lnkTaskLogLocation.TabIndex = 15;
@@ -641,20 +655,6 @@ namespace Earner.Forms
             this._txtHourlyRatePlaceholder.TabStop = false;
             this._txtHourlyRatePlaceholder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._txtHourlyRatePlaceholder.Visible = false;
-            // 
-            // _chkMinimizeToTaskbar
-            // 
-            this._chkMinimizeToTaskbar.AutoSize = true;
-            this._chkMinimizeToTaskbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._chkMinimizeToTaskbar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._chkMinimizeToTaskbar.ForeColor = System.Drawing.Color.White;
-            this._chkMinimizeToTaskbar.Location = new System.Drawing.Point(101, 111);
-            this._chkMinimizeToTaskbar.Name = "_chkMinimizeToTaskbar";
-            this._chkMinimizeToTaskbar.Size = new System.Drawing.Size(129, 25);
-            this._chkMinimizeToTaskbar.TabIndex = 27;
-            this._chkMinimizeToTaskbar.Text = "Min. to taskbar";
-            this._chkMinimizeToTaskbar.UseVisualStyleBackColor = true;
-            this._chkMinimizeToTaskbar.CheckedChanged += new System.EventHandler(this.MinimizeToTaskbarCheckedChanged);
             // 
             // SettingsForm
             // 
