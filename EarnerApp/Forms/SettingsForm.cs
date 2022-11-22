@@ -39,6 +39,16 @@ namespace Earner.Forms
 
         #region Private methods
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
         private void AddNumericTextBoxFieldsToForm()
         {
             _grpBoxGeneralSettings.SuspendLayout();
@@ -102,6 +112,8 @@ namespace Earner.Forms
             _chkUseConfirmations.Checked = _Settings.UseConfirmations;
             _chkShowProgressbar.Checked = _Settings.ShowProgressbar;
             _chkUpdateChecks.Checked = _Settings.UpdateChecks;
+            _chkStayOnTop.Checked = _Settings.StayOnTop;
+            _chkMinimizeToTaskbar.Checked = _Settings.MinimizeToTaskbar;
             SetTooltips();
         }
 
@@ -135,6 +147,8 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_btnShowAppLog, "Show application log (advanced)");
                 _toolTip.SetToolTip(_btnClearAppLog, "Clear application log (advanced)");
                 _toolTip.SetToolTip(_chkUpdateChecks, "Periodically check for application updates");
+                _toolTip.SetToolTip(_chkStayOnTop, "Keep Earner on top of other windows");
+                _toolTip.SetToolTip(_chkMinimizeToTaskbar, "Minimize Earner to taskbar area");
             }
             else
             {
@@ -164,6 +178,8 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_btnShowAppLog, null);
                 _toolTip.SetToolTip(_btnClearAppLog, null);
                 _toolTip.SetToolTip(_chkUpdateChecks, null);
+                _toolTip.SetToolTip(_chkStayOnTop, null);
+                _toolTip.SetToolTip(_chkMinimizeToTaskbar, null);
             }
         }
 
@@ -214,6 +230,8 @@ namespace Earner.Forms
             _Settings.UseConfirmations = _chkUseConfirmations.Checked;
             _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
             _Settings.UpdateChecks = _chkUpdateChecks.Checked;
+            _Settings.StayOnTop = _chkStayOnTop.Checked;
+            _Settings.MinimizeToTaskbar = _chkMinimizeToTaskbar.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
@@ -351,6 +369,12 @@ namespace Earner.Forms
             _Settings.Save();
         }
 
+        private void StayOnTopCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.StayOnTop = _chkStayOnTop.Checked;
+            _Settings.Save();
+        }
+
         private void ShowAppLogClick(object sender, EventArgs e)
         {
             Log.Show();
@@ -384,6 +408,12 @@ namespace Earner.Forms
         private void PlaySoundsCheckedChanged(object sender, EventArgs e)
         {
             _Settings.PlaySounds = _chkPlaySounds.Checked;
+            _Settings.Save();
+        }
+
+        private void MinimizeToTaskbarCheckedChanged(object sender, EventArgs e)
+        {
+            _Settings.MinimizeToTaskbar = _chkMinimizeToTaskbar.Checked;
             _Settings.Save();
         }
 

@@ -103,6 +103,10 @@
 
         public bool UpdateChecks { get; set; } = false;
 
+        public bool StayOnTop { get; set; } = true;
+
+        public bool MinimizeToTaskbar { get; set; } = false;
+
         #endregion Public properties
 
         #region Public methods
@@ -127,6 +131,8 @@
             ShowSettingsOnStartup = EarnerConfig.GetAppSettings<bool>("ShowSettingsOnStartup");
             PlaySounds = EarnerConfig.GetAppSettings<bool>("PlaySounds");
             UpdateChecks = EarnerConfig.GetAppSettings<bool>("UpdateChecks");
+            StayOnTop = EarnerConfig.GetAppSettings<bool>("StayOnTop");
+            MinimizeToTaskbar = EarnerConfig.GetAppSettings<bool>("MinimizeToTaskbar");
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
 
@@ -149,6 +155,8 @@
             _ = EarnerConfig.SaveAppSettingsString("ShowSettingsOnStartup", ShowSettingsOnStartup.ToString());
             _ = EarnerConfig.SaveAppSettingsString("PlaySounds", PlaySounds.ToString());
             _ = EarnerConfig.SaveAppSettingsString("UpdateChecks", UpdateChecks.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("StayOnTop", StayOnTop.ToString());
+            _ = EarnerConfig.SaveAppSettingsString("MinimizeToTaskbar", MinimizeToTaskbar.ToString());
             _ = EarnerConfig.SaveAppSettingsList("Tasks", Tasks);
             EarnerCommon.StartWithWindows = AutoStartWithWindows;
         }
@@ -184,6 +192,8 @@
 		<add key=""ShowSettingsOnStartup"" value=""true""/>
         <add key=""PlaySounds"" value=""false""/>
 		<add key=""UpdateChecks"" value=""false""/>
+		<add key=""StayOnTop"" value=""true""/>
+		<add key=""MinimizeToTaskbar"" value=""false""/>
 	</appSettings>
   <System.Windows.Forms.ApplicationConfigurationSection>
     <add key=""DpiAwareness"" value=""PerMonitorV2"" />

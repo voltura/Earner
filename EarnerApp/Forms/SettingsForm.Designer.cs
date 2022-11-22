@@ -53,9 +53,10 @@ namespace Earner.Forms
             this._grpBoxDeveloperSettings = new System.Windows.Forms.GroupBox();
             this._btnClearAppLog = new System.Windows.Forms.Button();
             this._btnShowAppLog = new System.Windows.Forms.Button();
-            this._grpBoxInterfaceSettings = new System.Windows.Forms.GroupBox();
-            this._chkUpdateChecks = new System.Windows.Forms.CheckBox();
+            this._grpBoxApplicationSettings = new System.Windows.Forms.GroupBox();
             this._btnAbout = new System.Windows.Forms.Button();
+            this._chkStayOnTop = new System.Windows.Forms.CheckBox();
+            this._chkUpdateChecks = new System.Windows.Forms.CheckBox();
             this._chkPlaySounds = new System.Windows.Forms.CheckBox();
             this._lblShow = new System.Windows.Forms.Label();
             this._chkShowProgressbar = new System.Windows.Forms.CheckBox();
@@ -70,9 +71,10 @@ namespace Earner.Forms
             this._txtMaxBillableDailyHoursPlaceholder = new System.Windows.Forms.TextBox();
             this._txtFixedDailyCostPlaceholder = new System.Windows.Forms.TextBox();
             this._txtHourlyRatePlaceholder = new System.Windows.Forms.TextBox();
+            this._chkMinimizeToTaskbar = new System.Windows.Forms.CheckBox();
             this._topPanel.SuspendLayout();
             this._grpBoxDeveloperSettings.SuspendLayout();
-            this._grpBoxInterfaceSettings.SuspendLayout();
+            this._grpBoxApplicationSettings.SuspendLayout();
             this._grpBoxTaskSettings.SuspendLayout();
             this._grpBoxGeneralSettings.SuspendLayout();
             this.SuspendLayout();
@@ -202,11 +204,11 @@ namespace Earner.Forms
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSave.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnSave.Location = new System.Drawing.Point(307, 441);
+            this._btnSave.Location = new System.Drawing.Point(307, 470);
             this._btnSave.Margin = new System.Windows.Forms.Padding(0);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(29, 29);
-            this._btnSave.TabIndex = 30;
+            this._btnSave.TabIndex = 32;
             this._btnSave.Tag = "";
             this._btnSave.UseVisualStyleBackColor = false;
             this._btnSave.Click += new System.EventHandler(this.SaveClick);
@@ -285,7 +287,7 @@ namespace Earner.Forms
             this._chkShowApplicationLogOnErrors.Location = new System.Drawing.Point(10, 21);
             this._chkShowApplicationLogOnErrors.Name = "_chkShowApplicationLogOnErrors";
             this._chkShowApplicationLogOnErrors.Size = new System.Drawing.Size(123, 25);
-            this._chkShowApplicationLogOnErrors.TabIndex = 27;
+            this._chkShowApplicationLogOnErrors.TabIndex = 29;
             this._chkShowApplicationLogOnErrors.Text = "Display errors";
             this._chkShowApplicationLogOnErrors.UseVisualStyleBackColor = true;
             this._chkShowApplicationLogOnErrors.CheckedChanged += new System.EventHandler(this.ShowApplicationLogOnErrorsCheckedChanged);
@@ -298,7 +300,7 @@ namespace Earner.Forms
             this._grpBoxDeveloperSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._grpBoxDeveloperSettings.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this._grpBoxDeveloperSettings.ForeColor = System.Drawing.Color.White;
-            this._grpBoxDeveloperSettings.Location = new System.Drawing.Point(29, 385);
+            this._grpBoxDeveloperSettings.Location = new System.Drawing.Point(29, 410);
             this._grpBoxDeveloperSettings.Name = "_grpBoxDeveloperSettings";
             this._grpBoxDeveloperSettings.Size = new System.Drawing.Size(277, 57);
             this._grpBoxDeveloperSettings.TabIndex = 3;
@@ -321,7 +323,7 @@ namespace Earner.Forms
             this._btnClearAppLog.Margin = new System.Windows.Forms.Padding(0);
             this._btnClearAppLog.Name = "_btnClearAppLog";
             this._btnClearAppLog.Size = new System.Drawing.Size(29, 29);
-            this._btnClearAppLog.TabIndex = 28;
+            this._btnClearAppLog.TabIndex = 30;
             this._btnClearAppLog.UseVisualStyleBackColor = false;
             this._btnClearAppLog.Click += new System.EventHandler(this.ClearAppLogClick);
             // 
@@ -341,29 +343,65 @@ namespace Earner.Forms
             this._btnShowAppLog.Margin = new System.Windows.Forms.Padding(0);
             this._btnShowAppLog.Name = "_btnShowAppLog";
             this._btnShowAppLog.Size = new System.Drawing.Size(27, 29);
-            this._btnShowAppLog.TabIndex = 29;
+            this._btnShowAppLog.TabIndex = 31;
             this._btnShowAppLog.UseVisualStyleBackColor = false;
             this._btnShowAppLog.Click += new System.EventHandler(this.ShowAppLogClick);
             // 
-            // _grpBoxInterfaceSettings
+            // _grpBoxApplicationSettings
             // 
-            this._grpBoxInterfaceSettings.Controls.Add(this._btnAbout);
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkUpdateChecks);
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkPlaySounds);
-            this._grpBoxInterfaceSettings.Controls.Add(this._lblShow);
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkShowProgressbar);
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkUseConfirmations);
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkAutoStartWithWindows);
-            this._grpBoxInterfaceSettings.Controls.Add(this._chkShowTooltips);
-            this._grpBoxInterfaceSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._grpBoxInterfaceSettings.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._grpBoxInterfaceSettings.ForeColor = System.Drawing.Color.White;
-            this._grpBoxInterfaceSettings.Location = new System.Drawing.Point(29, 262);
-            this._grpBoxInterfaceSettings.Name = "_grpBoxInterfaceSettings";
-            this._grpBoxInterfaceSettings.Size = new System.Drawing.Size(277, 117);
-            this._grpBoxInterfaceSettings.TabIndex = 2;
-            this._grpBoxInterfaceSettings.TabStop = false;
-            this._grpBoxInterfaceSettings.Text = "Application";
+            this._grpBoxApplicationSettings.Controls.Add(this._btnAbout);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkMinimizeToTaskbar);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkStayOnTop);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkUpdateChecks);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkPlaySounds);
+            this._grpBoxApplicationSettings.Controls.Add(this._lblShow);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkShowProgressbar);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkUseConfirmations);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkAutoStartWithWindows);
+            this._grpBoxApplicationSettings.Controls.Add(this._chkShowTooltips);
+            this._grpBoxApplicationSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._grpBoxApplicationSettings.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._grpBoxApplicationSettings.ForeColor = System.Drawing.Color.White;
+            this._grpBoxApplicationSettings.Location = new System.Drawing.Point(29, 262);
+            this._grpBoxApplicationSettings.Name = "_grpBoxApplicationSettings";
+            this._grpBoxApplicationSettings.Size = new System.Drawing.Size(277, 142);
+            this._grpBoxApplicationSettings.TabIndex = 2;
+            this._grpBoxApplicationSettings.TabStop = false;
+            this._grpBoxApplicationSettings.Text = "Application";
+            // 
+            // _btnAbout
+            // 
+            this._btnAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAbout.BackgroundImage = global::Earner.Properties.Resources.info_48x48;
+            this._btnAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._btnAbout.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAbout.FlatAppearance.BorderSize = 0;
+            this._btnAbout.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAbout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnAbout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this._btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this._btnAbout.Location = new System.Drawing.Point(236, 103);
+            this._btnAbout.Margin = new System.Windows.Forms.Padding(0);
+            this._btnAbout.Name = "_btnAbout";
+            this._btnAbout.Size = new System.Drawing.Size(29, 29);
+            this._btnAbout.TabIndex = 28;
+            this._btnAbout.UseVisualStyleBackColor = false;
+            this._btnAbout.Click += new System.EventHandler(this.AboutClick);
+            // 
+            // _chkStayOnTop
+            // 
+            this._chkStayOnTop.AutoSize = true;
+            this._chkStayOnTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._chkStayOnTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._chkStayOnTop.ForeColor = System.Drawing.Color.White;
+            this._chkStayOnTop.Location = new System.Drawing.Point(10, 111);
+            this._chkStayOnTop.Name = "_chkStayOnTop";
+            this._chkStayOnTop.Size = new System.Drawing.Size(85, 25);
+            this._chkStayOnTop.TabIndex = 26;
+            this._chkStayOnTop.Text = "Topmost";
+            this._chkStayOnTop.UseVisualStyleBackColor = true;
+            this._chkStayOnTop.CheckedChanged += new System.EventHandler(this.StayOnTopCheckedChanged);
             // 
             // _chkUpdateChecks
             // 
@@ -378,26 +416,6 @@ namespace Earner.Forms
             this._chkUpdateChecks.Text = "Update checks";
             this._chkUpdateChecks.UseVisualStyleBackColor = true;
             this._chkUpdateChecks.CheckedChanged += new System.EventHandler(this.UpdateChecksCheckedChanged);
-            // 
-            // _btnAbout
-            // 
-            this._btnAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAbout.BackgroundImage = global::Earner.Properties.Resources.info_48x48;
-            this._btnAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this._btnAbout.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAbout.FlatAppearance.BorderSize = 0;
-            this._btnAbout.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAbout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this._btnAbout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this._btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this._btnAbout.Location = new System.Drawing.Point(236, 78);
-            this._btnAbout.Margin = new System.Windows.Forms.Padding(0);
-            this._btnAbout.Name = "_btnAbout";
-            this._btnAbout.Size = new System.Drawing.Size(29, 29);
-            this._btnAbout.TabIndex = 26;
-            this._btnAbout.UseVisualStyleBackColor = false;
-            this._btnAbout.Click += new System.EventHandler(this.AboutClick);
             // 
             // _chkPlaySounds
             // 
@@ -624,14 +642,28 @@ namespace Earner.Forms
             this._txtHourlyRatePlaceholder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._txtHourlyRatePlaceholder.Visible = false;
             // 
+            // _chkMinimizeToTaskbar
+            // 
+            this._chkMinimizeToTaskbar.AutoSize = true;
+            this._chkMinimizeToTaskbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._chkMinimizeToTaskbar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._chkMinimizeToTaskbar.ForeColor = System.Drawing.Color.White;
+            this._chkMinimizeToTaskbar.Location = new System.Drawing.Point(101, 111);
+            this._chkMinimizeToTaskbar.Name = "_chkMinimizeToTaskbar";
+            this._chkMinimizeToTaskbar.Size = new System.Drawing.Size(129, 25);
+            this._chkMinimizeToTaskbar.TabIndex = 27;
+            this._chkMinimizeToTaskbar.Text = "Min. to taskbar";
+            this._chkMinimizeToTaskbar.UseVisualStyleBackColor = true;
+            this._chkMinimizeToTaskbar.CheckedChanged += new System.EventHandler(this.MinimizeToTaskbarCheckedChanged);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(336, 470);
+            this.ClientSize = new System.Drawing.Size(336, 499);
             this.Controls.Add(this._grpBoxTaskSettings);
-            this.Controls.Add(this._grpBoxInterfaceSettings);
+            this.Controls.Add(this._grpBoxApplicationSettings);
             this.Controls.Add(this._grpBoxDeveloperSettings);
             this.Controls.Add(this._btnClose);
             this.Controls.Add(this._btnSave);
@@ -656,8 +688,8 @@ namespace Earner.Forms
             this._topPanel.PerformLayout();
             this._grpBoxDeveloperSettings.ResumeLayout(false);
             this._grpBoxDeveloperSettings.PerformLayout();
-            this._grpBoxInterfaceSettings.ResumeLayout(false);
-            this._grpBoxInterfaceSettings.PerformLayout();
+            this._grpBoxApplicationSettings.ResumeLayout(false);
+            this._grpBoxApplicationSettings.PerformLayout();
             this._grpBoxTaskSettings.ResumeLayout(false);
             this._grpBoxTaskSettings.PerformLayout();
             this._grpBoxGeneralSettings.ResumeLayout(false);
@@ -682,7 +714,7 @@ namespace Earner.Forms
         private CheckBox _chkShowTooltips;
         private CheckBox _chkShowApplicationLogOnErrors;
         private GroupBox _grpBoxDeveloperSettings;
-        private GroupBox _grpBoxInterfaceSettings;
+        private GroupBox _grpBoxApplicationSettings;
         private GroupBox _grpBoxTaskSettings;
         private GroupBox _grpBoxGeneralSettings;
         private CheckBox _chkAutoShowTaskLog;
@@ -702,5 +734,7 @@ namespace Earner.Forms
         private Button _btnClearAppLog;
         private CheckBox _chkPlaySounds;
         private CheckBox _chkUpdateChecks;
+        private CheckBox _chkStayOnTop;
+        private CheckBox _chkMinimizeToTaskbar;
     }
 }

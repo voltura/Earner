@@ -35,6 +35,8 @@ namespace Earner.Forms
 
         private string _InternetVersion = string.Empty;
 
+        private readonly NotifyIcon _NotifyIcon;
+
         #endregion Private variables
 
         #region Constructor
@@ -46,7 +48,15 @@ namespace Earner.Forms
             _EarnerRecords = EarnerRecords.Instance;
             InitializeComponent();
             _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";
+            _NotifyIcon = new()
+            {
+                Icon = Resources.dollar,
+                Visible = _Settings.MinimizeToTaskbar
+            };
+            _NotifyIcon.Click += NotifyIconClick;
+            _NotifyIcon.MouseClick += NotifyIconClick;
             LoadAppSettings();
+            ShowInTaskbar = !_Settings.MinimizeToTaskbar;
             StartEarning();
         }
 
@@ -61,6 +71,8 @@ namespace Earner.Forms
             _ActiveTask = _Settings.Tasks.FirstOrDefault("Default Task");
             _lblActiveTask.Text = $"Working with {_ActiveTask}";
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
+            TopMost = _Settings.StayOnTop;
+            _NotifyIcon.Visible = _Settings.MinimizeToTaskbar;
         }
 
         private void SetTooltips()
@@ -111,6 +123,7 @@ namespace Earner.Forms
                 }
                 finally
                 {
+                    ShowInTaskbar = !_Settings.MinimizeToTaskbar;
                     Visible = true;
                 }
             }
@@ -334,6 +347,7 @@ namespace Earner.Forms
             }
             finally
             {
+                ShowInTaskbar = !_Settings.MinimizeToTaskbar;
                 Visible = true;
             }
             if (sfDialogResult == DialogResult.OK)
@@ -382,6 +396,16 @@ namespace Earner.Forms
             }
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
         private void HideClick(object sender, EventArgs e)
         {
             if (_btnHide.Tag != null && _btnHide.Tag.ToString() == "Update")
@@ -393,7 +417,40 @@ namespace Earner.Forms
             }
 
             _DoNotChangeFontSize = true;
-            WindowState = FormWindowState.Minimized;
+            if (WindowState != FormWindowState.Minimized)
+            {
+                WindowState = FormWindowState.Minimized;
+            }
+
+            if (_Settings.MinimizeToTaskbar)
+            {
+                if (Visible)
+                {
+                    Hide();
+                }
+
+                if (!_NotifyIcon.Visible)
+                {
+                    _NotifyIcon.Visible = true;
+                }
+            }
+            else
+            {
+                if (!Visible)
+                {
+                    Visible = true;
+                }
+
+                if (_NotifyIcon.Visible)
+                {
+                    _NotifyIcon.Visible = false;
+                }
+
+                if (!ShowInTaskbar)
+                {
+                    ShowInTaskbar = true;
+                }
+            }
         }
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)
@@ -491,6 +548,12 @@ namespace Earner.Forms
         private void EarnerFormResize(object sender, EventArgs e)
         {
             _DoNotChangeFontSize = WindowState == FormWindowState.Minimized;
+            if (WindowState == FormWindowState.Minimized && _NotifyIcon is not null)
+            {
+                ShowInTaskbar = false;
+                _NotifyIcon.Visible = true;
+                Visible = false;
+            }
         }
 
         private void EarnerFormKeyDown(object sender, KeyEventArgs e)
@@ -544,6 +607,14 @@ namespace Earner.Forms
         private void EarnerFormShown(object sender, EventArgs e)
         {
             GetAndDisplayUpdateInfoInHeader();
+        }
+
+        private void NotifyIconClick(object? sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            Show();
+            _ = Focus();
+            ShowInTaskbar = !_Settings.MinimizeToTaskbar;
         }
 
         #endregion Private events

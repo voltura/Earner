@@ -67,6 +67,17 @@ namespace Earner.Forms
 
         #region Private methods
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
+
         private void SetTooltips()
         {
             if (_Settings.ShowTooltips)
@@ -81,6 +92,16 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_btnCloseForm, null);
                 _toolTip.SetToolTip(_btnSave, null);
             }
+        }
+
+        private void EarnerRecordsDefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Value = $"Task_{DateTime.Now.Ticks.ToString()[10..]}";
+            e.Row.Cells[1].Value = "0";
+            e.Row.Cells[2].Value = DateTime.Now.ToString("yyyy-MM-dd");
+            e.Row.Cells[3].Value = "0";
+            e.Row.Cells[4].Value = _Settings.CurrencySymbol;
+            e.Row.Cells[5].Value = Math.Round(_Settings.HourlyRate, 2, MidpointRounding.AwayFromZero).ToString();
         }
 
         #endregion Private methods
@@ -309,15 +330,5 @@ namespace Earner.Forms
         }
 
         #endregion Private events
-
-        private void EarnerRecordsDefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-        {
-            e.Row.Cells[0].Value = $"Task_{DateTime.Now.Ticks.ToString()[10..]}";
-            e.Row.Cells[1].Value = "0";
-            e.Row.Cells[2].Value = DateTime.Now.ToString("yyyy-MM-dd");
-            e.Row.Cells[3].Value = "0";
-            e.Row.Cells[4].Value = _Settings.CurrencySymbol;
-            e.Row.Cells[5].Value = Math.Round(_Settings.HourlyRate, 2, MidpointRounding.AwayFromZero).ToString();
-        }
     }
 }
