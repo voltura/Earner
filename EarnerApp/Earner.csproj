@@ -17,9 +17,9 @@
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<NeutralLanguage>en</NeutralLanguage>
-		<AssemblyVersion>1.0.3.4</AssemblyVersion>
-		<FileVersion>1.0.3.4</FileVersion>
-		<AssemblyInformationalVersion>1.0.3.4</AssemblyInformationalVersion>
+		<AssemblyVersion>1.0.3.5</AssemblyVersion>
+		<FileVersion>1.0.3.5</FileVersion>
+		<AssemblyInformationalVersion>1.0.3.5</AssemblyInformationalVersion>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -28,7 +28,7 @@
 		<SelfContained>true</SelfContained>
 		<PackageIcon>dollar.ico</PackageIcon>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Version>1.0.3.4</Version>
+		<Version>1.0.3.5</Version>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
