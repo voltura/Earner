@@ -61,7 +61,7 @@ SET "SEVEN_ZIP_FULLPATH=C:\Program Files\7-Zip\7z.exe"
 SET "MSBUILD_FULLPATH=C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\amd64\MSBuild.exe"
 SET "DOTNET_FULLPATH=C:\Program Files\Microsoft Visual Studio\2022\Professional\dotnet\runtime\dotnet.exe"
 SET "FART=%SCRIPT_DIR%\..\Tools\fart.exe"
-SET "CURL=C:\Program Files\curl-7.84.0_4-win64-mingw\bin\curl.exe"
+SET "CURL=%SCRIPT_DIR%\..\Tools\curl\curl.exe"
 
 :: ==========================
 :: Script logic
