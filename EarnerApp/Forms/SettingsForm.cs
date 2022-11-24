@@ -113,7 +113,7 @@ namespace Earner.Forms
             _chkShowProgressbar.Checked = _Settings.ShowProgressbar;
             _chkUpdateChecks.Checked = _Settings.UpdateChecks;
             _chkStayOnTop.Checked = _Settings.StayOnTop;
-            _chkMinimizeToTaskbar.Checked = _Settings.MinimizeToTaskbar;
+            _chkMinimizeToSystemTray.Checked = _Settings.MinimizeToSystemTray;
             SetTooltips();
         }
 
@@ -148,7 +148,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_btnClearAppLog, "Clear application log (advanced)");
                 _toolTip.SetToolTip(_chkUpdateChecks, "Periodically check for application updates");
                 _toolTip.SetToolTip(_chkStayOnTop, "Keep Earner on top of other windows");
-                _toolTip.SetToolTip(_chkMinimizeToTaskbar, "Minimize Earner to taskbar area");
+                _toolTip.SetToolTip(_chkMinimizeToSystemTray, "Minimize Earner to taskbar area");
             }
             else
             {
@@ -179,7 +179,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_btnClearAppLog, null);
                 _toolTip.SetToolTip(_chkUpdateChecks, null);
                 _toolTip.SetToolTip(_chkStayOnTop, null);
-                _toolTip.SetToolTip(_chkMinimizeToTaskbar, null);
+                _toolTip.SetToolTip(_chkMinimizeToSystemTray, null);
             }
         }
 
@@ -231,7 +231,7 @@ namespace Earner.Forms
             _Settings.ShowProgressbar = _chkShowProgressbar.Checked;
             _Settings.UpdateChecks = _chkUpdateChecks.Checked;
             _Settings.StayOnTop = _chkStayOnTop.Checked;
-            _Settings.MinimizeToTaskbar = _chkMinimizeToTaskbar.Checked;
+            _Settings.MinimizeToSystemTray = _chkMinimizeToSystemTray.Checked;
             _Settings.Save();
             DialogResult = DialogResult.OK;
             Close();
@@ -411,9 +411,9 @@ namespace Earner.Forms
             _Settings.Save();
         }
 
-        private void MinimizeToTaskbarCheckedChanged(object sender, EventArgs e)
+        private void MinimizeToSystemTrayCheckedChanged(object sender, EventArgs e)
         {
-            _Settings.MinimizeToTaskbar = _chkMinimizeToTaskbar.Checked;
+            _Settings.MinimizeToSystemTray = _chkMinimizeToSystemTray.Checked;
             _Settings.Save();
         }
 

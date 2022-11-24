@@ -5,6 +5,7 @@ using Earner.Records;
 using Earner.Settings;
 using System.Diagnostics;
 using System.Media;
+using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 
 #endregion Using statements
@@ -51,12 +52,12 @@ namespace Earner.Forms
             _NotifyIcon = new()
             {
                 Icon = Resources.dollar,
-                Visible = _Settings.MinimizeToTaskbar
+                Visible = _Settings.MinimizeToSystemTray
             };
             _NotifyIcon.Click += NotifyIconClick;
             _NotifyIcon.MouseClick += NotifyIconClick;
             LoadAppSettings();
-            ShowInTaskbar = !_Settings.MinimizeToTaskbar;
+            ShowInTaskbar = !_Settings.MinimizeToSystemTray;
             StartEarning();
         }
 
@@ -72,7 +73,7 @@ namespace Earner.Forms
             _lblActiveTask.Text = $"Working with {_ActiveTask}";
             _pbWorkProgress.Visible = _Settings.ShowProgressbar;
             TopMost = _Settings.StayOnTop;
-            _NotifyIcon.Visible = _Settings.MinimizeToTaskbar;
+            _NotifyIcon.Visible = _Settings.MinimizeToSystemTray;
         }
 
         private void SetTooltips()
@@ -123,7 +124,7 @@ namespace Earner.Forms
                 }
                 finally
                 {
-                    ShowInTaskbar = !_Settings.MinimizeToTaskbar;
+                    ShowInTaskbar = !_Settings.MinimizeToSystemTray;
                     Visible = true;
                 }
             }
@@ -347,7 +348,7 @@ namespace Earner.Forms
             }
             finally
             {
-                ShowInTaskbar = !_Settings.MinimizeToTaskbar;
+                ShowInTaskbar = !_Settings.MinimizeToSystemTray;
                 Visible = true;
             }
             if (sfDialogResult == DialogResult.OK)
@@ -417,40 +418,7 @@ namespace Earner.Forms
             }
 
             _DoNotChangeFontSize = true;
-            if (WindowState != FormWindowState.Minimized)
-            {
-                WindowState = FormWindowState.Minimized;
-            }
-
-            if (_Settings.MinimizeToTaskbar)
-            {
-                if (Visible)
-                {
-                    Hide();
-                }
-
-                if (!_NotifyIcon.Visible)
-                {
-                    _NotifyIcon.Visible = true;
-                }
-            }
-            else
-            {
-                if (!Visible)
-                {
-                    Visible = true;
-                }
-
-                if (_NotifyIcon.Visible)
-                {
-                    _NotifyIcon.Visible = false;
-                }
-
-                if (!ShowInTaskbar)
-                {
-                    ShowInTaskbar = true;
-                }
-            }
+            WindowState = FormWindowState.Minimized;
         }
 
         private void TopPanelMouseDown(object sender, MouseEventArgs e)
@@ -548,11 +516,13 @@ namespace Earner.Forms
         private void EarnerFormResize(object sender, EventArgs e)
         {
             _DoNotChangeFontSize = WindowState == FormWindowState.Minimized;
-            if (WindowState == FormWindowState.Minimized && _NotifyIcon is not null)
+            if (WindowState == FormWindowState.Minimized)
             {
-                ShowInTaskbar = false;
-                _NotifyIcon.Visible = true;
-                Visible = false;
+                if (_Settings.MinimizeToSystemTray == true)
+                {
+                    Hide();
+                    _NotifyIcon.Visible = true;
+                }
             }
         }
 
@@ -611,10 +581,10 @@ namespace Earner.Forms
 
         private void NotifyIconClick(object? sender, EventArgs e)
         {
-            WindowState = FormWindowState.Normal;
             Show();
+            WindowState = FormWindowState.Normal;
+            _NotifyIcon.Visible = false;
             _ = Focus();
-            ShowInTaskbar = !_Settings.MinimizeToTaskbar;
         }
 
         #endregion Private events

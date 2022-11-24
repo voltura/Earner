@@ -6,7 +6,7 @@
 	User / password / email
 	Site to login and reset password via mail
 
-- Save json to cloud per user, read json from cloud if logged in, 
+- Save json to cloud per user, read json from cloud if logged in,
 	running Earner on multiple PC's can keep track of logged work for user
 
 - Generate invoice based on work log, template for invoice, auto increase invoice number based on month etc.
@@ -18,5 +18,7 @@
 - Cleanup exports older that x months?
 
 - Add feature request link to about form
+
+- Add help file
 
 Joakim Skoglund, 2022-11-13
