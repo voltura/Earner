@@ -9,6 +9,14 @@ namespace Earner
 {
     internal static class EarnerCommon
     {
+        #region Public constants
+
+        public const int CS_DROPSHADOW = 0x20000;
+
+        public const int WS_EX_COMPOSITED = 0x02000000;
+
+        #endregion Public constants
+
         #region Public properties
 
         public static bool StartWithWindows

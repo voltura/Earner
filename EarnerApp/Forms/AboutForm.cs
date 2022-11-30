@@ -39,7 +39,8 @@ namespace Earner.Forms
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                cp.ExStyle |= EarnerCommon.WS_EX_COMPOSITED;
+                cp.ClassStyle |= EarnerCommon.CS_DROPSHADOW;
                 return cp;
             }
         }
