@@ -129,6 +129,7 @@ namespace Earner.Forms
                 }
             }
 
+            bool visibleState = Visible;
             try
             {
                 Visible = false;
@@ -138,7 +139,7 @@ namespace Earner.Forms
             }
             finally
             {
-                Visible = true;
+                Visible = visibleState || WindowState != FormWindowState.Minimized;
             }
 
             LoadAppSettings();
@@ -189,6 +190,7 @@ namespace Earner.Forms
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 PlayOvertimeTune();
                 Log.Info = "Working overtime";
+                _NotifyIcon.ShowBalloonTip(30000, "Earner", "Working overtime", ToolTipIcon.Warning);
             }
         }
 
@@ -205,6 +207,7 @@ namespace Earner.Forms
         {
             double weightedEarnings = _EarnerRecords.TotalEarningsToday - _Settings.FixedDailyCost;
             _lblEarned.Text = $"{weightedEarnings:00000}{_Settings.CurrencySymbol}";
+            _NotifyIcon.Text = $"{Application.ProductName} {Application.ProductVersion}\nTodays earnings:\n{_lblEarned.Text}";
             TimeSpan totalToday = TimeSpan.FromSeconds(_EarnerRecords.TotalSecondsWorkedToday);
             _lblWorkTime.Text = $"{totalToday:c}"[..8];
             _lblWorkTime.ForeColor = totalToday.TotalHours <= _Settings.MaxBillableDailyHours ? Color.White : Color.Red;
@@ -374,6 +377,7 @@ namespace Earner.Forms
                 _earnerTimer.Stop();
                 _EarnerRecords.LogRecords();
                 DialogResult confirmResult = DialogResult.None;
+                bool visibleState = Visible;
                 try
                 {
                     _PlayedOvertimeTuneToday = false;
@@ -384,7 +388,7 @@ namespace Earner.Forms
                 }
                 finally
                 {
-                    Visible = true;
+                    Visible = visibleState;
                 }
                 if (DialogResult.Yes != confirmResult)
                 {
