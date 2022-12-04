@@ -70,16 +70,16 @@ GOTO :MENU
 
 :SYNC_SOURCE
 CLS
-CALL :DISP_MSG "Syncing sources, please wait..." 0 0
+CALL :DISP_MSG "Syncing sources, please wait..." 0
 GIT pull -q >NUL 2>&1
-CALL :DISP_MSG " - Get changes from git" %ERRORLEVEL% 0
+ECHO  - Get changes from git result = %ERRORLEVEL%
 GIT add --all >NUL 2>&1
-CALL :DISP_MSG " - Add all changes" %ERRORLEVEL% 0
-GIT commit -a -m "Auto update via Release Manager %ScriptVersion%" >NUL 2>&1
-CALL :DISP_MSG " - Commit all changes" %ERRORLEVEL% 0
+ECHO  - Add all changes result = %ERRORLEVEL%
+GIT commit -a -m "Updated version to %VERSION%" >NUL 2>&1
+ECHO  - Commit all changes result = %ERRORLEVEL%
 GIT push --all >NUL 2>&1
-CALL :DISP_MSG " - Push all changes" %ERRORLEVEL% 0
-CALL :DISP_MSG "Sync complete." 0 1
+ECHO  - Push all changes result = %ERRORLEVEL%
+CALL :DISP_MSG "Sync complete." 0
 GOTO :EOF
 
 :DISP_MSG

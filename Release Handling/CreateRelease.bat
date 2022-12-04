@@ -110,10 +110,10 @@ GOTO :EOF
 CALL :DISP_MSG "Archiving release..." 0
 IF NOT EXIST "%SEVEN_ZIP_FULLPATH%" CALL :ERROR_MESSAGE_EXIT "7-zip not found '%SEVEN_ZIP_FULLPATH%', cannot compress installer." 30
 CD /D "%SCRIPT_FOLDER%"
-"%SEVEN_ZIP_FULLPATH%" a -tzip -y Earner_%VERSION%.zip Earner.exe Earner.exe.MD5 >NUL
+"%SEVEN_ZIP_FULLPATH%" a -tzip -y Earner.zip Earner.exe Earner.exe.MD5 >NUL
 SET SEVEN_ZIP_RESULT=%ERRORLEVEL%
 CD /D "%SCRIPT_DIR%"
-IF "%SEVEN_ZIP_RESULT%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "7-zip failed to generate 'Earner_%VERSION%.zip'." %SEVEN_ZIP_RESULT%
+IF "%SEVEN_ZIP_RESULT%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "7-zip failed to generate 'Earner.zip'." %SEVEN_ZIP_RESULT%
 CALL :DISP_MSG "Archiving installer completed." 0
 GOTO :EOF
 
@@ -263,8 +263,8 @@ CALL :DISP_MSG "Uploading release '%NAME%' assets to Github..." 1
 PUSHD "%SCRIPT_DIR%\..\Releases\%VERSION%"
 	CALL :UPLOAD_FILE Earner.exe
 	CALL :UPLOAD_FILE Earner.exe.MD5
-	CALL :UPLOAD_FILE "Earner.zip"
-	CALL :UPLOAD_FILE "Earner.zip.MD5"
+	CALL :UPLOAD_FILE Earner.zip
+	CALL :UPLOAD_FILE Earner.zip.MD5
 	CALL :UPLOAD_FILE VERSION.TXT
 POPD
 CALL :DISP_MSG "Upload completed." 0
