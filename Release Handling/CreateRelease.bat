@@ -84,8 +84,8 @@ EXIT
 CD /D "%SCRIPT_FOLDER%"
 CALL :GENERATE_MD5 Earner.exe
 CALL :COMPRESS_Earner_ZIP
-CALL :GENERATE_MD5 Earner_%VERSION%.zip
-CALL :GENERATE_VERSION_INFO %VERSION% Earner_%VERSION%.zip
+CALL :GENERATE_MD5 Earner.zip
+CALL :GENERATE_VERSION_INFO %VERSION% Earner.zip
 CALL :COPY_RELEASE
 CALL :DISP_MSG "Generated all release files successfully." 0
 CD /D "%SCRIPT_DIR%"
@@ -132,11 +132,11 @@ IF "%ERRORLEVEL%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "Failed to move Earner.exe" 5
 IF NOT EXIST "%SCRIPT_DIR%\..\Installation\Earner.exe.MD5" CALL :ERROR_MESSAGE_EXIT "Earner.exe.MD5 not found" 60
 MOVE /Y "%SCRIPT_DIR%\..\Installation\Earner.exe.MD5" "%SCRIPT_DIR%\..\Releases\%VERSION%\" >NUL 2>&1
 IF "%ERRORLEVEL%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "Failed to move Earner.exe.MD5" 70
-IF NOT EXIST "%SCRIPT_DIR%\..\Installation\Earner_%VERSION%.zip" CALL :ERROR_MESSAGE_EXIT "Earner_%VERSION%.zip not found" 80
-MOVE /Y "%SCRIPT_DIR%\..\Installation\Earner_%VERSION%.zip" "%SCRIPT_DIR%\..\Releases\%VERSION%\" >NUL 2>&1
-IF "%ERRORLEVEL%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "Failed to move Earner_%VERSION%.zip" 90
-IF NOT EXIST "%SCRIPT_DIR%\..\Installation\Earner_%VERSION%.zip.MD5" CALL :ERROR_MESSAGE_EXIT "Failed, missing file" 100
-MOVE /Y "%SCRIPT_DIR%\..\Installation\Earner_%VERSION%.zip.MD5" "%SCRIPT_DIR%\..\Releases\%VERSION%\" >NUL 2>&1
+IF NOT EXIST "%SCRIPT_DIR%\..\Installation\Earner.zip" CALL :ERROR_MESSAGE_EXIT "Earner.zip not found" 80
+MOVE /Y "%SCRIPT_DIR%\..\Installation\Earner.zip" "%SCRIPT_DIR%\..\Releases\%VERSION%\" >NUL 2>&1
+IF "%ERRORLEVEL%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "Failed to move Earner.zip" 90
+IF NOT EXIST "%SCRIPT_DIR%\..\Installation\Earner.zip.MD5" CALL :ERROR_MESSAGE_EXIT "Failed, missing file" 100
+MOVE /Y "%SCRIPT_DIR%\..\Installation\Earner.zip.MD5" "%SCRIPT_DIR%\..\Releases\%VERSION%\" >NUL 2>&1
 IF "%ERRORLEVEL%" NEQ "0" CALL :ERROR_MESSAGE_EXIT "Move failed" 110
 IF NOT EXIST "%SCRIPT_DIR%\..\Installation\VERSION.TXT" CALL :ERROR_MESSAGE_EXIT "Failed, missing file" 150
 MOVE /Y "%SCRIPT_DIR%\..\Installation\VERSION.TXT" "%SCRIPT_DIR%\..\Releases\%VERSION%\" >NUL 2>&1
@@ -263,8 +263,8 @@ CALL :DISP_MSG "Uploading release '%NAME%' assets to Github..." 1
 PUSHD "%SCRIPT_DIR%\..\Releases\%VERSION%"
 	CALL :UPLOAD_FILE Earner.exe
 	CALL :UPLOAD_FILE Earner.exe.MD5
-	CALL :UPLOAD_FILE "Earner_%VERSION%.zip"
-	CALL :UPLOAD_FILE "Earner_%VERSION%.zip.MD5"
+	CALL :UPLOAD_FILE "Earner.zip"
+	CALL :UPLOAD_FILE "Earner.zip.MD5"
 	CALL :UPLOAD_FILE VERSION.TXT
 POPD
 CALL :DISP_MSG "Upload completed." 0
