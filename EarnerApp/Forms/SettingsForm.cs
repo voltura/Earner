@@ -25,6 +25,7 @@ namespace Earner.Forms
 
         public SettingsForm()
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             Enabled = false;
             InitializeComponent();
             _txtHourlyRate = new NumericTextBox();

@@ -24,6 +24,7 @@ namespace Earner.Forms
         {
             Log.Init();
             Log.LogCaller();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
             LoadAppSettings();
             _lblAppInfo.Text = $"{Application.ProductName} {Application.ProductVersion} by Voltura AB";

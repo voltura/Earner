@@ -46,6 +46,7 @@ namespace Earner.Forms
         {
             Log.Init();
             Log.LogCaller();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             _EarnerRecords = EarnerRecords.Instance;
             InitializeComponent();
             _lblEarnerHeader.Text = $"{Application.ProductName} {Application.ProductVersion}";

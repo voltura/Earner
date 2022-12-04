@@ -28,6 +28,7 @@ namespace Earner.Forms
 
         public TasksForm()
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
             _Settings.Load();
             _EarnerTasks = _Settings.Tasks;

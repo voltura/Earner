@@ -27,6 +27,7 @@ namespace Earner.Forms
         public LogAdminForm(REPORT_PERIOD period = REPORT_PERIOD.ALL)
         {
             _REPORT_PERIOD = period;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
             _Settings.Load();
             SetTooltips();
