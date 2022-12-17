@@ -50,7 +50,6 @@ namespace Earner.Forms
                             REPORT_PERIOD.YEAR => DateTime.Now.Year == i.Date.Year,
                             REPORT_PERIOD.MONTH => DateTime.Now.Month == i.Date.Month && DateTime.Now.Year == i.Date.Year,
                             REPORT_PERIOD.WEEK => cal.GetWeekOfYear(DateTime.Now.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) == cal.GetWeekOfYear(i.Date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) && DateTime.Now.Month == i.Date.Month && DateTime.Now.Year == i.Date.Year,
-                            REPORT_PERIOD.DAY => DateTime.Now.Day == i.Date.Day && DateTime.Now.Year == i.Date.Year && DateTime.Now.Month == i.Date.Month,
                             _ => DateTime.Now.Day == i.Date.Day && DateTime.Now.Year == i.Date.Year && DateTime.Now.Month == i.Date.Month
                         };
                     })
@@ -78,7 +77,6 @@ namespace Earner.Forms
                 return cp;
             }
         }
-
 
         private void SetTooltips()
         {
@@ -206,8 +204,6 @@ namespace Earner.Forms
                     Calendar cal = dfi.Calendar;
                     switch (_REPORT_PERIOD)
                     {
-                        case REPORT_PERIOD.ALL:
-                            break;
                         case REPORT_PERIOD.YEAR:
                             if (DateTime.Now.Year != enteredDateTime.Date.Year)
                             {
@@ -242,6 +238,7 @@ namespace Earner.Forms
                             }
 
                             break;
+                        case REPORT_PERIOD.ALL:
                         default:
                             break;
                     }

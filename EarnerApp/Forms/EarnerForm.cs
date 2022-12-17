@@ -5,7 +5,6 @@ using Earner.Records;
 using Earner.Settings;
 using System.Diagnostics;
 using System.Media;
-using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 
 #endregion Using statements

@@ -64,29 +64,55 @@ namespace Earner
 
         #region Public methods
 
-        public static double ConvertToDouble(string value)
+        public static double ConvertToDouble(string value, double defaultValue = 0)
         {
-            if (value == null)
+            if (string.IsNullOrEmpty(value) || !double.TryParse(value, out double result))
             {
-                return 0;
+                return defaultValue;
             }
-            _ = double.TryParse(value, out double outVal);
-            return double.IsNaN(outVal) || double.IsInfinity(outVal) ? 0 : outVal;
+
+            return double.IsNaN(result) || double.IsInfinity(result) ? defaultValue : result;
         }
 
-        public static void ScaleFont(Label lab, int maxFontSize = 0)
+        //public static void ScaleFont(Label lab, int maxFontSize = 0)
+        //{
+        //    while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width > lab.Width - 10 && lab.Font.Size > 8)
+        //    {
+        //        lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size - 0.01f, lab.Font.Style);
+        //    }
+        //    while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width < lab.Width - 10 && lab.Font.Size < 130)
+        //    {
+        //        lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size + 0.01f, lab.Font.Style);
+        //    }
+        //    if (maxFontSize > 0 && lab.Font.Size > maxFontSize)
+        //    {
+        //        lab.Font = new Font(lab.Font.FontFamily, maxFontSize, lab.Font.Style);
+        //    }
+        //}
+
+        /// <summary>
+        /// Scales the font size of the specified label to fit within the bounds of the label.
+        /// </summary>
+        /// <param name="lab">The label to scale the font size of.</param>
+        public static void ScaleFont(Label lab, int maxFontSize = 130)
         {
-            while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width > lab.Width - 10 && lab.Font.Size > 8)
+            if (lab == null)
             {
-                lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size - 0.01f, lab.Font.Style);
+                return;
             }
-            while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width < lab.Width - 10 && lab.Font.Size < 130)
+
+            // Iterate over a range of font sizes and break out of the loop once the optimal font size is found
+            for (float fontSize = lab.Font.Size; fontSize >= 8; fontSize -= 0.01f)
             {
-                lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size + 0.01f, lab.Font.Style);
-            }
-            if (maxFontSize > 0 && lab.Font.Size > maxFontSize)
-            {
-                lab.Font = new Font(lab.Font.FontFamily, maxFontSize, lab.Font.Style);
+                // Set the font size and measure the text
+                lab.Font = new Font(lab.Font.FontFamily, fontSize, lab.Font.Style);
+                Size textSize = TextRenderer.MeasureText(lab.Text, lab.Font);
+
+                // If the text fits within the bounds of the label, break out of the loop
+                if (textSize.Width <= lab.Width - 10 || fontSize >= maxFontSize)
+                {
+                    break;
+                }
             }
         }
 

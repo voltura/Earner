@@ -103,28 +103,6 @@ namespace Earner.Records
             }
         }
 
-        /// <summary>
-        /// Excel file name
-        /// </summary>
-        public static string ExcelFileName(REPORT_PERIOD period = REPORT_PERIOD.DAY)
-        {
-            string periodStr = period switch
-            {
-                REPORT_PERIOD.ALL => $"{DateTime.Now:yyyy-MM-dd}_AllRecords",
-                REPORT_PERIOD.YEAR => $"{DateTime.Now:yyyy}_ThisYearsRecords",
-                REPORT_PERIOD.MONTH => $"{DateTime.Now:yyyy-MM}_ThisMonthsRecords",
-                _ => $"{DateTime.Now:yyyy-MM-dd}_TodaysRecords"
-            };
-            string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{periodStr}.xlsx";
-            string taskLogSaveLocation = EarnerSettings.Instance.TaskLogSaveLocation;
-            string excelFileFullPath = Path.Combine(taskLogSaveLocation, excelFileName);
-            if (!Directory.Exists(taskLogSaveLocation))
-            {
-                _ = Directory.CreateDirectory(taskLogSaveLocation);
-            }
-            return excelFileFullPath;
-        }
-
         public double TotalEarningsTodayForTask(string task)
         {
             double totalEarningsTodayForTask = EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date && er.Task == task ? er.Earned : 0.00d);
@@ -136,7 +114,7 @@ namespace Earner.Records
             return EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date && er.Task == task ? er.Time.TotalSeconds : 0.00d);
         }
 
-        public void LoadRecordsFromJsonDb()
+        private void LoadRecordsFromJsonDb()
         {
             try
             {
@@ -236,47 +214,31 @@ namespace Earner.Records
             }
         }
 
-        public void SaveToJsonDb()
-        {
-            try
-            {
-                Log.LogCaller();
-                JsonSerializerOptions options = new(JsonSerializerDefaults.General) { WriteIndented = true };
-                string jsonEarnerRecordList = JsonSerializer.Serialize(EarnerRecordList, options);
-                File.WriteAllText(CurrentJsonFileName, jsonEarnerRecordList);
-            }
-            catch (Exception ex)
-            {
-                Log.Error = ex;
-            }
-        }
-
-        public static void DisplayExcel(REPORT_PERIOD period = REPORT_PERIOD.DAY)
-        {
-            try
-            {
-                if (!File.Exists(ExcelFileName(period)))
-                {
-                    return;
-                }
-                using Process process = new()
-                {
-                    StartInfo = new ProcessStartInfo(ExcelFileName(period))
-                    {
-                        UseShellExecute = true
-                    }
-                };
-                _ = process.Start();
-            }
-            catch (Exception ex)
-            {
-                Log.Error = ex;
-            }
-        }
-
         #endregion Public methods
 
         #region Private methods
+
+        /// <summary>
+        /// Excel file name
+        /// </summary>
+        private static string ExcelFileName(REPORT_PERIOD period = REPORT_PERIOD.DAY)
+        {
+            string periodStr = period switch
+            {
+                REPORT_PERIOD.ALL => $"{DateTime.Now:yyyy-MM-dd}_AllRecords",
+                REPORT_PERIOD.YEAR => $"{DateTime.Now:yyyy}_ThisYearsRecords",
+                REPORT_PERIOD.MONTH => $"{DateTime.Now:yyyy-MM}_ThisMonthsRecords",
+                _ => $"{DateTime.Now:yyyy-MM-dd}_TodaysRecords"
+            };
+            string excelFileName = $"{Path.GetFileNameWithoutExtension(Application.ExecutablePath)}_{periodStr}.xlsx";
+            string taskLogSaveLocation = EarnerSettings.Instance.TaskLogSaveLocation;
+            string excelFileFullPath = Path.Combine(taskLogSaveLocation, excelFileName);
+            if (!Directory.Exists(taskLogSaveLocation))
+            {
+                _ = Directory.CreateDirectory(taskLogSaveLocation);
+            }
+            return excelFileFullPath;
+        }
 
         private void SaveToExcel(REPORT_PERIOD period)
         {
@@ -336,6 +298,45 @@ namespace Earner.Records
                     Seconds = Math.Round(values.Sum(v => v.Seconds), 2)
                 });
                 MiniExcel.SaveAs(ExcelFileName(period), values, excelType: ExcelType.XLSX, configuration: config, overwriteFile: true);
+            }
+            catch (Exception ex)
+            {
+                Log.Error = ex;
+            }
+        }
+
+        private void SaveToJsonDb()
+        {
+            try
+            {
+                Log.LogCaller();
+                JsonSerializerOptions options = new(JsonSerializerDefaults.General) { WriteIndented = true };
+                string jsonEarnerRecordList = JsonSerializer.Serialize(EarnerRecordList, options);
+                File.WriteAllText(CurrentJsonFileName, jsonEarnerRecordList);
+            }
+            catch (Exception ex)
+            {
+                Log.Error = ex;
+            }
+        }
+
+        private static void DisplayExcel(REPORT_PERIOD period = REPORT_PERIOD.DAY)
+        {
+            try
+            {
+                string fileName = ExcelFileName(period);
+                if (!File.Exists(fileName))
+                {
+                    return;
+                }
+                using Process process = new()
+                {
+                    StartInfo = new ProcessStartInfo(fileName)
+                    {
+                        UseShellExecute = true
+                    }
+                };
+                _ = process.Start();
             }
             catch (Exception ex)
             {

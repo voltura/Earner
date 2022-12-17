@@ -3,16 +3,18 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 #endregion Using statements
 
 namespace Earner
 {
-    internal static class Log
+    internal static partial class Log
     {
         #region Static variables
 
-        private static string lastInfo = string.Empty;
+        private static string lastInfo = "";
 
         private static readonly string logFile = Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".log";
 
@@ -188,12 +190,17 @@ namespace Earner
         /// </summary>
         internal static string Info
         {
-            private get => string.Empty;
+            private get => "";
             set
             {
+                if (value is null)
+                {
+                    return;
+                }
+
                 try
                 {
-                    string formattedValue = value.Replace('\r', ' ').Replace('\n', ' ').Trim();
+                    string formattedValue = value.Normalize(NormalizationForm.FormC).Trim();
                     if (lastInfo != formattedValue)
                     {
                         Trace.TraceInformation($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff", CultureInfo.InvariantCulture)} {formattedValue}");
@@ -215,9 +222,14 @@ namespace Earner
             private get => new ArgumentNullException(logFile);
             set
             {
+                if (value is null)
+                {
+                    return;
+                }
+
                 try
                 {
-                    string formattedValue = value.ToString().Replace('\r', ' ').Replace('\n', ' ').Trim();
+                    string formattedValue = value.ToString().Normalize(NormalizationForm.FormC).Trim();
                     Trace.TraceError($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff", CultureInfo.InvariantCulture)} {formattedValue}");
                     if (Settings.EarnerSettings.Instance.ShowApplicationLogOnErrors)
                     {
@@ -236,12 +248,17 @@ namespace Earner
         /// </summary>
         internal static string ErrorString
         {
-            private get => string.Empty;
+            private get => "";
             set
             {
+                if (value is null)
+                {
+                    return;
+                }
+
                 try
                 {
-                    string formattedValue = value.Replace('\r', ' ').Replace('\n', ' ').Trim();
+                    string formattedValue = value.Normalize(NormalizationForm.FormC).Trim();
                     Trace.TraceError($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff", CultureInfo.InvariantCulture)} {formattedValue}");
                 }
                 catch (Exception ex)
