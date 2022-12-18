@@ -120,12 +120,15 @@ namespace Earner.Records
             try
             {
                 Log.LogCaller();
+                EarnerRecordList = new List<EarnerRecord>();
                 if (File.Exists(CurrentJsonFileName))
                 {
                     string jsonEarnerRecordList = File.ReadAllText(CurrentJsonFileName);
-                    EarnerRecordList.AddRange(JsonSerializer.Deserialize<List<EarnerRecord>>(jsonEarnerRecordList)!);
+                    if (jsonEarnerRecordList.Length > 0)
+                    {
+                        EarnerRecordList.AddRange(JsonSerializer.Deserialize<List<EarnerRecord>>(jsonEarnerRecordList)!);
+                    }
                 }
-
             }
             catch (Exception ex)
             {

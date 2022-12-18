@@ -37,12 +37,6 @@
 		<DebugType>full</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DebuggerSupport>false</DebuggerSupport>
-		<PublishSingleFile>true</PublishSingleFile>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 		<DebugType>full</DebugType>
 		<DebugSymbols>true</DebugSymbols>
@@ -59,11 +53,11 @@
 		<UseNativeHttpHandler>true</UseNativeHttpHandler>
 		<PublishSingleFile>true</PublishSingleFile>
 		<UseSystemResourceKeys>true</UseSystemResourceKeys>
-		<BuiltInComInteropSupport>false</BuiltInComInteropSupport>
 		<EnableCppCLIHostActivation>false</EnableCppCLIHostActivation>
 		<EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>false</EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>
 		<StartupHookSupport>false</StartupHookSupport>
 		<CustomResourceTypesSupport>true</CustomResourceTypesSupport>
+		<Optimize>True</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -76,7 +70,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="MiniExcel" Version="1.29.0" />
-		<PackageReference Include="Tools.InnoSetup" Version="6.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>

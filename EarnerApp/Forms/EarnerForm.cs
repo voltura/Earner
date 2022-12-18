@@ -35,6 +35,8 @@ namespace Earner.Forms
 
         private string _InternetVersion = string.Empty;
 
+        private readonly object _lockObject = new();
+
         private readonly NotifyIcon _NotifyIcon;
 
         #endregion Private variables
@@ -67,13 +69,16 @@ namespace Earner.Forms
 
         private void LoadAppSettings()
         {
-            _Settings.Load();
-            SetTooltips();
-            _ActiveTask = _Settings.Tasks.FirstOrDefault("Default Task");
-            _lblActiveTask.Text = $"Working with {_ActiveTask}";
-            _pbWorkProgress.Visible = _Settings.ShowProgressbar;
-            TopMost = _Settings.StayOnTop;
-            _NotifyIcon.Visible = _Settings.MinimizeToSystemTray;
+            lock (_lockObject)
+            {
+                _Settings.Load();
+                SetTooltips();
+                _ActiveTask = _Settings.Tasks.FirstOrDefault("Default Task");
+                _lblActiveTask.Text = $"Working with {_ActiveTask}";
+                _pbWorkProgress.Visible = _Settings.ShowProgressbar;
+                TopMost = _Settings.StayOnTop;
+                _NotifyIcon.Visible = _Settings.MinimizeToSystemTray;
+            }
         }
 
         private void SetTooltips()
@@ -92,7 +97,7 @@ namespace Earner.Forms
                 _toolTip.SetToolTip(_lblActiveTask, "Active task");
                 _toolTip.SetToolTip(_lblEarnerHeader, $"{Application.ProductName} {Application.ProductVersion} by Voltura AB");
             }
-            else
+            else if (IsAccessible && _toolTip is not null)
             {
                 _toolTip.Hide(this);
                 _toolTip.SetToolTip(_lblEarnerHeader, null);
