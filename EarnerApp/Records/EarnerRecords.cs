@@ -334,7 +334,7 @@ namespace Earner.Records
             }
         }
 
-        private void RemoveJsonDb()
+        private static void RemoveJsonDb()
         {
             try
             {
