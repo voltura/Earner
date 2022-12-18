@@ -155,7 +155,7 @@ namespace Earner.Forms
             _Stopwatch.Start();
             _earnerTimer.Start();
             _btnStart.Tag = "Stop";
-            _btnStart.BackgroundImage = Properties.Resources.pause_48x48;
+            _btnStart.BackgroundImage = Resources.pause_48x48;
             Tick(this, new EventArgs());
         }
 

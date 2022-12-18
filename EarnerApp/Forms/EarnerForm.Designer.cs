@@ -113,6 +113,7 @@
             // _earnerTimer
             // 
             this._earnerTimer.Interval = 1000;
+            this._earnerTimer.Enabled = false;
             this._earnerTimer.Tick += new System.EventHandler(this.Tick);
             // 
             // _lblWorkTime
