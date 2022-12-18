@@ -16,8 +16,9 @@ namespace Earner.Records
     {
         #region Private variables
 
-
         private readonly EarnerSettings _Settings = EarnerSettings.Instance;
+
+        private const int SECONDS_IN_A_DAY = 24 * 60 * 60;
 
         private readonly object _RecordLock = new();
 
@@ -77,7 +78,7 @@ namespace Earner.Records
             get
             {
                 double totalSecondsWorkedToday = EarnerRecordList.Sum((er) => er.Date.Date == DateTime.Now.Date ? er.Time.TotalSeconds : 0.00d);
-                return totalSecondsWorkedToday >= 24 * 60 * 60 ? (24 * 60 * 60) - 1 : totalSecondsWorkedToday;
+                return totalSecondsWorkedToday >= SECONDS_IN_A_DAY ? SECONDS_IN_A_DAY : totalSecondsWorkedToday;
             }
         }
 
@@ -143,17 +144,9 @@ namespace Earner.Records
         {
             lock (_RecordLock)
             {
-                // create temp earner record
                 TimeSpan ts = TimeSpan.FromSeconds(totalElapsedSecondsForTaskToday);
-                EarnerRecord tempEarnerRecord = new()
-                {
-                    Task = task,
-                    Earned = totalEarningsForTaskToday,
-                    Time = ts,
-                    CurrencySymbol = currencySymbol,
-                    HourlyRate = hourlyRate,
-                    Date = DateTime.Now.Date
-                };
+                // create temp earner record
+                EarnerRecord tempEarnerRecord = GenerateEarnerRecord(task, totalEarningsForTaskToday, currencySymbol, hourlyRate, ts);
 
                 // create new record
                 if (EarnerRecordList.Count == 0 || !EarnerRecordList.Contains(tempEarnerRecord))
@@ -175,14 +168,22 @@ namespace Earner.Records
         public void RemoveTodaysEarningRecords()
         {
             Log.LogCaller();
-            EarnerRecordList = EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date) is null ? new List<EarnerRecord>() : EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date).ToList();
+            EarnerRecordList = EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date) is null ?
+                new List<EarnerRecord>() :
+                EarnerRecordList.Where((r) => r.Date.Date != DateTime.Now.Date).ToList();
             _Settings.Load();
-            if (!_Settings.SaveTaskLog || EarnerRecordList.Count == 0)
+            if (!_Settings.SaveTaskLog)
             {
                 return;
             }
-
-            SaveToJsonDb(); // remove todays records from json database
+            if (EarnerRecordList.Count == 0)
+            {
+                RemoveJsonDb(); // remove json database
+            }
+            else
+            {
+                SaveToJsonDb(); // remove todays records from json database
+            }
         }
 
         public void RemoveAllEarningRecords()
@@ -190,12 +191,11 @@ namespace Earner.Records
             Log.LogCaller();
             EarnerRecordList = new List<EarnerRecord>();
             _Settings.Load();
-            if (!_Settings.SaveTaskLog || EarnerRecordList.Count == 0)
+            if (!_Settings.SaveTaskLog)
             {
                 return;
             }
-
-            SaveToJsonDb(); // remove todays records from json database
+            RemoveJsonDb();
         }
 
         public void LogRecords(bool forceDisplayExcel = false, REPORT_PERIOD period = REPORT_PERIOD.DAY)
@@ -218,6 +218,19 @@ namespace Earner.Records
 
         #region Private methods
 
+        private static EarnerRecord GenerateEarnerRecord(string task, double totalEarningsForTaskToday, string currencySymbol, double hourlyRate, TimeSpan ts)
+        {
+            return new()
+            {
+                Task = task,
+                Earned = totalEarningsForTaskToday,
+                Time = ts,
+                CurrencySymbol = currencySymbol,
+                HourlyRate = hourlyRate,
+                Date = DateTime.Now.Date
+            };
+        }
+
         /// <summary>
         /// Excel file name
         /// </summary>
@@ -237,6 +250,7 @@ namespace Earner.Records
             {
                 _ = Directory.CreateDirectory(taskLogSaveLocation);
             }
+
             return excelFileFullPath;
         }
 
@@ -313,6 +327,24 @@ namespace Earner.Records
                 JsonSerializerOptions options = new(JsonSerializerDefaults.General) { WriteIndented = true };
                 string jsonEarnerRecordList = JsonSerializer.Serialize(EarnerRecordList, options);
                 File.WriteAllText(CurrentJsonFileName, jsonEarnerRecordList);
+            }
+            catch (Exception ex)
+            {
+                Log.Error = ex;
+            }
+        }
+
+        private void RemoveJsonDb()
+        {
+            try
+            {
+                Log.LogCaller();
+                string fileName = CurrentJsonFileName;
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
             }
             catch (Exception ex)
             {
