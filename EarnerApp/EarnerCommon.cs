@@ -74,22 +74,6 @@ namespace Earner
             return double.IsNaN(result) || double.IsInfinity(result) ? defaultValue : result;
         }
 
-        //public static void ScaleFont(Label lab, int maxFontSize = 0)
-        //{
-        //    while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width > lab.Width - 10 && lab.Font.Size > 8)
-        //    {
-        //        lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size - 0.01f, lab.Font.Style);
-        //    }
-        //    while (TextRenderer.MeasureText(lab.Text, new Font(lab.Font.FontFamily, lab.Font.Size, lab.Font.Style)).Width < lab.Width - 10 && lab.Font.Size < 130)
-        //    {
-        //        lab.Font = new Font(lab.Font.FontFamily, lab.Font.Size + 0.01f, lab.Font.Style);
-        //    }
-        //    if (maxFontSize > 0 && lab.Font.Size > maxFontSize)
-        //    {
-        //        lab.Font = new Font(lab.Font.FontFamily, maxFontSize, lab.Font.Style);
-        //    }
-        //}
-
         /// <summary>
         /// Scales the font size of the specified label to fit within the bounds of the label.
         /// </summary>
@@ -140,15 +124,24 @@ namespace Earner
                0);
         }
 
-        public static void OpenUrl(string url)
+        public static void OpenFileOrUrl(string fileOrUrl, Boolean checkIfFileExists = false)
         {
             try
             {
-                using Process p = new();
-                p.StartInfo = new ProcessStartInfo
+                if (checkIfFileExists)
                 {
-                    UseShellExecute = true,
-                    FileName = url
+                    if (!File.Exists(fileOrUrl))
+                    {
+                        return;
+                    }
+                }
+
+                using Process p = new()
+                {
+                    StartInfo = new ProcessStartInfo(fileOrUrl)
+                    {
+                        UseShellExecute = true
+                    }
                 };
                 _ = p.Start();
             }

@@ -153,18 +153,7 @@ namespace Earner
 
         internal static void Show()
         {
-            try
-            {
-                if (File.Exists(logFileFullPath))
-                {
-                    using Process process = new() { StartInfo = new ProcessStartInfo(logFileFullPath) { UseShellExecute = true } };
-                    _ = process.Start();
-                }
-            }
-            catch (InvalidOperationException ex)
-            {
-                Error = ex;
-            }
+            EarnerCommon.OpenFileOrUrl(logFileFullPath, true);
         }
 
         internal static void LogCaller()

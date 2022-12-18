@@ -322,26 +322,7 @@ namespace Earner.Records
 
         private static void DisplayExcel(REPORT_PERIOD period = REPORT_PERIOD.DAY)
         {
-            try
-            {
-                string fileName = ExcelFileName(period);
-                if (!File.Exists(fileName))
-                {
-                    return;
-                }
-                using Process process = new()
-                {
-                    StartInfo = new ProcessStartInfo(fileName)
-                    {
-                        UseShellExecute = true
-                    }
-                };
-                _ = process.Start();
-            }
-            catch (Exception ex)
-            {
-                Log.Error = ex;
-            }
+            EarnerCommon.OpenFileOrUrl(ExcelFileName(period), true);
         }
 
         #endregion Private methods

@@ -312,7 +312,7 @@ namespace Earner.Forms
                 if (confirmForm.ShowDialog() == DialogResult.Yes)
                 {
                     Visible = false;
-                    EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+                    EarnerCommon.OpenFileOrUrl(@"https://voltura.github.io/Earner/");
                 }
             }
             finally

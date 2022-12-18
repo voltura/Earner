@@ -436,7 +436,7 @@ namespace Earner.Forms
                 confirmForm.LblQuestion.Text = $"Earner {internetVersion} available, open web page?";
                 if (confirmForm.ShowDialog() == DialogResult.Yes)
                 {
-                    EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+                    EarnerCommon.OpenFileOrUrl(@"https://voltura.github.io/Earner/");
                 }
             }
         }

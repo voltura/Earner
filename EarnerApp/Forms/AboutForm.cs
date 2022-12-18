@@ -123,19 +123,19 @@ namespace Earner.Forms
         private void EarnerWebPageLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Log.LogCaller();
-            EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+            EarnerCommon.OpenFileOrUrl(@"https://voltura.github.io/Earner/");
         }
 
         private void SubmitBugClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            EarnerCommon.OpenUrl(@$"https://github.com/voltura/Earner/issues/new?assignees=&labels=&template=bug_report.md&title={UrlEncoder.Default.Encode(_lblAppInfo.Text)}");
+            EarnerCommon.OpenFileOrUrl(@$"https://github.com/voltura/Earner/issues/new?assignees=&labels=&template=bug_report.md&title={UrlEncoder.Default.Encode(_lblAppInfo.Text)}");
         }
 
         private void EarnerWebPageClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            EarnerCommon.OpenUrl(@"https://voltura.github.io/Earner/");
+            EarnerCommon.OpenFileOrUrl(@"https://voltura.github.io/Earner/");
         }
 
         private void AboutFormShown(object sender, EventArgs e)
@@ -149,7 +149,7 @@ namespace Earner.Forms
         private void SupportMeClick(object sender, EventArgs e)
         {
             Log.LogCaller();
-            EarnerCommon.OpenUrl(@"https://ko-fi.com/voltura");
+            EarnerCommon.OpenFileOrUrl(@"https://ko-fi.com/voltura");
         }
 
         #endregion Private events
