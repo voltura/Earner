@@ -74,7 +74,7 @@ namespace Earner.Forms
                 _Settings.Load();
                 SetTooltips();
                 _ActiveTask = _Settings.Tasks.FirstOrDefault("Default Task");
-                _lblActiveTask.Text = $"Working with {_ActiveTask}";
+                _lblActiveTask.Text = $"Performing '{_ActiveTask}' task";
                 _pbWorkProgress.Visible = _Settings.ShowProgressbar;
                 TopMost = _Settings.StayOnTop;
                 _NotifyIcon.Visible = _Settings.MinimizeToSystemTray;
