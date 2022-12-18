@@ -35,7 +35,7 @@ namespace Earner.Records
 
         #region Singleton instance via Lazy
 
-        private static readonly Lazy<EarnerRecords> lazy = new(() => new EarnerRecords());
+        private static readonly Lazy<EarnerRecords> lazy = new(() => new EarnerRecords(), LazyThreadSafetyMode.ExecutionAndPublication);
 
         public static EarnerRecords Instance => lazy.Value;
 

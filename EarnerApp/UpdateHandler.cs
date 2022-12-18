@@ -23,7 +23,7 @@
 
         #region Private static variables
 
-        private static readonly Lazy<UpdateHandler> _lazy = new(() => new UpdateHandler());
+        private static readonly Lazy<UpdateHandler> _lazy = new(() => new UpdateHandler(), LazyThreadSafetyMode.ExecutionAndPublication);
 
         #endregion Private static variables
 

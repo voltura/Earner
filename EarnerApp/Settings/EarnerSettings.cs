@@ -21,7 +21,7 @@
 
         #region Singleton instance via Lazy
 
-        private static readonly Lazy<EarnerSettings> lazy = new(() => new EarnerSettings());
+        private static readonly Lazy<EarnerSettings> lazy = new(() => new EarnerSettings(), LazyThreadSafetyMode.ExecutionAndPublication);
 
         public static EarnerSettings Instance
         {
