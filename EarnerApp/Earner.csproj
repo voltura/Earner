@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net10.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -17,9 +17,9 @@
 		<Copyright>Copyright © 2022 Voltura AB</Copyright>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<NeutralLanguage>en</NeutralLanguage>
-		<AssemblyVersion>1.0.4.0</AssemblyVersion>
-		<FileVersion>1.0.4.0</FileVersion>
-		<AssemblyInformationalVersion>1.0.4.0</AssemblyInformationalVersion>
+		<AssemblyVersion>1.0.4.1</AssemblyVersion>
+		<FileVersion>1.0.4.1</FileVersion>
+		<AssemblyInformationalVersion>1.0.4.1</AssemblyInformationalVersion>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -28,7 +28,8 @@
 		<SelfContained>true</SelfContained>
 		<PackageIcon>dollar.ico</PackageIcon>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Version>1.0.4.0</Version>
+		<Version>1.0.4.1</Version>
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>

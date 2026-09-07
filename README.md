@@ -32,3 +32,20 @@ Generates an Excel file with a log of the earnings and work performed for specif
 
 <img width="211" alt="About" src="https://user-images.githubusercontent.com/2292809/202931521-ace38c59-03dd-4b31-ad1a-94f9bac89872.png">
 
+
+### Build and release
+
+Use the .NET 10 SDK on Windows. The release is a self-contained Windows x64 executable, so users do not need to install .NET.
+
+```powershell
+dotnet build Earner.sln -c Release -p:Platform=x64
+dotnet run --project tests/ExportSmoke/ExportSmoke.csproj -c Release
+```
+
+For a release, increment the four version fields in `EarnerApp/Earner.csproj` using the existing four-part version convention, validate, and commit/push to `master`. Run the maintained PowerShell release entry point:
+
+```powershell
+& '.\Release Handling\Release.ps1' -Publish -NotesFile 'C:\path\to\release-notes.md'
+```
+
+The script tests the actual Excel exporter, builds the portable executable, preserves `Earner.zip` and `VERSION.TXT` compatibility, creates a draft release, downloads and compares all five assets with SHA-256, then publishes it as Latest. Omit `-Publish` for local packaging. Outputs go to `Releases/<version>`; existing outputs are never overwritten. The old batch release manager is historical and uses obsolete machine-specific tooling.
